@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/graal-fastdebug"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.alloc"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.amd64"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.api.code"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.api.meta"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.api.meta.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.api.replacements"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.api.runtime"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.api.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.asm"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.asm.amd64"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.asm.amd64.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.asm.ptx"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.asm.sparc"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.asm.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.bytecode"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.amd64"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.amd64.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.ptx"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.ptx.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.sparc"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.sparc.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.debug"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.debug.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.graph"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.graph.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.hotspot"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.hotspot.amd64"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.hotspot.amd64.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.hotspot.server"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.hotspot.sparc"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.hotspot.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.java"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.jtt"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.lir"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.lir.amd64"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.lir.ptx"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.lir.sparc"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.loop"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.nodes"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.phases"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.phases.common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.printer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.ptx"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.replacements"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.replacements.amd64"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.replacements.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.replacements.verifier"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.service.processor"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.sparc"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.virtual"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.word"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.api.codegen"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.api.codegen.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.api.test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.codegen.processor"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl.test"/>
+	<classpathentry kind="lib" path="/Volumes/Acme/Development/libs/guava-14.0.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
