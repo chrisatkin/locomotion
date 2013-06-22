@@ -7,10 +7,13 @@ import com.oracle.graal.api.meta.ResolvedJavaMethod;
 import com.oracle.graal.nodes.StructuredGraph;
 import com.oracle.graal.phases.Phase;
 import com.oracle.graal.phases.PhasePlan;
+import com.oracle.graal.phases.PhasePlan.PhasePosition;
 
 import uk.ac.ed.inf.icsa.locomotion.misc.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.misc.Utils;
+import uk.ac.ed.inf.icsa.locomotion.phases.ArrayAccessNodeInsertationPhase;
 //import uk.ac.ed.inf.icsa.locomotion.phases.DumpGraphPhase;
+import uk.ac.ed.inf.icsa.locomotion.phases.DumpGraphPhase;
 
 public class Application {
 	private Locomotion lm;
@@ -21,7 +24,7 @@ public class Application {
 	
 	@SuppressWarnings("serial")
 	public void run() {
-		for (String method: new String[] {"arrayAccess"})
+		for (String method: new String[] {"vectorAddition"})
 			try {
 				ResolvedJavaMethod rjm = Utils.getResolvedMethod(CodeSamples.class, method, this.lm.getRuntime());
 				StructuredGraph graph = this.lm.parse(rjm);
@@ -30,7 +33,7 @@ public class Application {
 					//put(new DumpGraphPhase("high-level"), PhasePosition.HIGH_LEVEL);
 					//put(new DumpGraphPhase("low-level", PhasePosition.LOW_LEVEL));
 					
-					
+					put(new ArrayAccessNodeInsertationPhase(), PhasePosition.HIGH_LEVEL);
 				}});
 				
 				Utils.dumpGraphToIgv(graph, "arrayAccess");
