@@ -1,18 +1,17 @@
 package uk.ac.ed.inf.icsa.locomotion.snippets;
 
+import static com.oracle.graal.replacements.SnippetTemplate.*;
+
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.ArrayAccessInstrumentation;
+import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayLoadNode;
+import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayStoreNode;
+
 import com.oracle.graal.api.code.CodeCacheProvider;
 import com.oracle.graal.api.code.TargetDescription;
-import com.oracle.graal.api.meta.JavaType;
-import com.oracle.graal.nodes.InvokeNode;
-import com.oracle.graal.nodes.StructuredGraph;
-import com.oracle.graal.nodes.ValueNode;
-import com.oracle.graal.nodes.java.LoadIndexedNode;
-import com.oracle.graal.nodes.java.MethodCallTargetNode;
-import com.oracle.graal.nodes.java.MethodCallTargetNode.InvokeKind;
-import com.oracle.graal.nodes.java.StoreIndexedNode;
 import com.oracle.graal.nodes.spi.Replacements;
 import com.oracle.graal.replacements.Snippet;
 import com.oracle.graal.replacements.SnippetTemplate.AbstractTemplates;
+import com.oracle.graal.replacements.SnippetTemplate.Arguments;
 import com.oracle.graal.replacements.SnippetTemplate.SnippetInfo;
 import com.oracle.graal.replacements.Snippets;
 
@@ -20,12 +19,12 @@ public class ArrayAccessSnippets implements Snippets {
 	
 	@Snippet
 	public static void arrayIndexStore() {
-		
+		ArrayAccessInstrumentation.store();
 	}
 	
 	@Snippet
 	public static void arrayIndexLoad() {	
-		
+		ArrayAccessInstrumentation.load();
 	}
 	
 	public static class Templates extends AbstractTemplates {
@@ -37,20 +36,20 @@ public class ArrayAccessSnippets implements Snippets {
 			super(runtime, replacements, target);
 		}
 		
-		public void invokeAfter(StoreIndexedNode node, StructuredGraph graph) {
-			JavaType returnType = methodOnStore.getMethod().getSignature().getReturnType(methodOnStore.getMethod().getDeclaringClass());
-			MethodCallTargetNode callTarget = graph.add(new MethodCallTargetNode(InvokeKind.Static, methodOnStore.getMethod(), new ValueNode[] {}, returnType));
-			InvokeNode invoke = graph.add(new InvokeNode(callTarget, 0));
-			invoke.setStateAfter(node.stateAfter());
-			graph.addAfterFixed(node, invoke);
+		public void lower(ArrayStoreNode node) {
+			Arguments args = new Arguments(methodOnStore) {{
+				
+			}};
+			
+			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);
 		}
 		
-		public void instrument(LoadIndexedNode node, StructuredGraph graph) {
-			JavaType returnType = methodOnLoad.getMethod().getSignature().getReturnType(methodOnLoad.getMethod().getDeclaringClass());
-			MethodCallTargetNode callTarget = graph.add(new MethodCallTargetNode(InvokeKind.Static, methodOnLoad.getMethod(), new ValueNode[] {}, returnType));
-			InvokeNode invoke = graph.add(new InvokeNode(callTarget, 0));
-			invoke.setStateAfter(graph.start().stateAfter());
-			graph.addAfterFixed(node, invoke);
+		public void lower(ArrayLoadNode node) {
+			Arguments args = new Arguments(methodOnLoad) {{
+				
+			}};
+			
+			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);
 		}
 	}
 }

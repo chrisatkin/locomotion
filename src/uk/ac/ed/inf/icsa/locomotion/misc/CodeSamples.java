@@ -27,17 +27,20 @@ public class CodeSamples {
 	}
 	
 	public static void vectorAddition() {
-		int[] a = { 5, 3, 9, 10, 2};
-		int[] b = { 5, 7, 1, 0,  8};
+//		int[] a = { 5, 3, 9, 10, 2};
+//		int[] b = { 5, 7, 1, 0,  8};
+//		
+//		assert a.length == b.length : "vector operands must be same length";
+//		
+//		int[] c = new int[a.length];
+//		
+//		for (int i = 0; i < a.length; i++)
+//			c[i] = a[i] + b[i];
+//		
+//		System.out.println(Arrays.toString(c));
 		
-		assert a.length == b.length : "vector operands must be same length";
-		
-		int[] c = new int[a.length];
-		
-		for (int i = 0; i < a.length; i++)
-			c[i] = a[i] + b[i];
-		
-		System.out.println(Arrays.toString(c));
+		int[] a = {4};
+		int b = a[0];
 	}
 	
 	public static void main(String[] args) {

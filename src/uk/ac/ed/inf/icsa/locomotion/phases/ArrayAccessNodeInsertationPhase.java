@@ -1,12 +1,10 @@
 package uk.ac.ed.inf.icsa.locomotion.phases;
 
-import uk.ac.ed.inf.icsa.locomotion.exceptions.InvalidNodeInsertationPositionException;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayAccessNode;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayLoadNode;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayStoreNode;
 
 import com.oracle.graal.graph.Node;
-import com.oracle.graal.nodes.FixedWithNextNode;
 import com.oracle.graal.nodes.StructuredGraph;
 import com.oracle.graal.nodes.java.AccessIndexedNode;
 import com.oracle.graal.nodes.java.LoadIndexedNode;
@@ -18,7 +16,7 @@ public class ArrayAccessNodeInsertationPhase extends LocomotionPhase {
 	protected void run(StructuredGraph graph) {
 		for (Node node: graph.getNodes()) {
 			if (node instanceof StoreIndexedNode)
-				;//markStore((StoreIndexedNode) node, graph);
+				markStore((StoreIndexedNode) node, graph);
 			
 			if (node instanceof LoadIndexedNode)
 				markLoad((LoadIndexedNode) node, graph);
@@ -42,9 +40,6 @@ public class ArrayAccessNodeInsertationPhase extends LocomotionPhase {
 			case After:
 				graph.addAfterFixed(node, insert);
 			break;
-			
-			default:
-				//throw new InvalidNodeInsertationPositionException("Node must be inserted before or after an existing node");
 		}
 	}
 }

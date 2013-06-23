@@ -9,11 +9,14 @@ import com.oracle.graal.phases.Phase;
 import com.oracle.graal.phases.PhasePlan;
 import com.oracle.graal.phases.PhasePlan.PhasePosition;
 
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.ArrayAccessInstrumentation;
 import uk.ac.ed.inf.icsa.locomotion.misc.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.misc.Utils;
 import uk.ac.ed.inf.icsa.locomotion.phases.ArrayAccessNodeInsertationPhase;
-//import uk.ac.ed.inf.icsa.locomotion.phases.DumpGraphPhase;
+import uk.ac.ed.inf.icsa.locomotion.phases.ArrayInstrumentationPhase;
 import uk.ac.ed.inf.icsa.locomotion.phases.DumpGraphPhase;
+//import uk.ac.ed.inf.icsa.locomotion.phases.DumpGraphPhase;
+import uk.ac.ed.inf.icsa.locomotion.snippets.ArrayAccessSnippets;
 
 public class Application {
 	private Locomotion lm;
@@ -29,20 +32,20 @@ public class Application {
 				ResolvedJavaMethod rjm = Utils.getResolvedMethod(CodeSamples.class, method, this.lm.getRuntime());
 				StructuredGraph graph = this.lm.parse(rjm);
 				CompilationResult result = this.lm.compile(graph, rjm, new HashMap<Phase, PhasePlan.PhasePosition>() {{
-					//put(new DumpGraphPhase("after-parsing"), PhasePosition.AFTER_PARSING);
-					//put(new DumpGraphPhase("high-level"), PhasePosition.HIGH_LEVEL);
-					//put(new DumpGraphPhase("low-level", PhasePosition.LOW_LEVEL));
-					
 					put(new ArrayAccessNodeInsertationPhase(), PhasePosition.HIGH_LEVEL);
+					put(new ArrayInstrumentationPhase(new ArrayAccessSnippets.Templates(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget())), PhasePosition.HIGH_LEVEL);
 				}});
 				
-				Utils.dumpGraphToIgv(graph, "arrayAccess");
+				//Utils.dumpGraphToIgv(graph, "arrayAccess");
 				
 				this.lm.execute(rjm, result, graph);
 			}
 			catch (Exception exc) {
 				exc.printStackTrace();
 			}
+		
+		System.out.println("Stores: " + ArrayAccessInstrumentation.getStoreCount());
+		System.out.println("Loads: " + ArrayAccessInstrumentation.getLoadCount());
 	}
 	
 	public static void main(String[] args) {

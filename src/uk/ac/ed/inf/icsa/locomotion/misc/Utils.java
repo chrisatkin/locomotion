@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 import com.google.common.io.Files;
+import com.oracle.graal.api.code.CodeCacheProvider;
 import com.oracle.graal.api.meta.ResolvedJavaMethod;
 import com.oracle.graal.nodes.StructuredGraph;
 import com.oracle.graal.nodes.spi.GraalCodeCacheProvider;
@@ -21,11 +22,11 @@ public class Utils {
 		return clazz.getMethod(name);
 	}
 	
-	public static ResolvedJavaMethod getResolvedMethod(GraalCodeCacheProvider runtime, Method method) {
+	public static ResolvedJavaMethod getResolvedMethod(CodeCacheProvider runtime, Method method) {
 		return runtime.lookupJavaMethod(method);
 	}
 	
-	public static ResolvedJavaMethod getResolvedMethod(Class<?> clazz,String name, GraalCodeCacheProvider runtime) throws NoSuchMethodException, SecurityException {
+	public static ResolvedJavaMethod getResolvedMethod(Class<?> clazz,String name, CodeCacheProvider runtime) throws NoSuchMethodException, SecurityException {
 		return getResolvedMethod(runtime, getMethod(clazz, name));
 	}
 

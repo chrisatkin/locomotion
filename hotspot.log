@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hotspot_log version='160 1' process='60125' time_ms='1371936879630'>
+<hotspot_log version='160 1' process='20058' time_ms='1372018690855'>
 <vm_version>
 <name>
 OpenJDK 64-Bit Graal VM
 </name>
 <release>
-25.0-b29-internal-fastdebug
+25.0-b37-internal-fastdebug
 </release>
 <info>
-OpenJDK 64-Bit Graal VM (25.0-b29-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jun 22 2013 18:38:22 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
+OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jun 23 2013 15:33:40 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
 </info>
 </vm_version>
 <vm_arguments>
@@ -23,7 +23,7 @@ SUN_STANDARD
 </launcher>
 <properties>
 java.vm.specification.name=Java Virtual Machine Specification
-java.vm.version=25.0-b29-internal-fastdebug
+java.vm.version=25.0-b37-internal-fastdebug
 java.vm.name=OpenJDK 64-Bit Graal VM
 java.vm.info=mixed mode, sharing
 java.ext.dirs=/Users/chris/Library/Java/Extensions:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
@@ -43,8 +43,8 @@ sun.java.launcher=SUN_STANDARD
 </vm_arguments>
 <tty>
 <writer thread='18947'/>
-<destroy_vm stamp='11.272'/>
-<tty_done stamp='11.334'/>
+<destroy_vm stamp='2.967'/>
+<tty_done stamp='3.024'/>
 </tty>
-<hotspot_log_done stamp='11.334'/>
+<hotspot_log_done stamp='3.024'/>
 </hotspot_log>
