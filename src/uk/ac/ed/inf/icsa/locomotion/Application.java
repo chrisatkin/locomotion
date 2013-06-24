@@ -5,6 +5,7 @@ import java.util.HashMap;
 import com.oracle.graal.api.code.CompilationResult;
 import com.oracle.graal.api.meta.ResolvedJavaMethod;
 import com.oracle.graal.nodes.StructuredGraph;
+import com.oracle.graal.phases.OptimisticOptimizations;
 import com.oracle.graal.phases.Phase;
 import com.oracle.graal.phases.PhasePlan;
 import com.oracle.graal.phases.PhasePlan.PhasePosition;
@@ -15,14 +16,15 @@ import uk.ac.ed.inf.icsa.locomotion.misc.Utils;
 import uk.ac.ed.inf.icsa.locomotion.phases.ArrayAccessNodeInsertationPhase;
 import uk.ac.ed.inf.icsa.locomotion.phases.ArrayInstrumentationPhase;
 import uk.ac.ed.inf.icsa.locomotion.phases.DumpGraphPhase;
-//import uk.ac.ed.inf.icsa.locomotion.phases.DumpGraphPhase;
 import uk.ac.ed.inf.icsa.locomotion.snippets.ArrayAccessSnippets;
 
 public class Application {
 	private Locomotion lm;
 	
 	public Application() {
-		this.lm = new Locomotion();
+		this.lm = new Locomotion(new Locomotion.Configuration() {{
+			optimizations = OptimisticOptimizations.NONE;
+		}});
 	}
 	
 	@SuppressWarnings("serial")

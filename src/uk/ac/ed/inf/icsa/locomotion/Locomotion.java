@@ -27,16 +27,24 @@ import com.oracle.graal.phases.tiers.Suites;
 import com.oracle.graal.phases.tiers.SuitesProvider;
 
 public class Locomotion {
+	public static class Configuration {
+		
+		public OptimisticOptimizations optimizations;
+
+	}
+
 	private final GraalCodeCacheProvider runtime;
 	private final Backend backend;
 	private final Replacements replacements;
 	private final Suites suites;
+	private final Configuration configuration;
 	
-	public Locomotion() {
+	public Locomotion(Configuration configuration) {
 		this.runtime = Graal.getRequiredCapability(GraalCodeCacheProvider.class);
 		this.backend = Graal.getRequiredCapability(Backend.class);
 		this.replacements = Graal.getRequiredCapability(Replacements.class);
 		this.suites = Graal.getRequiredCapability(SuitesProvider.class).createSuites();
+		this.configuration = configuration;
 		
 		System.out.println("[locomotion] using runtime=" + this.runtime.getClass().getName());
 	}
@@ -54,12 +62,12 @@ public class Locomotion {
 			this.runtime.getTarget(),
 			null,
 			new PhasePlan() {{
-				addPhase(PhasePosition.AFTER_PARSING, new GraphBuilderPhase(runtime, GraphBuilderConfiguration.getEagerDefault(), OptimisticOptimizations.NONE));
+				addPhase(PhasePosition.AFTER_PARSING, new GraphBuilderPhase(runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations));
 
 				for (Entry<Phase, PhasePlan.PhasePosition> entry: phases.entrySet())
 					addPhase(entry.getValue(), entry.getKey());
 			}},
-			OptimisticOptimizations.ALL,
+			configuration.optimizations,
 			new SpeculationLog(),
 			this.suites
 		);
@@ -92,7 +100,7 @@ public class Locomotion {
 		System.out.println("[locomotion] parsing " + method.getName());
 		
 		StructuredGraph graph = new StructuredGraph(method);
-		new GraphBuilderPhase(this.runtime, GraphBuilderConfiguration.getEagerDefault(), OptimisticOptimizations.NONE).apply(graph);
+		new GraphBuilderPhase(this.runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations).apply(graph);
 		return graph;
 	}
 }
