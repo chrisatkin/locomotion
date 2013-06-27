@@ -1,11 +1,12 @@
 package uk.ac.ed.inf.icsa.locomotion.nodes;
 
-import com.oracle.graal.nodes.spi.Lowerable;
-import com.oracle.graal.nodes.type.Stamp;
-import com.oracle.graal.replacements.Snippets;
+import com.oracle.graal.nodes.spi.LIRLowerable;
 
-public abstract class ArrayAccessNode extends LocomotionNode implements Lowerable {
-	public ArrayAccessNode(Stamp stamp) {
-		super(stamp);
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.Entry;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.Kind;
+
+public abstract class ArrayAccessNode extends LocomotionNode implements LIRLowerable {
+	public ArrayAccessNode(Entry entry) {
+		super(Kind.Array, entry);
 	}
 }

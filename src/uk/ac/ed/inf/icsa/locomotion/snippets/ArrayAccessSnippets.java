@@ -1,8 +1,8 @@
 package uk.ac.ed.inf.icsa.locomotion.snippets;
 
 import static com.oracle.graal.replacements.SnippetTemplate.*;
-
-import uk.ac.ed.inf.icsa.locomotion.instrumentation.ArrayAccessInstrumentation;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.Instrument;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.Kind;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayLoadNode;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayStoreNode;
 
@@ -18,13 +18,13 @@ import com.oracle.graal.replacements.Snippets;
 public class ArrayAccessSnippets implements Snippets {
 	
 	@Snippet
-	public static void arrayIndexStore() {
-		ArrayAccessInstrumentation.store();
+	public static void arrayIndexStore(ArrayStoreNode node) {
+		Instrument.get(Kind.Array).store(node.getEntry());
 	}
 	
 	@Snippet
-	public static void arrayIndexLoad() {	
-		ArrayAccessInstrumentation.load();
+	public static void arrayIndexLoad(ArrayLoadNode node) {	
+		Instrument.get(Kind.Array).load(node.getEntry());
 	}
 	
 	public static class Templates extends AbstractTemplates {
@@ -36,17 +36,17 @@ public class ArrayAccessSnippets implements Snippets {
 			super(runtime, replacements, target);
 		}
 		
-		public void lower(ArrayStoreNode node) {
+		public void lower(final ArrayStoreNode node) {
 			Arguments args = new Arguments(methodOnStore) {{
-				
+				add("node", node);
 			}};
 			
 			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);
 		}
 		
-		public void lower(ArrayLoadNode node) {
+		public void lower(final ArrayLoadNode node) {
 			Arguments args = new Arguments(methodOnLoad) {{
-				
+				add("node", node);
 			}};
 			
 			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);

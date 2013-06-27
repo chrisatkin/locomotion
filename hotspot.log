@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hotspot_log version='160 1' process='20058' time_ms='1372018690855'>
+<hotspot_log version='160 1' process='18025' time_ms='1372345702896'>
 <vm_version>
 <name>
 OpenJDK 64-Bit Graal VM
@@ -8,7 +8,7 @@ OpenJDK 64-Bit Graal VM
 25.0-b37-internal-fastdebug
 </release>
 <info>
-OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jun 23 2013 15:33:40 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
+OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jun 27 2013 14:26:47 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
 </info>
 </vm_version>
 <vm_arguments>
@@ -31,7 +31,7 @@ java.endorsed.dirs=/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib
 sun.boot.library.path=/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib
 java.library.path=/Users/chris/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
 java.home=/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre
-java.class.path=/Volumes/Acme/Development/locomotion/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.alloc/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.meta/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.code/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.graph/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.debug/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.replacements/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.nodes/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.amd64/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.meta.test/bin:/Users/chris/Applications/eclipse/plugins/org.junit_4.10.0.v4_10_0_v20120426-0900/junit.jar:/Users/chris/Applications/eclipse/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.runtime/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.amd64/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.amd64.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.ptx/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.sparc/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.options/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.phases/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.phases.common/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.virtual/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.loop/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.lir/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.compiler/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.bytecode/bin:/Vol
+java.class.path=/Volumes/Acme/Development/locomotion/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.alloc/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.meta/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.code/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.graph/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.debug/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.replacements/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.nodes/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.amd64/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.meta.test/bin:/Users/chris/Applications/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar:/Users/chris/Applications/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.runtime/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.amd64/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.amd64.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.ptx/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.sparc/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.options/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.phases/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.phases.common/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.virtual/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.loop/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.lir/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.compiler/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.bytecode/bin:/Volumes/Acme/D
 sun.boot.class.path=/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/resources.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/rt.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/sunrsasign.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/jsse.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/jce.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/charsets.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/jfr.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/JObjC.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/graal.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/classes
 java.vm.specification.vendor=Oracle Corporation
 java.vm.specification.version=1.7
@@ -42,9 +42,9 @@ sun.java.launcher=SUN_STANDARD
 </properties>
 </vm_arguments>
 <tty>
-<writer thread='18947'/>
-<destroy_vm stamp='2.967'/>
-<tty_done stamp='3.024'/>
+<writer thread='18691'/>
+<destroy_vm stamp='34.068'/>
+<tty_done stamp='34.209'/>
 </tty>
-<hotspot_log_done stamp='3.024'/>
+<hotspot_log_done stamp='34.209'/>
 </hotspot_log>

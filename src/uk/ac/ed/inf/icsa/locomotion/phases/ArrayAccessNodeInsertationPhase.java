@@ -1,5 +1,6 @@
 package uk.ac.ed.inf.icsa.locomotion.phases;
 
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.Entry;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayAccessNode;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayLoadNode;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayStoreNode;
@@ -23,12 +24,12 @@ public class ArrayAccessNodeInsertationPhase extends LocomotionPhase {
 		}
 	}
 	
-	private void markStore(StoreIndexedNode node, StructuredGraph graph) {
-		_insertNode(graph.add(new ArrayStoreNode()), node, graph, InsertationPosition.After);
+	private void markStore(final StoreIndexedNode node, StructuredGraph graph) {
+		_insertNode(graph.add(new ArrayStoreNode(new Entry(node.array().hashCode(), node.index().asConstant().asLong()))), node, graph, InsertationPosition.After);
 	}
 	
-	private void markLoad(LoadIndexedNode node, StructuredGraph graph) {
-		_insertNode(graph.add(new ArrayLoadNode()), node, graph, InsertationPosition.After);
+	private void markLoad(final LoadIndexedNode node, StructuredGraph graph) {
+		_insertNode(graph.add(new ArrayLoadNode(new Entry(node.array().hashCode(), node.index().asConstant().asLong()))), node, graph, InsertationPosition.After);
 	}
 	
 	private void _insertNode(ArrayAccessNode insert, AccessIndexedNode node, StructuredGraph graph, InsertationPosition position) {

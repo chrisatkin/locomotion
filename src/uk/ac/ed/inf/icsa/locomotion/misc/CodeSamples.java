@@ -2,6 +2,7 @@ package uk.ac.ed.inf.icsa.locomotion.misc;
 
 import java.util.Arrays;
 
+@SuppressWarnings("unused")
 public class CodeSamples {
 	public static int publicInt = 0;
 	protected static int protectedInt = 1;
@@ -27,20 +28,29 @@ public class CodeSamples {
 	}
 	
 	public static void vectorAddition() {
-//		int[] a = { 5, 3, 9, 10, 2};
-//		int[] b = { 5, 7, 1, 0,  8};
-//		
-//		assert a.length == b.length : "vector operands must be same length";
-//		
-//		int[] c = new int[a.length];
-//		
-//		for (int i = 0; i < a.length; i++)
-//			c[i] = a[i] + b[i];
-//		
-//		System.out.println(Arrays.toString(c));
+		int[] a = { 5, 3, 9, 10, 2};
+		int[] b = { 5, 7, 1, 0,  8};
+		int[] c = new int[a.length];
 		
-		int[] a = {4};
-		int b = a[0];
+		for (int i = 0; i < a.length; i++)
+			c[i] = a[i] + b[i];
+		
+		something(c);
+	}
+	
+	public static void copyArray() {
+		int[] a = {1, 2, 3};
+		int[] b = new int[3];
+		
+		b[0] = a[0];
+		b[1] = a[1];
+		b[2] = a[2];
+		
+		String s = Arrays.toString(b);
+	}
+	
+	private static void something(int[] a) {
+		System.out.println(a);
 	}
 	
 	public static void main(String[] args) {

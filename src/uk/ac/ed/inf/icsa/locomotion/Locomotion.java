@@ -3,7 +3,6 @@ package uk.ac.ed.inf.icsa.locomotion;
 import static com.oracle.graal.api.code.CodeUtil.getCallingConvention;
 
 import java.util.Map;
-import java.util.Map.Entry;
 
 import com.oracle.graal.api.code.CallingConvention.Type;
 import com.oracle.graal.api.code.CompilationResult;
@@ -28,9 +27,13 @@ import com.oracle.graal.phases.tiers.SuitesProvider;
 
 public class Locomotion {
 	public static class Configuration {
-		
 		public OptimisticOptimizations optimizations;
-
+	}
+	
+	public enum Position {
+		High,
+		Mid,
+		Low
 	}
 
 	private final GraalCodeCacheProvider runtime;
@@ -49,8 +52,10 @@ public class Locomotion {
 		System.out.println("[locomotion] using runtime=" + this.runtime.getClass().getName());
 	}
 	
-	public CompilationResult compile(StructuredGraph graph, ResolvedJavaMethod method, final Map<Phase, PhasePlan.PhasePosition> phases) {
+	public CompilationResult compile(StructuredGraph graph, ResolvedJavaMethod method, Map<Phase, Position> phases) {
 		System.out.println("[locomotion] compilation");
+		
+		_addPhasesToSuites(phases);
 		
 		return GraalCompiler.compileGraph(
 			graph,
@@ -63,9 +68,6 @@ public class Locomotion {
 			null,
 			new PhasePlan() {{
 				addPhase(PhasePosition.AFTER_PARSING, new GraphBuilderPhase(runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations));
-
-				for (Entry<Phase, PhasePlan.PhasePosition> entry: phases.entrySet())
-					addPhase(entry.getValue(), entry.getKey());
 			}},
 			configuration.optimizations,
 			new SpeculationLog(),
@@ -102,5 +104,26 @@ public class Locomotion {
 		StructuredGraph graph = new StructuredGraph(method);
 		new GraphBuilderPhase(this.runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations).apply(graph);
 		return graph;
+	}
+	
+	private void _addPhasesToSuites(final Map<Phase, Position> suite) {
+		for (Map.Entry<Phase, Position> entry: suite.entrySet()) {
+			Phase phase = entry.getKey();
+			Position position = entry.getValue();
+			
+			switch (position) {
+				case Low:
+					this.suites.getLowTier().appendPhase(phase);
+				break;
+				
+				case Mid:
+					this.suites.getMidTier().appendPhase(phase);
+				break;
+				
+				case High:
+					this.suites.getHighTier().appendPhase(phase);
+				break;
+			}
+		}
 	}
 }

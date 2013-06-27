@@ -8,7 +8,6 @@ import com.google.common.io.Files;
 import com.oracle.graal.api.code.CodeCacheProvider;
 import com.oracle.graal.api.meta.ResolvedJavaMethod;
 import com.oracle.graal.nodes.StructuredGraph;
-import com.oracle.graal.nodes.spi.GraalCodeCacheProvider;
 import com.oracle.graal.printer.GraphPrinterDumpHandler;
 
 public class Utils {
