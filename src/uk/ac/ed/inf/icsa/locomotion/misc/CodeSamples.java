@@ -50,7 +50,7 @@ public class CodeSamples {
 	}
 	
 	private static void something(int[] a) {
-		System.out.println(a);
+		System.out.println(Arrays.toString(a));
 	}
 	
 	public static void main(String[] args) {
