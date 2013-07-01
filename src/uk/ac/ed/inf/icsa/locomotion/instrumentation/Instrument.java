@@ -8,6 +8,9 @@ import uk.ac.ed.inf.icsa.locomotion.instrumentation.trace.Trace;
 
 public class Instrument {
 	
+	public static int stores = 0;
+	public static int loads = 0;
+	
 	public static class InstrumentationImpl {
 		private Trace loadTrace;
 		private Trace storeTrace;
@@ -56,6 +59,9 @@ public class Instrument {
 			
 			report.append(k.toString() + ": " + i.report());
 		}
+		
+		report.append("stores ").append(stores).append("\n");
+		report.append("loads ").append(loads);
 		
 		return report.toString();
 	}

@@ -27,15 +27,34 @@ public class CodeSamples {
 		System.out.println("New private: " + privateInt);
 	}
 	
-	public static void vectorAddition() {
-		int[] a = { 5, 3, 9, 10, 2};
-		int[] b = { 5, 7, 1, 0,  8};
-		int[] c = new int[a.length];
+	public static int[] vectorAddition() {
+		//int[] a = { 5, 3, 9, 10, 2};
+		//int[] b = { 5, 7, 1, 0,  8};
+		int[] c = new int[5];
+		
+		for (int i = 0; i < 5; i++)
+			c[i] = i;
+		
+		
+		return c;
+		//System.out.println(Arrays.toString(a));
+		
+//		int x = 1;
+//		for (int i = 0; i < 5; i++)
+//			x = x + i;
+//		
+//		return x;
+	}
+	
+	public static double[] loopDepency() {
+		int[] a = {4, 3, 1, 2, 0};
+		int[] b = {2, 4, 3, 0, 1};
+		double[] c = new double[a.length];
 		
 		for (int i = 0; i < a.length; i++)
-			c[i] = a[i] + b[i];
+			c[i] = Math.log((double) a[i] * b[i]);
 		
-		something(c);
+		return c;
 	}
 	
 	public static void copyArray() {
@@ -47,10 +66,6 @@ public class CodeSamples {
 		b[2] = a[2];
 		
 		String s = Arrays.toString(b);
-	}
-	
-	private static void something(int[] a) {
-		System.out.println(Arrays.toString(a));
 	}
 	
 	public static void main(String[] args) {

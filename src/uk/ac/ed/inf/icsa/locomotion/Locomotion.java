@@ -1,10 +1,7 @@
 package uk.ac.ed.inf.icsa.locomotion;
 
-import static com.oracle.graal.api.code.CodeUtil.getCallingConvention;
-
 import java.util.Map;
 
-import com.oracle.graal.api.code.CallingConvention.Type;
 import com.oracle.graal.api.code.CompilationResult;
 import com.oracle.graal.api.code.InvalidInstalledCodeException;
 import com.oracle.graal.api.code.SpeculationLog;
@@ -22,8 +19,7 @@ import com.oracle.graal.nodes.spi.Replacements;
 import com.oracle.graal.phases.OptimisticOptimizations;
 import com.oracle.graal.phases.Phase;
 import com.oracle.graal.phases.PhasePlan;
-import com.oracle.graal.phases.tiers.Suites;
-import com.oracle.graal.phases.tiers.SuitesProvider;
+import com.oracle.graal.phases.PhasePlan.PhasePosition;
 
 public class Locomotion {
 	public static class Configuration {
@@ -33,21 +29,25 @@ public class Locomotion {
 	public enum Position {
 		High,
 		Mid,
-		Low
+		Low,
+		Parsing
 	}
 
 	private final GraalCodeCacheProvider runtime;
 	private final Backend backend;
 	private final Replacements replacements;
-	private final Suites suites;
+	//private final Suites suites;
 	private final Configuration configuration;
+	private PhasePlan phasePlan;
 	
 	public Locomotion(Configuration configuration) {
 		this.runtime = Graal.getRequiredCapability(GraalCodeCacheProvider.class);
 		this.backend = Graal.getRequiredCapability(Backend.class);
 		this.replacements = Graal.getRequiredCapability(Replacements.class);
-		this.suites = Graal.getRequiredCapability(SuitesProvider.class).createSuites();
+		//this.suites = Graal.getRequiredCapability(SuitesProvider.class).createSuites();
 		this.configuration = configuration;
+		this.phasePlan = new PhasePlan();
+		this.phasePlan.addPhase(PhasePosition.AFTER_PARSING, new GraphBuilderPhase(runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations));
 		
 		System.out.println("[locomotion] using runtime=" + this.runtime.getClass().getName());
 	}
@@ -57,7 +57,7 @@ public class Locomotion {
 		
 		_addPhasesToSuites(phases);
 		
-		return GraalCompiler.compileGraph(
+		/*return GraalCompiler.compileMethod(
 			graph,
 			getCallingConvention(this.runtime, Type.JavaCallee, graph.method(), false),
 			method,
@@ -66,13 +66,13 @@ public class Locomotion {
 			this.backend,
 			this.runtime.getTarget(),
 			null,
-			new PhasePlan() {{
-				addPhase(PhasePosition.AFTER_PARSING, new GraphBuilderPhase(runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations));
-			}},
+			this.phasePlan,
 			configuration.optimizations,
 			new SpeculationLog(),
 			this.suites
-		);
+		);*/
+		
+		return GraalCompiler.compileMethod(runtime, replacements, backend, runtime.getTarget(), method, graph, null, phasePlan, OptimisticOptimizations.ALL, new SpeculationLog());
 	}
 	
 	public void execute(final ResolvedJavaMethod method, final CompilationResult result, final StructuredGraph graph) throws InvalidInstalledCodeException {
@@ -113,16 +113,25 @@ public class Locomotion {
 			
 			switch (position) {
 				case Low:
-					this.suites.getLowTier().appendPhase(phase);
-				break;
+					phasePlan.addPhase(PhasePosition.LOW_LEVEL, phase);
+					//this.suites.getLowTier().appendPhase(phase);
+					//throw new LocomotionError("Low-level not supported");
 				
 				case Mid:
-					this.suites.getMidTier().appendPhase(phase);
+					phasePlan.addPhase(PhasePosition.MID_LEVEL, phase);
+					//this.suites.getMidTier().appendPhase(phase);
+					//this.phasePlan.addPhase(PhasePosition.HIGH_LEVEL, phase);
 				break;
 				
 				case High:
-					this.suites.getHighTier().appendPhase(phase);
+					phasePlan.addPhase(PhasePosition.HIGH_LEVEL, phase);
+					//this.suites.getHighTier().appendPhase(phase);
+					//this.phasePlan.addPhase(PhasePosition.AFTER_PARSING, phase);
 				break;
+				
+				case Parsing:
+					phasePlan.addPhase(PhasePosition.AFTER_PARSING, phase);
+					break;
 			}
 		}
 	}

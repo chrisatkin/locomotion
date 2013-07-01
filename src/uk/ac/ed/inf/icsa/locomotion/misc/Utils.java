@@ -7,7 +7,10 @@ import java.lang.reflect.Method;
 import com.google.common.io.Files;
 import com.oracle.graal.api.code.CodeCacheProvider;
 import com.oracle.graal.api.meta.ResolvedJavaMethod;
+import com.oracle.graal.graph.Node;
+import com.oracle.graal.nodes.PhiNode;
 import com.oracle.graal.nodes.StructuredGraph;
+import com.oracle.graal.nodes.calc.CompareNode;
 import com.oracle.graal.printer.GraphPrinterDumpHandler;
 
 public class Utils {
@@ -40,5 +43,15 @@ public class Utils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static Node getNonPhiNode(CompareNode condition) {
+	    if (!(condition.x() instanceof PhiNode)) {
+	        return condition.x();
+	    } else if (!(condition.y() instanceof PhiNode)) {
+	        return condition.y();
+	    } else {
+	        return null;
+	    }
 	}
 }

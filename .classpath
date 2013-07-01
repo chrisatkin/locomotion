@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/graal-fastdebug"/>
+	<classpathentry kind="lib" path="/Volumes/Acme/Development/libs/guava-14.0.1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.alloc"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.amd64"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.api.code"/>
@@ -23,7 +24,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.ptx"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.ptx.test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.sparc"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.sparc.test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.compiler.test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.debug"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.debug.test"/>
@@ -63,6 +63,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.codegen.processor"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl.test"/>
-	<classpathentry kind="lib" path="/Volumes/Acme/Development/libs/guava-14.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
