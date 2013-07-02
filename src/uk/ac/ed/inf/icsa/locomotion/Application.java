@@ -7,6 +7,7 @@ import uk.ac.ed.inf.icsa.locomotion.misc.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.misc.Utils;
 import uk.ac.ed.inf.icsa.locomotion.phase.ArrayAccessInstrumentationPhase;
 import uk.ac.ed.inf.icsa.locomotion.phase.ArrayAccessLoweringPhase;
+import uk.ac.ed.inf.icsa.locomotion.phase.LocomotionPhase;
 
 import com.oracle.graal.api.code.CompilationResult;
 import com.oracle.graal.api.meta.ResolvedJavaMethod;
@@ -32,6 +33,12 @@ public class Application {
 				CompilationResult result = this.lm.compile(graph, rjm, new HashMap<Phase, Locomotion.Position>() {{
 					put(new ArrayAccessInstrumentationPhase(), Locomotion.Position.High);
 					put(new ArrayAccessLoweringPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Locomotion.Position.High);
+					
+					put(new LocomotionPhase() {
+						protected void run(StructuredGraph graph) {
+							Utils.dumpGraphToIgv(graph, "high-level");
+						}
+					}, Locomotion.Position.High);
 				}});
 				
 				this.lm.execute(rjm, result, graph);

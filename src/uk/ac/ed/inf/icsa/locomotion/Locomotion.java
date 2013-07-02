@@ -21,6 +21,10 @@ import com.oracle.graal.phases.Phase;
 import com.oracle.graal.phases.PhasePlan;
 import com.oracle.graal.phases.PhasePlan.PhasePosition;
 
+/**
+ * @author	Chris Atkin <me@chrisatk.in>
+ * @version 1.0
+ */
 public class Locomotion {
 	public static class Configuration {
 		public OptimisticOptimizations optimizations;
