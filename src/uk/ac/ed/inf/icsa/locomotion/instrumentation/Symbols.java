@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import uk.ac.ed.inf.icsa.locomotion.exceptions.LocomotionError;
+import uk.ac.ed.inf.icsa.locomotion.exception.LocomotionError;
 
 public class Symbols {
 

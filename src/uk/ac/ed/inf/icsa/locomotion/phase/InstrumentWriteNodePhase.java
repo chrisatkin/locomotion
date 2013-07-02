@@ -1,4 +1,4 @@
-package uk.ac.ed.inf.icsa.locomotion.phases;
+package uk.ac.ed.inf.icsa.locomotion.phase;
 
 import com.oracle.graal.graph.Node;
 import com.oracle.graal.graph.Node.Verbosity;

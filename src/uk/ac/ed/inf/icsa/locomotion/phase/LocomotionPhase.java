@@ -1,4 +1,4 @@
-package uk.ac.ed.inf.icsa.locomotion.phases;
+package uk.ac.ed.inf.icsa.locomotion.phase;
 
 import com.oracle.graal.nodes.StructuredGraph;
 import com.oracle.graal.phases.Phase;

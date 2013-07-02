@@ -5,16 +5,15 @@ import java.util.HashMap;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Instrument;
 import uk.ac.ed.inf.icsa.locomotion.misc.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.misc.Utils;
-import uk.ac.ed.inf.icsa.locomotion.phases.ArrayAccessInstrumentationPhase;
-import uk.ac.ed.inf.icsa.locomotion.phases.LocomotionPhase;
-import uk.ac.ed.inf.icsa.locomotion.snippets.ArrayAccessSnippets;
+import uk.ac.ed.inf.icsa.locomotion.node.ArrayLoadBehaviourNode;
+import uk.ac.ed.inf.icsa.locomotion.node.ArrayStoreBehaviourNode;
+import uk.ac.ed.inf.icsa.locomotion.phase.ArrayAccessInstrumentationPhase;
+import uk.ac.ed.inf.icsa.locomotion.phase.LocomotionPhase;
+import uk.ac.ed.inf.icsa.locomotion.snippet.ArrayAccessSnippets;
 
 import com.oracle.graal.api.code.CompilationResult;
 import com.oracle.graal.api.meta.ResolvedJavaMethod;
 import com.oracle.graal.graph.Node;
-import com.oracle.graal.nodes.BeginNode;
-import com.oracle.graal.nodes.IfNode;
-import com.oracle.graal.nodes.LoopBeginNode;
 import com.oracle.graal.nodes.StructuredGraph;
 import com.oracle.graal.phases.OptimisticOptimizations;
 import com.oracle.graal.phases.Phase;
@@ -28,7 +27,7 @@ public class Application {
 		}});
 	}
 	
-	@SuppressWarnings({"serial", "unused"})
+	@SuppressWarnings({"serial"})
 	public void run() {
 		for (String method: new String[] {"loopDepency"})
 			try {
@@ -40,11 +39,11 @@ public class Application {
 					put(new LocomotionPhase() {
 						protected void run(StructuredGraph graph) {
 							for (Node n: graph.getNodes()) {
-								if (n instanceof ArrayAccessInstrumentationPhase.ArrayLoadBehaviourNode)
-									new ArrayAccessSnippets.Templates(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()).lower((ArrayAccessInstrumentationPhase.ArrayLoadBehaviourNode) n);
+								if (n instanceof ArrayLoadBehaviourNode)
+									new ArrayAccessSnippets.Templates(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()).lower((ArrayLoadBehaviourNode) n);
 								
-								if (n instanceof ArrayAccessInstrumentationPhase.ArrayStoreBehaviourNode)
-									new ArrayAccessSnippets.Templates(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()).lower((ArrayAccessInstrumentationPhase.ArrayStoreBehaviourNode) n);
+								if (n instanceof ArrayStoreBehaviourNode)
+									new ArrayAccessSnippets.Templates(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()).lower((ArrayStoreBehaviourNode) n);
 							}
 						}
 					}, Locomotion.Position.High);
