@@ -9,35 +9,35 @@ import uk.ac.ed.inf.icsa.locomotion.exception.LocomotionError;
 
 public class Symbols {
 
-	private static Map<String, Set<String>> symbols = new HashMap<String, Set<String>>();
+	private static Map<Kind, Set<String>> symbols = new HashMap<Kind, Set<String>>();
 	
-	public static void addScope(String name) {
-		symbols.put(name, new HashSet<String>());
+	public static void addScope(Kind kind) {
+		symbols.put(kind, new HashSet<String>());
 	}
 	
-	public static void addToScope(String scope, String variable) {
+	public static void addToScope(Kind scope, String variable) {
 		if (!scopeExists(scope))
 			throw new LocomotionError("Scope " + scope + " does not exist");
 		
 		getVariablesInScope(scope).add(variable);
 	}
 	
-	public static boolean scopeExists(String scope) {
+	public static boolean scopeExists(Kind scope) {
 		return symbols.containsKey(scope);
 	}
 	
-	public static boolean variableExists(String scope, String variable) {
+	public static boolean variableExists(Kind scope, String variable) {
 		return getVariablesInScope(scope).contains(variable);
 	}
 	
-	public static Set<String> getVariablesInScope(String scope) {
+	public static Set<String> getVariablesInScope(Kind scope) {
 		if (!scopeExists(scope))
 			throw new LocomotionError("Scope " + scope + " does not exist");
 		
 		return symbols.get(scope);
 	}
 	
-	public static Map<String, Set<String>> getSymbols() {
+	public static Map<Kind, Set<String>> getSymbols() {
 		return symbols;
 	}
 }

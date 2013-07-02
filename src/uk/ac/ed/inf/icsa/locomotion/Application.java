@@ -25,13 +25,12 @@ public class Application {
 	
 	@SuppressWarnings({"serial"})
 	public void run() {
-		for (String method: new String[] {"loopDepency"})
+		for (String method: new String[] {"loopDepency"}) {
 			try {
 				ResolvedJavaMethod rjm = Utils.getResolvedMethod(CodeSamples.class, method, this.lm.getRuntime());
 				StructuredGraph graph = this.lm.parse(rjm);
 				CompilationResult result = this.lm.compile(graph, rjm, new HashMap<Phase, Locomotion.Position>() {{
-					//put(new InstrumentWriteNodePhase(), Locomotion.Position.Low);	
-					put (new ArrayAccessInstrumentationPhase(), Locomotion.Position.High);
+					put(new ArrayAccessInstrumentationPhase(), Locomotion.Position.High);
 					put(new ArrayAccessLoweringPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Locomotion.Position.High);
 				}});
 				
@@ -42,6 +41,7 @@ public class Application {
 			catch (Exception exc) {
 				exc.printStackTrace();
 			}
+		}
 	}
 	
 	public static void main(String[] args) {

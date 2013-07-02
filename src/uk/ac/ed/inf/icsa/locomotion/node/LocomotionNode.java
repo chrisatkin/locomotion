@@ -4,22 +4,14 @@ import com.oracle.graal.nodes.FixedWithNextNode;
 import com.oracle.graal.nodes.ValueNode;
 import com.oracle.graal.nodes.spi.LIRGeneratorTool;
 import com.oracle.graal.nodes.spi.LIRLowerable;
-import com.oracle.graal.nodes.spi.Lowerable;
-import com.oracle.graal.nodes.spi.LoweringTool;
 import com.oracle.graal.nodes.type.StampFactory;
 
-abstract class LocomotionNode extends FixedWithNextNode implements Lowerable, LIRLowerable {
+abstract class LocomotionNode extends FixedWithNextNode implements LIRLowerable {
 
 	protected ValueNode target;
 	
 	protected LocomotionNode(ValueNode target) {
 		super(StampFactory.forVoid());
-	}
-	
-	@Override
-	public void lower(LoweringTool tool, LoweringType loweringType) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -29,6 +21,10 @@ abstract class LocomotionNode extends FixedWithNextNode implements Lowerable, LI
 	
 	public ValueNode getTarget() {
 		return target;
+	}
+	
+	public void inLoop() {
+		
 	}
 
 }

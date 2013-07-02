@@ -11,7 +11,7 @@ public class Instrument {
 	public static int stores = 0;
 	public static int loads = 0;
 	
-	public static class InstrumentationImpl {
+	protected static class InstrumentationImpl {
 		private Trace loadTrace;
 		private Trace storeTrace;
 		
@@ -35,7 +35,7 @@ public class Instrument {
 		public String report() {
 			StringBuilder report = new StringBuilder();
 			
-			report.append("stores=" + storeTrace.entryCount() + " loads=" + loadTrace.entryCount());
+			report.append("stores= ").append(storeTrace.entryCount()).append(" loads=").append(loadTrace.entryCount());
 			
 			return report.toString();
 		}
@@ -57,7 +57,7 @@ public class Instrument {
 			Kind k = entry.getKey();
 			InstrumentationImpl i = entry.getValue();
 			
-			report.append(k.toString() + ": " + i.report());
+			report.append(k.toString()).append(": ").append(i.report());
 		}
 		
 		report.append("stores ").append(stores).append("\n");

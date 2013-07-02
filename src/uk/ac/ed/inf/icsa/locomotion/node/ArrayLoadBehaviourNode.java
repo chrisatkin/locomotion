@@ -5,5 +5,6 @@ import com.oracle.graal.nodes.java.LoadIndexedNode;
 public class ArrayLoadBehaviourNode extends ArrayBehaviourNode {
 	public ArrayLoadBehaviourNode(LoadIndexedNode target) {
 		super(target);
+		System.out.println(target.toString(Verbosity.All));
 	}	
 }

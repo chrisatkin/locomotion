@@ -18,11 +18,12 @@ public class ArrayAccessSnippets implements Snippets {
 
 	@Snippet
 	public static void store(final ArrayStoreBehaviourNode node) {
-		Instrument.stores++;
+		//Instrument.stores++;
 	}
 	
 	@Snippet
 	public static void load(final ArrayLoadBehaviourNode node) {
+		//System.out.println(node.toString(Verbosity.All));
 		Instrument.loads++;
 	}
 	
