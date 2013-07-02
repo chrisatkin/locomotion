@@ -8,16 +8,18 @@ import com.oracle.graal.nodes.StructuredGraph;
 import com.oracle.graal.nodes.java.LoadIndexedNode;
 import com.oracle.graal.nodes.java.StoreIndexedNode;
 
-public class ArrayAccessInstrumentationPhase extends LocomotionPhase {
+public class ArrayInstrumentationPhase extends LocomotionPhase {
 
 	@Override
 	protected void run(StructuredGraph graph) {
-		for (Node n: graph.getNodes()) {
+		for (Node n : graph.getNodes()) {
 			if (n instanceof LoadIndexedNode)
-				graph.addAfterFixed((LoadIndexedNode) n, graph.add(new ArrayLoadBehaviourNode((LoadIndexedNode) n)));
-				
+				graph.addAfterFixed((LoadIndexedNode) n, graph
+						.add(new ArrayLoadBehaviourNode<LoadIndexedNode>((LoadIndexedNode) n)));
+
 			if (n instanceof StoreIndexedNode)
-				graph.addAfterFixed((StoreIndexedNode) n, graph.add(new ArrayStoreBehaviourNode((StoreIndexedNode) n)));
+				graph.addAfterFixed((StoreIndexedNode) n, graph
+						.add(new ArrayStoreBehaviourNode<StoreIndexedNode>((StoreIndexedNode) n)));
 		}
 	}
 

@@ -1,7 +1,9 @@
 package uk.ac.ed.inf.icsa.locomotion.instrumentation;
 
 import java.util.EnumMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.trace.BloomFilterTrace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.trace.Trace;
@@ -11,14 +13,14 @@ public class Instrument {
 	public static int stores = 0;
 	public static int loads = 0;
 	
-	protected static class InstrumentationImpl {
+	public static class InstrumentationImpl {
 		private Trace loadTrace;
 		private Trace storeTrace;
 		
-		public <T> InstrumentationImpl(Class<T> traceClass) {
+		public <T extends Trace> InstrumentationImpl(Class<T> traceClass) {
 			try {
-				this.loadTrace = (Trace) traceClass.newInstance();
-				this.storeTrace = (Trace) traceClass.newInstance();
+				this.loadTrace = traceClass.newInstance();
+				this.storeTrace = traceClass.newInstance();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -42,6 +44,9 @@ public class Instrument {
 	}
 	
 	private static EnumMap<Kind, InstrumentationImpl> instruments = new EnumMap<Kind, InstrumentationImpl>(Kind.class);
+	
+	public static Set<Integer> arrayStores = new HashSet<Integer>();
+	public static Set<Integer> arrayLoads = new HashSet<Integer>();
 	
 	public static InstrumentationImpl get(Kind k) {
 		if (!instruments.containsKey(k))

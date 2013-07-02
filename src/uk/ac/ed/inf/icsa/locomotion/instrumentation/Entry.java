@@ -2,20 +2,29 @@ package uk.ac.ed.inf.icsa.locomotion.instrumentation;
 
 public class Entry {
 	
-	private long address;
-	private long value;
+	private int address;
+	private int value;
+	
+	public Entry(int address) {
+		this.address = address;
+		this.value = -0;
+	}
 
-	public Entry(long address, long value) {
+	public Entry(int address, int value) {
 		this.address = address;
 		this.value = value;
 	}
 	
-	public long getAddress() {
+	public int getAddress() {
 		return address;
 	}
 	
-	public long getValue() {
+	public int getValue() {
 		return value;
 	}
-
+	
+	@Override
+	public String toString() {
+		return new StringBuilder().append("address=").append(address).append(" value=").append(value).toString();
+	}
 }

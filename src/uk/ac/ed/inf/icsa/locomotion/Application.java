@@ -1,13 +1,14 @@
 package uk.ac.ed.inf.icsa.locomotion;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Instrument;
 import uk.ac.ed.inf.icsa.locomotion.misc.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.misc.Utils;
-import uk.ac.ed.inf.icsa.locomotion.phase.ArrayAccessInstrumentationPhase;
-import uk.ac.ed.inf.icsa.locomotion.phase.ArrayAccessLoweringPhase;
+import uk.ac.ed.inf.icsa.locomotion.phase.ArrayInstrumentationPhase;
 import uk.ac.ed.inf.icsa.locomotion.phase.LocomotionPhase;
+import uk.ac.ed.inf.icsa.locomotion.phase.ArrayLoweringPhase;
 
 import com.oracle.graal.api.code.CompilationResult;
 import com.oracle.graal.api.meta.ResolvedJavaMethod;
@@ -31,18 +32,20 @@ public class Application {
 				ResolvedJavaMethod rjm = Utils.getResolvedMethod(CodeSamples.class, method, this.lm.getRuntime());
 				StructuredGraph graph = this.lm.parse(rjm);
 				CompilationResult result = this.lm.compile(graph, rjm, new HashMap<Phase, Locomotion.Position>() {{
-					put(new ArrayAccessInstrumentationPhase(), Locomotion.Position.High);
-					put(new ArrayAccessLoweringPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Locomotion.Position.High);
+					put(new ArrayInstrumentationPhase(), Locomotion.Position.High);
+					put(new ArrayLoweringPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Locomotion.Position.High);
 					
 					put(new LocomotionPhase() {
-						protected void run(StructuredGraph graph) {
-							Utils.dumpGraphToIgv(graph, "high-level");
+						protected void run(final StructuredGraph graph) {
+//							Utils.dumpGraphToIgv(graph, "high-level");
 						}
 					}, Locomotion.Position.High);
 				}});
 				
 				this.lm.execute(rjm, result, graph);
 				
+				System.out.println("Loads: " + Arrays.toString(Instrument.arrayLoads.toArray()));
+				System.out.println("Stores: " + Arrays.toString(Instrument.arrayStores.toArray()));
 				System.out.println("\n\nInstrumentation Report\n-------------------------\n" + Instrument.report());
 			}
 			catch (Exception exc) {

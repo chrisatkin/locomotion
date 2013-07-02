@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hotspot_log version='160 1' process='5544' time_ms='1372774594358'>
+<hotspot_log version='160 1' process='10530' time_ms='1372793033636'>
 <vm_version>
 <name>
 OpenJDK 64-Bit Graal VM
@@ -13,7 +13,7 @@ OpenJDK 64-Bit Graal VM (25.0-b29-internal-fastdebug) for bsd-amd64 JRE (1.8.0),
 </vm_version>
 <vm_arguments>
 <args>
--agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:53914 -G:+DumpOnError -XX:-BootstrapGraal -Dfile.encoding=US-ASCII 
+-agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:58129 -G:+DumpOnError -XX:-BootstrapGraal -Dfile.encoding=US-ASCII 
 </args>
 <command>
 uk.ac.ed.inf.icsa.locomotion.Application
@@ -42,5 +42,9 @@ sun.java.launcher=SUN_STANDARD
 </properties>
 </vm_arguments>
 <tty>
-<writer thread='24323'/>
-<dependency_failed type='abstract_with_unique_concrete_subtype' ctxk='java/io/DataOutput' x='java/io/DataOutputStream' witness='java/io/DataOutput' stamp='52.036'/>
+<writer thread='14595'/>
+<destroy_vm stamp='86.222'/>
+<tty_done stamp='86.348'/>
+</tty>
+<hotspot_log_done stamp='86.348'/>
+</hotspot_log>
