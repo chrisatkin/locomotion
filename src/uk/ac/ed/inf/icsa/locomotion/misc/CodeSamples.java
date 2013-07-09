@@ -46,14 +46,14 @@ public class CodeSamples {
 //		return x;
 	}
 	
-	public static double[] loopDepency() {
-		int[] a = {4, 3, 1, 2, 0};
-		int[] b = {2, 4, 3, 0, 1};
-		double[] c = new double[a.length];
+	public static int[] loopDependency(int[] a, int[] b) {
+		assert a.length == b.length: "vectors not same length";
+		
+		int[] c = new int[a.length];
 		
 		for (int i = 0; i < a.length; i++)
-			c[i] = Math.log((double) a[i] * b[i]);
-		
+			c[i] = a[b[i]];
+ 		
 		return c;
 	}
 	

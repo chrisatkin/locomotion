@@ -1,7 +1,10 @@
-package uk.ac.ed.inf.icsa.locomotion;
+package uk.ac.ed.inf.icsa.locomotion.core;
+
+import static com.oracle.graal.api.code.CodeUtil.*;
 
 import java.util.Map;
 
+import com.oracle.graal.api.code.CallingConvention.Type;
 import com.oracle.graal.api.code.CompilationResult;
 import com.oracle.graal.api.code.InvalidInstalledCodeException;
 import com.oracle.graal.api.code.SpeculationLog;
@@ -16,39 +19,29 @@ import com.oracle.graal.java.GraphBuilderPhase;
 import com.oracle.graal.nodes.StructuredGraph;
 import com.oracle.graal.nodes.spi.GraalCodeCacheProvider;
 import com.oracle.graal.nodes.spi.Replacements;
-import com.oracle.graal.phases.OptimisticOptimizations;
 import com.oracle.graal.phases.Phase;
 import com.oracle.graal.phases.PhasePlan;
 import com.oracle.graal.phases.PhasePlan.PhasePosition;
+import com.oracle.graal.phases.tiers.Suites;
+import com.oracle.graal.phases.tiers.SuitesProvider;
 
 /**
  * @author	Chris Atkin <me@chrisatk.in>
  * @version 1.0
  */
-public class Locomotion {
-	public static class Configuration {
-		public OptimisticOptimizations optimizations;
-	}
-	
-	public enum Position {
-		High,
-		Mid,
-		Low,
-		Parsing
-	}
-
+public class Dispatch {
 	private final GraalCodeCacheProvider runtime;
 	private final Backend backend;
 	private final Replacements replacements;
-	//private final Suites suites;
+	private final Suites suites;
 	private final Configuration configuration;
 	private PhasePlan phasePlan;
 	
-	public Locomotion(Configuration configuration) {
+	public Dispatch(Configuration configuration) {
 		this.runtime = Graal.getRequiredCapability(GraalCodeCacheProvider.class);
 		this.backend = Graal.getRequiredCapability(Backend.class);
 		this.replacements = Graal.getRequiredCapability(Replacements.class);
-		//this.suites = Graal.getRequiredCapability(SuitesProvider.class).createSuites();
+		this.suites = Graal.getRequiredCapability(SuitesProvider.class).createSuites();
 		this.configuration = configuration;
 		this.phasePlan = new PhasePlan();
 		this.phasePlan.addPhase(PhasePosition.AFTER_PARSING, new GraphBuilderPhase(runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations));
@@ -61,7 +54,7 @@ public class Locomotion {
 		
 		_addPhasesToSuites(phases);
 		
-		/*return GraalCompiler.compileMethod(
+		return GraalCompiler.compileGraph(
 			graph,
 			getCallingConvention(this.runtime, Type.JavaCallee, graph.method(), false),
 			method,
@@ -73,16 +66,15 @@ public class Locomotion {
 			this.phasePlan,
 			configuration.optimizations,
 			new SpeculationLog(),
-			this.suites
-		);*/
-		
-		return GraalCompiler.compileMethod(runtime, replacements, backend, runtime.getTarget(), method, graph, null, phasePlan, OptimisticOptimizations.ALL, new SpeculationLog());
+			this.suites,
+			new CompilationResult()
+		);
 	}
 	
 	public void execute(final ResolvedJavaMethod method, final CompilationResult result, final StructuredGraph graph) throws InvalidInstalledCodeException {
 		System.out.println("[locomotion] executing");
 		
-		this.runtime.addMethod(method, result, graph).execute(null, null, null);
+		this.runtime.addMethod(method, result, graph).execute(new int[] {4, 3, 1, 2, 0}, new int[] {2, 4, 3, 0, 1}, null);
 	}
 	
 	public String getGraphIR(StructuredGraph graph) {
@@ -117,25 +109,16 @@ public class Locomotion {
 			
 			switch (position) {
 				case Low:
-					phasePlan.addPhase(PhasePosition.LOW_LEVEL, phase);
-					//this.suites.getLowTier().appendPhase(phase);
-					//throw new LocomotionError("Low-level not supported");
+					this.suites.getLowTier().appendPhase(phase);
+				break;
 				
 				case Mid:
-					phasePlan.addPhase(PhasePosition.MID_LEVEL, phase);
-					//this.suites.getMidTier().appendPhase(phase);
-					//this.phasePlan.addPhase(PhasePosition.HIGH_LEVEL, phase);
+					this.suites.getMidTier().appendPhase(phase);
 				break;
 				
 				case High:
-					phasePlan.addPhase(PhasePosition.HIGH_LEVEL, phase);
-					//this.suites.getHighTier().appendPhase(phase);
-					//this.phasePlan.addPhase(PhasePosition.AFTER_PARSING, phase);
+					this.suites.getHighTier().appendPhase(phase);
 				break;
-				
-				case Parsing:
-					phasePlan.addPhase(PhasePosition.AFTER_PARSING, phase);
-					break;
 			}
 		}
 	}

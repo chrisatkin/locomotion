@@ -1,13 +1,16 @@
 package uk.ac.ed.inf.icsa.locomotion.node;
 
-import com.oracle.graal.nodes.java.LoadIndexedNode;
+import com.oracle.graal.graph.Node;
 
-public class ArrayLoadBehaviourNode<T extends LoadIndexedNode> extends ArrayBehaviourNode<T> {
-	public ArrayLoadBehaviourNode(T target) {
-		super(target);
+public class ArrayLoadBehaviourNode<T extends Node> extends ArrayBehaviourNode<T> {
+	private String t;
+	
+	public ArrayLoadBehaviourNode(String t) {
+		super();
+		this.t = t;
 	}
 	
-	public int test() {
-		return 9;
+	public String testString() {
+		return t;
 	}
 }

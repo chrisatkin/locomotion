@@ -46,13 +46,21 @@ public class Instrument {
 	private static EnumMap<Kind, InstrumentationImpl> instruments = new EnumMap<Kind, InstrumentationImpl>(Kind.class);
 	
 	public static Set<Integer> arrayStores = new HashSet<Integer>();
-	public static Set<Integer> arrayLoads = new HashSet<Integer>();
+	public static Set<String> arrayLoads = new HashSet<String>();
 	
 	public static InstrumentationImpl get(Kind k) {
 		if (!instruments.containsKey(k))
 			instruments.put(k, new InstrumentationImpl(BloomFilterTrace.class));
 		
 		return instruments.get(k);
+	}
+	
+	public static void addAddrLoad(String s) {
+		arrayLoads.add(s);
+	}
+	
+	public static int test(int i) {
+		return i;
 	}
 	
 	public static String report() {

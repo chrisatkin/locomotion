@@ -1,16 +1,10 @@
 package uk.ac.ed.inf.icsa.locomotion.misc;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Method;
+import uk.ac.ed.inf.icsa.locomotion.core.Method;
 
-import com.google.common.io.Files;
 import com.oracle.graal.api.code.CodeCacheProvider;
 import com.oracle.graal.api.meta.ResolvedJavaMethod;
-import com.oracle.graal.graph.Node;
-import com.oracle.graal.nodes.PhiNode;
 import com.oracle.graal.nodes.StructuredGraph;
-import com.oracle.graal.nodes.calc.CompareNode;
 import com.oracle.graal.printer.GraphPrinterDumpHandler;
 
 public class Utils {
@@ -20,38 +14,19 @@ public class Utils {
 		printer.close();
 	}
 	
-	public static Method getMethod(Class<?> clazz, String name) throws NoSuchMethodException, SecurityException {
-		return clazz.getMethod(name);
+	public static java.lang.reflect.Method getMethod(Method<?> m) throws NoSuchMethodException, SecurityException {
+		return m.getClazz().getMethod(m.getName(), m.getTypes());
 	}
 	
-	public static ResolvedJavaMethod getResolvedMethod(CodeCacheProvider runtime, Method method) {
+	public static ResolvedJavaMethod getResolvedMethod(CodeCacheProvider runtime, java.lang.reflect.Method method) {
 		return runtime.lookupJavaMethod(method);
 	}
 	
-	public static ResolvedJavaMethod getResolvedMethod(Class<?> clazz,String name, CodeCacheProvider runtime) throws NoSuchMethodException, SecurityException {
-		return getResolvedMethod(runtime, getMethod(clazz, name));
+	public static ResolvedJavaMethod getResolvedMethod(Method<?> m, CodeCacheProvider runtime) throws NoSuchMethodException, SecurityException {
+		return getResolvedMethod(runtime, getMethod(m));
 	}
 
 	public static void log(String methodIR) {
 		System.out.println(methodIR);
-	}
-	
-	public static void writeByteCodeToFile(byte[] bytecode, String file) {
-		try {
-			Files.write(bytecode, new File(file));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public static Node getNonPhiNode(CompareNode condition) {
-	    if (!(condition.x() instanceof PhiNode)) {
-	        return condition.x();
-	    } else if (!(condition.y() instanceof PhiNode)) {
-	        return condition.y();
-	    } else {
-	        return null;
-	    }
 	}
 }

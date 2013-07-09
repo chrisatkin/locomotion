@@ -8,11 +8,11 @@ import com.oracle.graal.nodes.type.StampFactory;
 
 abstract class LocomotionNode<T extends Node> extends FixedWithNextNode implements LIRLowerable {
 
-	protected T target;
+	//protected T target;
 	
-	protected LocomotionNode(T target) {
+	protected LocomotionNode() {
 		super(StampFactory.forVoid());
-		this.target = target;
+		//this.target = target;
 	}
 
 	@Override
@@ -20,7 +20,7 @@ abstract class LocomotionNode<T extends Node> extends FixedWithNextNode implemen
 		// Do nothing, node is structural only
 	}
 	
-	public T getTarget() {
-		return target;
-	}
+//	public T getTarget() {
+//		return target;
+//	}
 }
