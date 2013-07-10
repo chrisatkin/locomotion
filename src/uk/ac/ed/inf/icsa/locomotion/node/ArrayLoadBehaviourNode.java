@@ -10,8 +10,10 @@ import com.oracle.graal.nodes.spi.Replacements;
 
 public final class ArrayLoadBehaviourNode<T extends ReadNode> extends ArrayBehaviourNode<T> {
 	public static class ArrayLoadNodeInformation extends ArrayNodeInformation {
+		private String name;
+		
 		private ArrayLoadNodeInformation(ReadNode node) {
-			
+			this.name = node.toString();
 		}
 		
 		public static ArrayLoadNodeInformation getNodeInfo(ReadNode node) {
@@ -20,7 +22,7 @@ public final class ArrayLoadBehaviourNode<T extends ReadNode> extends ArrayBehav
 		
 		@Override
 		public String toString() {
-			return "load info";
+			return name;
 		}
 	}
 	

@@ -10,8 +10,10 @@ import com.oracle.graal.nodes.spi.Replacements;
 
 public final class ArrayStoreBehaviourNode<T extends WriteNode> extends ArrayBehaviourNode<T> {
 	public static class ArrayStoreNodeInformation extends ArrayNodeInformation {
+		private String name;
+		
 		private ArrayStoreNodeInformation(WriteNode node) {
-			
+			this.name = node.toString();
 		}
 		
 		public static ArrayStoreNodeInformation getNodeInfo(WriteNode node) {
@@ -20,7 +22,7 @@ public final class ArrayStoreBehaviourNode<T extends WriteNode> extends ArrayBeh
 		
 		@Override
 		public String toString() {
-			return "store info";
+			return name;
 		}
 	}
 	

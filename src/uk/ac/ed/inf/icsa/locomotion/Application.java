@@ -13,6 +13,7 @@ import uk.ac.ed.inf.icsa.locomotion.misc.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.misc.Utils;
 import uk.ac.ed.inf.icsa.locomotion.phase.ArrayInstrumentationPhase;
 import uk.ac.ed.inf.icsa.locomotion.phase.ArrayLoweringPhase;
+import uk.ac.ed.inf.icsa.locomotion.snippet.InstrumentationSnippets;
 
 import com.oracle.graal.api.code.CompilationResult;
 import com.oracle.graal.api.code.TargetDescription;
@@ -61,8 +62,8 @@ public class Application {
 				
 				lm.execute(rjm, result, graph);
 				
-				System.out.println("Loads: " + Arrays.toString(Instrument.arrayLoads.toArray()));
-				System.out.println("Stores: " + Arrays.toString(Instrument.arrayStores.toArray()));
+				System.out.println("Loads: " + InstrumentationSnippets.loads);
+				System.out.println("Stores: " + InstrumentationSnippets.stores);
 				System.out.println("\n\nInstrumentation Report\n-------------------------\n" + Instrument.report());
 			}
 			catch (Exception exc) {
