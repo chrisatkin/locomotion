@@ -45,8 +45,8 @@ public class Instrument {
 	
 	private static EnumMap<Kind, InstrumentationImpl> instruments = new EnumMap<Kind, InstrumentationImpl>(Kind.class);
 	
-	public static Set<Integer> arrayStores = new HashSet<Integer>();
-	public static Set<String> arrayLoads = new HashSet<String>();
+	public static final Set<Integer> arrayStores = new HashSet<Integer>();
+	public static final Set<Integer> arrayLoads = new HashSet<Integer>();
 	
 	public static InstrumentationImpl get(Kind k) {
 		if (!instruments.containsKey(k))
@@ -55,12 +55,19 @@ public class Instrument {
 		return instruments.get(k);
 	}
 	
-	public static void addAddrLoad(String s) {
-		arrayLoads.add(s);
-	}
-	
 	public static int test(int i) {
 		return i;
+	}
+	
+	private static int[] loadarr = new int[1];
+	private static int[] storearr = new int[1];
+	
+	public static void addLoad(int i) {
+		arrayLoads.add(i);
+	}
+	
+	public static void addStore(int i) {
+		arrayStores.add(i);
 	}
 	
 	public static String report() {

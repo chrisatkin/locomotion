@@ -10,15 +10,12 @@ import com.oracle.graal.nodes.spi.Replacements;
 import com.oracle.graal.nodes.type.StampFactory;
 
 abstract class LocomotionNode<T extends Node> extends FixedWithNextNode implements LIRLowerable {
-	protected MetaAccessProvider runtime;
-	protected Replacements replacements;
-	protected TargetDescription target;
+	protected static abstract class NodeInformation {
+		
+	}
 	
-	protected LocomotionNode(MetaAccessProvider runtime, Replacements replacements, TargetDescription target) {
+	protected LocomotionNode() {
 		super(StampFactory.forVoid());
-		this.runtime = runtime;
-		this.replacements = replacements;
-		this.target = target;
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import com.oracle.graal.nodes.FixedWithNextNode;
 import com.oracle.graal.nodes.spi.Replacements;
 
 abstract class BehaviourNode<T extends FixedWithNextNode> extends LocomotionNode<T> {
-	public BehaviourNode(MetaAccessProvider runtime, Replacements replacements, TargetDescription target) {
-		super(runtime, replacements, target);
+	public BehaviourNode() {
+		super();
 	}
 }

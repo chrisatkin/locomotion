@@ -8,14 +8,38 @@ import com.oracle.graal.nodes.extended.ReadNode;
 import com.oracle.graal.nodes.spi.LoweringTool;
 import com.oracle.graal.nodes.spi.Replacements;
 
-public final class ArrayLoadBehaviourNode<T extends ReadNode> extends ArrayBehaviourNode<T> {	
-	public ArrayLoadBehaviourNode(MetaAccessProvider runtime, Replacements replacements, TargetDescription target) {
-		super(runtime, replacements, target);
+public final class ArrayLoadBehaviourNode<T extends ReadNode> extends ArrayBehaviourNode<T> {
+	public static class ArrayLoadNodeInformation extends ArrayNodeInformation {
+		private ArrayLoadNodeInformation(ReadNode node) {
+			
+		}
+		
+		public static ArrayLoadNodeInformation getNodeInfo(ReadNode node) {
+			return new ArrayLoadNodeInformation(node);
+		}
+		
+		@Override
+		public String toString() {
+			return "load info";
+		}
+	}
+	
+	private ArrayLoadNodeInformation info;
+	private InstrumentationSnippets.Templates templates;
+	
+	public ArrayLoadBehaviourNode(T n, InstrumentationSnippets.Templates templates) {
+		super();
+		this.info = ArrayLoadNodeInformation.getNodeInfo(n);
+		this.templates = templates;
 	}
 
 	@Override
 	public void lower(LoweringTool tool, LoweringType loweringType) {
 		//	if (loweringType == LoweringType.AFTER_GUARDS)
-			new InstrumentationSnippets.Templates(runtime, replacements, target).lower(this);
+			templates.lower(this);
+	}
+	
+	public ArrayLoadNodeInformation getNodeInfo() {
+		return info;
 	}
 }

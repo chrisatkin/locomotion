@@ -1,7 +1,7 @@
 package uk.ac.ed.inf.icsa.locomotion.snippet;
 
 import static com.oracle.graal.replacements.SnippetTemplate.DEFAULT_REPLACER;
-import uk.ac.ed.inf.icsa.locomotion.Application;
+
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Instrument;
 import uk.ac.ed.inf.icsa.locomotion.node.ArrayLoadBehaviourNode;
 import uk.ac.ed.inf.icsa.locomotion.node.ArrayStoreBehaviourNode;
@@ -20,11 +20,13 @@ public class InstrumentationSnippets implements Snippets {
 	@Snippet
 	public static void store(String s) {
 		Instrument.stores++;
+		Instrument.addStore(1);
 	}
 	
 	@Snippet
 	public static void load(String s) {
 		Instrument.loads++;
+		Instrument.addLoad(1);
 	}
 	
 	public static class Templates extends AbstractTemplates {
@@ -51,5 +53,4 @@ public class InstrumentationSnippets implements Snippets {
 			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);
 		}
 	}
-
 }

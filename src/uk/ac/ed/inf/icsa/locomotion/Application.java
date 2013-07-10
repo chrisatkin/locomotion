@@ -54,9 +54,9 @@ public class Application {
 				ResolvedJavaMethod rjm = Utils.getResolvedMethod(m, this.lm.getRuntime());
 				StructuredGraph graph = lm.parse(rjm);
 				CompilationResult result = lm.compile(graph, rjm, new HashMap<Phase, Position>() {{
-					put(new ArrayInstrumentationPhase(), Position.High);	
+					put(new ArrayInstrumentationPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);	
 					//put(new DumpGraphPhase("high-level"), Position.High);
-					put(new ArrayLoweringPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);
+					//put(new ArrayLoweringPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);
 				}});
 				
 				lm.execute(rjm, result, graph);

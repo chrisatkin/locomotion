@@ -7,7 +7,13 @@ import com.oracle.graal.nodes.spi.Lowerable;
 import com.oracle.graal.nodes.spi.Replacements;
 
 abstract class ArrayBehaviourNode<T extends AccessNode> extends BehaviourNode<T> implements Lowerable {
-	public ArrayBehaviourNode(MetaAccessProvider runtime, Replacements replacements, TargetDescription target) {
-		super(runtime, replacements, target);
+	public static abstract class ArrayNodeInformation extends NodeInformation {
+		public String toString() {
+			return new StringBuilder().append("testString").toString();
+		}
+	}
+	
+	public ArrayBehaviourNode() {
+		super();
 	}
 }
