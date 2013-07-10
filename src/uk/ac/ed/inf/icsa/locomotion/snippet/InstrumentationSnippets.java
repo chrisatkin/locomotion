@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import uk.ac.ed.inf.icsa.locomotion.node.ArrayLoadBehaviourNode;
-import uk.ac.ed.inf.icsa.locomotion.node.ArrayStoreBehaviourNode;
+import uk.ac.ed.inf.icsa.locomotion.node.LoadBehaviourNode;
+import uk.ac.ed.inf.icsa.locomotion.node.StoreBehaviourNode;
 
 import com.oracle.graal.api.code.TargetDescription;
 import com.oracle.graal.api.meta.MetaAccessProvider;
@@ -81,7 +81,7 @@ public class InstrumentationSnippets implements Snippets {
 			super(runtime, replacements, target);
 		}
 		
-		public void lower(final ArrayStoreBehaviourNode node) {
+		public void lower(final StoreBehaviourNode node) {
 			Arguments args = new Arguments(store) {{
 				add("access", new ArrayAccess(node.getNodeInfo().toString(), stores));
 			}};
@@ -89,7 +89,7 @@ public class InstrumentationSnippets implements Snippets {
 			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);
 		}
 		
-		public void lower(final ArrayLoadBehaviourNode node) {
+		public void lower(final LoadBehaviourNode node) {
 			Arguments args = new Arguments(load) {{
 				add("access", new ArrayAccess(node.getNodeInfo().toString(), loads));
 			}};

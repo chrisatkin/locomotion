@@ -1,7 +1,7 @@
 package uk.ac.ed.inf.icsa.locomotion.phase;
 
-import uk.ac.ed.inf.icsa.locomotion.node.ArrayLoadBehaviourNode;
-import uk.ac.ed.inf.icsa.locomotion.node.ArrayStoreBehaviourNode;
+import uk.ac.ed.inf.icsa.locomotion.node.LoadBehaviourNode;
+import uk.ac.ed.inf.icsa.locomotion.node.StoreBehaviourNode;
 import uk.ac.ed.inf.icsa.locomotion.snippet.InstrumentationSnippets;
 
 import com.oracle.graal.api.code.TargetDescription;
@@ -24,10 +24,10 @@ public class MemoryOperationInstrumentationPhase extends Phase {
 	protected void run(StructuredGraph graph) {
 		for (Node n : graph.getNodes()) {
 			if (n instanceof WriteNode)
-				graph.addAfterFixed((WriteNode) n, graph.add(new ArrayStoreBehaviourNode((WriteNode) n, templates)));
+				graph.addAfterFixed((WriteNode) n, graph.add(new StoreBehaviourNode((WriteNode) n, templates)));
 
 			if (n instanceof ReadNode)
-				graph.addAfterFixed((ReadNode) n, graph.add(new ArrayLoadBehaviourNode((ReadNode) n, templates)));
+				graph.addAfterFixed((ReadNode) n, graph.add(new LoadBehaviourNode((ReadNode) n, templates)));
 		}
 	}
 
