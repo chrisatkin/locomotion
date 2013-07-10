@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hotspot_log version='160 1' process='58731' time_ms='1373300232596'>
+<hotspot_log version='160 1' process='6397' time_ms='1373475771370'>
 <vm_version>
 <name>
 OpenJDK 64-Bit Graal VM
@@ -8,12 +8,12 @@ OpenJDK 64-Bit Graal VM
 25.0-b37-internal-fastdebug
 </release>
 <info>
-OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jul  8 2013 13:58:03 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
+OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jul  9 2013 21:05:08 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
 </info>
 </vm_version>
 <vm_arguments>
 <args>
--agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:60733 -G:+DumpOnError -XX:-BootstrapGraal -ea -Dfile.encoding=US-ASCII 
+-G:+DumpOnError -XX:-BootstrapGraal -ea -Dfile.encoding=US-ASCII 
 </args>
 <command>
 uk.ac.ed.inf.icsa.locomotion.Application
@@ -43,8 +43,8 @@ sun.java.launcher=SUN_STANDARD
 </vm_arguments>
 <tty>
 <writer thread='18947'/>
-<destroy_vm stamp='1164.308'/>
-<tty_done stamp='1164.375'/>
+<destroy_vm stamp='9.120'/>
+<tty_done stamp='9.213'/>
 </tty>
-<hotspot_log_done stamp='1164.375'/>
+<hotspot_log_done stamp='9.213'/>
 </hotspot_log>

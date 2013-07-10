@@ -19,19 +19,12 @@ public class InstrumentationSnippets implements Snippets {
 
 	@Snippet
 	public static void store(String s) {
-		Instrument.addAddrLoad(s);
-		//Instrument.stores++;
-		//Instrument.arrayStores.add(node.getTarget().hashCode());
-		//Instrument.get(Kind.Array).store(new Entry(node.getTarget().hashCode()));
+		Instrument.stores++;
 	}
 	
 	@Snippet
 	public static void load(String s) {
-		//System.out.println("Write: ");
-		Instrument.addAddrLoad(s);
-		//Instrument.test(1);
-		//Instrument.arrayLoads.add(addr);
-		//Instrument.get(Kind.Array).load(new Entry(node.getTarget().hashCode()));
+		Instrument.loads++;
 	}
 	
 	public static class Templates extends AbstractTemplates {
@@ -40,24 +33,20 @@ public class InstrumentationSnippets implements Snippets {
 
 		public Templates(MetaAccessProvider runtime, Replacements replacements, TargetDescription target) {
 			super(runtime, replacements, target);
-			System.out.println("Array snippets");
-			Application.debug = true;
 		}
 		
 		public void lower(final ArrayStoreBehaviourNode<?> node) {
-			System.out.println(node.testString());
-			
-			Arguments args = new Arguments(store);
-			args.add("s", node.testString());
+			Arguments args = new Arguments(store) {{
+				add("s", node.toString());
+			}};
 			
 			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);
 		}
 		
 		public void lower(final ArrayLoadBehaviourNode<?> node) {
-			System.out.println(node.testString());
-			
-			Arguments args = new Arguments(load);
-			args.add("s", node.testString());
+			Arguments args = new Arguments(load) {{
+				add("s", node.toString());
+			}};
 			
 			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);
 		}

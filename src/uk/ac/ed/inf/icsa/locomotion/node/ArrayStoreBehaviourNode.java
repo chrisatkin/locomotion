@@ -1,16 +1,22 @@
 package uk.ac.ed.inf.icsa.locomotion.node;
 
-import com.oracle.graal.graph.Node;
+import uk.ac.ed.inf.icsa.locomotion.snippet.InstrumentationSnippets;
 
-public class ArrayStoreBehaviourNode<T extends Node> extends ArrayBehaviourNode<T> {
-	private String t;
-	
-	public ArrayStoreBehaviourNode(String string) {
-		super();
-		this.t = string;
+import com.oracle.graal.api.code.TargetDescription;
+import com.oracle.graal.api.meta.MetaAccessProvider;
+import com.oracle.graal.nodes.extended.WriteNode;
+import com.oracle.graal.nodes.spi.LoweringTool;
+import com.oracle.graal.nodes.spi.Replacements;
+import com.oracle.graal.nodes.spi.Lowerable.LoweringType;
+
+public class ArrayStoreBehaviourNode<T extends WriteNode> extends ArrayBehaviourNode<T> {
+		public ArrayStoreBehaviourNode(MetaAccessProvider runtime, Replacements replacements, TargetDescription target) {
+		super(runtime, replacements, target);
 	}
 	
-	public String testString() {
-		return t;
+	@Override
+	public void lower(LoweringTool tool, LoweringType loweringType) {
+	//	if (loweringType == LoweringType.AFTER_GUARDS)
+			new InstrumentationSnippets.Templates(runtime, replacements, target).lower(this);
 	}
 }

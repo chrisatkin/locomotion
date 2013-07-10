@@ -13,17 +13,22 @@ import uk.ac.ed.inf.icsa.locomotion.misc.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.misc.Utils;
 import uk.ac.ed.inf.icsa.locomotion.phase.ArrayInstrumentationPhase;
 import uk.ac.ed.inf.icsa.locomotion.phase.ArrayLoweringPhase;
-import uk.ac.ed.inf.icsa.locomotion.phase.DumpGraphPhase;
 
 import com.oracle.graal.api.code.CompilationResult;
+import com.oracle.graal.api.code.TargetDescription;
+import com.oracle.graal.api.meta.MetaAccessProvider;
 import com.oracle.graal.api.meta.ResolvedJavaMethod;
 import com.oracle.graal.nodes.StructuredGraph;
+import com.oracle.graal.nodes.spi.Replacements;
 import com.oracle.graal.phases.OptimisticOptimizations;
 import com.oracle.graal.phases.Phase;
 
 public class Application {
+	public static MetaAccessProvider runtime;
+	public static Replacements replacements;
+	public static TargetDescription target;
+	
 	private Dispatch lm;
-	public static boolean debug = false;
 	
 	public Application() {
 		this.lm = new Dispatch(new Configuration() {{
@@ -33,6 +38,10 @@ public class Application {
 	
 	@SuppressWarnings({"serial"})
 	public void run() {
+		runtime = lm.getRuntime();
+		replacements = lm.getReplacements();
+		target = lm.getRuntime().getTarget();
+		
 		for (Method<?> m: new LinkedList<Method<?>>() {{
 			add(new Method<Integer>() {{
 				clazz = CodeSamples.class;
