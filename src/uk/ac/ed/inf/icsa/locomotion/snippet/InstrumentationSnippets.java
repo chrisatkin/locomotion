@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import uk.ac.ed.inf.icsa.locomotion.instrumentation.Instrument;
 import uk.ac.ed.inf.icsa.locomotion.node.ArrayLoadBehaviourNode;
 import uk.ac.ed.inf.icsa.locomotion.node.ArrayStoreBehaviourNode;
 
@@ -66,13 +65,11 @@ public class InstrumentationSnippets implements Snippets {
     
 	@Snippet
 	public static void store(ArrayAccess access) {
-		Instrument.stores++;
 		DirectObjectStoreNode.storeLong(access,  ArrayAccess.counterOffset(), 0, access.counter + 1);
 	}
 	
 	@Snippet
 	public static void load(ArrayAccess access) {
-		Instrument.loads++;
 		DirectObjectStoreNode.storeLong(access, ArrayAccess.counterOffset(), 0, access.counter + 1);
 	}
 	
@@ -84,17 +81,17 @@ public class InstrumentationSnippets implements Snippets {
 			super(runtime, replacements, target);
 		}
 		
-		public void lower(final ArrayStoreBehaviourNode<?> node) {
+		public void lower(final ArrayStoreBehaviourNode node) {
 			Arguments args = new Arguments(store) {{
-				add("access", new ArrayAccess(node.toString(), stores));
+				add("access", new ArrayAccess(node.getNodeInfo().toString(), stores));
 			}};
 			
 			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);
 		}
 		
-		public void lower(final ArrayLoadBehaviourNode<?> node) {
+		public void lower(final ArrayLoadBehaviourNode node) {
 			Arguments args = new Arguments(load) {{
-				add("access", new ArrayAccess(node.toString(), loads));
+				add("access", new ArrayAccess(node.getNodeInfo().toString(), loads));
 			}};
 			
 			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);

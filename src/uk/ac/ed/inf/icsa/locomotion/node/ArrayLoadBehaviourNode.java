@@ -2,18 +2,20 @@ package uk.ac.ed.inf.icsa.locomotion.node;
 
 import uk.ac.ed.inf.icsa.locomotion.snippet.InstrumentationSnippets;
 
-import com.oracle.graal.api.code.TargetDescription;
-import com.oracle.graal.api.meta.MetaAccessProvider;
+import com.oracle.graal.nodes.FixedWithNextNode;
 import com.oracle.graal.nodes.extended.ReadNode;
+import com.oracle.graal.nodes.spi.LIRGeneratorTool;
+import com.oracle.graal.nodes.spi.LIRLowerable;
+import com.oracle.graal.nodes.spi.Lowerable;
 import com.oracle.graal.nodes.spi.LoweringTool;
-import com.oracle.graal.nodes.spi.Replacements;
+import com.oracle.graal.nodes.type.StampFactory;
 
-public final class ArrayLoadBehaviourNode<T extends ReadNode> extends ArrayBehaviourNode<T> {
-	public static class ArrayLoadNodeInformation extends ArrayNodeInformation {
+public final class ArrayLoadBehaviourNode extends FixedWithNextNode implements LIRLowerable, Lowerable {
+	public static class ArrayLoadNodeInformation {
 		private String name;
 		
 		private ArrayLoadNodeInformation(ReadNode node) {
-			this.name = node.toString();
+			this.name = node.toString(Verbosity.All);
 		}
 		
 		public static ArrayLoadNodeInformation getNodeInfo(ReadNode node) {
@@ -29,16 +31,20 @@ public final class ArrayLoadBehaviourNode<T extends ReadNode> extends ArrayBehav
 	private ArrayLoadNodeInformation info;
 	private InstrumentationSnippets.Templates templates;
 	
-	public ArrayLoadBehaviourNode(T n, InstrumentationSnippets.Templates templates) {
-		super();
+	public ArrayLoadBehaviourNode(ReadNode n, InstrumentationSnippets.Templates templates) {
+		super(StampFactory.forVoid());
 		this.info = ArrayLoadNodeInformation.getNodeInfo(n);
 		this.templates = templates;
+	}
+	
+	@Override
+	public void generate(LIRGeneratorTool generator) {
+		// Do nothing, node is structural
 	}
 
 	@Override
 	public void lower(LoweringTool tool, LoweringType loweringType) {
-		//	if (loweringType == LoweringType.AFTER_GUARDS)
-			templates.lower(this);
+		templates.lower(this);
 	}
 	
 	public ArrayLoadNodeInformation getNodeInfo() {

@@ -4,7 +4,6 @@ import com.oracle.graal.nodes.StructuredGraph;
 import com.oracle.graal.phases.Phase;
 import com.oracle.graal.printer.GraphPrinterDumpHandler;
 
-
 public class DumpGraphPhase extends Phase {
 	private String name;
 	

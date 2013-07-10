@@ -11,11 +11,12 @@ import com.oracle.graal.nodes.StructuredGraph;
 import com.oracle.graal.nodes.extended.ReadNode;
 import com.oracle.graal.nodes.extended.WriteNode;
 import com.oracle.graal.nodes.spi.Replacements;
+import com.oracle.graal.phases.Phase;
 
-public class ArrayInstrumentationPhase extends LocomotionPhase {
+public class MemoryOperationInstrumentationPhase extends Phase {
 	private InstrumentationSnippets.Templates templates;
 	
-	public ArrayInstrumentationPhase(MetaAccessProvider runtime, Replacements replacements, TargetDescription target) {
+	public MemoryOperationInstrumentationPhase(MetaAccessProvider runtime, Replacements replacements, TargetDescription target) {
 		this.templates = new InstrumentationSnippets.Templates(runtime, replacements, target);
 	}
 	
@@ -23,10 +24,10 @@ public class ArrayInstrumentationPhase extends LocomotionPhase {
 	protected void run(StructuredGraph graph) {
 		for (Node n : graph.getNodes()) {
 			if (n instanceof WriteNode)
-				graph.addAfterFixed((WriteNode) n, graph.add(new ArrayStoreBehaviourNode<WriteNode>((WriteNode) n, templates)));
+				graph.addAfterFixed((WriteNode) n, graph.add(new ArrayStoreBehaviourNode((WriteNode) n, templates)));
 
 			if (n instanceof ReadNode)
-				graph.addAfterFixed((ReadNode) n, graph.add(new ArrayLoadBehaviourNode<ReadNode>((ReadNode) n, templates)));
+				graph.addAfterFixed((ReadNode) n, graph.add(new ArrayLoadBehaviourNode((ReadNode) n, templates)));
 		}
 	}
 

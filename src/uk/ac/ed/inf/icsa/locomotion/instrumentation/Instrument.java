@@ -55,21 +55,6 @@ public class Instrument {
 		return instruments.get(k);
 	}
 	
-	public static int test(int i) {
-		return i;
-	}
-	
-	private static int[] loadarr = new int[1];
-	private static int[] storearr = new int[1];
-	
-	public static void addLoad(int i) {
-		arrayLoads.add(i);
-	}
-	
-	public static void addStore(int i) {
-		arrayStores.add(i);
-	}
-	
 	public static String report() {
 		StringBuilder report = new StringBuilder();
 		

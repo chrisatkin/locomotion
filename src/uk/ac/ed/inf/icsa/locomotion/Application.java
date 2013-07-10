@@ -1,7 +1,6 @@
 package uk.ac.ed.inf.icsa.locomotion;
 
 import java.util.LinkedList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import uk.ac.ed.inf.icsa.locomotion.core.Configuration;
@@ -11,8 +10,7 @@ import uk.ac.ed.inf.icsa.locomotion.core.Position;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Instrument;
 import uk.ac.ed.inf.icsa.locomotion.misc.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.misc.Utils;
-import uk.ac.ed.inf.icsa.locomotion.phase.ArrayInstrumentationPhase;
-import uk.ac.ed.inf.icsa.locomotion.phase.ArrayLoweringPhase;
+import uk.ac.ed.inf.icsa.locomotion.phase.MemoryOperationInstrumentationPhase;
 import uk.ac.ed.inf.icsa.locomotion.snippet.InstrumentationSnippets;
 
 import com.oracle.graal.api.code.CompilationResult;
@@ -55,9 +53,7 @@ public class Application {
 				ResolvedJavaMethod rjm = Utils.getResolvedMethod(m, this.lm.getRuntime());
 				StructuredGraph graph = lm.parse(rjm);
 				CompilationResult result = lm.compile(graph, rjm, new HashMap<Phase, Position>() {{
-					put(new ArrayInstrumentationPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);	
-					//put(new DumpGraphPhase("high-level"), Position.High);
-					//put(new ArrayLoweringPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);
+					put(new MemoryOperationInstrumentationPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);	
 				}});
 				
 				lm.execute(rjm, result, graph);

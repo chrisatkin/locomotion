@@ -52,7 +52,24 @@ public class Dispatch {
 	public CompilationResult compile(StructuredGraph graph, ResolvedJavaMethod method, Map<Phase, Position> phases) {
 		System.out.println("[locomotion] compilation");
 		
-		_addPhasesToSuites(phases);
+		for (Map.Entry<Phase, Position> entry: phases.entrySet()) {
+			Phase phase = entry.getKey();
+			Position position = entry.getValue();
+			
+			switch (position) {
+				case Low:
+					this.suites.getLowTier().appendPhase(phase);
+				break;
+				
+				case Mid:
+					this.suites.getMidTier().appendPhase(phase);
+				break;
+				
+				case High:
+					this.suites.getHighTier().appendPhase(phase);
+				break;
+			}
+		}
 		
 		return GraalCompiler.compileGraph(
 			graph,
@@ -100,26 +117,5 @@ public class Dispatch {
 		StructuredGraph graph = new StructuredGraph(method);
 		new GraphBuilderPhase(this.runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations).apply(graph);
 		return graph;
-	}
-	
-	private void _addPhasesToSuites(final Map<Phase, Position> suite) {
-		for (Map.Entry<Phase, Position> entry: suite.entrySet()) {
-			Phase phase = entry.getKey();
-			Position position = entry.getValue();
-			
-			switch (position) {
-				case Low:
-					this.suites.getLowTier().appendPhase(phase);
-				break;
-				
-				case Mid:
-					this.suites.getMidTier().appendPhase(phase);
-				break;
-				
-				case High:
-					this.suites.getHighTier().appendPhase(phase);
-				break;
-			}
-		}
 	}
 }
