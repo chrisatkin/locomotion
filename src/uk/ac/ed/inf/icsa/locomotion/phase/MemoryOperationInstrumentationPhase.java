@@ -8,8 +8,8 @@ import com.oracle.graal.api.code.TargetDescription;
 import com.oracle.graal.api.meta.MetaAccessProvider;
 import com.oracle.graal.graph.Node;
 import com.oracle.graal.nodes.StructuredGraph;
-import com.oracle.graal.nodes.extended.ReadNode;
-import com.oracle.graal.nodes.extended.WriteNode;
+import com.oracle.graal.nodes.java.LoadIndexedNode;
+import com.oracle.graal.nodes.java.StoreIndexedNode;
 import com.oracle.graal.nodes.spi.Replacements;
 import com.oracle.graal.phases.Phase;
 
@@ -23,11 +23,11 @@ public class MemoryOperationInstrumentationPhase extends Phase {
 	@Override
 	protected void run(StructuredGraph graph) {
 		for (Node n : graph.getNodes()) {
-			if (n instanceof WriteNode)
-				graph.addAfterFixed((WriteNode) n, graph.add(new StoreBehaviourNode((WriteNode) n, templates)));
+			if (n instanceof StoreIndexedNode)
+				graph.addAfterFixed((StoreIndexedNode) n, graph.add(new StoreBehaviourNode((StoreIndexedNode) n, templates)));
 
-			if (n instanceof ReadNode)
-				graph.addAfterFixed((ReadNode) n, graph.add(new LoadBehaviourNode((ReadNode) n, templates)));
+			if (n instanceof LoadIndexedNode)
+				graph.addAfterFixed((LoadIndexedNode) n, graph.add(new LoadBehaviourNode((LoadIndexedNode) n, templates)));
 		}
 	}
 

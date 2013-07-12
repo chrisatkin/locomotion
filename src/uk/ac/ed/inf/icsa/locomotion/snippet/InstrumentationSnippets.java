@@ -3,9 +3,9 @@ package uk.ac.ed.inf.icsa.locomotion.snippet;
 import static com.oracle.graal.graph.UnsafeAccess.unsafe;
 import static com.oracle.graal.replacements.SnippetTemplate.DEFAULT_REPLACER;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import uk.ac.ed.inf.icsa.locomotion.node.LoadBehaviourNode;
 import uk.ac.ed.inf.icsa.locomotion.node.StoreBehaviourNode;
@@ -27,7 +27,7 @@ public class InstrumentationSnippets implements Snippets {
 		public final String name;
 		public long counter;
 		
-		public ArrayAccess(String name, List<ArrayAccess> group) {
+		public ArrayAccess(String name, Set<ArrayAccess> group) {
 			this.name = name;
 			group.add(this);
 		}
@@ -41,7 +41,7 @@ public class InstrumentationSnippets implements Snippets {
 			return new StringBuilder().append(name).append(" ").append(counter).toString();
 		}
 		
-		public static long sum(List<ArrayAccess> accesses) {
+		public static long sum(Set<ArrayAccess> accesses) {
 			long total = 0;
 			
 			for (ArrayAccess a: accesses)
@@ -60,8 +60,8 @@ public class InstrumentationSnippets implements Snippets {
 		}
 	}
 	
-	public static final List<ArrayAccess> stores = Collections.synchronizedList(new ArrayList<ArrayAccess>());
-    public static final List<ArrayAccess> loads = Collections.synchronizedList(new ArrayList<ArrayAccess>());
+	public static final Set<ArrayAccess> stores = Collections.synchronizedSet(new HashSet<ArrayAccess>());
+    public static final Set<ArrayAccess> loads = Collections.synchronizedSet(new HashSet<ArrayAccess>());
     
 	@Snippet
 	public static void store(ArrayAccess access) {

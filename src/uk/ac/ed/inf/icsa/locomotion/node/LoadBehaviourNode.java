@@ -2,13 +2,11 @@ package uk.ac.ed.inf.icsa.locomotion.node;
 
 import uk.ac.ed.inf.icsa.locomotion.snippet.InstrumentationSnippets;
 
-import com.oracle.graal.nodes.extended.ReadNode;
-import com.oracle.graal.nodes.spi.LIRLowerable;
-import com.oracle.graal.nodes.spi.Lowerable;
+import com.oracle.graal.nodes.java.LoadIndexedNode;
 import com.oracle.graal.nodes.spi.LoweringTool;
 
-public final class LoadBehaviourNode extends BehaviourNode implements LIRLowerable, Lowerable {
-	public LoadBehaviourNode(ReadNode n, InstrumentationSnippets.Templates templates) {
+public final class LoadBehaviourNode extends BehaviourNode {
+	public LoadBehaviourNode(LoadIndexedNode n, InstrumentationSnippets.Templates templates) {
 		super(n, templates);
 	}
 	

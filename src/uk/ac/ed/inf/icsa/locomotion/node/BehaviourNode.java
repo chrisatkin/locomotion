@@ -3,8 +3,8 @@ package uk.ac.ed.inf.icsa.locomotion.node;
 import uk.ac.ed.inf.icsa.locomotion.snippet.InstrumentationSnippets;
 
 import com.oracle.graal.nodes.FixedWithNextNode;
-import com.oracle.graal.nodes.extended.ReadNode;
-import com.oracle.graal.nodes.extended.WriteNode;
+import com.oracle.graal.nodes.java.LoadIndexedNode;
+import com.oracle.graal.nodes.java.StoreIndexedNode;
 import com.oracle.graal.nodes.spi.LIRGeneratorTool;
 import com.oracle.graal.nodes.spi.LIRLowerable;
 import com.oracle.graal.nodes.spi.Lowerable;
@@ -15,19 +15,19 @@ abstract class BehaviourNode extends FixedWithNextNode implements Lowerable, LIR
 	public static class NodeInformation {
 		private String name;
 		
-		private NodeInformation(WriteNode node) {
+		private NodeInformation(StoreIndexedNode node) {
 			this.name = node.toString(Verbosity.All);
 		}
 		
-		private NodeInformation(ReadNode node) {
+		private NodeInformation(LoadIndexedNode node) {
 			this.name = node.toString(Verbosity.All);
 		}
 		
-		public static NodeInformation getNodeInfo(WriteNode node) {
+		public static NodeInformation getNodeInfo(StoreIndexedNode node) {
 			return new NodeInformation(node);
 		}
 		
-		public static NodeInformation getNodeInfo(ReadNode node) {
+		public static NodeInformation getNodeInfo(LoadIndexedNode node) {
 			return new NodeInformation(node);
 		}
 		
@@ -40,13 +40,13 @@ abstract class BehaviourNode extends FixedWithNextNode implements Lowerable, LIR
 	protected NodeInformation info;
 	protected final InstrumentationSnippets.Templates templates;
 
-	public BehaviourNode(ReadNode n, InstrumentationSnippets.Templates templates) {
+	public BehaviourNode(LoadIndexedNode n, InstrumentationSnippets.Templates templates) {
 		super(StampFactory.forVoid());
 		this.info = NodeInformation.getNodeInfo(n);
 		this.templates = templates;
 	}
 	
-	public BehaviourNode(WriteNode n, InstrumentationSnippets.Templates templates) {
+	public BehaviourNode(StoreIndexedNode n, InstrumentationSnippets.Templates templates) {
 		super(StampFactory.forVoid());
 		this.info = NodeInformation.getNodeInfo(n);
 		this.templates = templates;

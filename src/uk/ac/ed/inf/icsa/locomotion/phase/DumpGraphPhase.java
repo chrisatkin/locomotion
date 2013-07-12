@@ -17,6 +17,6 @@ public class DumpGraphPhase extends Phase {
 		printer.dump(graph, this.name);
 		printer.close();
 		
-		System.out.println("phase=" + name + " method=" + graph.method().getName());
+		System.out.println("name=" + name + " method=" + graph.method().getName());
 	}
 }

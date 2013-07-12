@@ -1,6 +1,6 @@
 package uk.ac.ed.inf.icsa.locomotion.core;
 
-public class Method<T> {
+public class Method {
 	protected Class<?> clazz;
 	protected String name;
 	protected Class<?>[] types;

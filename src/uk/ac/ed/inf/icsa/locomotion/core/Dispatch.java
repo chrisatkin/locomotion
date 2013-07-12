@@ -1,8 +1,11 @@
 package uk.ac.ed.inf.icsa.locomotion.core;
 
-import static com.oracle.graal.api.code.CodeUtil.*;
+import static com.oracle.graal.api.code.CodeUtil.getCallingConvention;
 
+import java.util.HashMap;
+import java.util.ListIterator;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import com.oracle.graal.api.code.CallingConvention.Type;
 import com.oracle.graal.api.code.CompilationResult;
@@ -19,23 +22,30 @@ import com.oracle.graal.java.GraphBuilderPhase;
 import com.oracle.graal.nodes.StructuredGraph;
 import com.oracle.graal.nodes.spi.GraalCodeCacheProvider;
 import com.oracle.graal.nodes.spi.Replacements;
+import com.oracle.graal.phases.BasePhase;
 import com.oracle.graal.phases.Phase;
 import com.oracle.graal.phases.PhasePlan;
 import com.oracle.graal.phases.PhasePlan.PhasePosition;
+import com.oracle.graal.phases.common.LoweringPhase;
+import com.oracle.graal.phases.tiers.HighTierContext;
 import com.oracle.graal.phases.tiers.Suites;
 import com.oracle.graal.phases.tiers.SuitesProvider;
 
-/**
- * @author	Chris Atkin <me@chrisatk.in>
- * @version 1.0
- */
 public class Dispatch {
+	private static class CacheItem {
+		public ResolvedJavaMethod rjm;
+		public StructuredGraph graph;
+		public CompilationResult cr;
+	}
+	
 	private final GraalCodeCacheProvider runtime;
 	private final Backend backend;
 	private final Replacements replacements;
 	private final Suites suites;
 	private final Configuration configuration;
 	private PhasePlan phasePlan;
+	private Map<Method, CacheItem> cache;
+	private Logger log;
 	
 	public Dispatch(Configuration configuration) {
 		this.runtime = Graal.getRequiredCapability(GraalCodeCacheProvider.class);
@@ -45,36 +55,44 @@ public class Dispatch {
 		this.configuration = configuration;
 		this.phasePlan = new PhasePlan();
 		this.phasePlan.addPhase(PhasePosition.AFTER_PARSING, new GraphBuilderPhase(runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations));
+		this.cache = new HashMap<Method, CacheItem>();
+		this.log = Logger.getLogger(this.getClass().getName());
+		this.log.setLevel(configuration.level);
 		
-		System.out.println("[locomotion] using runtime=" + this.runtime.getClass().getName());
+		this.log.info("runtime=" + this.runtime.getClass().getName() + " backend=" + this.backend.getClass().getName());
 	}
 	
-	public CompilationResult compile(StructuredGraph graph, ResolvedJavaMethod method, Map<Phase, Position> phases) {
-		System.out.println("[locomotion] compilation");
+	public StructuredGraph parse(final Method method) {
+		log.info("using " + method.getName());
+		log.info("parsing");
 		
-		for (Map.Entry<Phase, Position> entry: phases.entrySet()) {
-			Phase phase = entry.getKey();
-			Position position = entry.getValue();
+		cache.put(method, new CacheItem());
+		
+		try {
+			ResolvedJavaMethod rjm = MethodUtils.getResolvedMethod(method, runtime);
+			StructuredGraph graph = new StructuredGraph(rjm);
+			new GraphBuilderPhase(this.runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations).apply(graph);
 			
-			switch (position) {
-				case Low:
-					this.suites.getLowTier().appendPhase(phase);
-				break;
-				
-				case Mid:
-					this.suites.getMidTier().appendPhase(phase);
-				break;
-				
-				case High:
-					this.suites.getHighTier().appendPhase(phase);
-				break;
-			}
+			cache.get(method).rjm = rjm;
+			cache.get(method).graph = graph;
+			
+			return graph;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		return GraalCompiler.compileGraph(
-			graph,
-			getCallingConvention(this.runtime, Type.JavaCallee, graph.method(), false),
-			method,
+		return null;
+	}
+	
+	public CompilationResult compile(final Method method, final Map<Phase, Position> phases) {
+		log.info("compiling");
+		
+		_addPhasesToSuites(phases);
+		
+		CompilationResult cr = GraalCompiler.compileGraph(
+			cache.get(method).graph,
+			getCallingConvention(this.runtime, Type.JavaCallee, cache.get(method).graph.method(), false),
+			cache.get(method).rjm,
 			this.runtime,
 			this.replacements,
 			this.backend,
@@ -86,12 +104,22 @@ public class Dispatch {
 			this.suites,
 			new CompilationResult()
 		);
+		
+		cache.get(method).cr = cr;
+		
+		return cr;
 	}
 	
-	public void execute(final ResolvedJavaMethod method, final CompilationResult result, final StructuredGraph graph) throws InvalidInstalledCodeException {
-		System.out.println("[locomotion] executing");
+	public void execute(final Method method) throws InvalidInstalledCodeException {
+		log.info("executing");
 		
-		this.runtime.addMethod(method, result, graph).execute(new int[] {4, 3, 1, 2, 0}, new int[] {2, 4, 3, 0, 1}, null);
+		this.runtime.addMethod(cache.get(method).rjm, cache.get(method).cr, cache.get(method).graph).execute(new int[] {4, 3, 1, 2, 0}, new int[] {2, 4, 3, 0, 1}, null);
+	}
+	
+	public void process(final Method method, final Map<Phase, Position> phases) throws InvalidInstalledCodeException {
+		parse(method);
+		compile(method, phases);
+		execute(method);
 	}
 	
 	public String getGraphIR(StructuredGraph graph) {
@@ -111,11 +139,29 @@ public class Dispatch {
 		return this.runtime;
 	}
 	
-	public StructuredGraph parse(ResolvedJavaMethod method) {
-		System.out.println("[locomotion] parsing " + method.getName());
-		
-		StructuredGraph graph = new StructuredGraph(method);
-		new GraphBuilderPhase(this.runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations).apply(graph);
-		return graph;
+	private void _addPhasesToSuites(final Map<Phase, Position> suite) {
+		for (Map.Entry<Phase, Position> entry: suite.entrySet()) {
+			Phase phase = entry.getKey();
+			Position position = entry.getValue();
+			
+			log.info("adding " + phase.getClass().getName() + " at " + position.getClass().getName() + "." + position);
+			
+			switch (position) {
+				case Low:
+					this.suites.getLowTier().appendPhase(phase);
+				break;
+				
+				case Mid:
+					this.suites.getMidTier().appendPhase(phase);
+				break;
+				
+				case High:
+				    ListIterator<BasePhase<? super HighTierContext>> iter = this.suites.getHighTier().findPhase(LoweringPhase.class);
+				    iter.previous();
+				    iter.add(phase);
+					//this.suites.getHighTier().appendPhase(phase);
+				break;
+			}
+		}
 	}
 }
