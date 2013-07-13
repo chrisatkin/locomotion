@@ -12,7 +12,7 @@ public class MethodUtils {
 		printer.close();
 	}
 	
-	public static java.lang.reflect.Method getMethod(Method m) throws NoSuchMethodException, SecurityException {
+	public static java.lang.reflect.Method getMethod(Cycle m) throws NoSuchMethodException, SecurityException {
 		return m.getClazz().getMethod(m.getName(), m.getTypes());
 	}
 	
@@ -20,7 +20,7 @@ public class MethodUtils {
 		return runtime.lookupJavaMethod(method);
 	}
 	
-	public static ResolvedJavaMethod getResolvedMethod(Method m, CodeCacheProvider runtime) throws NoSuchMethodException, SecurityException {
+	public static ResolvedJavaMethod getResolvedMethod(Cycle m, CodeCacheProvider runtime) throws NoSuchMethodException, SecurityException {
 		return getResolvedMethod(runtime, getMethod(m));
 	}
 

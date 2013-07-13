@@ -44,7 +44,7 @@ public class Dispatch {
 	private final Suites suites;
 	private final Configuration configuration;
 	private PhasePlan phasePlan;
-	private Map<Method, CacheItem> cache;
+	private Map<Cycle, CacheItem> cache;
 	private Logger log;
 	
 	public Dispatch(Configuration configuration) {
@@ -55,16 +55,19 @@ public class Dispatch {
 		this.configuration = configuration;
 		this.phasePlan = new PhasePlan();
 		this.phasePlan.addPhase(PhasePosition.AFTER_PARSING, new GraphBuilderPhase(runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations));
-		this.cache = new HashMap<Method, CacheItem>();
+		this.cache = new HashMap<Cycle, CacheItem>();
 		this.log = Logger.getLogger(this.getClass().getName());
 		this.log.setLevel(configuration.level);
 		
-		this.log.info("runtime=" + this.runtime.getClass().getName() + " backend=" + this.backend.getClass().getName());
+		if (this.configuration.debug)
+			this.log.info("runtime=" + this.runtime.getClass().getName() + " backend=" + this.backend.getClass().getName());
 	}
 	
-	public StructuredGraph parse(final Method method) {
-		log.info("using " + method.getName());
-		log.info("parsing");
+	public StructuredGraph parse(final Cycle method) {
+		if (configuration.debug) {
+			log.info("using " + method.getName());
+			log.info("parsing");
+		}
 		
 		cache.put(method, new CacheItem());
 		
@@ -84,8 +87,9 @@ public class Dispatch {
 		return null;
 	}
 	
-	public CompilationResult compile(final Method method, final Map<Phase, Position> phases) {
-		log.info("compiling");
+	public CompilationResult compile(final Cycle method, final Map<Phase, Position> phases) {
+		if (configuration.debug)
+			log.info("compiling");
 		
 		_addPhasesToSuites(phases);
 		
@@ -110,13 +114,14 @@ public class Dispatch {
 		return cr;
 	}
 	
-	public void execute(final Method method) throws InvalidInstalledCodeException {
-		log.info("executing");
+	public void execute(final Cycle method) throws InvalidInstalledCodeException {
+		if (configuration.debug)
+			log.info("executing");
 		
 		this.runtime.addMethod(cache.get(method).rjm, cache.get(method).cr, cache.get(method).graph).execute(new int[] {4, 3, 1, 2, 0}, new int[] {2, 4, 3, 0, 1}, null);
 	}
 	
-	public void process(final Method method, final Map<Phase, Position> phases) throws InvalidInstalledCodeException {
+	public void process(final Cycle method, final Map<Phase, Position> phases) throws InvalidInstalledCodeException {
 		parse(method);
 		compile(method, phases);
 		execute(method);
@@ -144,7 +149,8 @@ public class Dispatch {
 			Phase phase = entry.getKey();
 			Position position = entry.getValue();
 			
-			log.info("adding " + phase.getClass().getName() + " at " + position.getClass().getName() + "." + position);
+			if (configuration.debug)
+				log.info("adding " + phase.getClass().getName() + " at " + position.getClass().getName() + "." + position);
 			
 			switch (position) {
 				case Low:

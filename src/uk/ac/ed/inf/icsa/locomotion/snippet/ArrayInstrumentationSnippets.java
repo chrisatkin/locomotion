@@ -4,8 +4,8 @@ import static com.oracle.graal.graph.UnsafeAccess.unsafe;
 import static com.oracle.graal.replacements.SnippetTemplate.DEFAULT_REPLACER;
 
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.LinkedList;
 
 import uk.ac.ed.inf.icsa.locomotion.node.LoadBehaviourNode;
 import uk.ac.ed.inf.icsa.locomotion.node.StoreBehaviourNode;
@@ -22,12 +22,13 @@ import com.oracle.graal.replacements.SnippetTemplate.SnippetInfo;
 import com.oracle.graal.replacements.Snippets;
 import com.oracle.graal.replacements.nodes.DirectObjectStoreNode;
 
-public class InstrumentationSnippets implements Snippets {
-	public static class ArrayAccess {
+@SuppressWarnings("unused")
+public class ArrayInstrumentationSnippets implements Snippets {
+	private static class ArrayAccess {
 		public final String name;
 		public long counter;
 		
-		public ArrayAccess(String name, Set<ArrayAccess> group) {
+		public ArrayAccess(String name, List<ArrayAccess> group) {
 			this.name = name;
 			group.add(this);
 		}
@@ -41,7 +42,7 @@ public class InstrumentationSnippets implements Snippets {
 			return new StringBuilder().append(name).append(" ").append(counter).toString();
 		}
 		
-		public static long sum(Set<ArrayAccess> accesses) {
+		public static long sum(List<ArrayAccess> accesses) {
 			long total = 0;
 			
 			for (ArrayAccess a: accesses)
@@ -60,9 +61,9 @@ public class InstrumentationSnippets implements Snippets {
 		}
 	}
 	
-	public static final Set<ArrayAccess> stores = Collections.synchronizedSet(new HashSet<ArrayAccess>());
-    public static final Set<ArrayAccess> loads = Collections.synchronizedSet(new HashSet<ArrayAccess>());
-    
+	public static final List<ArrayAccess> stores = Collections.synchronizedList(new LinkedList<ArrayAccess>());
+	public static final List<ArrayAccess> loads = Collections.synchronizedList(new LinkedList<ArrayAccess>());
+	
 	@Snippet
 	public static void store(ArrayAccess access) {
 		DirectObjectStoreNode.storeLong(access,  ArrayAccess.counterOffset(), 0, access.counter + 1);
@@ -74,8 +75,8 @@ public class InstrumentationSnippets implements Snippets {
 	}
 	
 	public static class Templates extends AbstractTemplates {
-		private final SnippetInfo store = snippet(InstrumentationSnippets.class, "store");
-		private final SnippetInfo load = snippet(InstrumentationSnippets.class, "load");
+		private final SnippetInfo store = snippet(ArrayInstrumentationSnippets.class, "store");
+		private final SnippetInfo load = snippet(ArrayInstrumentationSnippets.class, "load");
 
 		public Templates(MetaAccessProvider runtime, Replacements replacements, TargetDescription target) {
 			super(runtime, replacements, target);

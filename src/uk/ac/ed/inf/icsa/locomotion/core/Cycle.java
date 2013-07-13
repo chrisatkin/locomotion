@@ -1,19 +1,19 @@
 package uk.ac.ed.inf.icsa.locomotion.core;
 
-public class Method {
+public class Cycle {
 	protected Class<?> clazz;
 	protected String name;
 	protected Class<?>[] types;
 	protected Object[] arguments;
 	
-	public Method() {
+	public Cycle() {
 		this.clazz = null;
 		this.name = null;
 		this.types = null;
 		this.arguments = null;
 	}
 	
-	public Method(Class<?> clazz, String name, Class<?>... types) {
+	public Cycle(Class<?> clazz, String name, Class<?>... types) {
 		this.clazz = clazz;
 		this.name = name;
 		this.types = types;

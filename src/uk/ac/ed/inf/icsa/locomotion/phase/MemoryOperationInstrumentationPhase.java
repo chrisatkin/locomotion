@@ -2,7 +2,7 @@ package uk.ac.ed.inf.icsa.locomotion.phase;
 
 import uk.ac.ed.inf.icsa.locomotion.node.LoadBehaviourNode;
 import uk.ac.ed.inf.icsa.locomotion.node.StoreBehaviourNode;
-import uk.ac.ed.inf.icsa.locomotion.snippet.InstrumentationSnippets;
+import uk.ac.ed.inf.icsa.locomotion.snippet.ArrayInstrumentationSnippets;
 
 import com.oracle.graal.api.code.TargetDescription;
 import com.oracle.graal.api.meta.MetaAccessProvider;
@@ -14,10 +14,10 @@ import com.oracle.graal.nodes.spi.Replacements;
 import com.oracle.graal.phases.Phase;
 
 public class MemoryOperationInstrumentationPhase extends Phase {
-	private InstrumentationSnippets.Templates templates;
+	private ArrayInstrumentationSnippets.Templates templates;
 	
 	public MemoryOperationInstrumentationPhase(MetaAccessProvider runtime, Replacements replacements, TargetDescription target) {
-		this.templates = new InstrumentationSnippets.Templates(runtime, replacements, target);
+		this.templates = new ArrayInstrumentationSnippets.Templates(runtime, replacements, target);
 	}
 	
 	@Override

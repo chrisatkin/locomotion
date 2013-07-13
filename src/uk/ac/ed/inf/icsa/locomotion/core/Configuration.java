@@ -7,4 +7,5 @@ import com.oracle.graal.phases.OptimisticOptimizations;
 public class Configuration {
 	public OptimisticOptimizations optimizations;
 	public Level level;
+	public boolean debug;
 }
