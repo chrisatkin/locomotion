@@ -27,17 +27,16 @@ public class CodeSamples {
 		System.out.println("New private: " + privateInt);
 	}
 	
-	public static int[] vectorAddition(int[] a, int[] b) {
+	public static int[] vectorAddition(Integer[] a, Integer[] b) {
 		int[] c = new int[5];
 		
 		for (int i = 0; i < 5; i++)
 			c[i] = a[i] + b[i];
 		
-		
 		return c;
 	}
 	
-	public static int[] loopDependency(int[] a, int[] b) {
+	public static int[] loopDependency(Integer[] a, Integer[] b) {
 		int[] c = new int[a.length];
 		
 		for (int i = 0; i < a.length; i++)

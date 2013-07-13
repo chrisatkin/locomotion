@@ -1,17 +1,11 @@
-package uk.ac.ed.inf.icsa.locomotion.core;
+package uk.ac.ed.inf.icsa.locomotion.utilities;
+
+import uk.ac.ed.inf.icsa.locomotion.core.Cycle;
 
 import com.oracle.graal.api.code.CodeCacheProvider;
 import com.oracle.graal.api.meta.ResolvedJavaMethod;
-import com.oracle.graal.nodes.StructuredGraph;
-import com.oracle.graal.printer.GraphPrinterDumpHandler;
 
-public class MethodUtils {
-	public static void dumpGraphToIgv(StructuredGraph graph, String name) {
-		GraphPrinterDumpHandler printer = new GraphPrinterDumpHandler();
-		printer.dump(graph, name);
-		printer.close();
-	}
-	
+public final class MethodUtilities {
 	public static java.lang.reflect.Method getMethod(Cycle m) throws NoSuchMethodException, SecurityException {
 		return m.getClazz().getMethod(m.getName(), m.getTypes());
 	}

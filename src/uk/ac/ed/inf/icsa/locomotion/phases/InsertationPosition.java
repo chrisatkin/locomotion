@@ -1,4 +1,4 @@
-package uk.ac.ed.inf.icsa.locomotion.phase;
+package uk.ac.ed.inf.icsa.locomotion.phases;
 
 public enum InsertationPosition {
 	Before,

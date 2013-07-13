@@ -1,4 +1,4 @@
-package uk.ac.ed.inf.icsa.locomotion.snippet;
+package uk.ac.ed.inf.icsa.locomotion.snippets;
 
 import static com.oracle.graal.graph.UnsafeAccess.unsafe;
 import static com.oracle.graal.replacements.SnippetTemplate.DEFAULT_REPLACER;
@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.LinkedList;
 
-import uk.ac.ed.inf.icsa.locomotion.node.LoadBehaviourNode;
-import uk.ac.ed.inf.icsa.locomotion.node.StoreBehaviourNode;
+import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayLoadBehaviourNode;
+import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayStoreBehaviourNode;
 
 import com.oracle.graal.api.code.TargetDescription;
 import com.oracle.graal.api.meta.MetaAccessProvider;
@@ -82,7 +82,7 @@ public class ArrayInstrumentationSnippets implements Snippets {
 			super(runtime, replacements, target);
 		}
 		
-		public void lower(final StoreBehaviourNode node) {
+		public void lower(final ArrayStoreBehaviourNode node) {
 			Arguments args = new Arguments(store) {{
 				add("access", new ArrayAccess(node.getNodeInfo().toString(), stores));
 			}};
@@ -90,7 +90,7 @@ public class ArrayInstrumentationSnippets implements Snippets {
 			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);
 		}
 		
-		public void lower(final LoadBehaviourNode node) {
+		public void lower(final ArrayLoadBehaviourNode node) {
 			Arguments args = new Arguments(load) {{
 				add("access", new ArrayAccess(node.getNodeInfo().toString(), loads));
 			}};

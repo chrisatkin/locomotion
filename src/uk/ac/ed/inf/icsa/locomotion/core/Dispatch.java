@@ -7,6 +7,8 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import uk.ac.ed.inf.icsa.locomotion.utilities.MethodUtilities;
+
 import com.oracle.graal.api.code.CallingConvention.Type;
 import com.oracle.graal.api.code.CompilationResult;
 import com.oracle.graal.api.code.InvalidInstalledCodeException;
@@ -72,7 +74,7 @@ public class Dispatch {
 		cache.put(method, new CacheItem());
 		
 		try {
-			ResolvedJavaMethod rjm = MethodUtils.getResolvedMethod(method, runtime);
+			ResolvedJavaMethod rjm = MethodUtilities.getResolvedMethod(method, runtime);
 			StructuredGraph graph = new StructuredGraph(rjm);
 			new GraphBuilderPhase(this.runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations).apply(graph);
 			
@@ -118,7 +120,7 @@ public class Dispatch {
 		if (configuration.debug)
 			log.info("executing");
 		
-		this.runtime.addMethod(cache.get(method).rjm, cache.get(method).cr, cache.get(method).graph).execute(new int[] {4, 3, 1, 2, 0}, new int[] {2, 4, 3, 0, 1}, null);
+		this.runtime.addMethod(cache.get(method).rjm, cache.get(method).cr, cache.get(method).graph).executeVarargs(method.getArguments());
 	}
 	
 	public void process(final Cycle method, final Map<Phase, Position> phases) throws InvalidInstalledCodeException {
@@ -165,7 +167,7 @@ public class Dispatch {
 				    ListIterator<BasePhase<? super HighTierContext>> iter = this.suites.getHighTier().findPhase(LoweringPhase.class);
 				    iter.previous();
 				    iter.add(phase);
-					//this.suites.getHighTier().appendPhase(phase);
+//					this.suites.getHighTier().appendPhase(phase);
 				break;
 			}
 		}

@@ -1,4 +1,4 @@
-package uk.ac.ed.inf.icsa.locomotion.exception;
+package uk.ac.ed.inf.icsa.locomotion.exceptions;
 
 @SuppressWarnings("serial")
 public class LocomotionError extends Error {

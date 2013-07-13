@@ -1,4 +1,4 @@
-package uk.ac.ed.inf.icsa.locomotion.exception;
+package uk.ac.ed.inf.icsa.locomotion.exceptions;
 
 public class LocomotionException extends Exception {
 	/**
