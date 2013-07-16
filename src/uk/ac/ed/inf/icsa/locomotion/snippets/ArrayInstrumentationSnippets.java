@@ -1,12 +1,16 @@
 package uk.ac.ed.inf.icsa.locomotion.snippets;
 
+import static io.atkin.io.console.*;
 import static com.oracle.graal.graph.UnsafeAccess.unsafe;
 import static com.oracle.graal.replacements.SnippetTemplate.DEFAULT_REPLACER;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
+import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayBehaviourNode;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayLoadBehaviourNode;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayStoreBehaviourNode;
 
@@ -25,30 +29,17 @@ import com.oracle.graal.replacements.nodes.DirectObjectStoreNode;
 @SuppressWarnings("unused")
 public class ArrayInstrumentationSnippets implements Snippets {
 	private static class ArrayAccess {
-		public final String name;
+		public final ArrayBehaviourNode.NodeInformation name;
 		public long counter;
 		
-		public ArrayAccess(String name, List<ArrayAccess> group) {
+		public ArrayAccess(ArrayBehaviourNode.NodeInformation name, List<ArrayAccess> group) {
 			this.name = name;
 			group.add(this);
-		}
-		
-		public void inc() {
-			DirectObjectStoreNode.storeLong(this, counterOffset(), 0, counter + 1);
 		}
 		
 		@Override
 		public String toString() {
 			return new StringBuilder().append(name).append(" ").append(counter).toString();
-		}
-		
-		public static long sum(List<ArrayAccess> accesses) {
-			long total = 0;
-			
-			for (ArrayAccess a: accesses)
-				total += a.counter;
-			
-			return total;
 		}
 		
 		@Fold
@@ -67,11 +58,13 @@ public class ArrayInstrumentationSnippets implements Snippets {
 	@Snippet
 	public static void store(ArrayAccess access) {
 		DirectObjectStoreNode.storeLong(access,  ArrayAccess.counterOffset(), 0, access.counter + 1);
+		//DirectObjectStoreNode.storeObject(access, ArrayAccess.counterOffset(), 0, access);
 	}
 	
 	@Snippet
 	public static void load(ArrayAccess access) {
 		DirectObjectStoreNode.storeLong(access, ArrayAccess.counterOffset(), 0, access.counter + 1);
+		//DirectObjectStoreNode.storeObject(access, ArrayAccess.counterOffset(), 0, access);
 	}
 	
 	public static class Templates extends AbstractTemplates {
@@ -83,16 +76,20 @@ public class ArrayInstrumentationSnippets implements Snippets {
 		}
 		
 		public void lower(final ArrayStoreBehaviourNode node) {
+			println(node.getNodeInfo());
+			
 			Arguments args = new Arguments(store) {{
-				add("access", new ArrayAccess(node.getNodeInfo().toString(), stores));
+				add("access", new ArrayAccess(node.getNodeInfo(), stores));
 			}};
 			
 			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);
 		}
 		
 		public void lower(final ArrayLoadBehaviourNode node) {
+			println(node.getNodeInfo());
+			
 			Arguments args = new Arguments(load) {{
-				add("access", new ArrayAccess(node.getNodeInfo().toString(), loads));
+				add("access", new ArrayAccess(node.getNodeInfo(), loads));
 			}};
 			
 			template(args).instantiate(runtime, node, DEFAULT_REPLACER, args);

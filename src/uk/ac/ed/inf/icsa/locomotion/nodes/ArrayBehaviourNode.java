@@ -2,32 +2,32 @@ package uk.ac.ed.inf.icsa.locomotion.nodes;
 
 import uk.ac.ed.inf.icsa.locomotion.snippets.ArrayInstrumentationSnippets;
 
-import com.oracle.graal.nodes.java.AccessIndexedNode;
+import com.oracle.graal.nodes.extended.AccessNode;
 
-abstract class ArrayBehaviourNode extends BehaviourNode {
+public abstract class ArrayBehaviourNode extends BehaviourNode {
 	public static class NodeInformation {
 		private String name;
-		private AccessIndexedNode node;
+		private String location;
 		
-		private NodeInformation(AccessIndexedNode node) {
-			this.node = node;
-			this.name = node.toString(Verbosity.All);
+		private NodeInformation(AccessNode node) {
+			this.name = node.toString();
+			this.location = node.location().toString(Verbosity.All);
 		}
 		
-		public static NodeInformation getNodeInfo(AccessIndexedNode node) {
+		public static NodeInformation getNodeInfo(AccessNode node) {
 			return new NodeInformation(node);
 		}
 		
 		@Override
 		public String toString() {
-			return name;
+			return name + " " + location;
 		}
 	}
 
 	protected NodeInformation info;
 	protected final ArrayInstrumentationSnippets.Templates templates;
 
-	public ArrayBehaviourNode(AccessIndexedNode n, ArrayInstrumentationSnippets.Templates templates) {
+	public ArrayBehaviourNode(AccessNode n, ArrayInstrumentationSnippets.Templates templates) {
 		super();
 		this.info = NodeInformation.getNodeInfo(n);
 		this.templates = templates;

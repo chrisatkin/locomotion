@@ -14,17 +14,7 @@ public class CodeSamples {
 	}
 	
 	public static void fieldAccess() {
-		System.out.println("Old public: " + publicInt);
-		System.out.println("Old protected: " + protectedInt);
-		System.out.println("Old private: " + privateInt);
-		
-		publicInt++;
-		protectedInt++;
-		privateInt++;
-		
-		System.out.println("New public: " + publicInt);
-		System.out.println("New protected: " + protectedInt);
-		System.out.println("New private: " + privateInt);
+		publicInt = 1;
 	}
 	
 	public static int[] vectorAddition(Integer[] a, Integer[] b) {
@@ -36,13 +26,21 @@ public class CodeSamples {
 		return c;
 	}
 	
-	public static int[] loopDependency(Integer[] a, Integer[] b) {
-		int[] c = new int[a.length];
+	
+	public static Integer arrayAccess(Integer[] a, int index) {
+		return a[index];
+	}
+	
+	public static Integer test(Integer[] a) {
+		int t = a[0];
+		return t;
+	}
+	
+	public static int loopDependency(Integer[] a, Integer[] b) {
+		int t = a[0];
+		return t;
 		
-		for (int i = 0; i < a.length; i++)
-			c[i] = a[b[i]];
- 		
-		return c;
+//		return c;
 	}
 	
 	public static void copyArray() {
@@ -54,6 +52,10 @@ public class CodeSamples {
 		b[2] = a[2];
 		
 		String s = Arrays.toString(b);
+	}
+	
+	public static void testInstrument() {
+		
 	}
 	
 	public static void main(String[] args) {

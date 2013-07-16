@@ -1,16 +1,19 @@
 package uk.ac.ed.inf.icsa.locomotion.core;
 
 import static com.oracle.graal.api.code.CodeUtil.getCallingConvention;
+import static io.atkin.io.console.println;
 
 import java.util.HashMap;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import uk.ac.ed.inf.icsa.locomotion.snippets.ArrayInstrumentationSnippets;
 import uk.ac.ed.inf.icsa.locomotion.utilities.MethodUtilities;
 
 import com.oracle.graal.api.code.CallingConvention.Type;
 import com.oracle.graal.api.code.CompilationResult;
+import com.oracle.graal.api.code.InstalledCode;
 import com.oracle.graal.api.code.InvalidInstalledCodeException;
 import com.oracle.graal.api.code.SpeculationLog;
 import com.oracle.graal.api.meta.ResolvedJavaMethod;
@@ -28,8 +31,10 @@ import com.oracle.graal.phases.BasePhase;
 import com.oracle.graal.phases.Phase;
 import com.oracle.graal.phases.PhasePlan;
 import com.oracle.graal.phases.PhasePlan.PhasePosition;
+import com.oracle.graal.phases.common.InliningPhase;
 import com.oracle.graal.phases.common.LoweringPhase;
 import com.oracle.graal.phases.tiers.HighTierContext;
+import com.oracle.graal.phases.tiers.LowTierContext;
 import com.oracle.graal.phases.tiers.Suites;
 import com.oracle.graal.phases.tiers.SuitesProvider;
 
@@ -57,6 +62,7 @@ public class Dispatch {
 		this.configuration = configuration;
 		this.phasePlan = new PhasePlan();
 		this.phasePlan.addPhase(PhasePosition.AFTER_PARSING, new GraphBuilderPhase(runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations));
+		//phasePlan.disablePhase(InliningPhase.class);
 		this.cache = new HashMap<Cycle, CacheItem>();
 		this.log = Logger.getLogger(this.getClass().getName());
 		this.log.setLevel(configuration.level);
@@ -111,6 +117,8 @@ public class Dispatch {
 			new CompilationResult()
 		);
 		
+//		CompilationResult cr = GraalCompiler.compileMethod(runtime, replacements, backend, runtime.getTarget(), cache.get(method).rjm, cache.get(method).graph, null, phasePlan, configuration.optimizations, new SpeculationLog());
+		
 		cache.get(method).cr = cr;
 		
 		return cr;
@@ -120,12 +128,16 @@ public class Dispatch {
 		if (configuration.debug)
 			log.info("executing");
 		
-		this.runtime.addMethod(cache.get(method).rjm, cache.get(method).cr, cache.get(method).graph).executeVarargs(method.getArguments());
+		InstalledCode code = this.runtime.addMethod(cache.get(method).rjm, cache.get(method).cr, cache.get(method).graph);
+		code.executeVarargs(method.getArguments());
 	}
 	
 	public void process(final Cycle method, final Map<Phase, Position> phases) throws InvalidInstalledCodeException {
 		parse(method);
 		compile(method, phases);
+		
+		println("Loads: " + ArrayInstrumentationSnippets.loads);
+        println("Stores: " + ArrayInstrumentationSnippets.stores);
 		execute(method);
 	}
 	
@@ -157,10 +169,11 @@ public class Dispatch {
 			switch (position) {
 				case Low:
 					this.suites.getLowTier().appendPhase(phase);
+//					this.phasePlan.addPhase(PhasePosition.LOW_LEVEL, phase);
 				break;
 				
 				case Mid:
-					this.suites.getMidTier().appendPhase(phase);
+					//this.suites.getMidTier().appendPhase(phase);
 				break;
 				
 				case High:
@@ -168,6 +181,8 @@ public class Dispatch {
 				    iter.previous();
 				    iter.add(phase);
 //					this.suites.getHighTier().appendPhase(phase);
+					
+					//this.phasePlan.addPhase(PhasePosition.HIGH_LEVEL, phase);
 				break;
 			}
 		}

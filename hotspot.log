@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hotspot_log version='160 1' process='2062' time_ms='1373735782136'>
+<hotspot_log version='160 1' process='3421' time_ms='1373984801188'>
 <vm_version>
 <name>
 OpenJDK 64-Bit Graal VM
@@ -8,7 +8,7 @@ OpenJDK 64-Bit Graal VM
 25.0-b37-internal-fastdebug
 </release>
 <info>
-OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jul 12 2013 14:55:52 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
+OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jul 16 2013 13:41:26 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
 </info>
 </vm_version>
 <vm_arguments>
@@ -42,9 +42,9 @@ sun.java.launcher=SUN_STANDARD
 </properties>
 </vm_arguments>
 <tty>
-<writer thread='18691'/>
-<destroy_vm stamp='9.731'/>
-<tty_done stamp='9.824'/>
+<writer thread='18947'/>
+<destroy_vm stamp='1.971'/>
+<tty_done stamp='2.019'/>
 </tty>
-<hotspot_log_done stamp='9.824'/>
+<hotspot_log_done stamp='2.019'/>
 </hotspot_log>

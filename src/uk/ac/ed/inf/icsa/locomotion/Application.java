@@ -12,6 +12,7 @@ import uk.ac.ed.inf.icsa.locomotion.core.Cycle;
 import uk.ac.ed.inf.icsa.locomotion.core.Dispatch;
 import uk.ac.ed.inf.icsa.locomotion.core.Position;
 import uk.ac.ed.inf.icsa.locomotion.misc.CodeSamples;
+import uk.ac.ed.inf.icsa.locomotion.phases.DumpGraphPhase;
 import uk.ac.ed.inf.icsa.locomotion.phases.MemoryOperationInstrumentationPhase;
 import uk.ac.ed.inf.icsa.locomotion.snippets.ArrayInstrumentationSnippets;
 
@@ -23,7 +24,7 @@ public class Application {
 	
 	public Application() {
 		this.lm = new Dispatch(new Configuration() {{
-			optimizations = OptimisticOptimizations.NONE;
+			optimizations = OptimisticOptimizations.ALL;
 			level = Level.ALL;
 			debug = true;
 		}});
@@ -49,10 +50,10 @@ public class Application {
 			try {
 				lm.process(cycle, new HashMap<Phase, Position>() {{
 					put(new MemoryOperationInstrumentationPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);
+					//put(new DumpGraphPhase("high-level"), Position.High);
 				}});
 				
-                println("Loads: " + ArrayInstrumentationSnippets.loads);
-                println("Stores: " + ArrayInstrumentationSnippets.stores);
+                
 			}
 			catch (Exception exc) {
 				exc.printStackTrace();
