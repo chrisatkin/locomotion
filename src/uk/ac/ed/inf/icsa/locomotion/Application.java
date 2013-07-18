@@ -35,25 +35,16 @@ public class Application {
 		for (Cycle cycle: list(
 			new Cycle() {{
 				clazz = CodeSamples.class;
-				name = "loopDependency";
-				types = array(Integer[].class, Integer[].class);
-				arguments = array(array(0, 3, 4, 1, 2), array(3, 4, 0, 2, 1));
+				name = "test";
+				types = array();
+				arguments = array();
 			}}
-			
-//			,new Cycle() {{
-//				clazz = CodeSamples.class;
-//				name = "vectorAddition";
-//				types = array(Integer[].class, Integer[].class);
-//				arguments = array(array(0, 3, 4, 1, 2), array(3, 4, 0, 2, 1));
-//			}}
 		)) {
 			try {
 				lm.process(cycle, new HashMap<Phase, Position>() {{
-					put(new MemoryOperationInstrumentationPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);
+					//put(new MemoryOperationInstrumentationPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);
 					//put(new DumpGraphPhase("high-level"), Position.High);
 				}});
-				
-                
 			}
 			catch (Exception exc) {
 				exc.printStackTrace();

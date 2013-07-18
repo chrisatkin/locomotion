@@ -18,7 +18,8 @@ public final class BloomFilterTrace implements Trace {
 			public void funnel(Entry entry, PrimitiveSink into) {
 				into.putLong(entry.getAddress());
 				into.putLong(entry.getValue());
-			}}, expectedInsertations);
+			}
+		}, expectedInsertations);
 	}
 
 	@Override

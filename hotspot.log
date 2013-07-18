@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hotspot_log version='160 1' process='3421' time_ms='1373984801188'>
+<hotspot_log version='160 1' process='1935' time_ms='1374008595054'>
 <vm_version>
 <name>
 OpenJDK 64-Bit Graal VM
@@ -13,7 +13,7 @@ OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0),
 </vm_version>
 <vm_arguments>
 <args>
--XX:-BootstrapGraal -ea -Dfile.encoding=US-ASCII 
+-XX:-BootstrapGraal -enableassertions -Dfile.encoding=US-ASCII 
 </args>
 <command>
 uk.ac.ed.inf.icsa.locomotion.Application
@@ -43,8 +43,8 @@ sun.java.launcher=SUN_STANDARD
 </vm_arguments>
 <tty>
 <writer thread='18947'/>
-<destroy_vm stamp='1.971'/>
-<tty_done stamp='2.019'/>
+<destroy_vm stamp='14.809'/>
+<tty_done stamp='14.886'/>
 </tty>
-<hotspot_log_done stamp='2.019'/>
+<hotspot_log_done stamp='14.886'/>
 </hotspot_log>

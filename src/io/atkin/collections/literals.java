@@ -33,4 +33,14 @@ public class literals {
 				put(entry._item_1, entry._item_2);
 		}};
 	}
+	
+	@SafeVarargs
+	public static Integer[] IntArray(int... args) {
+		Integer[] array = new Integer[args.length];
+		
+		for (int i = 0; i < args.length; i++)
+			array[i] = (Integer) args[i];
+ 		
+		return array;
+	}
 }

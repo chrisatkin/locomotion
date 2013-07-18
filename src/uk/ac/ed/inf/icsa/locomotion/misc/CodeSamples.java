@@ -1,65 +1,41 @@
 package uk.ac.ed.inf.icsa.locomotion.misc;
 
+import static io.atkin.collections.literals.IntArray;
+import static io.atkin.io.console.println;
+
 import java.util.Arrays;
 
-@SuppressWarnings("unused")
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
+
 public class CodeSamples {
-	public static int publicInt = 0;
-	protected static int protectedInt = 1;
-	private static int privateInt = 2;
-	
-	public static void arrayAccess() {
-		int[] test = new int[1];
-		test[0] = 1;
+	public static void simpleLoop_NoDeps(Integer[] array) {
+		for (int i = 0; i < array.length; i++)
+			InstrumentSupport.arrayWrite(array, i, (Integer) i, i, 2);
 	}
 	
-	public static void fieldAccess() {
-		publicInt = 1;
-	}
-	
-	public static int[] vectorAddition(Integer[] a, Integer[] b) {
-		int[] c = new int[5];
+	public static Integer[] vectorAddition(Integer[] a, Integer[] b) {
+		assert a.length == b.length: "vectors must be same length";
 		
-		for (int i = 0; i < 5; i++)
-			c[i] = a[i] + b[i];
+		Integer[] c = new Integer[a.length];
+		
+		for (int i = 0; i < a.length; i++) {
+			Integer currentA = InstrumentSupport.arrayLookup(a, i, i, 1);
+			Integer currentB = InstrumentSupport.arrayLookup(b, i, i, 1);
+			Integer result = currentA + currentB;
+			
+			InstrumentSupport.arrayWrite(c, i, result, i, 1);
+		}
 		
 		return c;
 	}
 	
-	
-	public static Integer arrayAccess(Integer[] a, int index) {
-		return a[index];
-	}
-	
-	public static Integer test(Integer[] a) {
-		int t = a[0];
-		return t;
-	}
-	
-	public static int loopDependency(Integer[] a, Integer[] b) {
-		int t = a[0];
-		return t;
-		
-//		return c;
-	}
-	
-	public static void copyArray() {
-		int[] a = {1, 2, 3};
-		int[] b = new int[3];
-		
-		b[0] = a[0];
-		b[1] = a[1];
-		b[2] = a[2];
-		
-		String s = Arrays.toString(b);
-	}
-	
-	public static void testInstrument() {
-		
+	public static void test() {
+		println(Arrays.toString(vectorAddition(IntArray(0, 4, 2, 9), IntArray(4, 6, 3, 2))));
 	}
 	
 	public static void main(String[] args) {
-		arrayAccess();
-		fieldAccess();
+		test();
+		
+		InstrumentSupport.report();
 	}
 }

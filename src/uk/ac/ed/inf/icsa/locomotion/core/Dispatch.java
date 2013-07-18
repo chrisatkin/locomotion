@@ -135,9 +135,6 @@ public class Dispatch {
 	public void process(final Cycle method, final Map<Phase, Position> phases) throws InvalidInstalledCodeException {
 		parse(method);
 		compile(method, phases);
-		
-		println("Loads: " + ArrayInstrumentationSnippets.loads);
-        println("Stores: " + ArrayInstrumentationSnippets.stores);
 		execute(method);
 	}
 	

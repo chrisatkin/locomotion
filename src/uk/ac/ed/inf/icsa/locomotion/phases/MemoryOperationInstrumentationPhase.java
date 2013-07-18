@@ -32,12 +32,12 @@ import com.oracle.graal.nodes.spi.Replacements;
 import com.oracle.graal.nodes.java.*;
 
 public class MemoryOperationInstrumentationPhase extends LocomotionPhase {
-	private ArrayInstrumentationSnippets.Templates templates;
+	//private ArrayInstrumentationSnippets.Templates templates;
 	private MetaAccessProvider runtime;
 	
 	public MemoryOperationInstrumentationPhase(MetaAccessProvider runtime, Replacements replacements, TargetDescription target) {
 		this.runtime = runtime;
-		this.templates = new ArrayInstrumentationSnippets.Templates(runtime, replacements, target);
+		//this.templates = new ArrayInstrumentationSnippets.Templates(runtime, replacements, target);
 	}
 	
 	@Override
