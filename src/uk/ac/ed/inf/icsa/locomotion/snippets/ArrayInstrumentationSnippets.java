@@ -26,7 +26,6 @@ import com.oracle.graal.replacements.SnippetTemplate.SnippetInfo;
 import com.oracle.graal.replacements.Snippets;
 import com.oracle.graal.replacements.nodes.DirectObjectStoreNode;
 
-@SuppressWarnings("unused")
 public class ArrayInstrumentationSnippets implements Snippets {
 	private static class ArrayAccess {
 		public final ArrayBehaviourNode.NodeInformation name;

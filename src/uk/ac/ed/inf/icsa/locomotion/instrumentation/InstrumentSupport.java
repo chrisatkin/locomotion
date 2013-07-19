@@ -4,11 +4,21 @@ import static io.atkin.io.console.*;
 
 import java.util.HashSet;
 
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.HashSetTrace;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.TraceConfiguration;
+
 public final class InstrumentSupport {
 	private static Instrument instrument;
 	
 	static {
-		instrument = new Instrument(new Configuration(true, HashSet.class));
+		instrument = new Instrument(
+				new Configuration(
+						true,						// enable any instrumentation
+						HashSetTrace.class,			// loop trace class
+						new TraceConfiguration()	// loop trace configuration
+				)
+		);
 	}
 	
 	public static <T> T arrayLookup(T[] array, int index, int loopIterator, int loopId) {
@@ -23,6 +33,15 @@ public final class InstrumentSupport {
 	
 	public static void report() {
 		println(instrument.report());
-		//println(instrument.dependencyReport());
+	}
+	
+	public static Trace getTracer(Class<? extends Trace> kind) {
+		try {
+			return (Trace) kind.newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }
