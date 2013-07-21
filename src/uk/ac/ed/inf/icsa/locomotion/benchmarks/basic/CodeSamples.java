@@ -85,12 +85,7 @@ public class CodeSamples {
 		test();
 		
 		InstrumentSupport.stopTimer();
-		//InstrumentSupport.report();
+		InstrumentSupport.report();
 		System.out.println("time=" + InstrumentSupport.getTimeDifference());
-		
-//		Trace trace = new HashSetTrace(new TraceConfiguration());
-//		trace.add(new Access(0, 0, 0, Kind.Store));
-//		
-//		noop();
 	}
 }

@@ -9,14 +9,18 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import uk.ac.ed.inf.icsa.locomotion.exceptions.LoopDependencyException;
+
 public class Instrument {
 	private final Configuration configuration;
 	private final Map<Integer, Loop> store;
+	private List<LoopDependencyException> dependencies;
 	private long startTime;
 	private long endTime;
 	
 	public Instrument(Configuration configuration) {
 		this.store = new HashMap<Integer, Loop>();
+		this.dependencies = new LinkedList<LoopDependencyException>();
 		this.configuration = configuration;
 	}
 	
@@ -28,7 +32,11 @@ public class Instrument {
 		if (!store.containsKey(loopId))
 			store.put(loopId, new Loop(loopId, configuration.getLoopStoreClass(), configuration.getLoopStoreConfiguration()));
 		
-		store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Load);
+		try {
+			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Load);
+		} catch (LoopDependencyException e) {
+			dependencies.add(e);
+		}
 	}	
 	
 	public <T> void instrumentArrayWrite(final T[] array, final int index, final T value, final int loopIterator, final int loopId) {
@@ -39,7 +47,11 @@ public class Instrument {
 		if (!store.containsKey(loopId))
 			store.put(loopId, new Loop(loopId, configuration.getLoopStoreClass(), configuration.getLoopStoreConfiguration()));
 		
-		store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Store);
+		try {
+			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Store);
+		} catch (LoopDependencyException e) {
+			dependencies.add(e);
+		}
 	}
 	
 	public void recordStart() {
@@ -62,16 +74,7 @@ public class Instrument {
 	}
 	
 	public String report() {
-		StringBuilder string = new StringBuilder();
-		
-		for (Map.Entry<Integer, Loop> entry: store.entrySet()) {
-			Integer loopId = entry.getKey();
-			Loop loop = entry.getValue();
-			
-			string.append("loop=").append(loopId).append("\n").append(loop.toString());
-		}
-		
-		return string.toString();
+		return dependencies.toString();
 	}
 	
 	public String dependencyReport() {

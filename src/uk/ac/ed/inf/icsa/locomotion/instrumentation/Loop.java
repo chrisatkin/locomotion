@@ -2,11 +2,10 @@ package uk.ac.ed.inf.icsa.locomotion.instrumentation;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import uk.ac.ed.inf.icsa.locomotion.exceptions.LocomotionError;
+import uk.ac.ed.inf.icsa.locomotion.exceptions.LoopDependencyException;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.TraceConfiguration;
 
@@ -23,7 +22,7 @@ class Loop {
 		this.iterations = new HashMap<Integer, Trace>();
 	}
 	
-	public void addIterationAccess(final int iteration, final int index, final int arrayId, final Kind kind) {
+	public void addIterationAccess(final int iteration, final int index, final int arrayId, final Kind kind) throws LoopDependencyException {
 		if (!iterations.containsKey(iteration))
 			try {
 				try {
@@ -45,7 +44,7 @@ class Loop {
 			System.out.println("inter-iteration dependency found for " + access.toString());
 		
 		// check for inter-iteration dependency
-		for (Map.Entry<Integer, Trace> otherIterations: iterations.entrySet()) {
+		for (Map.Entry<Integer, Trace> otherIterations: iterations().entrySet()) {
 			Integer otherIterationNumber = otherIterations.getKey();
 			Trace otherIterationAccesses = otherIterations.getValue();
 			
@@ -53,21 +52,14 @@ class Loop {
 				continue;
 			
 			if (otherIterationAccesses.contains(access))
-				System.out.println("this=" + iteration + " other=" + otherIterationNumber + " access=" + access.toString());
+				throw new LoopDependencyException(access, iteration, otherIterationNumber);
 		}
 		
 		((Trace) iterations.get(iteration)).add(access);
 	}
 	
-	public Map<Integer, ? extends Trace> iterations() {
+	public Map<Integer, Trace> iterations() {
 		return iterations;
-	}
-	
-	public Map<Integer, Trace> iterations(int otherThan) {
-		Map<Integer, Trace> iterationsCopy = new HashMap<Integer, Trace>(iterations);
-		iterationsCopy.remove((Integer) otherThan);
-		
-		return iterationsCopy;
 	}
 	
 	public String toString() {

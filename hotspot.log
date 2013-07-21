@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hotspot_log version='160 1' process='3028' time_ms='1374361136421'>
+<hotspot_log version='160 1' process='6165' time_ms='1374367056419'>
 <vm_version>
 <name>
 OpenJDK 64-Bit Graal VM
@@ -42,9 +42,9 @@ sun.java.launcher=SUN_STANDARD
 </properties>
 </vm_arguments>
 <tty>
-<writer thread='18947'/>
-<destroy_vm stamp='1.424'/>
-<tty_done stamp='1.457'/>
+<writer thread='18691'/>
+<destroy_vm stamp='1.496'/>
+<tty_done stamp='1.529'/>
 </tty>
-<hotspot_log_done stamp='1.457'/>
+<hotspot_log_done stamp='1.529'/>
 </hotspot_log>

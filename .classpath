@@ -78,5 +78,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.dsl.processor"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl.test"/>
+	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk1.7.0_15.jdk/Contents/Home/lib/tools.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

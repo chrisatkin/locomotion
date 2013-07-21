@@ -1,17 +1,24 @@
 package uk.ac.ed.inf.icsa.locomotion.instrumentation;
 
-import static io.atkin.io.console.*;
+import static io.atkin.io.console.println;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.LinkedList;
 
+import uk.ac.ed.inf.icsa.locomotion.exceptions.LoopDependencyException;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.HashSetTrace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.TraceConfiguration;
 
 public final class InstrumentSupport {
-	private static Instrument instrument = null;
+	private static Instrument instrument;
 	private static long startTime = 0;
 	private static long endTime = 0;
+	
+	static {
+		instrument = null;
+	}
 	
 	public static void setInstrumentConfiguration(Configuration config) {
 		instrument = new Instrument(config);
@@ -26,7 +33,7 @@ public final class InstrumentSupport {
 	
 	public static <T> void arrayWrite(T[] array, int index, T value, int loopIterator, int loopId) {
 		assert instrument != null: "instrument configuration not set";
-		
+
 		instrument.instrumentArrayWrite(array, index, value, loopIterator, loopId);
 		array[index] = value;
 	}
