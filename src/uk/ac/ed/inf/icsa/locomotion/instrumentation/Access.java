@@ -14,17 +14,24 @@ public class Access implements Comparable<Access> {
 	}
 	
 	public String toString() {
-		return new StringBuilder().append("kind=").append(kind.toString()).append(" arrayId=").append(arrayId).append(" index=").append(index).append(" number=").append(number).toString();
+		return new StringBuilder().append("[kind=").append(kind.toString()).append(" arrayId=").append(arrayId).append(" index=").append(index).append(" number=").append(number).append("]").toString();
 	}
 	
 	@Override
 	public int hashCode() {
-		Long l = Long.parseLong("" + arrayId + index + kind.ordinal());
-		return l.hashCode();
+		return Integer.parseInt("" + (arrayId/10) + index);
 	}
 	
 	public int getNumber() {
 		return number;
+	}
+	
+	public int getArrayId() {
+		return arrayId;
+	}
+	
+	public int getIndex() {
+		return index;
 	}
 
 	@Override

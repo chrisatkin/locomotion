@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hotspot_log version='160 1' process='1935' time_ms='1374008595054'>
+<hotspot_log version='160 1' process='3028' time_ms='1374361136421'>
 <vm_version>
 <name>
 OpenJDK 64-Bit Graal VM
@@ -8,7 +8,7 @@ OpenJDK 64-Bit Graal VM
 25.0-b37-internal-fastdebug
 </release>
 <info>
-OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jul 16 2013 13:41:26 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
+OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jul 19 2013 13:01:25 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
 </info>
 </vm_version>
 <vm_arguments>
@@ -16,7 +16,7 @@ OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0),
 -XX:-BootstrapGraal -enableassertions -Dfile.encoding=US-ASCII 
 </args>
 <command>
-uk.ac.ed.inf.icsa.locomotion.Application
+uk.ac.ed.inf.icsa.locomotion.benchmarks.basic.CodeSamples
 </command>
 <launcher>
 SUN_STANDARD
@@ -37,14 +37,14 @@ java.vm.specification.vendor=Oracle Corporation
 java.vm.specification.version=1.7
 java.vm.vendor=Oracle Corporation
 file.encoding=US-ASCII
-sun.java.command=uk.ac.ed.inf.icsa.locomotion.Application
+sun.java.command=uk.ac.ed.inf.icsa.locomotion.benchmarks.basic.CodeSamples
 sun.java.launcher=SUN_STANDARD
 </properties>
 </vm_arguments>
 <tty>
 <writer thread='18947'/>
-<destroy_vm stamp='14.809'/>
-<tty_done stamp='14.886'/>
+<destroy_vm stamp='1.424'/>
+<tty_done stamp='1.457'/>
 </tty>
-<hotspot_log_done stamp='14.886'/>
+<hotspot_log_done stamp='1.457'/>
 </hotspot_log>

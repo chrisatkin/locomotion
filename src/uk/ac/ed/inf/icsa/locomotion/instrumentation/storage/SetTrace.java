@@ -19,7 +19,13 @@ abstract class SetTrace extends Trace {
 
 	@Override
 	public boolean contains(Access entry) {
-		return entries.contains(entry);
+//		return entries.contains(entry);
+		
+		for (Access access: entries)
+			if (access.equals(entry))
+				return true;
+		
+		return false;
 	}
 	
 	@Override

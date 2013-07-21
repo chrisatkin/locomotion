@@ -9,24 +9,24 @@ import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.TraceConfiguration;
 
 public final class InstrumentSupport {
-	private static Instrument instrument;
+	private static Instrument instrument = null;
+	private static long startTime = 0;
+	private static long endTime = 0;
 	
-	static {
-		instrument = new Instrument(
-				new Configuration(
-						true,						// enable any instrumentation
-						HashSetTrace.class,			// loop trace class
-						new TraceConfiguration()	// loop trace configuration
-				)
-		);
+	public static void setInstrumentConfiguration(Configuration config) {
+		instrument = new Instrument(config);
 	}
 	
 	public static <T> T arrayLookup(T[] array, int index, int loopIterator, int loopId) {
+		assert instrument != null: "instrument configuration not set";
+		
 		instrument.instrumentArrayLoad(array, index, loopIterator, loopId);
 		return array[index];
 	}
 	
 	public static <T> void arrayWrite(T[] array, int index, T value, int loopIterator, int loopId) {
+		assert instrument != null: "instrument configuration not set";
+		
 		instrument.instrumentArrayWrite(array, index, value, loopIterator, loopId);
 		array[index] = value;
 	}
@@ -35,13 +35,15 @@ public final class InstrumentSupport {
 		println(instrument.report());
 	}
 	
-	public static Trace getTracer(Class<? extends Trace> kind) {
-		try {
-			return (Trace) kind.newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
+	public static void startTimer() {
+		startTime = System.nanoTime();
+	}
+	
+	public static void stopTimer() {
+		endTime = System.nanoTime();
+	}
+	
+	public static long getTimeDifference() {
+		return endTime - startTime;
 	}
 }

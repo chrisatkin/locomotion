@@ -7,11 +7,11 @@ import static io.atkin.io.console.println;
 import java.util.HashMap;
 import java.util.logging.Level;
 
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.basic.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.core.Configuration;
 import uk.ac.ed.inf.icsa.locomotion.core.Cycle;
 import uk.ac.ed.inf.icsa.locomotion.core.Dispatch;
 import uk.ac.ed.inf.icsa.locomotion.core.Position;
-import uk.ac.ed.inf.icsa.locomotion.misc.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.phases.DumpGraphPhase;
 import uk.ac.ed.inf.icsa.locomotion.phases.MemoryOperationInstrumentationPhase;
 import uk.ac.ed.inf.icsa.locomotion.snippets.ArrayInstrumentationSnippets;

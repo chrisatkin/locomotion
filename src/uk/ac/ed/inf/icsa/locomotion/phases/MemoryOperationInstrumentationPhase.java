@@ -1,7 +1,7 @@
 package uk.ac.ed.inf.icsa.locomotion.phases;
 
 import static uk.ac.ed.inf.icsa.locomotion.utilities.DebugUtilities.noop;
-import uk.ac.ed.inf.icsa.locomotion.misc.CodeSamples;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.basic.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayLoadBehaviourNode;
 import uk.ac.ed.inf.icsa.locomotion.nodes.ArrayStoreBehaviourNode;
 import uk.ac.ed.inf.icsa.locomotion.snippets.ArrayInstrumentationSnippets;

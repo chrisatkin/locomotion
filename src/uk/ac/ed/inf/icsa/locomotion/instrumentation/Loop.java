@@ -45,12 +45,15 @@ class Loop {
 			System.out.println("inter-iteration dependency found for " + access.toString());
 		
 		// check for inter-iteration dependency
-		for (Map.Entry<Integer, Trace> otherIterations: iterations(iteration).entrySet()) {
-			//Integer otherIterationNumber = otherIterations.getKey();
+		for (Map.Entry<Integer, Trace> otherIterations: iterations.entrySet()) {
+			Integer otherIterationNumber = otherIterations.getKey();
 			Trace otherIterationAccesses = otherIterations.getValue();
 			
+			if (otherIterationNumber == iteration)
+				continue;
+			
 			if (otherIterationAccesses.contains(access))
-				System.out.println("intra-iteration dependency found for " + access.toString());
+				System.out.println("this=" + iteration + " other=" + otherIterationNumber + " access=" + access.toString());
 		}
 		
 		((Trace) iterations.get(iteration)).add(access);
