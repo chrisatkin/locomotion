@@ -5,6 +5,7 @@
 	<classpathentry kind="lib" path="/Volumes/Acme/Development/libs/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="lib" path="/Volumes/Acme/Development/libs/guava-14.0.1.jar"/>
 	<classpathentry kind="lib" path="/Volumes/Acme/Development/libs/slf4j-simple-1.7.5.jar"/>
+	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk1.7.0_15.jdk/Contents/Home/lib/tools.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.alloc"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.amd64"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.api.code"/>
@@ -78,6 +79,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.dsl.processor"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl.test"/>
-	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk1.7.0_15.jdk/Contents/Home/lib/tools.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

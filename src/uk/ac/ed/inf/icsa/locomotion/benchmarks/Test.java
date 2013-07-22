@@ -1,6 +1,11 @@
-package uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic;
+package uk.ac.ed.inf.icsa.locomotion.benchmarks;
 
 import java.util.Arrays;
+
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.AllDependent;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.Generator;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.NoneDependent;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.SomeDependent;
 
 final class Test {
 	private static final int N = 10;

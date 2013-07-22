@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hotspot_log version='160 1' process='6165' time_ms='1374367056419'>
+<hotspot_log version='160 1' process='1806' time_ms='1374528356582'>
 <vm_version>
 <name>
 OpenJDK 64-Bit Graal VM
@@ -8,7 +8,7 @@ OpenJDK 64-Bit Graal VM
 25.0-b37-internal-fastdebug
 </release>
 <info>
-OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jul 19 2013 13:01:25 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
+OpenJDK 64-Bit Graal VM (25.0-b37-internal-fastdebug) for bsd-amd64 JRE (1.8.0), built on Jul 22 2013 17:40:27 by &quot;chris&quot; with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
 </info>
 </vm_version>
 <vm_arguments>
@@ -26,13 +26,13 @@ java.vm.specification.name=Java Virtual Machine Specification
 java.vm.version=25.0-b37-internal-fastdebug
 java.vm.name=OpenJDK 64-Bit Graal VM
 java.vm.info=mixed mode, sharing
-java.ext.dirs=/Users/chris/Library/Java/Extensions:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
-java.endorsed.dirs=/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/endorsed
-sun.boot.library.path=/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib
+java.ext.dirs=/Users/chris/Library/Java/Extensions:/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
+java.endorsed.dirs=/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib/endorsed
+sun.boot.library.path=/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib
 java.library.path=/Users/chris/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
-java.home=/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre
-java.class.path=/Volumes/Acme/Development/locomotion/bin:/Volumes/Acme/Development/libs/slf4j-api-1.7.5.jar:/Volumes/Acme/Development/libs/guava-14.0.1.jar:/Volumes/Acme/Development/libs/slf4j-simple-1.7.5.jar:/Volumes/Acme/Development/graal/graal/com.oracle.graal.alloc/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.meta/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.code/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.graph/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.debug/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.replacements/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.nodes/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.amd64/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.meta.test/bin:/Users/chris/Applications/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar:/Users/chris/Applications/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.runtime/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.amd64/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.amd64.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.hsail/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.hsail/bin:/Volumes/Acme/Development/graal/lib/okra-1.jar:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.ptx/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.sparc/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.options/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.phases/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.phases.common/bin:/Volumes/Ac
-sun.boot.class.path=/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/resources.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/rt.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/sunrsasign.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/jsse.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/jce.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/charsets.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/jfr.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/JObjC.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/lib/graal.jar:/Volumes/Acme/Development/graal/jdk1.7.0_17/fastdebug/jre/classes
+java.home=/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre
+java.class.path=/Volumes/Acme/Development/locomotion/bin:/Volumes/Acme/Development/libs/slf4j-api-1.7.5.jar:/Volumes/Acme/Development/libs/guava-14.0.1.jar:/Volumes/Acme/Development/libs/slf4j-simple-1.7.5.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_15.jdk/Contents/Home/lib/tools.jar:/Volumes/Acme/Development/graal/graal/com.oracle.graal.alloc/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.meta/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.code/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.graph/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.debug/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.replacements/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.nodes/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.amd64/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.meta.test/bin:/Users/chris/Applications/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar:/Users/chris/Applications/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.runtime/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.api.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.amd64/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.amd64.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.test/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.hsail/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.hsail/bin:/Volumes/Acme/Development/graal/lib/okra-1.jar:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.ptx/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.asm.sparc/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.options/bin:/Volumes/Acme/Development/graal/graal/com.oracle.graal.phases/bin:/Volum
+sun.boot.class.path=/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib/resources.jar:/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib/rt.jar:/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib/sunrsasign.jar:/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib/jsse.jar:/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib/jce.jar:/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib/charsets.jar:/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib/jfr.jar:/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib/JObjC.jar:/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/lib/graal.jar:/Volumes/Acme/Development/graal/jdk1.7.0_25/fastdebug/jre/classes
 java.vm.specification.vendor=Oracle Corporation
 java.vm.specification.version=1.7
 java.vm.vendor=Oracle Corporation
@@ -42,9 +42,9 @@ sun.java.launcher=SUN_STANDARD
 </properties>
 </vm_arguments>
 <tty>
-<writer thread='18691'/>
-<destroy_vm stamp='1.496'/>
-<tty_done stamp='1.529'/>
+<writer thread='19203'/>
+<destroy_vm stamp='4.629'/>
+<tty_done stamp='4.655'/>
 </tty>
-<hotspot_log_done stamp='1.529'/>
+<hotspot_log_done stamp='4.655'/>
 </hotspot_log>
