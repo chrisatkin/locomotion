@@ -33,7 +33,7 @@ public final class SomeDependent implements Experiment {
 	}
 	
 	public String getIdentifier() {
-		return "some-dependent length=" + length + " prob=" + probability;
+		return "some-dependent;length=" + length + ";prob=" + probability;
 	}
 
 }

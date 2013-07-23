@@ -22,6 +22,7 @@ public class File implements Output {
 			writer.println(s);
 		
 		writer.close();
+		this.strings = new LinkedList<>();
 	}
 
 	@Override

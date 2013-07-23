@@ -35,6 +35,6 @@ public final class VectorAddition implements Experiment {
 	
 	@Override
 	public String getIdentifier() {
-		return "vector-addition_length=" + length;
+		return "vector-addition;length=" + length;
 	}
 }
