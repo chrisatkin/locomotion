@@ -10,6 +10,7 @@ import uk.ac.ed.inf.icsa.locomotion.exceptions.LoopDependencyException;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.HashSetTrace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.TraceConfiguration;
+import uk.ac.ed.inf.icsa.locomotion.testing.output.Output;
 
 public final class InstrumentSupport {
 	private static Instrument instrument;
@@ -24,14 +25,14 @@ public final class InstrumentSupport {
 		instrument = new Instrument(config);
 	}
 	
-	public static <T> T arrayLookup(T[] array, int index, int loopIterator, int loopId) {
+	public static <T> T arrayLookup(T[] array, int index, int loopIterator, String loopId) {
 		assert instrument != null: "instrument configuration not set";
 		
 		instrument.instrumentArrayLoad(array, index, loopIterator, loopId);
 		return array[index];
 	}
 	
-	public static <T> void arrayWrite(T[] array, int index, T value, int loopIterator, int loopId) {
+	public static <T> void arrayWrite(T[] array, int index, T value, int loopIterator, String loopId) {
 		assert instrument != null: "instrument configuration not set";
 
 		instrument.instrumentArrayWrite(array, index, value, loopIterator, loopId);
@@ -52,5 +53,13 @@ public final class InstrumentSupport {
 	
 	public static long getTimeDifference() {
 		return endTime - startTime;
+	}
+	
+	public static List<LoopDependencyException> getDependencies() {
+		return instrument.getDepencendies();
+	}
+	
+	public static void clean() {
+		instrument.clear();
 	}
 }

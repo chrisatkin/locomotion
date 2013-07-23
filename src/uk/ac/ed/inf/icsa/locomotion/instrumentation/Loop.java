@@ -10,12 +10,12 @@ import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.TraceConfiguration;
 
 class Loop {
-	private final int id;
+	private final String id;
 	private Class<? extends Trace> store;
 	private TraceConfiguration traceConfiguration;
 	private final Map<Integer, Trace> iterations;
 	
-	public Loop(final int id, Class<? extends Trace> store, TraceConfiguration traceConfiguration) {
+	public Loop(final String id, Class<? extends Trace> store, TraceConfiguration traceConfiguration) {
 		this.id = id;
 		this.store = store;
 		this.traceConfiguration = traceConfiguration;
@@ -75,7 +75,7 @@ class Loop {
 		return string.toString();
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 }

@@ -4,22 +4,50 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.*;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.*;
 import uk.ac.ed.inf.icsa.locomotion.testing.experiments.*;
-import uk.ac.ed.inf.icsa.locomotion.testing.output.Console;
-import uk.ac.ed.inf.icsa.locomotion.testing.output.Output;
+import uk.ac.ed.inf.icsa.locomotion.testing.output.*;
 
-public final class Experiments {
-	private Class<? extends Output> output;
+final class Experiments {
+	private Output output;
+	private InstrumentSupport instrument;
 	private List<Test> experiments;
 	
 	private Experiments() {
+		this.output = new File("results/");
+		
+		InstrumentSupport.setInstrumentConfiguration(
+			new Configuration(
+				true,							// enable instrumentation
+				HashSetTrace.class,				// storage class
+				new TraceConfiguration(),		// storage configuration
+				true,							// report memory usage
+				output
+			)
+		);
+		
 		this.experiments = new LinkedList<Test>() {{
-			add(new Test(ExactVectorAddition.class, new Object[] {}));
+			add(new Test(VectorAddition.class, instrument, new Object[] {new Integer[] {0, 1, 2}, new Integer[] {3, 4, 5}}));
+			//add(new Test(AllDependent.class, instrument, new Object[] {100}));
+			//add(new Test(SomeDependent.class, instrument, new Object[] {100, 0.5d}));
+			//add(new Test(NoneDependent.class, instrument, new Object[] {100}));
 		}};
 	}
 	
 	private void run() throws IOException {
-		
+		for (Test experiment: experiments) {
+			output.open(experiment.getName());
+			InstrumentSupport.startTimer();
+			experiment.run(output);
+			InstrumentSupport.stopTimer();
+			output.put("dependencies=" + InstrumentSupport.getDependencies().size());
+			output.put("time=" + InstrumentSupport.getTimeDifference());
+			output.close();
+			
+			InstrumentSupport.clean();
+		}
+			
 	}
 
 	public static void main(String[] args) {

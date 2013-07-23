@@ -21,6 +21,7 @@ import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.BloomFilterTrace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.HashSetTrace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.TraceConfiguration;
+import uk.ac.ed.inf.icsa.locomotion.testing.output.Console;
 
 public class CodeSamples {
 	public static Integer[] vectorAddition(Integer[] a, Integer[] b) {
@@ -29,11 +30,11 @@ public class CodeSamples {
 		Integer[] c = new Integer[a.length];
 		
 		for (int i = 0; i < a.length; i++) {
-			Integer currentA = InstrumentSupport.arrayLookup(a, i, i, 1);
-			Integer currentB = InstrumentSupport.arrayLookup(b, i, i, 1);
+			Integer currentA = InstrumentSupport.arrayLookup(a, i, i, "sample-vector-addition");
+			Integer currentB = InstrumentSupport.arrayLookup(b, i, i, "sample-vector-addition");
 			Integer result = currentA + currentB;
 			
-			InstrumentSupport.arrayWrite(c, i, result, i, 1);
+			InstrumentSupport.arrayWrite(c, i, result, i, "sample-vector-addition");
 		}
 		
 		return c;
@@ -45,9 +46,9 @@ public class CodeSamples {
 		Integer[] c = new Integer[a.length];
 		
 		for (int i = 0; i < a.length; i++) {
-			Integer val = InstrumentSupport.arrayLookup(b, InstrumentSupport.arrayLookup(a, i, i, 2), i, 2);
+			Integer val = InstrumentSupport.arrayLookup(b, InstrumentSupport.arrayLookup(a, i, i, "sample-loop-dependency"), i, "sample-loop-dependency");
 			
-			InstrumentSupport.arrayWrite(c, i, val, i, 2);
+			InstrumentSupport.arrayWrite(c, i, val, i, "sample-loop-dependency");
 		}
 		
 		return c;
@@ -78,7 +79,9 @@ public class CodeSamples {
 								.putInt(access.getIndex());
 						}
 					}
-			)
+			),
+			true,
+			new Console()
 		));
 		InstrumentSupport.startTimer();
 		
