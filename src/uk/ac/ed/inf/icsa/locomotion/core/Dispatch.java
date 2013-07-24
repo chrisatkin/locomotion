@@ -62,7 +62,7 @@ public class Dispatch {
 		this.configuration = configuration;
 		this.phasePlan = new PhasePlan();
 		this.phasePlan.addPhase(PhasePosition.AFTER_PARSING, new GraphBuilderPhase(runtime, GraphBuilderConfiguration.getEagerDefault(), configuration.optimizations));
-		//phasePlan.disablePhase(InliningPhase.class);
+		phasePlan.disablePhase(InliningPhase.class);
 		this.cache = new HashMap<Cycle, CacheItem>();
 		this.log = Logger.getLogger(this.getClass().getName());
 		this.log.setLevel(configuration.level);

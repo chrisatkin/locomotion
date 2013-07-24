@@ -19,7 +19,7 @@ public class Access implements Comparable<Access> {
 	
 	@Override
 	public int hashCode() {
-		return Integer.parseInt("" + (arrayId/100) + index);
+		return Integer.parseInt("" + (arrayId/10000) + index);
 	}
 	
 	public int getNumber() {

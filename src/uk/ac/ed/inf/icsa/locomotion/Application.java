@@ -14,6 +14,7 @@ import uk.ac.ed.inf.icsa.locomotion.core.Dispatch;
 import uk.ac.ed.inf.icsa.locomotion.core.Position;
 import uk.ac.ed.inf.icsa.locomotion.phases.DumpGraphPhase;
 import uk.ac.ed.inf.icsa.locomotion.phases.MemoryOperationInstrumentationPhase;
+import uk.ac.ed.inf.icsa.locomotion.phases.ModifyCallTargetPhase;
 import uk.ac.ed.inf.icsa.locomotion.snippets.ArrayInstrumentationSnippets;
 
 import com.oracle.graal.phases.OptimisticOptimizations;
@@ -34,8 +35,8 @@ public class Application {
 	public void run() {
 		for (Cycle cycle: list(
 			new Cycle() {{
-				clazz = CodeSamples.class;
-				name = "test";
+				clazz = Application.class;
+				name = "experiment";
 				types = array();
 				arguments = array();
 			}}
@@ -44,6 +45,7 @@ public class Application {
 				lm.process(cycle, new HashMap<Phase, Position>() {{
 					//put(new MemoryOperationInstrumentationPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);
 					//put(new DumpGraphPhase("high-level"), Position.High);
+					//put(new ModifyCallTargetPhase(lm.getRuntime()), Position.High);
 				}});
 			}
 			catch (Exception exc) {
@@ -54,5 +56,17 @@ public class Application {
 	
 	public static void main(String[] args) {
 		new Application().run();
+	}
+	
+	public static void experiment() {
+		callA();
+	}
+	
+	public static void callA() {
+		System.out.println("A");
+	}
+	
+	public static void callB() {
+		System.out.println("B");
 	}
 }

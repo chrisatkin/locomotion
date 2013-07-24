@@ -91,6 +91,6 @@ public class Instrument {
 	}
 	
 	public void reportMemory() {
-		configuration.getOutput().put("memory=" + System.nanoTime() + "," + (Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory()));
+		configuration.getOutput().put("memory=" + System.nanoTime() + "," + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
 	}
 }

@@ -20,4 +20,9 @@ public final class BloomFilterConfiguration extends TraceConfiguration {
 	public Funnel<Access> getFunnel() {
 		return funnel;
 	}
+	
+	@Override
+	public String toString() {
+		return "size=" + expectedInsertations;
+	}
 }
