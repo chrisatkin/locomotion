@@ -3,6 +3,8 @@ package uk.ac.ed.inf.icsa.locomotion.testing.output;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,7 +34,11 @@ public class File implements Output {
 
 	@Override
 	public void open(String identifier) throws FileNotFoundException {
-		this.writer = new PrintWriter(directory + identifier);
+		try {
+			this.writer = new PrintWriter(directory + identifier, StandardCharsets.UTF_8.toString());
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		strings.add("name=" + identifier);
 	}
 
