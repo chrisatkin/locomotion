@@ -9,10 +9,15 @@ import java.util.List;
 public final class Formatter {
 	private final File targetDirectory;
 	private List<Result> results;
+	private List<Format> formats;
 	
+	@SuppressWarnings("serial")
 	private Formatter() {
 		this.targetDirectory = new File(System.getProperty("user.dir") + File.separator + "results");
 		this.results = _getFilesInDirectory(this.targetDirectory);
+		this.formats = new LinkedList<Format>() {{
+			
+		}};
 	}
 	
 	private List<Result> _getFilesInDirectory(File directory) {
@@ -26,7 +31,27 @@ public final class Formatter {
 	}
 	
 	private void run() {
+		try {
+		for (String name: new String[] { "all-dependent", "none-dependent" }) {
+			ThreeAxisVariables length_memory_accesses = new ThreeAxisVariables(
+				getFile(name),
+				results,
+				"length",
+				"finalmemory",
+				"dependencies",
+				name
+			);
+			length_memory_accesses.run();
+			length_memory_accesses.toFile();
+		}
 		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static File getFile(String f) {
+		return new File(System.getProperty("user.dir") + File.separator + "formatted-results" + File.separator + f);
 	}
 
 	public static void main(String[] args) {

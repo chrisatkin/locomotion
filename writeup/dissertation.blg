@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: dissertation.aux
+A level-1 auxiliary file: chapters/introduction.aux
+A level-1 auxiliary file: chapters/related-work.aux
+A level-1 auxiliary file: chapters/graal.aux
+A level-1 auxiliary file: chapters/instrumentation.aux
+A level-1 auxiliary file: chapters/runtime-library.aux
+A level-1 auxiliary file: chapters/methodology.aux
+A level-1 auxiliary file: chapters/results.aux
+A level-1 auxiliary file: chapters/conclusion.aux
+The style file: unsrtnat.bst
+Database file #1: library.bib
+Warning--empty journal in Anderson2013
+Warning--there's a number but no volume in Mainland2013
+Warning--empty year in Graal
+Warning--empty year in javaagents
+Warning--empty publisher in Gamma1995
+Warning--empty year in RuntimeDocs
+You've used 33 entries,
+            2481 wiz_defined-function locations,
+            851 strings with 12304 characters,
+and the built_in function-call counts, 13513 in all, are:
+= -- 1242
+> -- 669
+< -- 29
++ -- 262
+- -- 196
+* -- 1063
+:= -- 2199
+add.period$ -- 164
+call.type$ -- 33
+change.case$ -- 68
+chr.to.int$ -- 33
+cite$ -- 39
+duplicate$ -- 665
+empty$ -- 1145
+format.name$ -- 241
+if$ -- 2895
+int.to.chr$ -- 1
+int.to.str$ -- 34
+missing$ -- 27
+newline$ -- 232
+num.names$ -- 101
+pop$ -- 236
+preamble$ -- 1
+purify$ -- 33
+quote$ -- 0
+skip$ -- 409
+stack$ -- 0
+substring$ -- 451
+swap$ -- 135
+text.length$ -- 13
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 225
+warning$ -- 6
+while$ -- 106
+width$ -- 0
+write$ -- 560
+(There were 6 warnings)

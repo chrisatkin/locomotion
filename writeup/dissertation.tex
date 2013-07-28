@@ -1,0 +1,56 @@
+\documentclass[msc,cs,parskip,leftchapter,logo,twoside,abbrevs,11pt]{infthesis}
+
+\usepackage[square,authoryear]{natbib}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{eulervm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float}
+\usepackage{lipsum}
+\usepackage{gnuplottex}
+
+% include subsubsections in toc
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
+% Change font to palatino
+% Euler for math | Palatino for rm | Helvetica for ss | Courier for tt
+\renewcommand{\rmdefault}{pplx} % rm
+\linespread{1.05}        % Palatino needs more leading
+
+\title{Dynamic Parallelism Detection for the HotSpot Java Virtual Machine}
+\author{Christopher Edward Atkin-Granville}
+
+\abstract{Contemporary computers are highly based around highly parallel architectures through chip multiprocessors, instruction-level parallelism and graphics processing units with potentially thousands of cores. Despite this, many popular programs are based around a sequential programming paradigm. This project investigates the use of the Graal compiler infrastructure in order to dynamically profile running programs within the Java Virtual Machine and determine which hot loops are good candidates for automatic parallelism transformations, possibly JIT recompilation to an OpenCL target.
+
+We consider two main approaches to trace collection: exact approaches and probabilistic approaches.}
+
+\begin{document}
+	\begin{preliminary}
+		\maketitle
+		\begin{acknowledgements}
+		I wish to thank my supervisors, Dr. Christophe Dubach and Dr. Bj\"{o}rn Franke for their insightful and valuable contributions to the project.
+
+		Also in need of thanks are my parents, Sandra and Ian who have supported me throughout my entire University career.
+		\end{acknowledgements}
+		\standarddeclaration
+		\dedication{To my grandfather, Leslie.}
+		\tableofcontents
+		\listoffigures
+		\listofalgorithms
+	\end{preliminary}
+
+	\include{chapters/introduction}
+	\include{chapters/related-work}
+	\include{chapters/graal}
+	\include{chapters/instrumentation}
+	\include{chapters/runtime-library}
+	\include{chapters/methodology}
+	\include{chapters/results}
+	\include{chapters/conclusion}
+
+	\bibliographystyle{unsrtnat}
+	\bibliography{library}
+\end{document}

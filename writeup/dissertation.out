@@ -1,0 +1,65 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Background}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Golden Age}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Cheating the System}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.4}{Hello, Parallelism}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.5}{Parallelist Approaches}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.6}{Language Semantics and Compiler Reasoning}{chapter.1}% 7
+\BOOKMARK [0][-]{chapter.2}{Related Work}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Parallelising Compilers}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.2}{Parallelism Detection}{chapter.2}% 10
+\BOOKMARK [0][-]{chapter.3}{The Graal Compiler Infrastructure}{}% 11
+\BOOKMARK [1][-]{section.3.1}{Background}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.2}{Introduction}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.3}{Intermediate Representations}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.4}{Graph Transformations}{chapter.3}% 15
+\BOOKMARK [2][-]{subsection.3.4.1}{The .class File Format - Constant Pools}{section.3.4}% 16
+\BOOKMARK [0][-]{chapter.4}{Instrumentation}{}% 17
+\BOOKMARK [1][-]{section.4.1}{Graal}{chapter.4}% 18
+\BOOKMARK [1][-]{section.4.2}{Bytecode Instrumentation}{chapter.4}% 19
+\BOOKMARK [2][-]{subsection.4.2.1}{Java Agents}{section.4.2}% 20
+\BOOKMARK [2][-]{subsection.4.2.2}{ASM}{section.4.2}% 21
+\BOOKMARK [2][-]{subsection.4.2.3}{Javassist}{section.4.2}% 22
+\BOOKMARK [1][-]{section.4.3}{Aspect-Oriented Programming}{chapter.4}% 23
+\BOOKMARK [2][-]{subsection.4.3.1}{AspectJ/ABC}{section.4.3}% 24
+\BOOKMARK [3][-]{subsubsection.4.3.1.1}{Array and Loop Pointcuts}{subsection.4.3.1}% 25
+\BOOKMARK [1][-]{section.4.4}{Hybrid Models}{chapter.4}% 26
+\BOOKMARK [2][-]{subsection.4.4.1}{DiSL}{section.4.4}% 27
+\BOOKMARK [2][-]{subsection.4.4.2}{Bytecode Instrumentation \046 Graal Transformations}{section.4.4}% 28
+\BOOKMARK [0][-]{chapter.5}{The Runtime Library}{}% 29
+\BOOKMARK [1][-]{section.5.1}{Trace Collection}{chapter.5}% 30
+\BOOKMARK [1][-]{section.5.2}{Trace Storage}{chapter.5}% 31
+\BOOKMARK [2][-]{subsection.5.2.1}{Exact Approaches}{section.5.2}% 32
+\BOOKMARK [2][-]{subsection.5.2.2}{Probabilistic Approaches}{section.5.2}% 33
+\BOOKMARK [2][-]{subsection.5.2.3}{Bloom Filters}{section.5.2}% 34
+\BOOKMARK [1][-]{section.5.3}{Dependency Analysis Algorithms}{chapter.5}% 35
+\BOOKMARK [2][-]{subsection.5.3.1}{Offline Algorithms}{section.5.3}% 36
+\BOOKMARK [2][-]{subsection.5.3.2}{Online Algorithns}{section.5.3}% 37
+\BOOKMARK [0][-]{chapter.6}{Methodology}{}% 38
+\BOOKMARK [1][-]{section.6.1}{Experimental Setup}{chapter.6}% 39
+\BOOKMARK [1][-]{section.6.2}{Repeats}{chapter.6}% 40
+\BOOKMARK [1][-]{section.6.3}{Benchmarks}{chapter.6}% 41
+\BOOKMARK [2][-]{subsection.6.3.1}{Validation and Basic Testing}{section.6.3}% 42
+\BOOKMARK [2][-]{subsection.6.3.2}{Parametric Benchmarks}{section.6.3}% 43
+\BOOKMARK [2][-]{subsection.6.3.3}{Graph Processing Algorithms}{section.6.3}% 44
+\BOOKMARK [2][-]{subsection.6.3.4}{Java Grande}{section.6.3}% 45
+\BOOKMARK [2][-]{subsection.6.3.5}{Mandelbrot}{section.6.3}% 46
+\BOOKMARK [1][-]{section.6.4}{Measurement Methodology}{chapter.6}% 47
+\BOOKMARK [2][-]{subsection.6.4.1}{Execution Time}{section.6.4}% 48
+\BOOKMARK [2][-]{subsection.6.4.2}{Memory Usage}{section.6.4}% 49
+\BOOKMARK [0][-]{chapter.7}{Results}{}% 50
+\BOOKMARK [1][-]{section.7.1}{Validation}{chapter.7}% 51
+\BOOKMARK [1][-]{section.7.2}{Basic Testing}{chapter.7}% 52
+\BOOKMARK [1][-]{section.7.3}{Parametric}{chapter.7}% 53
+\BOOKMARK [1][-]{section.7.4}{Graph Processing}{chapter.7}% 54
+\BOOKMARK [1][-]{section.7.5}{Java Grande}{chapter.7}% 55
+\BOOKMARK [1][-]{section.7.6}{Mandelbrot}{chapter.7}% 56
+\BOOKMARK [1][-]{section.7.7}{Overhead}{chapter.7}% 57
+\BOOKMARK [2][-]{subsection.7.7.1}{Execution Time}{section.7.7}% 58
+\BOOKMARK [2][-]{subsection.7.7.2}{Memory Usage}{section.7.7}% 59
+\BOOKMARK [1][-]{section.7.8}{Analysis}{chapter.7}% 60
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 61
+\BOOKMARK [1][-]{subsection.8.0.1}{Concluding Remarks}{chapter.8}% 62
+\BOOKMARK [2][-]{subsection.8.0.2}{Unsolved Problems}{subsection.8.0.1}% 63
+\BOOKMARK [2][-]{subsection.8.0.3}{Future Work}{subsection.8.0.1}% 64
+\BOOKMARK [0][-]{chapter*.7}{Bibliography}{}% 65

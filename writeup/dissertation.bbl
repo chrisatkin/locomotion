@@ -1,0 +1,289 @@
+\begin{thebibliography}{33}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Fraser(2004)]{Fraser04}
+Keir Fraser.
+\newblock {Technical Report}.
+\newblock Technical Report 579, University of Cambridge, Cambridge, 2004.
+\newblock URL \url{http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-579.pdf}.
+
+\bibitem[Herlihy et~al.(1993)Herlihy, Eliot, and Moss]{Herlihy1993}
+M~Herlihy, J~Eliot, and B~Moss.
+\newblock {Transactional Memory: Architectural Support For Lock-free Data
+  Structures}.
+\newblock In \emph{Proceedings of the 20th Annual International Symposium on
+  Computer Architecture}, volume~21, pages 289--300. IEEE Comput. Soc. Press,
+  1993.
+\newblock ISBN 0-8186-3810-9.
+\newblock \doi{10.1109/ISCA.1993.698569}.
+\newblock URL
+  \url{http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=698569}.
+
+\bibitem[Cole(2013)]{ppls}
+Murray Cole.
+\newblock {Parallel Programming Languages and Systems}, 2013.
+\newblock URL
+  \url{http://www.inf.ed.ac.uk/teaching/courses/ppls/pplsslides.pdf}.
+
+\bibitem[Liu et~al.(2011)Liu, Curtsinger, and Berger]{Liu2011}
+Tongping Liu, Charlie Curtsinger, and Emery~D. Berger.
+\newblock {Dthreads}.
+\newblock In \emph{Proceedings of the Twenty-Third ACM Symposium on Operating
+  Systems Principles - SOSP '11}, page 327, New York, New York, USA, October
+  2011. ACM Press.
+\newblock ISBN 9781450309776.
+\newblock \doi{10.1145/2043556.2043587}.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=2043556.2043587}.
+
+\bibitem[Garcia-Molina et~al.(2002)Garcia-Molina, Ullman, and
+  Widom]{DatabasesBook}
+Hector Garcia-Molina, Jeffrey~D. Ullman, and Jennifer Widom.
+\newblock \emph{{Database Systems: The Complete Book}}.
+\newblock Prentice Hall, first edition, 2002.
+\newblock ISBN 0-13-031995-3.
+
+\bibitem[Marshall(2005)]{Marshall2005}
+Casey Marshall.
+\newblock {Software Transactional Memory}.
+\newblock Technical report, University of California, Santa Cruz, Santa Cruz,
+  2005.
+\newblock URL \url{http://www.cs.uic.edu/~ajayk/STM.pdf}.
+
+\bibitem[Peyton-Jones(2011)]{PeytonJones2011}
+Simon Peyton-Jones.
+\newblock {The Future is Parallel, and the Future of Parallel is Declarative}.
+\newblock In \emph{YOW}, Melbourne, 2011. Presented at YOW 2011.
+\newblock URL
+  \url{http://yow.eventer.com/yow-2011-1004/the-future-is-parallel-and-the-future-of-parallel-is-declarative-by-simon-peyton-jones-1055}.
+
+\bibitem[Anderson et~al.(2013)Anderson, Petersen, Lui, and Glew]{Anderson2013}
+Todd~A Anderson, Leaf Petersen, Hai Lui, and Neal Glew.
+\newblock {Measuring the Haskell Gap}.
+\newblock pages 1--12, 2013.
+\newblock URL
+  \url{http://www.leafpetersen.com/leaf/publications/hs2013/haskell-gap.pdf}.
+
+\bibitem[Mainland et~al.(2013)Mainland, Leshchinskiy, and
+  Peyton-Jones]{Mainland2013}
+Geoffrey Mainland, Roman Leshchinskiy, and Simon Peyton-Jones.
+\newblock {Exploiting Vector Instructions with Generalized Stream Fusion}.
+\newblock \emph{ACM SIGPLAN International Conference on Functional
+  Programming}, \penalty0 (Section 4), 2013.
+\newblock \doi{2500365.2500601}.
+\newblock URL
+  \url{http://research.microsoft.com/en-us/um/people/simonpj/papers/ndp/haskell-beats-C.pdf}.
+
+\bibitem[Orchard et~al.(2010)Orchard, Bolingbroke, and Mycroft]{Orchard2010}
+Dominic~A. Orchard, Max Bolingbroke, and Alan Mycroft.
+\newblock {Ypnos}.
+\newblock In \emph{Proceedings of the 5th ACM SIGPLAN workshop on Declarative
+  aspects of multicore programming - DAMP '10}, page~15, New York, New York,
+  USA, January 2010. ACM Press.
+\newblock ISBN 9781605588599.
+\newblock \doi{10.1145/1708046.1708053}.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=1708046.1708053
+  http://portal.acm.org/citation.cfm?doid=1708046.1708053}.
+
+\bibitem[Grossman et~al.(2011)Grossman, {Simion Sb\^{\i}rlea}, Budimli\'{c},
+  and Sarkar]{Grossman2011}
+M~Grossman, A~{Simion Sb\^{\i}rlea}, Z~Budimli\'{c}, and V~Sarkar.
+\newblock {CnC-CUDA: Declarative programming for GPUs}.
+\newblock \emph{Lecture Notes in Computer Science including subseries Lecture
+  Notes in Artificial Intelligence and Lecture Notes in Bioinformatics}, 6548
+  LNCS:\penalty0 230--245, 2011.
+
+\bibitem[Holk et~al.(2011)Holk, Byrd, Mahajan, and Willcock]{Holk2011}
+E~Holk, WE~Byrd, Nilesh Mahajan, and Jeremiah Willcock.
+\newblock {Declarative Parallel Programming for GPUs.}
+\newblock In Deschere Boss, Erik~H. D'hollander, Gerhard~R. Joubert, David
+  Padua, Frans Peters, and Mark Sawyer, editors, \emph{Parallel Computing},
+  volume~22, pages 297--304, Bloomington, 2011. IOS Press.
+\newblock URL
+  \url{http://osl.iu.edu/publications/prints/2011/2011-parco-holk-harlan.pdf}.
+
+\bibitem[Backus(1979)]{Backus1979}
+John Backus.
+\newblock {The History of FORTRAN I, II and III}.
+\newblock \emph{IEEE Annals of the History of Computing}, 1\penalty0
+  (1):\penalty0 21--37, January 1979.
+\newblock ISSN 1058-6180.
+\newblock \doi{10.1109/MAHC.1979.10013}.
+\newblock URL
+  \url{http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=4392880}.
+
+\bibitem[Yang et~al.(2011)Yang, Skadron, Soffa, and Whitehouse]{Yang2011}
+Jing Yang, Kevin Skadron, Mary~Lou Soffa, and Kamin Whitehouse.
+\newblock {Feasibility of Dynamic Binary Parallelization}.
+\newblock \emph{Usenix}, 2011.
+\newblock URL
+  \url{http://www.cs.virginia.edu/~skadron/Papers/yang\_hotpar11.pdf}.
+
+\bibitem[Oracle and OpenJDK()]{Graal}
+Oracle and OpenJDK.
+\newblock {Graal Project}.
+\newblock URL \url{http://openjdk.java.net/projects/graal/}.
+
+\bibitem[Lindholm et~al.(2013)Lindholm, Buckley, Bracha, and Yellin]{JVMSpec}
+Tim Lindholm, Alex Buckley, Gilad Bracha, and Frank Yellin.
+\newblock {The Java Virtual Machine Specification Java SE 7 Edition}.
+\newblock Technical report, Oracle, Inc, Redwood City, 2013.
+\newblock URL \url{http://docs.oracle.com/javase/specs/jvms/se7/jvms7.pdf}.
+
+\bibitem[Javabeats.com()]{javaagents}
+Javabeats.com.
+\newblock {Introduction to Java Agents}.
+\newblock URL
+  \url{http://www.javabeat.net/2012/06/introduction-to-java-agents/}.
+
+\bibitem[Bruneton et~al.(2002)Bruneton, Lenglet, and Coupaye]{Bruneton2002}
+Eric Bruneton, Romain Lenglet, and Thierry Coupaye.
+\newblock {ASM: a code manipulation tool to implement adaptable systems}.
+\newblock \emph{Adaptable and extensible component systems}, 30, 2002.
+\newblock \doi{10.1.1.117.5769}.
+\newblock URL
+  \url{http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.117.5769}.
+
+\bibitem[Gamma et~al.(1995)Gamma, Helm, Johnson, and Vlissides]{Gamma1995}
+Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides.
+\newblock \emph{{Design Patterns: Elements of Reusable Object-Oriented
+  Software}}, volume 206.
+\newblock 1995.
+\newblock ISBN 0201633612.
+\newblock \doi{10.1093/carcin/bgs084}.
+
+\bibitem[Kiczales(1996)]{Kiczales1997}
+Gregor Kiczales.
+\newblock {Aspect-oriented programming}.
+\newblock \emph{ACM Computing Surveys}, 28\penalty0 (4es):\penalty0 154--es,
+  December 1996.
+\newblock ISSN 03600300.
+\newblock \doi{10.1145/242224.242420}.
+\newblock URL \url{http://portal.acm.org/citation.cfm?doid=242224.242420}.
+
+\bibitem[Constantinides et~al.(2004)Constantinides, Skotiniotis, and
+  Stoerzer]{Constantinides2004}
+C~Constantinides, T~Skotiniotis, and M~Stoerzer.
+\newblock {AOP considered harmful}.
+\newblock Technical report, Concordia University, 2004.
+\newblock URL
+  \url{http://pp.info.uni-karlsruhe.de/uploads/publikationen/constantinides04eiwas.pdf}.
+
+\bibitem[Dijkstra(1968)]{Dijkstra1968}
+Edsger~W Dijkstra.
+\newblock {Letters to the editor: go to statement considered harmful}.
+\newblock \emph{Communications of the ACM}, 11\penalty0 (3):\penalty0 147--148,
+  March 1968.
+\newblock ISSN 00010782.
+\newblock \doi{10.1145/362929.362947}.
+\newblock URL \url{http://portal.acm.org/citation.cfm?doid=362929.362947}.
+
+\bibitem[Kiczales et~al.(2001)Kiczales, Hilsdale, Hugunin, Kersten, Palm, and
+  Griswold]{Kiczales2001}
+Gregor Kiczales, Erik Hilsdale, Jim Hugunin, Mik Kersten, Jeffrey Palm, and
+  William~G Griswold.
+\newblock {An Overview of AspectJ}.
+\newblock \emph{Main}, 2072:\penalty0 327--353, 2001.
+\newblock ISSN 03029743.
+\newblock \doi{10.1007/3-540-45337-7\_18}.
+\newblock URL
+  \url{http://www.cs.ubc.ca/~kdvolder/binaries/aspectj-overview.pdf}.
+
+\bibitem[Allan et~al.(2005)Allan, Avgustinov, Christensen, Hendren, Kuzins,
+  Lhot\'{a}k, Lhot\'{a}k, {De Moor}, Sereni, Sittampalam, and
+  Tibble]{Allan2005}
+Chris Allan, Pavel Avgustinov, Aske~Simon Christensen, Laurie~J Hendren, Sascha
+  Kuzins, Jennifer Lhot\'{a}k, Ondrej Lhot\'{a}k, Oege {De Moor}, Damien
+  Sereni, Ganesh Sittampalam, and Julian Tibble.
+\newblock {abc: The AspectBench Compiler for AspectJ}.
+\newblock In \emph{Generative Programming and Component Engineering 4th
+  International Conference GPCE}, volume 3676, pages 10--16, 2005.
+\newblock ISBN 3540291385.
+\newblock \doi{10.1007/11561347\_2}.
+
+\bibitem[Harbulot and Gurd(2005)]{Harbulot2005}
+Bruno Harbulot and John~R Gurd.
+\newblock {A join point for loops in AspectJ}.
+\newblock In \emph{Computer}, pages 63--74, 2005.
+\newblock ISBN 159593300X.
+\newblock \doi{10.1145/1119655.1119666}.
+
+\bibitem[Chen and Chien(2007)]{Chen2007}
+Kung Chen and Chin-hung Chien.
+\newblock {Extending the Field Access Pointcuts of AspectJ to Arrays}.
+\newblock \emph{Journal of Software Engineering Studies}, 2\penalty0
+  (2):\penalty0 2--11, 2007.
+\newblock URL
+  \url{http://www.geocities.ws/m8809301/pub/JSESv2n2\_KungChen\_970214.pdf}.
+
+\bibitem[Marek et~al.(2012)Marek, Villaz\'{o}n, Zheng, Ansaloni, Binder, and
+  Qi]{Marek2012}
+Luk\'{a}\v{s} Marek, Alex Villaz\'{o}n, Yudi Zheng, Danilo Ansaloni, Walter
+  Binder, and Zhengwei Qi.
+\newblock {DiSL}.
+\newblock In \emph{Proceedings of the 11th annual international conference on
+  Aspect-oriented Software Development - AOSD '12}, page 239, New York, New
+  York, USA, March 2012. ACM Press.
+\newblock ISBN 9781450310925.
+\newblock \doi{10.1145/2162049.2162077}.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=2162049.2162077}.
+
+\bibitem[Bloom(1970)]{Bloom1970}
+Burton~H. Bloom.
+\newblock {Space/time trade-offs in hash coding with allowable errors}.
+\newblock \emph{Communications of the ACM}, 13\penalty0 (7):\penalty0 422--426,
+  July 1970.
+\newblock ISSN 00010782.
+\newblock \doi{10.1145/362686.362692}.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=362686.362692}.
+
+\bibitem[Carter and Wegman(1979)]{Carter1979}
+J.Lawrence Carter and Mark~N Wegman.
+\newblock {Universal classes of hash functions}.
+\newblock \emph{Journal of Computer and System Sciences}, 18\penalty0
+  (2):\penalty0 143--154, April 1979.
+\newblock ISSN 00220000.
+\newblock \doi{10.1016/0022-0000(79)90044-8}.
+\newblock URL
+  \url{http://linkinghub.elsevier.com/retrieve/pii/0022000079900448}.
+
+\bibitem[Swamidass and Baldi(2007)]{Swamidass2007}
+S~Joshua Swamidass and Pierre Baldi.
+\newblock {Mathematical correction for fingerprint similarity measures to
+  improve chemical retrieval.}
+\newblock \emph{Journal of chemical information and modeling}, 47\penalty0
+  (3):\penalty0 952--64, 2007.
+\newblock ISSN 1549-9596.
+\newblock \doi{10.1021/ci600526a}.
+\newblock URL \url{http://www.ncbi.nlm.nih.gov/pubmed/17444629}.
+
+\bibitem[Kim and Hsu(2000)]{Kim2000}
+Jin-Soo Kim and Yarsun Hsu.
+\newblock {Memory system behavior of Java programs}.
+\newblock \emph{ACM SIGMETRICS Performance Evaluation Review}, 28\penalty0
+  (1):\penalty0 264--274, June 2000.
+\newblock ISSN 01635999.
+\newblock \doi{10.1145/345063.339422}.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=345063.339422}.
+
+\bibitem[Ogata et~al.(2010)Ogata, Mikurube, Kawachiya, Trent, and
+  Onodera]{Ogata2010}
+Kazunori Ogata, Dai Mikurube, Kiyokuni Kawachiya, Scott Trent, and Tamiya
+  Onodera.
+\newblock {A study of Java's non-Java memory}.
+\newblock \emph{ACM SIGPLAN Notices}, 45\penalty0 (10):\penalty0 191, October
+  2010.
+\newblock ISSN 03621340.
+\newblock \doi{10.1145/1932682.1869477}.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=1932682.1869477}.
+
+\bibitem[{Oracle Inc}()]{RuntimeDocs}
+{Oracle Inc}.
+\newblock {Runtime (Java Platform SE 7)}.
+\newblock URL
+  \url{http://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html}.
+
+\end{thebibliography}

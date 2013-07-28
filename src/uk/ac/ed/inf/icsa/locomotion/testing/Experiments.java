@@ -20,6 +20,7 @@ final class Experiments {
 	
 	private Experiments() {
 		this.output = new File("results/");
+		this.experiments = new LinkedList<>();
 		//this.output = new Console();
 		
 		InstrumentSupport.setInstrumentConfiguration(
@@ -32,22 +33,14 @@ final class Experiments {
 			)
 		);
 		
-		this.experiments = new LinkedList<Test>() {{
-			//add(new Test(VectorAddition.class, instrument, new Object[] {new Integer[] {0, 1, 2}, new Integer[] {3, 4, 5}}));
-			//add(new Test(AllDependent.class, instrument, new Object[] {100}));
-			//add(new Test(SomeDependent.class, instrument, new Object[] {100, 0.5d}));
-			//add(new Test(NoneDependent.class, instrument, new Object[] {100}));
-		}};
-		
 		// add probabilistic tests
-		for (int i = 0; i <= 1000; i += 50) {
+		for (int i = 1000; i <= 10000; i += 1000) {
 			experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}));
 			experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}));
 			
-			//for (double p = 0.1d; p <= 0.9d; p += 0.1d) {
 			for (int p_i = 1; p_i <= 9; p_i++) {
 				double p = p_i / 10.0d;
-				experiments.add(new Test(SomeDependent.class, instrument, new Object[] {i, p}));
+				//experiments.add(new Test(SomeDependent.class, instrument, new Object[] {i, p}));
 			}
 		}
 	}
@@ -64,7 +57,7 @@ final class Experiments {
 		// BloomFilter
 		Class<? extends Trace> traceFormat = BloomFilterTrace.class;
 		
-		for (int i = 50; i <= 10000; i += 50) {
+		for (int i = 100; i <= 1000; i += 1000) {
 			BloomFilterConfiguration bfc = new BloomFilterConfiguration(i, new Funnel<Access>() {
 				@Override
 				public void funnel(Access access, PrimitiveSink sink) {

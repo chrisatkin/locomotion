@@ -1,0 +1,110 @@
+\chapter{Instrumentation} \label{chp:instrumentation}
+\section{Graal} \label{sec:instrumentation/graal}
+
+
+\section{Bytecode Instrumentation} \label{sec:instrumentation/bytecode-instr}
+	The first approach uses so-called \textit{bytecode instrumentation} (BCI) - that is, modifying the bytecode directly, either at compile-time or runtime. This approach is advantageous in that arbitrary commands can be inserted, and is only subject to the limitations of the bytecode format. In this sense, arbitrary functionality can be inserted into \texttt{.class} files. However, it is complex (requiring advanced knowledge of the JVM and bytecode formats), as well as being difficult to use. Graal already performs a lot of the work that would be required with this kind of approach, in that it detects control flow and memory dependencies from bytecode. Such systems require a large degree of programmer effort.
+
+	\subsection{Java Agents} \label{sec:instrumentation/bytecode-instr/agents}
+	At the heart of BCI is the idea of Java Agents \citep{javaagents}. In order to understand them, however, one must first understand some details of the Java platform.
+	
+	Unlike some other languages (for example, C and C++\footnote{Although note that C and C++ \emph{also} support dynamic linking}), Java is a dynamically linked language. That is to say that the various different libraries (JARs) that Java programs used are linked at run-time, rather than compile-time. The advantage to this approach is that it allows distributables to be smaller in size (recall Java Network Launching Protocol, a method for launching (and therefore, distributing) Java applications over the Internet). The disadvantage to this approach is that it can lead to `dependency hell', although through the combination of versioning metadata in JARs and the extreme backwards compatability mantra in Java, this is not currently a significant issue.
+	
+	There are three main class loaders in Java:
+	
+	\begin{itemize}
+		\item The system class loader loads the classes found in the \texttt{java.lang} package
+		\item Any extensions to Java are loaded via the extension loader
+		\item JARs found within the class path are loaded with the lowest precedence, these include the majority of user-level libraries
+	\end{itemize}
+	
+	Java Agents manipulate class files at load-time, through the \texttt{java.lang.instrument} package. The package defines the \texttt{ClassFileTransformer} interface, which provides implementations of class transformers. An advantage of this approach is that since Java Agents are included in the core Java package, developers wishing to use \textit{Locomotion} would not need to download and install Graal.
+	
+	There are several different libraries which provide an abstraction layer for such bytecode transformations. The following sections describe the procedure for 
+
+	\subsection{ASM} \label{sec:instrumentation/bytecode-instr/asm}
+	Despite Java Agents providing the capability to manipulate raw Java bytecode (indeed, the bytecode is made available as a \texttt{byte} array), performing such transformations are difficult and awkward. For this reason, there exists many different libraries for manipulating Java bytecode, ObjectWeb ASM being one of them.
+	
+	ASM \citep{Bruneton2002} is a simple-to-use bytecode manipulation library, itself written in Java. It uses a high-level abstraction for the bytecode, which is advantageous because it allows developers to remain unconcerned with the specifics of control flow analysis, dependency analysis and other such concerns.
+	
+	Although now common, when ASM was first developed it was considered particularly innovative because it allowed the use of the visitor pattern \citep[p.~331]{Gamma1995} for traversing bytecode.
+
+	\subsection{Javassist} \label{sec:instrumentation/alt-instr/bytecode-instr/javassist}
+	Javassist is similar to ASM but works at a higher level of abstraction.
+	
+	There are also additional libraries for manipulating Java bytecode, but due to their features (or lack of), they were not considered for this project.
+
+\section{Aspect-Oriented Programming} \label{sec:instrumentation/alt-instr/aop}
+	Aspect-Oriented Programming (AOP) \citep{Kiczales1997} is another dialect of object-oriented programming that aims to significantly increase separation of concern within programs, so that programs are more loosely coupled. AOP is a direct descendent from object-oriented programming as well as reflection. Reflection allows programmers to dynamically introspect classes at run-time; changing values and so on. AOP takes this to another level, by allowing so-called \textit{advice} to be specified (essentially the additional behaviour to be added) and added to \textit{join points}, which are arbitrary points of control flow within the program.
+	
+	When combined, aspect-oriented systems add these behaviours to the program in question at compile-time through a process called \textit{weaving}.
+	
+	To illustrate this concept, consider the problem of logging method calls. In traditional systems, at each function/method definition the programmer would need to add specific logging code:
+	
+	\begin{verbatim}
+	def function name(...) {
+  if (DEBUG)
+      println("function called at " + time());
+      
+      ...
+	}
+	\end{verbatim}
+	
+	This behaviour is called an \textit{aspect} (an area of a program which may be repeated several times which is unrelated to the purpose of the program). If the behaviour is to change (\eg for example, changing the call to \texttt{date()} to a call to \texttt{time()} instead), each method declaration must be changed manually - a time consuming and potentially error-prone task.
+	
+	Instead, the use of aspects allows the programmer to remove this functionality, and combine a pointcut and advice into an \textit{aspect}:
+	
+	\begin{verbatim}
+	def aspect TraceMethods {
+  def pointcut method-call: execution.in(*) and not(flow.in(this));
+		
+  before method-call {
+   println("function called at " + time());
+  }
+	}
+	\end{verbatim}
+	
+	Although that from a software engineering perspective this is clearly a superior solution (decreases coupling, increases reuse, increases separation of concern), the use of aspects has not been widely adopted. There are several likely causes for this, such as:
+	
+	\begin{itemize}
+		\item \textbf{Lack of education}: like the other models that we have seen in section \ref{sec:introduction/parallelist}, widespread adoption of new programming construct requires that the average programmer can understand the feature without in-depth education in the model. AOP is somewhat counter to intuitive definitions of imperative or procedural languages, which hampers their adoption.
+		\item \textbf{Lack of language support}: no widely adopted programming language comes with AOP included, or with an AOP library included in the standard library. Standard licensing issues also apply to third-party additions (\eg GPLv2/3 differences).
+		\item \textbf{Unclear flow control}: perhaps the single largest issue with AOP. As noted by \citet{Constantinides2004}, aspects introduce effectively unconditional branches into code, mimicking the use of \texttt{goto} which \citeauthor{Dijkstra1968} famously considered harmful \citep{Dijkstra1968}.
+		\item \textbf{Unintended consequences}: defining aspects incorrectly can lead to incorrect (global) state, \eg renaming methods and so on. If a team of developers are unaware of each other's modifications at weave-time, there may unintended consequences and subtle (or substantial) bugs introduced.
+	\end{itemize}
+	
+	\subsection{AspectJ/ABC} \label{sec:instrumentation/aop/aspectj}
+	AspectJ \citep{Kiczales2001} is an extension to the Java language that adds aspect-oriented features. It is a project of the Eclipse Foundation (of Eclipse IDE fame). The usage of AOP within Java is a somewhat natural extension as aspects can be seen as the modularisation of behaviour (concerns) over several classes - and not to forget that AOP was originally developed as an extension to object-oriented languages.
+		
+		\subsubsection{Array and Loop Pointcuts} \label{sec:instrumentation/aop/aspectj/arrayloop}
+		However, the limitations of the AspectJ join-point model are somewhat obvious for this project. To be specific, `vanilla' AspectJ cannot define point cuts for neither array accesses or loops - a combination of which would be required for this project. In addition, the vanilla AspectJ implementation is not particularly extensible, which means that defining new point-cuts is somewhat difficult.
+		
+		There is, however, an implementation of AspectJ which \emph{is} designed to be more extensible and compatible (mostly) with the original AspectJ implementation - abc, the AspectBench Compiler for AspectJ \citep{Allan2005}.
+		
+		Although abc itself does not include point-cuts for either array access or loops, there exists two projects which, if combined, could offer the required features for this project.
+		
+		LoopsAJ \citep{Harbulot2005} is an extension to abc that adds a loop join point. This is not a trivial addition - when loops are compiled, they are compiled to forms that loose loop semantics (and instead use \texttt{goto} instructions). There are several forms that a loop can take, and a significant proportion of \citeauthor{Harbulot2005}'s work is in the identification of loops from the bytecode.
+				
+		For array access, the ArrayPT project \citep{Chen2007} adds additional array access capabilities to abc. Although the included point cut does include array access, it is somewhat limited and cannot determine either the index, nor the value to be stored. ArrayPT adds these capabilities to abc. ArrayPT defines two new point cuts, \texttt{arrayset(signature)} and \texttt{arrayget(signature)}. ArrayPT relies on the \texttt{invokevirtual} bytecode in the JVM.
+		
+		It is anticipated that, if these projects are combined, it would present a feasible approach to instrumentation.
+		
+		% loops: Harbulot2005
+		% arrays: Chen2007
+
+\section{Hybrid Models} \label{sec:instrumentation/hybrid}
+	\subsection{DiSL} \label{sec:instrumentation/hybrid/disl}
+	Recently, there has been renewed interest in Java bytecode instrumentation. Clearly, the use of aspect-oriented techniques is advantageous, but the current implementations (AspectJ/abc) are deeply flawed. In a sense, they are \textit{static} - they rely on predefined join and point-cuts before any aspect definitions can be constructed.
+	
+	DiSL (\textit{Domain Specific Language for Instrumentation}) \citep{Marek2012} is a new approach to a domain-specific language (which incidentally, implies that DiSL is declarative) for bytecode instrumentation. It does rely on the use of aspects, but it instead uses an open join-point model where any area of bytecode can be instrumented. DiSL has several advantages over ApsectJ, including:
+	
+	\begin{itemize}
+		\item Lower overheads
+		\item Greater expressibility of aspect and join-point definition
+		\item Greater code coverage
+		\item Efficient synthetic local variables for data exchange between join-points
+	\end{itemize}
+	
+	\citeauthor{Marek2012} present benchmarks of overheads with DiSL versus AspectJ, and their results are promising - a factor of three lower overheads, yet DiSL manages greater code coverage than AspectJ (the number of join-points captured is greater).
+	
+	\subsection{Bytecode Instrumentation \& Graal Transformations} \label{sec:instrumentation/hybrid/graalbytecode}

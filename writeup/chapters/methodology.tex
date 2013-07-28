@@ -1,0 +1,41 @@
+\chapter{Methodology} \label{sec:methodology}
+\section{Experimental Setup} \label{sec:methodology/setup}
+The hardware used for the experiments is a mid-2009 MacBook Pro with the following specifications:
+	
+\begin{itemize}
+	\item Intel Core 2 Duo P8800 @ 2.66GHz
+	\item 8GB 1067MHz DDR3
+	\item Nvidia GeForce 9600M GT 256MB
+	\item Disks:
+	\begin{itemize}
+		\item Samsung SSD 830 Series 128GB via SATA-2
+		\item Western Digital Scorpio Blue 1TB via SATA-2
+	\end{itemize}
+\end{itemize}
+
+The software configuration is as follows:
+\begin{itemize}
+	\item OS X 10.8.4 (build 12E55)
+	\item Java 7 update 25
+\end{itemize}
+
+All software used was the latest version available at the time of writing.
+
+\section{Repeats} \label{sec:methodology/repeats}
+
+\section{Benchmarks} \label{sec:methodology/benchmarks}
+	\subsection{Validation and Basic Testing} \label{sec:methodology/benchmarks/simple}
+	
+	\subsection{Parametric Benchmarks} \label{sec:methodology/benchmarks/parametric}
+	
+	\subsection{Graph Processing Algorithms} \label{sec:methodology/benchmarks/graphs}
+	
+	\subsection{Java Grande} \label{sec:methodology/benchmarks/grande}
+	
+	\subsection{Mandelbrot} \label{sec:methodology/benchmarks/mandelbrot}
+	
+\section{Measurement Methodology} \label{sec:methodology/measurements}
+	\subsection{Execution Time} \label{sec:methodology/measurements/time}
+	
+	\subsection{Memory Usage} \label{sec:methodology/measurements/memory}
+	The difficulties of measuring memory usage in Java programs due to the non-deterministic nature of the garbage collector are well documented in the literature \citep{Kim2000,Ogata2010}. Despite this, the Java 7 API presents several techniques \citep{RuntimeDocs} of measuring memory within the JVM
