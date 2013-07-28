@@ -35,31 +35,32 @@
 \BOOKMARK [1][-]{section.5.3}{Dependency Analysis Algorithms}{chapter.5}% 35
 \BOOKMARK [2][-]{subsection.5.3.1}{Offline Algorithms}{section.5.3}% 36
 \BOOKMARK [2][-]{subsection.5.3.2}{Online Algorithns}{section.5.3}% 37
-\BOOKMARK [0][-]{chapter.6}{Methodology}{}% 38
-\BOOKMARK [1][-]{section.6.1}{Experimental Setup}{chapter.6}% 39
-\BOOKMARK [1][-]{section.6.2}{Repeats}{chapter.6}% 40
-\BOOKMARK [1][-]{section.6.3}{Benchmarks}{chapter.6}% 41
-\BOOKMARK [2][-]{subsection.6.3.1}{Validation and Basic Testing}{section.6.3}% 42
-\BOOKMARK [2][-]{subsection.6.3.2}{Parametric Benchmarks}{section.6.3}% 43
-\BOOKMARK [2][-]{subsection.6.3.3}{Graph Processing Algorithms}{section.6.3}% 44
-\BOOKMARK [2][-]{subsection.6.3.4}{Java Grande}{section.6.3}% 45
-\BOOKMARK [2][-]{subsection.6.3.5}{Mandelbrot}{section.6.3}% 46
-\BOOKMARK [1][-]{section.6.4}{Measurement Methodology}{chapter.6}% 47
-\BOOKMARK [2][-]{subsection.6.4.1}{Execution Time}{section.6.4}% 48
-\BOOKMARK [2][-]{subsection.6.4.2}{Memory Usage}{section.6.4}% 49
-\BOOKMARK [0][-]{chapter.7}{Results}{}% 50
-\BOOKMARK [1][-]{section.7.1}{Validation}{chapter.7}% 51
-\BOOKMARK [1][-]{section.7.2}{Basic Testing}{chapter.7}% 52
-\BOOKMARK [1][-]{section.7.3}{Parametric}{chapter.7}% 53
-\BOOKMARK [1][-]{section.7.4}{Graph Processing}{chapter.7}% 54
-\BOOKMARK [1][-]{section.7.5}{Java Grande}{chapter.7}% 55
-\BOOKMARK [1][-]{section.7.6}{Mandelbrot}{chapter.7}% 56
-\BOOKMARK [1][-]{section.7.7}{Overhead}{chapter.7}% 57
-\BOOKMARK [2][-]{subsection.7.7.1}{Execution Time}{section.7.7}% 58
-\BOOKMARK [2][-]{subsection.7.7.2}{Memory Usage}{section.7.7}% 59
-\BOOKMARK [1][-]{section.7.8}{Analysis}{chapter.7}% 60
-\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 61
-\BOOKMARK [1][-]{subsection.8.0.1}{Concluding Remarks}{chapter.8}% 62
-\BOOKMARK [2][-]{subsection.8.0.2}{Unsolved Problems}{subsection.8.0.1}% 63
-\BOOKMARK [2][-]{subsection.8.0.3}{Future Work}{subsection.8.0.1}% 64
-\BOOKMARK [0][-]{chapter*.7}{Bibliography}{}% 65
+\BOOKMARK [1][-]{section.5.4}{Implementation Details}{chapter.5}% 38
+\BOOKMARK [0][-]{chapter.6}{Methodology}{}% 39
+\BOOKMARK [1][-]{section.6.1}{Experimental Setup}{chapter.6}% 40
+\BOOKMARK [1][-]{section.6.2}{Repeats}{chapter.6}% 41
+\BOOKMARK [1][-]{section.6.3}{Benchmarks}{chapter.6}% 42
+\BOOKMARK [2][-]{subsection.6.3.1}{Validation and Basic Testing}{section.6.3}% 43
+\BOOKMARK [2][-]{subsection.6.3.2}{Parametric Benchmarks}{section.6.3}% 44
+\BOOKMARK [2][-]{subsection.6.3.3}{Graph Processing Algorithms}{section.6.3}% 45
+\BOOKMARK [2][-]{subsection.6.3.4}{Java Grande}{section.6.3}% 46
+\BOOKMARK [2][-]{subsection.6.3.5}{N-Body Simulation}{section.6.3}% 47
+\BOOKMARK [1][-]{section.6.4}{Measurement Methodology}{chapter.6}% 48
+\BOOKMARK [2][-]{subsection.6.4.1}{Execution Time}{section.6.4}% 49
+\BOOKMARK [2][-]{subsection.6.4.2}{Memory Usage}{section.6.4}% 50
+\BOOKMARK [0][-]{chapter.7}{Results}{}% 51
+\BOOKMARK [1][-]{section.7.1}{Validation}{chapter.7}% 52
+\BOOKMARK [1][-]{section.7.2}{Basic Testing}{chapter.7}% 53
+\BOOKMARK [1][-]{section.7.3}{Parametric}{chapter.7}% 54
+\BOOKMARK [1][-]{section.7.4}{Graph Processing}{chapter.7}% 55
+\BOOKMARK [1][-]{section.7.5}{Java Grande}{chapter.7}% 56
+\BOOKMARK [1][-]{section.7.6}{Mandelbrot}{chapter.7}% 57
+\BOOKMARK [1][-]{section.7.7}{Overhead}{chapter.7}% 58
+\BOOKMARK [2][-]{subsection.7.7.1}{Execution Time}{section.7.7}% 59
+\BOOKMARK [2][-]{subsection.7.7.2}{Memory Usage}{section.7.7}% 60
+\BOOKMARK [1][-]{section.7.8}{Analysis}{chapter.7}% 61
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 62
+\BOOKMARK [1][-]{subsection.8.0.1}{Concluding Remarks}{chapter.8}% 63
+\BOOKMARK [2][-]{subsection.8.0.2}{Unsolved Problems}{subsection.8.0.1}% 64
+\BOOKMARK [2][-]{subsection.8.0.3}{Future Work}{subsection.8.0.1}% 65
+\BOOKMARK [0][-]{chapter*.8}{Bibliography}{}% 66

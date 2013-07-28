@@ -1,7 +1,5 @@
 package uk.ac.ed.inf.icsa.locomotion.testing;
 
-import java.lang.reflect.InvocationTargetException;
-
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
 import uk.ac.ed.inf.icsa.locomotion.testing.output.Output;
 

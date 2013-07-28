@@ -16,7 +16,7 @@ public final class AllDependent implements Experiment {
 
 	@Override
 	public void run(Output output, InstrumentSupport instrument) {
-		Generator gen = new uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.AllDependent(this.length);
+		Generator gen = new uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.StaticGenerator(this.length);
 		gen.generate();
 		
 		Integer[] a = gen.getA();

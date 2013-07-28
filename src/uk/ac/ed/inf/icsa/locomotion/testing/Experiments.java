@@ -36,7 +36,7 @@ final class Experiments {
 		// add probabilistic tests
 		for (int i = 1000; i <= 10000; i += 1000) {
 			experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}));
-			experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}));
+			//experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}));
 			
 			for (int p_i = 1; p_i <= 9; p_i++) {
 				double p = p_i / 10.0d;
@@ -48,7 +48,7 @@ final class Experiments {
 	private void run() throws IOException {
 		for (boolean instrumentationEnabled: new boolean[] {true, false}) {
 			runExactExperiments(instrumentationEnabled);
-			runInexactExperiments(instrumentationEnabled);
+			//runInexactExperiments(instrumentationEnabled);
 		}
 	}
 	

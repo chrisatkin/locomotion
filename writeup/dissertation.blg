@@ -11,51 +11,44 @@ A level-1 auxiliary file: chapters/results.aux
 A level-1 auxiliary file: chapters/conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
-Warning--empty journal in Anderson2013
-Warning--there's a number but no volume in Mainland2013
-Warning--empty year in Graal
-Warning--empty year in javaagents
-Warning--empty publisher in Gamma1995
-Warning--empty year in RuntimeDocs
-You've used 33 entries,
+You've used 39 entries,
             2481 wiz_defined-function locations,
-            851 strings with 12304 characters,
-and the built_in function-call counts, 13513 in all, are:
-= -- 1242
-> -- 669
-< -- 29
-+ -- 262
-- -- 196
-* -- 1063
-:= -- 2199
-add.period$ -- 164
-call.type$ -- 33
-change.case$ -- 68
-chr.to.int$ -- 33
+            896 strings with 13278 characters,
+and the built_in function-call counts, 15860 in all, are:
+= -- 1462
+> -- 769
+< -- 36
++ -- 302
+- -- 224
+* -- 1218
+:= -- 2567
+add.period$ -- 188
+call.type$ -- 39
+change.case$ -- 80
+chr.to.int$ -- 39
 cite$ -- 39
-duplicate$ -- 665
-empty$ -- 1145
-format.name$ -- 241
-if$ -- 2895
+duplicate$ -- 797
+empty$ -- 1365
+format.name$ -- 281
+if$ -- 3419
 int.to.chr$ -- 1
-int.to.str$ -- 34
-missing$ -- 27
-newline$ -- 232
-num.names$ -- 101
-pop$ -- 236
+int.to.str$ -- 40
+missing$ -- 34
+newline$ -- 267
+num.names$ -- 119
+pop$ -- 286
 preamble$ -- 1
-purify$ -- 33
+purify$ -- 39
 quote$ -- 0
-skip$ -- 409
+skip$ -- 488
 stack$ -- 0
-substring$ -- 451
-swap$ -- 135
-text.length$ -- 13
+substring$ -- 537
+swap$ -- 162
+text.length$ -- 16
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 225
-warning$ -- 6
-while$ -- 106
+type$ -- 264
+warning$ -- 0
+while$ -- 127
 width$ -- 0
-write$ -- 560
-(There were 6 warnings)
+write$ -- 654

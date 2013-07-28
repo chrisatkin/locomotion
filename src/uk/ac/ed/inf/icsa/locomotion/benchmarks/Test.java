@@ -2,10 +2,10 @@ package uk.ac.ed.inf.icsa.locomotion.benchmarks;
 
 import java.util.Arrays;
 
-import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.AllDependent;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.StaticGenerator;
 import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.Generator;
 import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.NoneDependent;
-import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.SomeDependent;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.FractionalGenerator;
 
 final class Test {
 	private static final int N = 10;
@@ -14,23 +14,15 @@ final class Test {
 		Integer[] a, b;
 		
 		// test all
-		Generator all = new AllDependent(N);
+		Generator all = new StaticGenerator(N);
 		all.generate();
 		a = all.getA();
 		b = all.getB();
 		
 		display("all", a, b);
 		
-		// test none
-		Generator none = new NoneDependent(N);
-		none.generate();
-		a = none.getA();
-		b = none.getB();
-		
-		display("none", a, b);
-		
 		// test some
-		Generator some = new SomeDependent(N, 0.5d);
+		Generator some = new FractionalGenerator(N, 0.5d);
 		some.generate();
 		a = some.getA();
 		b = some.getB();

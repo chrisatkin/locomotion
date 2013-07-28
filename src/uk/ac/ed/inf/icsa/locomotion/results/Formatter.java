@@ -1,5 +1,7 @@
 package uk.ac.ed.inf.icsa.locomotion.results;
 
+import static io.atkin.collections.literals.set;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -39,7 +41,7 @@ public final class Formatter {
 				"length",
 				"finalmemory",
 				"dependencies",
-				name
+				set(name)
 			);
 			length_memory_accesses.run();
 			length_memory_accesses.toFile();

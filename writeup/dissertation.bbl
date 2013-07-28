@@ -1,4 +1,4 @@
-\begin{thebibliography}{33}
+\begin{thebibliography}{39}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -63,7 +63,7 @@ Simon Peyton-Jones.
 \bibitem[Anderson et~al.(2013)Anderson, Petersen, Lui, and Glew]{Anderson2013}
 Todd~A Anderson, Leaf Petersen, Hai Lui, and Neal Glew.
 \newblock {Measuring the Haskell Gap}.
-\newblock pages 1--12, 2013.
+\newblock \emph{Haskell Symposium 2013}, pages 1--12, 2013.
 \newblock URL
   \url{http://www.leafpetersen.com/leaf/publications/hs2013/haskell-gap.pdf}.
 
@@ -72,7 +72,7 @@ Todd~A Anderson, Leaf Petersen, Hai Lui, and Neal Glew.
 Geoffrey Mainland, Roman Leshchinskiy, and Simon Peyton-Jones.
 \newblock {Exploiting Vector Instructions with Generalized Stream Fusion}.
 \newblock \emph{ACM SIGPLAN International Conference on Functional
-  Programming}, \penalty0 (Section 4), 2013.
+  Programming}, 2013.
 \newblock \doi{2500365.2500601}.
 \newblock URL
   \url{http://research.microsoft.com/en-us/um/people/simonpj/papers/ndp/haskell-beats-C.pdf}.
@@ -122,9 +122,9 @@ Jing Yang, Kevin Skadron, Mary~Lou Soffa, and Kamin Whitehouse.
 \newblock URL
   \url{http://www.cs.virginia.edu/~skadron/Papers/yang\_hotpar11.pdf}.
 
-\bibitem[Oracle and OpenJDK()]{Graal}
+\bibitem[Oracle and OpenJDK(2012)]{Graal}
 Oracle and OpenJDK.
-\newblock {Graal Project}.
+\newblock {Graal Project}, 2012.
 \newblock URL \url{http://openjdk.java.net/projects/graal/}.
 
 \bibitem[Lindholm et~al.(2013)Lindholm, Buckley, Bracha, and Yellin]{JVMSpec}
@@ -133,9 +133,9 @@ Tim Lindholm, Alex Buckley, Gilad Bracha, and Frank Yellin.
 \newblock Technical report, Oracle, Inc, Redwood City, 2013.
 \newblock URL \url{http://docs.oracle.com/javase/specs/jvms/se7/jvms7.pdf}.
 
-\bibitem[Javabeats.com()]{javaagents}
+\bibitem[Javabeats.com(2012)]{javaagents}
 Javabeats.com.
-\newblock {Introduction to Java Agents}.
+\newblock {Introduction to Java Agents}, 2012.
 \newblock URL
   \url{http://www.javabeat.net/2012/06/introduction-to-java-agents/}.
 
@@ -151,7 +151,7 @@ Eric Bruneton, Romain Lenglet, and Thierry Coupaye.
 Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides.
 \newblock \emph{{Design Patterns: Elements of Reusable Object-Oriented
   Software}}, volume 206.
-\newblock 1995.
+\newblock Addison-Wesley, 1995.
 \newblock ISBN 0201633612.
 \newblock \doi{10.1093/carcin/bgs084}.
 
@@ -260,6 +260,45 @@ S~Joshua Swamidass and Pierre Baldi.
 \newblock \doi{10.1021/ci600526a}.
 \newblock URL \url{http://www.ncbi.nlm.nih.gov/pubmed/17444629}.
 
+\bibitem[Knuth(1997)]{TAOCPvol2}
+Donald~E. Knuth.
+\newblock \emph{{The Art of Computer Programming Volume 2: Seminumerical
+  Algorithms}}.
+\newblock Addison Wesley, third edition, 1997.
+\newblock ISBN 0-201-89683-2.
+
+\bibitem[Smith et~al.(2001)Smith, Bull, and Obdrizalek]{Smith2001}
+L~A Smith, J~M Bull, and J~Obdrizalek.
+\newblock {A Parallel Java Grande Benchmark Suite}.
+\newblock \emph{ACMIEEE SC 2001 Conference SC01}, pages 8--8, 2001.
+\newblock \doi{10.1109/SC.2001.10025}.
+
+\bibitem[Bull et~al.(2001)Bull, Smith, Pottage, and Freeman]{Bull2001}
+J~M Bull, L~A Smith, L~Pottage, and R~Freeman.
+\newblock {Benchmarking Java against C and Fortran for scientific
+  applications}.
+\newblock In \emph{Proceedings of the 2001 joint ACM-ISCOPE conference on Java
+  Grande - JGI '01}, volume~15, pages 97--105, New York, New York, USA, 2001.
+  ACM Press.
+\newblock ISBN 1581133596.
+\newblock \doi{10.1145/376656.376823}.
+\newblock URL \url{http://portal.acm.org/citation.cfm?doid=376656.376823}.
+
+\bibitem[Trenti and Hut(2008)]{Trenti2008}
+M~Trenti and P~Hut.
+\newblock {Gravitational N-body Simulations}.
+\newblock \emph{Scholarpedia}, 3:\penalty0 13, 2008.
+
+\bibitem[Warren and Salmon(1993)]{Warren1993}
+Michael~S Warren and John~K Salmon.
+\newblock {A parallel Hashed Oct-Tree N-Body Algorithm}.
+\newblock In \emph{Proceedings of Supercomputing}, 1993.
+
+\bibitem[Nyland and Prins(2007)]{Nyland2007}
+Lars Nyland and Jan Prins.
+\newblock {Fast N-Body Simulation with CUDA}.
+\newblock \emph{Simulation}, 3:\penalty0 677--696, 2007.
+
 \bibitem[Kim and Hsu(2000)]{Kim2000}
 Jin-Soo Kim and Yarsun Hsu.
 \newblock {Memory system behavior of Java programs}.
@@ -280,9 +319,9 @@ Kazunori Ogata, Dai Mikurube, Kiyokuni Kawachiya, Scott Trent, and Tamiya
 \newblock \doi{10.1145/1932682.1869477}.
 \newblock URL \url{http://dl.acm.org/citation.cfm?id=1932682.1869477}.
 
-\bibitem[{Oracle Inc}()]{RuntimeDocs}
+\bibitem[{Oracle Inc}(2013)]{RuntimeDocs}
 {Oracle Inc}.
-\newblock {Runtime (Java Platform SE 7)}.
+\newblock {Runtime (Java Platform SE 7)}, 2013.
 \newblock URL
   \url{http://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html}.
 

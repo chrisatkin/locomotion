@@ -89,18 +89,58 @@ Generating traces for large programs -- the kind of programs which would benefit
 	Let $i^l_n$ be the set of memory accesses for iteration $n$ in loop $l$. For a memory access $\alpha \in i^l_n$, determine whether there exists a previous iteration such that $\alpha \in i^l_{n-c}$ for some integer $c$. Additionally, for an access $\alpha_i$ and previous access $\alpha_{i-c}$, $kind(\alpha_i) \neq read \wedge kind(\alpha_{i-c}) \neq read$.
 
 	\subsection{Offline Algorithms} \label{sec:runtime/analysis/offline}
-	An offline algorithm means that any processing is performed after the trace has been collected. It is the simplest form of dependency analysis algorithm, but it show poor performance. For a number of loops $l$ with an average of $i$ iterations each, where each iteration has an average of $o$ operations, then $T_{offline}=O(lio)$.
-	
-	The algorithm is as follows:
+	An offline algorithm means that any processing is performed after the trace has been collected \citep[p.~525-526]{TAOCPvol2}. It is the simplest form of dependency analysis algorithm, but it show poor performance. For a number of loops $l$ with an average of $i$ iterations each, where each iteration has an average of $o$ operations, then $T_{offline}=O(lio)$.
 	
 	\begin{algorithm}
-		\caption{\Naive offline dependency algorithm}
+		\caption{Offline dependency algorithm}
 		\label{alg:offline-dependency}
 		\begin{algorithmic}[1]
-			\FOR{$i=0$ to $10$}
-			\STATE carry out some processing
-	 		\ENDFOR
+			\STATE $d \gets \varnothing$ %\COMMENT{$d$ is the set of dependencies}
+			\FORALL{loops $l$}
+				\STATE $p \gets \varnothing$ %\COMMENT{$p$ is the set of previous iterations}
+				\FORALL{iteration $i \in l$}
+					\FORALL{access $\alpha \in i$}
+						\FORALL{$p_{\alpha} \in p$}
+							\IF{$\alpha \in p{_\alpha}$}
+								\STATE $d \gets \alpha$
+							\ENDIF
+							
+							\STATE $p \gets \alpha$
+						\ENDFOR
+					\ENDFOR
+				\ENDFOR
+			\ENDFOR
+		\end{algorithmic}
+	\end{algorithm}
+	
+	This offline algorithm has several disadvantages. Not only is its runtime particularly poor (we can achieve at least a factor $l$ speed-up using an online algorithm), but because it requires a complete trace of accesses per iteration, it is unsuitable for  detecting dependencies at run-time. Algorithm \ref{alg:offline-dependency} outlines the offline algorithm.
+
+	\subsection{Online Algorithns} \label{sec:runtime/analysis/online}
+	\begin{figure}
+			\centering
+			\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.5cm,semithick, bend angle=35]
+				\node[initial,accepting,state]	(q1)					{$S$};
+				\node[state]					(q2)	[right of=q1]	{$Q$};
+				
+				\path[->]
+					(q1)	edge [bend left ] node {loop begin} (q2)
+					(q2)	edge [bend left] node {loop stop} (q1)
+							edge [loop right] node {iteration} (q2);
+					
+			\end{tikzpicture}
+			\caption{Finite state machine for the online algorithm}
+			\label{fig:online-fsm}
+		\end{figure}
+		
+	An online algorithm for this problem is one that runs with a sequential input of values. An online algorithm is superior because it shows better performance characteristics asymptotically, $T_{online} = O(io)$, and it runs in conjunction with the program. This allows Locomotion, in theory, to advice any JIT compilers of optimisations to perform. Figure \ref{fig:online-fsm} represents the finite state machine for the algorithm.
+	
+	\begin{algorithm}
+		\caption{Online dependency algorithm}
+		\label{alg:online-dependency}
+		\begin{algorithmic}
+			\STATE something
 		\end{algorithmic}
 	\end{algorithm}
 
-	\subsection{Online Algorithns} \label{sec:runtime/analysis/online}
+\section{Implementation Details} \label{sec:runtime/implementation}
+\

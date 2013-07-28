@@ -17,7 +17,7 @@ public final class SomeDependent implements Experiment {
 
 	@Override
 	public void run(Output output, InstrumentSupport instrument) {
-		Generator gen = new uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.SomeDependent(length, probability);
+		Generator gen = new uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.FractionalGenerator(length, probability);
 		gen.generate();
 		
 		Integer[] a = gen.getA();
