@@ -57,14 +57,30 @@ abstract class Format {
 	protected List<Result> filterResults() {
 		List<Result> result = new LinkedList<>();
 		
-		for (Result r: results)
+		for (Result r: results) {
+			boolean[] include = new boolean[restrictions.size()];
+			int i = 0;
+			
 			for (Map.Entry<String, String> requirement: restrictions.entrySet()) {
 				String requirement_name = requirement.getKey();
 				String requirement_must_equal = requirement.getValue();
 				
-				if (r.getValue(requirement_name).equals(requirement_must_equal))
-					result.add(r);
+				if (r.getValue(requirement_name).equals(requirement_must_equal)) {
+					include[i] = true;
+				}
+				
+				i++;
 			}
+			
+			boolean really_include = true;
+			
+			for (boolean this_include: include)
+				if (this_include != true)
+					really_include = false;
+			
+			if (really_include)
+				result.add(r);
+		}
 		
 		return result;
 	}

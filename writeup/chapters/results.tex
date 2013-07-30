@@ -1,15 +1,26 @@
 \chapter{Results} \label{chp:results}
 In this chapter, the results of using Locomotion on the benchmarks presented in section \ref{sec:methodology/benchmarks} are presented, along with a critical analysis of the results.
 
-\begin{figure}
+\section{Basic Testing} \label{sec:results/basic}
+The first testing that was
+
+\begin{figure}[H]
 	\centering
-	\gnuplotloadfile[terminal=pdf]{../graphs/memory.gp}
-	\caption{Hello, world!}
+	\gnuplotloadfile[terminal=pdf]{../graphs/none-all_memory.gnuplot}
+	\caption{Memory usage}
 \end{figure}
 
+\begin{figure}[H]
+	\centering
+	\gnuplotloadfile[terminal=pdf]{../graphs/none-all_time.gnuplot}
+	\caption{Execution time}
+\end{figure}
 
-\section{Basic Testing} \label{sec:results/basic}
-The first testing that was  
+\begin{figure}[H]
+	\centering
+	\gnuplotloadfile[terminal=pdf]{../graphs/none-all_dependencies.gnuplot}
+	\caption{Dependencies}
+\end{figure}
 
 \section{Parametric} \label{sec:results/parametric}
 

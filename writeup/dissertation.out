@@ -52,18 +52,17 @@
 \BOOKMARK [2][-]{subsection.6.4.1}{Execution Time}{section.6.4}% 52
 \BOOKMARK [2][-]{subsection.6.4.2}{Memory Usage}{section.6.4}% 53
 \BOOKMARK [0][-]{chapter.7}{Results}{}% 54
-\BOOKMARK [1][-]{section.7.1}{Validation}{chapter.7}% 55
-\BOOKMARK [1][-]{section.7.2}{Basic Testing}{chapter.7}% 56
-\BOOKMARK [1][-]{section.7.3}{Parametric}{chapter.7}% 57
-\BOOKMARK [1][-]{section.7.4}{Graph Processing}{chapter.7}% 58
-\BOOKMARK [1][-]{section.7.5}{Java Grande}{chapter.7}% 59
-\BOOKMARK [1][-]{section.7.6}{Mandelbrot}{chapter.7}% 60
-\BOOKMARK [1][-]{section.7.7}{Overhead}{chapter.7}% 61
-\BOOKMARK [2][-]{subsection.7.7.1}{Execution Time}{section.7.7}% 62
-\BOOKMARK [2][-]{subsection.7.7.2}{Memory Usage}{section.7.7}% 63
-\BOOKMARK [1][-]{section.7.8}{Analysis}{chapter.7}% 64
-\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 65
-\BOOKMARK [1][-]{subsection.8.0.1}{Concluding Remarks}{chapter.8}% 66
-\BOOKMARK [2][-]{subsection.8.0.2}{Unsolved Problems}{subsection.8.0.1}% 67
-\BOOKMARK [2][-]{subsection.8.0.3}{Future Work}{subsection.8.0.1}% 68
-\BOOKMARK [0][-]{chapter*.8}{Bibliography}{}% 69
+\BOOKMARK [1][-]{section.7.1}{Basic Testing}{chapter.7}% 55
+\BOOKMARK [1][-]{section.7.2}{Parametric}{chapter.7}% 56
+\BOOKMARK [1][-]{section.7.3}{Graph Processing}{chapter.7}% 57
+\BOOKMARK [1][-]{section.7.4}{Java Grande}{chapter.7}% 58
+\BOOKMARK [1][-]{section.7.5}{Mandelbrot}{chapter.7}% 59
+\BOOKMARK [1][-]{section.7.6}{Overhead}{chapter.7}% 60
+\BOOKMARK [2][-]{subsection.7.6.1}{Execution Time}{section.7.6}% 61
+\BOOKMARK [2][-]{subsection.7.6.2}{Memory Usage}{section.7.6}% 62
+\BOOKMARK [1][-]{section.7.7}{Analysis}{chapter.7}% 63
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 64
+\BOOKMARK [1][-]{subsection.8.0.1}{Concluding Remarks}{chapter.8}% 65
+\BOOKMARK [2][-]{subsection.8.0.2}{Unsolved Problems}{subsection.8.0.1}% 66
+\BOOKMARK [2][-]{subsection.8.0.3}{Future Work}{subsection.8.0.1}% 67
+\BOOKMARK [0][-]{chapter*.10}{Bibliography}{}% 68

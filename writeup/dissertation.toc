@@ -52,18 +52,17 @@
 \contentsline {subsection}{\numberline {6.4.1}Execution Time}{37}{subsection.6.4.1}
 \contentsline {subsection}{\numberline {6.4.2}Memory Usage}{37}{subsection.6.4.2}
 \contentsline {chapter}{\numberline {7}Results}{39}{chapter.7}
-\contentsline {section}{\numberline {7.1}Validation}{39}{section.7.1}
-\contentsline {section}{\numberline {7.2}Basic Testing}{41}{section.7.2}
-\contentsline {section}{\numberline {7.3}Parametric}{41}{section.7.3}
-\contentsline {section}{\numberline {7.4}Graph Processing}{41}{section.7.4}
-\contentsline {section}{\numberline {7.5}Java Grande}{41}{section.7.5}
-\contentsline {section}{\numberline {7.6}Mandelbrot}{41}{section.7.6}
-\contentsline {section}{\numberline {7.7}Overhead}{41}{section.7.7}
-\contentsline {subsection}{\numberline {7.7.1}Execution Time}{41}{subsection.7.7.1}
-\contentsline {subsection}{\numberline {7.7.2}Memory Usage}{41}{subsection.7.7.2}
-\contentsline {section}{\numberline {7.8}Analysis}{41}{section.7.8}
+\contentsline {section}{\numberline {7.1}Basic Testing}{39}{section.7.1}
+\contentsline {section}{\numberline {7.2}Parametric}{41}{section.7.2}
+\contentsline {section}{\numberline {7.3}Graph Processing}{41}{section.7.3}
+\contentsline {section}{\numberline {7.4}Java Grande}{41}{section.7.4}
+\contentsline {section}{\numberline {7.5}Mandelbrot}{41}{section.7.5}
+\contentsline {section}{\numberline {7.6}Overhead}{41}{section.7.6}
+\contentsline {subsection}{\numberline {7.6.1}Execution Time}{41}{subsection.7.6.1}
+\contentsline {subsection}{\numberline {7.6.2}Memory Usage}{41}{subsection.7.6.2}
+\contentsline {section}{\numberline {7.7}Analysis}{41}{section.7.7}
 \contentsline {chapter}{\numberline {8}Conclusion}{43}{chapter.8}
 \contentsline {subsection}{\numberline {8.0.1}Concluding Remarks}{43}{subsection.8.0.1}
 \contentsline {subsection}{\numberline {8.0.2}Unsolved Problems}{43}{subsection.8.0.2}
 \contentsline {subsection}{\numberline {8.0.3}Future Work}{43}{subsection.8.0.3}
-\contentsline {chapter}{Bibliography}{45}{chapter*.8}
+\contentsline {chapter}{Bibliography}{45}{chapter*.10}
