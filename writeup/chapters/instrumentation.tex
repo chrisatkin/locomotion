@@ -1,6 +1,8 @@
 \chapter{Instrumentation} \label{chp:instrumentation}
-\section{Graal} \label{sec:instrumentation/graal}
+Flexible and efficient instrumentation is the foundation of this project. Here, possible approaches to this instrumentation are discussed, along with critical analyses.
 
+\section{Graal} \label{sec:instrumentation/graal}
+\textit{To write.}
 
 \section{Bytecode Instrumentation} \label{sec:instrumentation/bytecode-instr}
 	The first approach uses so-called \textit{bytecode instrumentation} (BCI) - that is, modifying the bytecode directly, either at compile-time or runtime. This approach is advantageous in that arbitrary commands can be inserted, and is only subject to the limitations of the bytecode format. In this sense, arbitrary functionality can be inserted into \texttt{.class} files. However, it is complex (requiring advanced knowledge of the JVM and bytecode formats), as well as being difficult to use. Graal already performs a lot of the work that would be required with this kind of approach, in that it detects control flow and memory dependencies from bytecode. Such systems require a large degree of programmer effort.
@@ -20,17 +22,23 @@
 	
 	Java Agents manipulate class files at load-time, through the \texttt{java.lang.instrument} package. The package defines the \texttt{ClassFileTransformer} interface, which provides implementations of class transformers. An advantage of this approach is that since Java Agents are included in the core Java package, developers wishing to use \textit{Locomotion} would not need to download and install Graal.
 	
-	There are several different libraries which provide an abstraction layer for such bytecode transformations. The following sections describe the procedure for 
+	There are several different libraries which provide an abstraction layer for such bytecode transformations. The following sections describe various different libraries that could be used (or use themselves) for agent-based bytecode instrumentation.
 
 	\subsection{ASM} \label{sec:instrumentation/bytecode-instr/asm}
 	Despite Java Agents providing the capability to manipulate raw Java bytecode (indeed, the bytecode is made available as a \texttt{byte} array), performing such transformations are difficult and awkward. For this reason, there exists many different libraries for manipulating Java bytecode, ObjectWeb ASM being one of them.
 	
 	ASM \citep{Bruneton2002} is a simple-to-use bytecode manipulation library, itself written in Java. It uses a high-level abstraction for the bytecode, which is advantageous because it allows developers to remain unconcerned with the specifics of control flow analysis, dependency analysis and other such concerns.
 	
-	Although now common, when ASM was first developed it was considered particularly innovative because it allowed the use of the visitor pattern \citep[p.~331]{Gamma1995} for traversing bytecode.
+	Although now common, when ASM was first developed it was considered particularly innovative because it allowed the use of the visitor pattern \citep[p.~331]{Gamma1995} for traversing bytecode. The visitor pattern `allows for one or more operations to be applied to a set of objects at runtime, decoupling the operations from the object structure' \citep{McDonald2008}. The advantage to this approach is that it allows a user to walk a serialized object graph \emph{without} de-serialising it or defining large numbers of classes (for reference, an alternative to ASM for bytecode generation, BECL \citep{ApacheBECL} contains 270 classes for representing each bytecode). Additionally, it allows users to also reconstruct a modified version of the graph (in ASM, graphs are immutable).
+	
+	Several well-known existing projects use ASM already for bytecode generation, including the Groovy programming language \citep{GroovyDocs}. I also have some experience of ASM through the \textit{Compiling Techniques} coursework \citep{CTcoursework}.
+	
+	ASM was selected as a possible alternative for this project for several reasons. Firstly, its visitor pattern-based approach to bytecode generation/modification is high-level and easily understandable. It also has high performance, being a factor of 12 more performance than BECL for serialisation/deserialisation, and a factor of 35 times more performance than BECL for computing maximum stack frame sizes. ASM is also superior to BECL for performing modifications, although with a significantly lower margin of just a factor of four.
+	
+	The reason for this performance improvement is likely the way ASM and BECL are designed. BECL follows a strict, classical interpretation of object-oriented design principles. Although `good' software design, it is well known that object models have considerable overhead.
 
 	\subsection{Javassist} \label{sec:instrumentation/alt-instr/bytecode-instr/javassist}
-	Javassist is similar to ASM but works at a higher level of abstraction.
+	Javassist \citep{Chiba1998} is similar to ASM in that it is also a library for manipulating bytecode, but its method of operation is significantly different. It allows for run-time polymorphism, by dynamically switching implementation of classes at run-time.
 	
 	There are also additional libraries for manipulating Java bytecode, but due to their features (or lack of), they were not considered for this project.
 
@@ -41,28 +49,27 @@
 	
 	To illustrate this concept, consider the problem of logging method calls. In traditional systems, at each function/method definition the programmer would need to add specific logging code:
 	
-	\begin{verbatim}
-	def function name(...) {
-  if (DEBUG)
-      println("function called at " + time());
+	\begin{lstlisting}[caption=Traditional use of advice in programs,label=lst:tradadvice]
+def function name(...) {
+    if (DEBUG)
+        println("function called at " + time());
       
-      ...
-	}
-	\end{verbatim}
+    // other statements
+}\end{lstlisting}
 	
 	This behaviour is called an \textit{aspect} (an area of a program which may be repeated several times which is unrelated to the purpose of the program). If the behaviour is to change (\eg for example, changing the call to \texttt{date()} to a call to \texttt{time()} instead), each method declaration must be changed manually - a time consuming and potentially error-prone task.
 	
 	Instead, the use of aspects allows the programmer to remove this functionality, and combine a pointcut and advice into an \textit{aspect}:
 	
-	\begin{verbatim}
-	def aspect TraceMethods {
-  def pointcut method-call: execution.in(*) and not(flow.in(this));
+	\begin{lstlisting}[caption=AOP-based advice equivalent to listing \ref{lst:tradadvice},label=lst:aopadvice]
+def aspect TraceMethods {
+    def pointcut method-call: execution.in(*)
+        and not(flow.in(this));
 		
-  before method-call {
-   println("function called at " + time());
-  }
-	}
-	\end{verbatim}
+    before method-call {
+        println("function called at " + time());
+    }
+}\end{lstlisting}
 	
 	Although that from a software engineering perspective this is clearly a superior solution (decreases coupling, increases reuse, increases separation of concern), the use of aspects has not been widely adopted. There are several likely causes for this, such as:
 	
@@ -91,7 +98,7 @@
 
 \section{Hybrid Models} \label{sec:instrumentation/hybrid}
 	\subsection{DiSL} \label{sec:instrumentation/hybrid/disl}
-	Recently, there has been renewed interest in Java bytecode instrumentation. Clearly, the use of aspect-oriented techniques is advantageous, but the current implementations (AspectJ/abc) are deeply flawed. In a sense, they are \textit{static} - they rely on predefined join and point-cuts before any aspect definitions can be constructed.
+	Recently, there has been renewed interest in Java bytecode instrumentation. Clearly, the use of aspect-oriented techniques is advantageous, but the current implementations (AspectJ/abc) are deeply flawed. In a sense, they are \textit{static} - they rely on predefined join and point-cuts before any aspect definitions can be constructed. DiSL is considered a hybrid approach because, unlike AspectJ which relies on access to source code, it uses an agents-based approach to aspect-oriented programming.
 	
 	DiSL (\textit{Domain Specific Language for Instrumentation}) \citep{Marek2012} is a new approach to a domain-specific language (which incidentally, implies that DiSL is declarative) for bytecode instrumentation. It does rely on the use of aspects, but it instead uses an open join-point model where any area of bytecode can be instrumented.
 	

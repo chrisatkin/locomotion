@@ -1,4 +1,4 @@
-\begin{thebibliography}{42}
+\begin{thebibliography}{57}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -63,7 +63,7 @@ Simon Peyton-Jones.
 \bibitem[Anderson et~al.(2013)Anderson, Petersen, Lui, and Glew]{Anderson2013}
 Todd~A Anderson, Leaf Petersen, Hai Lui, and Neal Glew.
 \newblock {Measuring the Haskell Gap}.
-\newblock \emph{Haskell Symposium 2013}, pages 1--12, 2013.
+\newblock 2013.
 \newblock URL
   \url{http://www.leafpetersen.com/leaf/publications/hs2013/haskell-gap.pdf}.
 
@@ -71,9 +71,7 @@ Todd~A Anderson, Leaf Petersen, Hai Lui, and Neal Glew.
   Peyton-Jones]{Mainland2013}
 Geoffrey Mainland, Roman Leshchinskiy, and Simon Peyton-Jones.
 \newblock {Exploiting Vector Instructions with Generalized Stream Fusion}.
-\newblock \emph{ACM SIGPLAN International Conference on Functional
-  Programming}, 2013.
-\newblock \doi{2500365.2500601}.
+\newblock 2013.
 \newblock URL
   \url{http://research.microsoft.com/en-us/um/people/simonpj/papers/ndp/haskell-beats-C.pdf}.
 
@@ -122,6 +120,34 @@ Jing Yang, Kevin Skadron, Mary~Lou Soffa, and Kamin Whitehouse.
 \newblock URL
   \url{http://www.cs.virginia.edu/~skadron/Papers/yang\_hotpar11.pdf}.
 
+\bibitem[Wang et~al.(2009)Wang, Wu, Borin, Hu, Liu, Sager, Ngai, and
+  Fang]{Wang2009}
+Cheng Wang, Youfeng Wu, Edson Borin, Shiliang Hu, Wei Liu, Dave Sager, Tin-fook
+  Ngai, and Jesse Fang.
+\newblock {Dynamic Parallelization of Single-Threaded Binary Programs using
+  Speculative Slicing}.
+\newblock 2009.
+
+\bibitem[Weiser()]{Weiser}
+M.~Weiser.
+\newblock {Reconstructing sequential behavior from parallel behavior
+  projections}.
+\newblock \emph{Information processing letters}, 17\penalty0 (3):\penalty0
+  129--135.
+\newblock ISSN 0020-0190.
+\newblock URL \url{http://cat.inist.fr/?aModele=afficheN\&cpsidt=9606727}.
+
+\bibitem[Ketterlin and Clauss()]{Ketterlin}
+Alain Ketterlin and Philippe Clauss.
+\newblock {Transparent Parallelization of Binary Code}.
+
+\bibitem[Dong et~al.()Dong, Chen, Zhu, Zhang, Qi, and Guan]{Dong}
+Guoxing Dong, Kai Chen, Erzhou Zhu, Yichao Zhang, Zhengwei Qi, and Haibing
+  Guan.
+\newblock {A Translation Framework for Virtual Execution Environment on CPU /
+  GPU Architecture}.
+\newblock \doi{10.1109/PAAP.2010.53}.
+
 \bibitem[Oracle and OpenJDK(2012)]{Graal}
 Oracle and OpenJDK.
 \newblock {Graal Project}, 2012.
@@ -147,13 +173,46 @@ Eric Bruneton, Romain Lenglet, and Thierry Coupaye.
 \newblock URL
   \url{http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.117.5769}.
 
-\bibitem[Gamma et~al.(1995)Gamma, Helm, Johnson, and Vlissides]{Gamma1995}
+\bibitem[Gamma et~al.(2012)Gamma, Helm, Johnson, and Vlissides]{Gamma1995}
 Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides.
-\newblock \emph{{Design Patterns: Elements of Reusable Object-Oriented
-  Software}}, volume 206.
-\newblock Addison-Wesley, 1995.
-\newblock ISBN 0201633612.
+\newblock {Table\_of\_Contents}.
+\newblock \emph{Carcinogenesis}, 33\penalty0 (8):\penalty0 NP--NP, August 2012.
+\newblock ISSN 0143-3334.
 \newblock \doi{10.1093/carcin/bgs084}.
+\newblock URL
+  \url{http://www.carcin.oxfordjournals.org/cgi/doi/10.1093/carcin/bgs084}.
+
+\bibitem[McDonald(2008)]{McDonald2008}
+Jason McDonald.
+\newblock {Design Patterns}.
+\newblock Technical report, DZone, 2008.
+\newblock URL
+  \url{http://cs.franklin.edu/~whittakt/COMP311/rc008-designpatterns\_online.pdf}.
+
+\bibitem[{Apache Foundation}(2013)]{ApacheBECL}
+{Apache Foundation}.
+\newblock {Apache Bytecode Engineering Library}, 2013.
+\newblock URL \url{http://commons.apache.org/proper/commons-bcel/}.
+
+\bibitem[Strachan and {The Groovy Project}(2013)]{GroovyDocs}
+James Strachan and {The Groovy Project}.
+\newblock org.codehaus.groovy.classgen.asm, 2013.
+\newblock URL
+  \url{http://groovy.codehaus.org/gapi/org/codehaus/groovy/classgen/asm/package-summary.html}.
+
+\bibitem[Franke(2013)]{CTcoursework}
+Bj\"{o}rn Franke.
+\newblock {Compiling Techniques coursework}, 2013.
+\newblock URL
+  \url{http://www.inf.ed.ac.uk/teaching/courses/ct/Coursework/Coursework\_2013.pdf}.
+
+\bibitem[Chiba(1998)]{Chiba1998}
+Shigeru Chiba.
+\newblock {Javassist - A Reflection-Based Programming Wizard for Java}.
+\newblock In \emph{Proceedings of the OOPSLA workshop on Reflective Programming
+  in C and}, 1998.
+\newblock URL
+  \url{http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/oopsla98/proc/chiba.pdf}.
 
 \bibitem[Kiczales(1996)]{Kiczales1997}
 Gregor Kiczales.
@@ -289,6 +348,19 @@ S~Joshua Swamidass and Pierre Baldi.
 \newblock \doi{10.1021/ci600526a}.
 \newblock URL \url{http://www.ncbi.nlm.nih.gov/pubmed/17444629}.
 
+\bibitem[Ibbett(2009)]{Ibbett2009}
+Ronald Ibbett.
+\newblock {High Performance Computer Architectures}, 2009.
+\newblock URL
+  \url{http://homepages.inf.ed.ac.uk/cgi/rni/comp-arch.pl?Paru/depend.html,Paru/depend-f.html,Paru/menu.html}.
+
+\bibitem[Stallings(2013)]{ArchitectureBook}
+William Stallings.
+\newblock \emph{{Computer Organisation and Architecture: Design for
+  Performance}}.
+\newblock Pearson, Harlow, nineth edition, 2013.
+\newblock ISBN 0-273-76919-7.
+
 \bibitem[Knuth(1997)]{TAOCPvol2}
 Donald~E. Knuth.
 \newblock \emph{{The Art of Computer Programming Volume 2: Seminumerical
@@ -353,5 +425,29 @@ Kazunori Ogata, Dai Mikurube, Kiyokuni Kawachiya, Scott Trent, and Tamiya
 \newblock {Runtime (Java Platform SE 7)}, 2013.
 \newblock URL
   \url{http://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html}.
+
+\bibitem[Ellis(2011)]{JAMM}
+Jonathan Ellis.
+\newblock {Java Agent for Memory Measurements}, 2011.
+\newblock URL \url{https://github.com/jbellis/jamm/}.
+
+\bibitem[{Oracle Corporation}(2004)]{JSR133}
+{Oracle Corporation}.
+\newblock {JSR-133: Java Memory Model and Thread Specification}.
+\newblock 2004.
+\newblock URL \url{http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf}.
+
+\bibitem[Mueller(2009)]{Mueller2009}
+Klaus Mueller.
+\newblock {GPU Programming: CUDA Threads}.
+\newblock Technical report, Stony Brook University, New York, New York, USA,
+  2009.
+\newblock URL
+  \url{http://www.cs.sunysb.edu/~mueller/teaching/cse591\_GPU/threads.pdf}.
+
+\bibitem[Nvidia(2011)]{Nvidia2011}
+C~Nvidia.
+\newblock {NVIDIA CUDA C Programming Guide}.
+\newblock \emph{Changes}, page 173, 2011.
 
 \end{thebibliography}

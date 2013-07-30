@@ -16,15 +16,15 @@ The fully-qualified package identifier for the runtime library is\\\texttt{uk.ac
 \section{Trace Collection} \label{sec:runtime/trace-collection}
 One of the main functionalities of the runtime library is to enable the collection of traces. This entails logging all appropriate memory operations (i.e., the ones matching conditions presented in \ref{items:reqs}), with some additional semantic information which is also required.
 
-The user-facing functions for trace collection have the following signatures:
+The user-facing methods for trace collection have the following signatures:
 
-\begin{verbatim}
+\begin{lstlisting}[caption=Method signatures for instrumentation methods,label=lst:sigs]
 public static <T> void
 arrayLookup(T[] array, int index, int iterator, int id);
 
 public static <T> void
 arrayStore(T[] array, int index, T value, int iterator, int id);
-\end{verbatim}
+\end{lstlisting}
 
 The arguments are:
 
@@ -70,7 +70,7 @@ Generating traces for large programs -- the kind of programs which would benefit
 		The error rate is defined as:
 		
 		\[
-		\epsilon = 0.5^k
+		\sigma = 0.5^k
 		\]
 		
 		In essence, the longer the bit vector, the more accurate the filter becomes - at the expense of increasing space requirements. If $m=\infty$, then there are no false positives - the filter becomes accurate and deterministic (for a fixed set of $k$).
@@ -87,6 +87,39 @@ Generating traces for large programs -- the kind of programs which would benefit
 	The problem statement for dependency analysis is as follows:
 	
 	Let $i^l_n$ be the set of memory accesses for iteration $n$ in loop $l$. For a memory access $\alpha \in i^l_n$, determine whether there exists a previous iteration such that $\alpha \in i^l_{n-c}$ for some integer $c$. Additionally, for an access $\alpha_i$ and previous access $\alpha_{i-c}$, $kind(\alpha_i) \neq read \wedge kind(\alpha_{i-c}) \neq read$.
+	
+	There are several kinds of inter-iteration dependency \citep[p.~526]{Ibbett2009,ArchitectureBook}:
+	
+	\begin{itemize}\label{fig:dep-kinds}
+		\item \textbf{Write-after-write} or \textit{output dependency}: given two instructions $\sigma_x$ and $\sigma_y$, there is a write-after-write dependency if a total ordering is required for $\sigma_x$ and $\sigma_y$. For example:
+		
+		\begin{verbatim}
+		R3 = R1 + R2
+		R3 = R3 + R4
+		\end{verbatim}
+		
+		If the second statement were executed before the first statement, program correctness would be violated, so speculative execution is not possible.
+		
+		\item \textbf{Write-after-read} or \textit{antidependency}: given two instructions $\sigma_x$ and $\sigma_y$, there is a write-after-read dependency if evaluation of $\sigma_y$ is dependent on the evaluation of $\sigma_x$:
+		
+		\begin{verbatim}
+		R1 = R2 + R3
+		R2 = R4 + R5
+		\end{verbatim}
+		
+		In this case, if the statements are re-ordered, the wrong value of \texttt{R2} will be used.
+		
+		\item \textbf{Read-after-write} or \textit{true dependency}: given two statements $\sigma_x$ and $\sigma_y$, there is a read-after-write dependency if $\sigma_y$ stores the value (or derivative value) of $\sigma_x$:
+		
+		\begin{verbatim}
+		R1 = R2 + R3
+		R4 = R1 + R5
+		\end{verbatim}
+		
+		If the statements are reordered, either a stale value of R1 will be used, or R1 may not have been initialized.
+	\end{itemize}
+	
+	There is also a theoretical dependency that can be detected by the framework, read-after-read, but since this does not cause two iterations to be dependent, they are not considered by the framework.
 
 	\subsection{Offline Algorithms} \label{sec:runtime/analysis/offline}
 	An offline algorithm means that any processing is performed after the trace has been collected \citep[p.~525-526]{TAOCPvol2}. It is the simplest form of dependency analysis algorithm, but it show poor performance. For a number of loops $l$ with an average of $i$ iterations each, where each iteration has an average of $o$ operations, then $T_{offline}=O(lio)$.

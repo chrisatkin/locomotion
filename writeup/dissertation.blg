@@ -11,44 +11,57 @@ A level-1 auxiliary file: chapters/results.aux
 A level-1 auxiliary file: chapters/conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
-You've used 42 entries,
+Warning--empty note in Anderson2013
+Warning--empty note in Mainland2013
+Warning--empty journal in Wang2009
+Warning--empty year in Weiser
+Warning--empty year in Weiser
+Warning--empty journal in Ketterlin
+Warning--empty year in Ketterlin
+Warning--empty year in Ketterlin
+Warning--empty journal in Dong
+Warning--empty year in Dong
+Warning--empty year in Dong
+Warning--empty journal in JSR133
+You've used 57 entries,
             2481 wiz_defined-function locations,
-            923 strings with 14249 characters,
-and the built_in function-call counts, 17454 in all, are:
-= -- 1566
-> -- 923
-< -- 39
-+ -- 356
-- -- 272
-* -- 1374
-:= -- 2852
-add.period$ -- 203
-call.type$ -- 42
-change.case$ -- 85
-chr.to.int$ -- 42
-cite$ -- 42
-duplicate$ -- 860
-empty$ -- 1475
-format.name$ -- 336
-if$ -- 3737
+            1017 strings with 16692 characters,
+and the built_in function-call counts, 21882 in all, are:
+= -- 1939
+> -- 1120
+< -- 51
++ -- 444
+- -- 330
+* -- 1655
+:= -- 3587
+add.period$ -- 254
+call.type$ -- 57
+change.case$ -- 118
+chr.to.int$ -- 57
+cite$ -- 69
+duplicate$ -- 1098
+empty$ -- 1893
+format.name$ -- 413
+if$ -- 4660
 int.to.chr$ -- 1
-int.to.str$ -- 43
-missing$ -- 37
-newline$ -- 288
-num.names$ -- 129
-pop$ -- 310
+int.to.str$ -- 58
+missing$ -- 43
+newline$ -- 369
+num.names$ -- 174
+pop$ -- 454
 preamble$ -- 1
-purify$ -- 42
+purify$ -- 57
 quote$ -- 0
-skip$ -- 521
+skip$ -- 677
 stack$ -- 0
-substring$ -- 568
-swap$ -- 171
-text.length$ -- 17
+substring$ -- 629
+swap$ -- 196
+text.length$ -- 16
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 282
-warning$ -- 0
-while$ -- 135
+type$ -- 387
+warning$ -- 12
+while$ -- 167
 width$ -- 0
-write$ -- 705
+write$ -- 896
+(There were 12 warnings)

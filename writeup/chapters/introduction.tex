@@ -1,4 +1,6 @@
 \chapter{Introduction} \label{chp:introduction}
+In this chapter, some background to the problem of parallelism and parallel expression is presented. Some alternative approaches to dynamic detection are covered (\ie, alternative parallel expression techniques), with a critical analysis of their strengths and merits. Lastly, a brief overview of the outline of this dissertation is presented.
+
 \section{Background} \label{sec:introduction/background}
 Ever since the introduction of the first microprocessors in the early 1970s, there has been a trend within the microprocessor industry affectionately called Moore's Law. Although not a law in the proper scientific sense (rather, it is more of an observation of the behaviour of the industry), it does accurately describe the trend of the number of transistors which can be placed in a given area\footnote{Which is emphatically \textit{not} the idea that processor speed doubles every 18 months - which is a common misconception. Moore's Law is also applicable to other VLSI products, such as memory.}. The trend so far has been that this number double every 18 months. Altogether, Moore's Law successfully described the behaviour of the semiconductor industry until roughly five years ago.
 
@@ -63,26 +65,27 @@ However, transactional memory when used in the context of computer systems (TM c
 
 Another way of utilising hardware support in parallelism is to make use of low-level constructs such as compare-and-swap, test-and-set (and test-and-test-and-set) and so on. These mechanisms are very simple, but they allow programmers to implement more complicated and sophisticated parallelism constructs using them. For example, the test-and-test-and-set operation can be used to implement locks in the following way:
 
-\begin{verbatim}
+\begin{lstlisting}[caption=Pseudocode for a test-and-set atomic operation and its use,label=lst:testandset]
 boolean function test-and-set(boolean v) {
-< boolean initial = v;
-v = true;
-return initial;
->  
-}
-
+    < boolean initial = v;
+      v = true;
+      return initial;
+    >  }
+// usage of test-and-set
 lock_t lock = false;
 co [int i = 1 to n] {
-while (something) {
- while (lock || test-and-set(lock))
-     ;
+    while (something) {
+        // test lock before test-and-set(lock)
+        // via short-circuit evaluation
+        // this is to avoid trashing the cache
+        while (lock || test-and-set(lock)) ;
      
- critical-section();
- lock = false;
- non-critical-section();
+        critical-section();
+        lock = false;
+        non-critical-section();
+    }
 }
-}
-\end{verbatim}
+\end{lstlisting}
 
 {\small Note that any code within $<$ and $>$ occurs atomically, and the \texttt{co} notation refers to $n$ threads executing the block in parallel.}
 
@@ -95,7 +98,7 @@ Indeed, this idea of higher-level languages displaying good parallelisation char
 \section{Language Semantics and Compiler Reasoning} \label{sec:introduction/reasoning}
 Referential transparency is advantageous for parallelisation because it limits shared state. The reason that the techniques listed above such as semaphores, mutexes and so on is to limit concurrent access to shared state variables. As referential transparency specifically disallows shared state, the advantages are clear. To give a concrete example of this, consider the following code, noting that function $f$ is declared as referentially transparent:
 
-\begin{verbatim}
+\begin{lstlisting}[caption=Example of a referentially transparent function,label=lst:reftrans]
 int transparent function f(int x, int y) {
     return x * y;
 }
@@ -107,7 +110,7 @@ for int i = 0 to 10000 {
         results[i][j] = f(i, j)
     }
 }
-\end{verbatim}
+\end{lstlisting}
 
 Because $f$ has been declared as transparent, the compiler can perform aggressive optimisations - \eg for $p$ processors, computing $\frac{10000}{p}$ iterations of the outer loop on each processor. It must be emphasised that the specific runtime configuration is not important - it is up to the compiler or runtime to determine the appropriate execution strategy. In theory, the compiler or runtime could even execute the loops on a more specialised device, such as a GPU.
 
@@ -115,14 +118,14 @@ So far in this chapter we have justified the use of declarative languages over i
 
 Consider the following SQL statement:
 
-\begin{verbatim}
+\begin{lstlisting}[language=SQL,caption=Sample SQL query,label=lst:sql]
 SELECT
     username, firstname, lastname
 FROM
     Users
 WHERE
     id = 3
-\end{verbatim}
+\end{lstlisting}
 
 As we know, SQL is a declarative language. The user has \emph{no} control over the way that the SQL compiler/optimiser/interpreter/runtime executes the query, and this is precisely the power that declarative languages offer. Research has shown that optimistic optimistic compilers for declarative languages can, in some cases, out-perform hand-tuned C code \citep{Anderson2013,Mainland2013}.
 

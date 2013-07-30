@@ -4,3 +4,10 @@
 \subsection{Unsolved Problems} \label{sec:conclusion/unsolved}
 
 \subsection{Future Work} \label{sec:conclusion/future-work}
+The work that has been presented in this dissertation is a step forwards in dynamic parallelism detection. The framework correctly identifies data-parallel loops, and we have investigated whether the use of bloom filters affects the detection rate. However, there are still significant areas of future work that are possible.
+
+The framework presented is only currently capable of detecting parallelism at the level of loops (\ie, loop-level parallelism). 
+
+Additionally, although the framework \emph{does} correctly detect parallelism at run-time, this information is current under-exploited by the runtime. It is possible, at least theoretically, that the framework could be combined with fellow student Ranjeet Singh's Java-to-OpenCL compiler in a JIT setting to produce a runtime system that dynamically detects parallel loops, recompiles then and executes using OpenCL (either on a CPU or GPU). However, there is an additional downside to this: the advantage (\ie, performance increase) of dynamic recompilation, moving execution to the CPU and then gathering the result must be greater than that of not doing so.
+
+Although thread creation on CPUs is expensive in Java \citep{JSR133}, thread creation on GPUs is low \citep{Mueller2009} (indeed, GPUs need 1000s of threads to operate efficiently in CUDA \citep{Nvidia2011}). In order to properly perform recompilation (or not), a cost model would need to be developed.

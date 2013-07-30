@@ -28,25 +28,10 @@ In order to improve the results, each experiment was repeat three times. The ave
 	\subsection{Validation and Basic Testing} \label{sec:methodology/benchmarks/simple}
 	The first `item of business' is to prove that the implementation of the instrumentation is correct. We ensure this by comparing the results of algorithms with pre-determined results to the output of the instrumentation.
 	
-	The algorithm used for this was the following:
-	
-	\begin{verbatim}
-	def function f(int[] a, int[] b) {
-	    assert a.length == b.length;
-	    int[] c = int[a.length];
-	    
-	    for (int i to a.length) {
-	        c[i] = a[b[i]];
-	    }
-	    
-	    return c;
-	}
-	\end{verbatim}
-	
-	Using this algorithm, it is possible to construct values for $a$ and $b$ such that there are no dependencies or all of the accesses are dependent (except the first).
+	Since there are several kinds of dependency (see figure \ref{fig:dep-kinds}), these benchmarks need to take this into account.
 	
 	\subsection{Parametric Benchmarks} \label{sec:methodology/benchmarks/parametric}
-	In addition to 
+	In addition to basic verification, a parametric benchmark has been created. This benchmark -- called \textit{FractionalDependent} -- allows a user to specify 
 	
 	\subsection{Graph Processing Algorithms} \label{sec:methodology/benchmarks/graphs}
 	
@@ -70,6 +55,7 @@ In order to improve the results, each experiment was repeat three times. The ave
 	
 \section{Measurement Methodology} \label{sec:methodology/measurements}
 	\subsection{Execution Time} \label{sec:methodology/measurements/time}
+	Execution time was measured by taking the difference between \texttt{System.nanoTime()} before and after the experiment was run. This is superior to using other methods, such as the Unix \texttt{time} program because it computes an accurate value, instead of elapsed user-space CPU time.
 	
 	\subsection{Memory Usage} \label{sec:methodology/measurements/memory}
 	The difficulties of measuring memory usage in Java programs due to the non-deterministic nature of the garbage collector are well documented in the literature \citep{Kim2000,Ogata2010}. Despite this, the Java 7 API presents several techniques \citep{RuntimeDocs} of measuring memory within the JVM:
@@ -79,3 +65,7 @@ In order to improve the results, each experiment was repeat three times. The ave
 		\item \texttt{maxMemory()}: the maximum amount of memory that the virtual machine will attempt to use
 		\item \texttt{totalMemory()}: the amount of memory currently in use by the virtual machine
 	\end{itemize}
+	
+	In addition, there is a Java Agent for measuring memory usage of an object - the Java Agent for Memory Measurements \citep{JAMM} (JAMM). JAMM is essentially a wrapper for the \texttt{java.lang.instrument.Instrumentation.getObjectSize()} method. There are several methods available, and the framework uses \texttt{measureDeep()} for the greatest accuracy.
+	
+	\texttt{measureDeep()} crawls the object graph, calling \texttt{getObjectSize()} on each object it encounters. An \texttt{IdentityHashMap} is used to detect loops in the object graph. Unfortunately, this does affect execution time - but memory usage is recorded after execution time has been recorded. \citeauthor{JAMM} does suggest investigating the possible use of bloom filters to overcome this memory usage, but this it outside the scope of this project.
