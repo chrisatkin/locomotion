@@ -1,4 +1,4 @@
-package uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic;
+package uk.ac.ed.inf.icsa.locomotion.benchmarks.generated;
 
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Kind;
 

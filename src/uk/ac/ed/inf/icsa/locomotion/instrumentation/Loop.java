@@ -3,12 +3,13 @@ package uk.ac.ed.inf.icsa.locomotion.instrumentation;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.github.jamm.MemoryMeter;
+
 import uk.ac.ed.inf.icsa.locomotion.exceptions.LoopDependencyException;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.TraceConfiguration;
 
 class Loop {
-	
 	private static class Tuple<T> {
 		public T read;
 		public T write;
@@ -17,6 +18,11 @@ class Loop {
 			StringBuilder string = new StringBuilder();
 			string.append("read=").append(read.toString()).append(" write=").append(write.toString());
 			return string.toString();
+		}
+		
+		public long getMemoryUsage() {
+			MemoryMeter m = new MemoryMeter();
+			return m.measureDeep(read) + m.measureDeep(write);
 		}
 	}
 	
@@ -103,6 +109,18 @@ class Loop {
 		}
 		
 		return string.toString();
+	}
+	
+	public long getMemoryUsage() {
+		long result = 0;
+		
+		for (Map.Entry<Integer, Tuple<Trace>> entry: iterations.entrySet()) {
+			Tuple<Trace> trace = entry.getValue();
+			
+			result += trace.getMemoryUsage();
+		}
+		
+		return result;
 	}
 	
 	public String getId() {

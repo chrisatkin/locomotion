@@ -4,6 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+import org.github.jamm.MemoryMeter;
 
 import com.google.common.hash.Funnel;
 import com.google.common.hash.PrimitiveSink;
@@ -28,24 +36,36 @@ final class Experiments {
 				true,							// enable instrumentation
 				HashSetTrace.class,				// storage class
 				new TraceConfiguration(),		// storage configuration
-				true,							// report memory usage
+				false,							// report memory usage
 				output
 			)
 		);
 		
 		// add probabilistic tests
 		for (int i = 1000; i <= 10000; i += 1000) {
-			experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}));
-			//experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}));
+			// Basic tests
+			experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}, output));
+			experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}, output));
 			
-			for (int p_i = 1; p_i <= 9; p_i++) {
-				double p = p_i / 10.0d;
-				//experiments.add(new Test(SomeDependent.class, instrument, new Object[] {i, p}));
+			// Probabilistic tests
+			experiments.add(new Test(FractionalDependent.class, instrument, new Object[] {i, 300, 300, 300}, output));
+
+			// vector addition
+			Integer[] a = new Integer[i];
+			Integer[] b = new Integer[i];
+			for (int j = 0; j < i; j++) {
+				a[j] = (int) Math.random() * j;
+				b[j] = (int) Math.random() * j;
 			}
+			experiments.add(new Test(VectorAddition.class, instrument, new Object[] {a, b}, output));
 		}
+		
+		experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/2body.txt", 10000 }, output));
+		experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/3body.txt", 10000 }, output));
+		experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/4body.txt", 10000 }, output));
 	}
 	
-	private void run() throws IOException {
+	private void run() throws IOException, InterruptedException, ExecutionException, TimeoutException {
 		for (boolean instrumentationEnabled: new boolean[] {true, false}) {
 			runExactExperiments(instrumentationEnabled);
 			//runInexactExperiments(instrumentationEnabled);
@@ -53,11 +73,11 @@ final class Experiments {
 	}
 	
 	@SuppressWarnings("serial")
-	private void runInexactExperiments(boolean withInstrumentation) throws FileNotFoundException {
+	private void runInexactExperiments(boolean withInstrumentation) throws FileNotFoundException, InterruptedException, ExecutionException, TimeoutException {
 		// BloomFilter
 		Class<? extends Trace> traceFormat = BloomFilterTrace.class;
 		
-		for (int i = 100; i <= 1000; i += 1000) {
+		for (int i = 100; i <= 1000; i += 100) {
 			BloomFilterConfiguration bfc = new BloomFilterConfiguration(i, new Funnel<Access>() {
 				@Override
 				public void funnel(Access access, PrimitiveSink sink) {
@@ -69,16 +89,19 @@ final class Experiments {
 				withInstrumentation,
 				traceFormat,
 				bfc,
-				withInstrumentation,
+				false,
 				output
 			));
-			
+
 			for (Test experiment: experiments) {
+				System.out.println("testing " + experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";storageconf=" + bfc.toString());
 				output.open(experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";storageconf=" + bfc.toString());
 				InstrumentSupport.startTimer();
-				experiment.run(output);
+				
+				experiment.run();
+				
 				InstrumentSupport.stopTimer();
-				output.put("finalmemory=" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
+				output.put("finalmemory=" + (new MemoryMeter().measureDeep(this)));
 				output.put("dependencies=" + InstrumentSupport.getDependencies().size());
 				output.put("time=" + InstrumentSupport.getTimeDifference());
 				output.close();
@@ -90,7 +113,7 @@ final class Experiments {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private void runExactExperiments(boolean withInstrumentation) throws FileNotFoundException {
+	private void runExactExperiments(boolean withInstrumentation) throws FileNotFoundException, InterruptedException, ExecutionException, TimeoutException {
 		TraceConfiguration traceConfiguration = new TraceConfiguration();
 		
 		for(Class<?> t: new Class<?>[] { HashSetTrace.class }) {
@@ -100,15 +123,18 @@ final class Experiments {
 				withInstrumentation,		// instrumentation enabled
 				traceFormat,
 				traceConfiguration,
-				withInstrumentation,
+				false,
 				output));
 			
-			for (Test experiment: experiments) {
+			for (Test experiment: experiments) {	
+				System.out.println("testing " + experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + t.getSimpleName() + ";storageconf=" + traceConfiguration.toString());
 				output.open(experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + t.getSimpleName() + ";storageconf=" + traceConfiguration.toString());
 				InstrumentSupport.startTimer();
-				experiment.run(output);
+
+				experiment.run();
+				
 				InstrumentSupport.stopTimer();
-				output.put("finalmemory=" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
+				output.put("finalmemory=" + (new MemoryMeter().measureDeep(this)));
 				output.put("dependencies=" + InstrumentSupport.getDependencies().size());
 				output.put("time=" + InstrumentSupport.getTimeDifference());
 				output.close();
@@ -122,7 +148,7 @@ final class Experiments {
 	public static void main(String[] args) {
 		try {
 			new Experiments().run();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -3,11 +3,12 @@ package uk.ac.ed.inf.icsa.locomotion.testing;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
 import uk.ac.ed.inf.icsa.locomotion.testing.output.Output;
 
-public class Test {
+public class Test implements Runnable {
 	private Experiment e;
 	private InstrumentSupport instrument;
+	private Output output;
 	
-	public Test(Class <? extends Experiment> clazz, InstrumentSupport instrument, Object[] args) {
+	public Test(Class <? extends Experiment> clazz, InstrumentSupport instrument, Object[] args, Output output) {
 		this.instrument = instrument;
 		
 		try { this.e = clazz.newInstance(); }
@@ -16,10 +17,11 @@ public class Test {
 		e.setArguments(args);
 	}
 	
-	public void run(Output output) {
+	@Override
+	public void run() {
 		try {
 			e.run(output, instrument);
-		} catch (IllegalArgumentException | SecurityException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

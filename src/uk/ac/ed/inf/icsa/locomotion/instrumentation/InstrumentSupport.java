@@ -62,4 +62,8 @@ public final class InstrumentSupport {
 	public static void clean() {
 		instrument.clear();
 	}
+	
+	public static long getTraceMemoryUsage() {
+		return instrument.getTraceMemoryUsage();
+	}
 }

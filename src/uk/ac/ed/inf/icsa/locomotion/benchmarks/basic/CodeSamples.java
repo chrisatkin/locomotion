@@ -1,8 +1,8 @@
 package uk.ac.ed.inf.icsa.locomotion.benchmarks.basic;
 
-import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.StaticGenerator;
-import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.Generator;
-import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.FractionalGenerator;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.generated.FractionalGenerator;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.generated.Generator;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.generated.StaticGenerator;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Access;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Configuration;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
@@ -33,7 +33,7 @@ public class CodeSamples {
 		return c;
 	}
 	
-	public static void loopDependency(Integer[] array, Kind[] first, Kind[] second) {
+	public static void loopDependency(Integer[] array, Kind[] first, Kind[] second, String ident) {
 		for (int i = 0; i <= 1; i++) {
 			for (int j = 0; j < array.length; j++) {
 				// Get the right array
@@ -43,9 +43,9 @@ public class CodeSamples {
 				Kind type = which[j];
 				
 				if (type == Kind.Load)
-					InstrumentSupport.arrayLookup(array, j, i, "loop-dependency");
+					InstrumentSupport.arrayLookup(array, j, i, ident);
 				else if (type == Kind.Store)
-					InstrumentSupport.arrayWrite(array, j, j, i, "loop-dependency");
+					InstrumentSupport.arrayWrite(array, j, j, i, ident);
 			}
 		}
 	}
@@ -61,7 +61,7 @@ public class CodeSamples {
 		Kind[] first = some.getFirst();
 		Kind[] second = some.getSecond();
 		Integer[] array = some.getArray();
-		loopDependency(array, first, second);
+		//loopDependency(array, first, second);
 	}
 	
 	public static void main(String[] args) {

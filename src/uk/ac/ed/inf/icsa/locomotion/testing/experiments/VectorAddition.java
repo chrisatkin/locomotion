@@ -25,16 +25,21 @@ public final class VectorAddition implements Experiment {
 		Integer[] c = new Integer[length];
 		
 		for (int i = 0; i < length; i++) {
-			Integer currentA = InstrumentSupport.arrayLookup(a, i, i, "vector-addition");
-			Integer currentB = InstrumentSupport.arrayLookup(b, i, i, "vector-addition");
+			Integer currentA = InstrumentSupport.arrayLookup(a, i, i, getIdentifier());
+			Integer currentB = InstrumentSupport.arrayLookup(b, i, i, getIdentifier());
 			Integer result = currentA + currentB;
 			
-			InstrumentSupport.arrayWrite(c, i, result, i, "vector-addition");
+			InstrumentSupport.arrayWrite(c, i, result, i, getIdentifier());
 		}
 	}
 	
 	@Override
 	public String getIdentifier() {
 		return "vector-addition;length=" + length;
+	}
+	
+	@Override
+	public void stop() {
+		
 	}
 }

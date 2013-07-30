@@ -1,6 +1,8 @@
 package uk.ac.ed.inf.icsa.locomotion.testing.experiments;
 
-import uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.Generator;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.Kind;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.basic.CodeSamples;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.generated.StaticGenerator;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
 import uk.ac.ed.inf.icsa.locomotion.testing.Experiment;
 import uk.ac.ed.inf.icsa.locomotion.testing.output.Output;
@@ -16,19 +18,13 @@ public final class AllDependent implements Experiment {
 
 	@Override
 	public void run(Output output, InstrumentSupport instrument) {
-		Generator gen = new uk.ac.ed.inf.icsa.locomotion.benchmarks.probabilistic.StaticGenerator(this.length);
+		StaticGenerator gen = new StaticGenerator(length, Kind.Store, Kind.Store);
 		gen.generate();
+		Kind[] first = gen.getFirst();
+		Kind[] second = gen.getSecond();
+		Integer[] array = gen.getArray();
 		
-		Integer[] a = gen.getA();
-		Integer[] b = gen.getB();
-		
-		Integer[] c = new Integer[a.length];
-		
-		for (int i = 0; i < a.length; i++) {
-			Integer val = InstrumentSupport.arrayLookup(b, InstrumentSupport.arrayLookup(a, i, i, "all-dependent"), i, "all-dependent");
-			
-			InstrumentSupport.arrayWrite(c, i, val, i, "all-dependent");
-		}
+		CodeSamples.loopDependency(array, first, second, getIdentifier());
 	}
 	
 	public String getIdentifier() {

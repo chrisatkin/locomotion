@@ -1,16 +1,11 @@
 package uk.ac.ed.inf.icsa.locomotion.instrumentation;
 
-import static uk.ac.ed.inf.icsa.locomotion.utilities.DebugUtilities.noop;
-
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.List;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import uk.ac.ed.inf.icsa.locomotion.exceptions.LoopDependencyException;
-import uk.ac.ed.inf.icsa.locomotion.testing.output.Output;
 
 public class Instrument {
 	private final Configuration configuration;
@@ -91,6 +86,16 @@ public class Instrument {
 	}
 	
 	public void reportMemory() {
-		configuration.getOutput().put("memory=" + System.nanoTime() + "," + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
+		configuration.getOutput().put("memory=" + getTraceMemoryUsage());
+	}
+
+	public long getTraceMemoryUsage() {
+		long result = 0;
+		
+		for (Map.Entry<String, Loop> entry: store.entrySet()) {
+			result += entry.getValue().getMemoryUsage();
+		}
+		
+		return result;
 	}
 }
