@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.12)  30 JUL 2013 19:36
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.12)  30 JUL 2013 20:37
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -375,9 +375,9 @@ Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
 \listing@line=\count123
 )
 \verbatim@out=\write3
-runsystem(touch w18-test-20137301176.tex)...executed.
+runsystem(touch w18-test-20137301237.tex)...executed.
 
-runsystem(rm -f w18-test-20137301176.tex)...executed.
+runsystem(rm -f w18-test-20137301237.tex)...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 108.
@@ -1228,7 +1228,7 @@ pe1/urw/palatino/uplb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw
 /palatino/uplr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/palati
 no/uplri8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb>
-Output written on dissertation.pdf (63 pages, 358217 bytes).
+Output written on dissertation.pdf (63 pages, 358306 bytes).
 PDF statistics:
  1192 PDF objects out of 1200 (max. 8388607)
  1064 compressed objects within 11 object streams

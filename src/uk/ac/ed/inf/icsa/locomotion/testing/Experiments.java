@@ -48,7 +48,7 @@ final class Experiments {
 			experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}, output));
 			
 			// Probabilistic tests
-			experiments.add(new Test(FractionalDependent.class, instrument, new Object[] {i, 300, 300, 300}, output));
+			//experiments.add(new Test(FractionalDependent.class, instrument, new Object[] {i, 300, 300, 300}, output));
 
 			// vector addition
 			Integer[] a = new Integer[i];
@@ -60,9 +60,9 @@ final class Experiments {
 			experiments.add(new Test(VectorAddition.class, instrument, new Object[] {a, b}, output));
 		}
 		
-		experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/2body.txt", 10000 }, output));
-		experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/3body.txt", 10000 }, output));
-		experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/4body.txt", 10000 }, output));
+		//experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/2body.txt", 10000 }, output));
+		//experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/3body.txt", 10000 }, output));
+		//experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/4body.txt", 10000 }, output));
 	}
 	
 	private void run() throws IOException, InterruptedException, ExecutionException, TimeoutException {
@@ -101,7 +101,8 @@ final class Experiments {
 				experiment.run();
 				
 				InstrumentSupport.stopTimer();
-				output.put("finalmemory=" + (new MemoryMeter().measureDeep(this)));
+				//output.put("finalmemory=" + (new MemoryMeter().measureDeep(this)));
+				output.put("finalmemory=" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
 				output.put("dependencies=" + InstrumentSupport.getDependencies().size());
 				output.put("time=" + InstrumentSupport.getTimeDifference());
 				output.close();
@@ -134,7 +135,8 @@ final class Experiments {
 				experiment.run();
 				
 				InstrumentSupport.stopTimer();
-				output.put("finalmemory=" + (new MemoryMeter().measureDeep(this)));
+				//output.put("finalmemory=" + (new MemoryMeter().measureDeep(this)));
+				output.put("finalmemory=" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
 				output.put("dependencies=" + InstrumentSupport.getDependencies().size());
 				output.put("time=" + InstrumentSupport.getTimeDifference());
 				output.close();

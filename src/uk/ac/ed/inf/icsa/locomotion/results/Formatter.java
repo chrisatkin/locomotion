@@ -5,6 +5,7 @@ import static io.atkin.collections.literals.set;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,19 +35,34 @@ public final class Formatter {
 	
 	private void run() {
 		try {
-		for (String name: new String[] { "all-dependent", "none-dependent" }) {
-			ThreeAxisVariables length_memory_accesses = new ThreeAxisVariables(
-				getFile(name),
-				results,
-				"length",
-				"finalmemory",
-				"dependencies",
-				set(name)
-			);
-			length_memory_accesses.run();
-			length_memory_accesses.toFile();
-		}
-		
+			for (final String name: new String[] { "all-dependent", "none-dependent" }) {
+				ThreeAxisVariables length_memory_accesses = new ThreeAxisVariables(
+					getFile(name + "-memory"),
+					results,
+					new HashMap<String, String>() {{
+						put("name", name);
+						put("instrumentation", "true");
+					}},
+					"length",
+					"finalmemory",
+					"dependencies"
+				);
+				length_memory_accesses.run();
+				length_memory_accesses.toFile();
+				
+				ThreeAxisVariables length_time_accesses= new ThreeAxisVariables(
+					getFile(name + "-time"),
+					results,
+					new HashMap<String, String>() {{
+						put("name", name);
+						put("instrumentation", "true");
+					}},
+					"length",
+					"time",
+					"dependencies");
+				length_time_accesses.run();
+				length_time_accesses.toFile();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

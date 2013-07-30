@@ -78,5 +78,6 @@
 	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/lib/jamm-0.2.5.jar"/>
 	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/lib/guava-14.0.1.jar"/>
 	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/lib/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/lib/tools.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

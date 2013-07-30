@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 abstract class Format {
 	protected static class ChartItem<A,B,C> {
@@ -40,23 +41,30 @@ abstract class Format {
 	protected File destination;
 	protected List<Result> results;
 	protected List<ChartItem<String, String, String>> items;
+	protected Map<String, String> restrictions;
 	
-	protected Format(File destination, List<Result> results) {
+	protected Format(File destination, List<Result> results, Map<String, String> restrictions) {
 		this.destination = destination;
 		this.results = results;
 		this.items = new LinkedList<>();
+		this.restrictions = restrictions;
 	}
 	
 	public File getDestination() {
 		return destination;
 	}
 	
-	protected List<Result> filterResults(Condition c) {
+	protected List<Result> filterResults() {
 		List<Result> result = new LinkedList<>();
 		
 		for (Result r: results)
-			if (r.matches(c))
-				result.add(r);
+			for (Map.Entry<String, String> requirement: restrictions.entrySet()) {
+				String requirement_name = requirement.getKey();
+				String requirement_must_equal = requirement.getValue();
+				
+				if (r.getValue(requirement_name).equals(requirement_must_equal))
+					result.add(r);
+			}
 		
 		return result;
 	}
