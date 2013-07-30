@@ -88,15 +88,12 @@
 		For array access, the ArrayPT project \citep{Chen2007} adds additional array access capabilities to abc. Although the included point cut does include array access, it is somewhat limited and cannot determine either the index, nor the value to be stored. ArrayPT adds these capabilities to abc. ArrayPT defines two new point cuts, \texttt{arrayset(signature)} and \texttt{arrayget(signature)}. ArrayPT relies on the \texttt{invokevirtual} bytecode in the JVM.
 		
 		It is anticipated that, if these projects are combined, it would present a feasible approach to instrumentation.
-		
-		% loops: Harbulot2005
-		% arrays: Chen2007
 
 \section{Hybrid Models} \label{sec:instrumentation/hybrid}
 	\subsection{DiSL} \label{sec:instrumentation/hybrid/disl}
 	Recently, there has been renewed interest in Java bytecode instrumentation. Clearly, the use of aspect-oriented techniques is advantageous, but the current implementations (AspectJ/abc) are deeply flawed. In a sense, they are \textit{static} - they rely on predefined join and point-cuts before any aspect definitions can be constructed.
 	
-	DiSL (\textit{Domain Specific Language for Instrumentation}) \citep{Marek2012} is a new approach to a domain-specific language (which incidentally, implies that DiSL is declarative) for bytecode instrumentation. It does rely on the use of aspects, but it instead uses an open join-point model where any area of bytecode can be instrumented. DiSL has several advantages over ApsectJ, including:
+	DiSL (\textit{Domain Specific Language for Instrumentation}) \citep{Marek2012} is a new approach to a domain-specific language (which incidentally, implies that DiSL is declarative) for bytecode instrumentation. It does rely on the use of aspects, but it instead uses an open join-point model where any area of bytecode can be instrumented.
 	
 	\begin{itemize}
 		\item Lower overheads
@@ -105,6 +102,30 @@
 		\item Efficient synthetic local variables for data exchange between join-points
 	\end{itemize}
 	
+	As opposed to AspectJ, which requires compile-time definition of join-points, DiSL uses an open-ended join point format which can be evaluated at weave-time. This allows arbitrary regions of bytecodes to be used as join points. \textit{Markers} are used to specify such bytecode regions (markers are included for common join points, such as method calls and, unusually, exception handling - a novel addition to aspect-systems in Java although control-flow analysis can be used to implement user-defined markers), while \textit{guards} allow users to further restrict selected join-points. Guards are essentially predicates which have access to only static information which can be evaluated at weave-time.
+	
+	DiSL implements advice in the form of \textit{code snippets}. Note the distinction between DiSL snippets and Graal snippets - although they are similar, DiSL snippets allow arbitrary behaviour to be inserted whilst Graal snippets are used to mainly lower complex bytecodes into simpler ones. Unlike other aspect-systems, DiSL does not support `around' advice. However, this is not usually regarded as a disadvantage per-se as synthetic local variables mitigate this.
+	
+	The semantics of snippets and guards is novel in DiSL. Both have complete access to local static (\ie, weave-time) reflective join-point information, meaning they can make (theoretically) unbounded numbers of references to static contexts. In addition, snippets have access to dynamic (\ie, run-time) information, including local variables and the operand stack.
+	
 	\citeauthor{Marek2012} present benchmarks of overheads with DiSL versus AspectJ, and their results are promising - a factor of three lower overheads, yet DiSL manages greater code coverage than AspectJ (the number of join-points captured is greater).
 	
+	In conclusion, DiSL represents a significant advancement in aspect-systems in general. DiSL allows many semantics of dynamically-typed languages to be expressed in the (statically-typed) Java language.
+	
+		\subsubsection{Turbo DiSL} \label{sec:instrumentation/hybrid/disl/turbo}
+		An extension to DiSL, Turbo DiSL has been proposed by \citet[p.~353-368]{Furia2012}. Turbo DiSL is essentially an optimiser for DiSL which processes the bytecode produced by `vanilla' DiSL.
+		
+		There are several advantages of Turbo DiSL over DiSL. For example, instead of requiring expressions to be placed into separate classes, Turbo DiSL allows these expressions to be placed in the same class, increasing maintainability. Turbo DiSL also performs some standard compiler optimisations on DiSL-generated code, such as pattern-based code simplification, constant propagation and conditional reduction. These are supported by a novel partial evaluation algorithm.
+		
+		Turbo DiSL implements conditional reduction using partial evaluation. Many conditional control-flow statement expressions can be evaluated at weave-time -- Turbo DiSL removes these dead blocks. DiSL replaces these with \texttt{pop} commands\footnote{\url{http://homepages.inf.ed.ac.uk/kwxm/JVM/pop.html}}, resulting in program correctness remaining unchanged.
+		
+		In addition, an approach similar to peephole-based optimisation. For example, Turbo DiSL reduces unrequired instruction such as jumping to the next instruction, or optimising the conditional reduction effects. For each \texttt{pop} instruction found, the source bytecodes are found (i.e., which bytecodes push the to-be-popped operands). If those bytecodes are side-effect free, they both (the pop and the source) removed.
+		
+		The authors present an analysis of Turbo DiSL performance characteristics. The benchmarks selected were from the DaCapo benchmarks \citep{Blackburn2006}. There is a considerable increase in weave-time of a factor of 7.64 above the baseline, which clearly shows the drawbacks of partial evaluation. However, Turbo DiSL outperforms DiSL by a factor of 5.18 and 13 for startup and steady-state respectively - a considerable improvement.
+
+		The authors present several uses cases where TurboDiSl is superior to DiSL (dynamic instrument configuration, tracking monitor ownership, field access analysis and execution trace profiling). However, this author speculates that, in spite of the aforementioned increase in weave-time, Turbo DiSL will completely supersede DiSL in all situations. 
+		
+	\subsection{\textsc{Teams}} \label{sec:instrumentation/hybrid/teams}
+	An alternative to DiSL is the \textsc{Teams} project \citep{Rahnavard2013}.
+		
 	\subsection{Bytecode Instrumentation \& Graal Transformations} \label{sec:instrumentation/hybrid/graalbytecode}
