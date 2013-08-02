@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+
+
 //import uk.ac.ed.inf.icsa.locomotion.benchmarks.mandelbrot.StdDraw;
 import static uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport.arrayLookup;
 import static uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport.arrayWrite;
@@ -55,33 +57,39 @@ public class Universe {
 
         // move the bodies
         for (int i = 0; i < N; i++) {
-            double xresult = fx[i] * (1.0/mass[i]);
-            double yresult = fy[i] * (1.0/mass[i]);
+        	double xresult = arrayLookup(fx, i, i, "increase-time") * (1.0 / arrayLookup(mass, i, i, "increase-time"));
+        	double yresult = arrayLookup(fy, i, i, "increase-time") * (1.0 / arrayLookup(mass, i, i, "increase-time"));
             xresult *= dt;
             yresult *= dt;
-            vx[i] += xresult;
-            vy[i] += yresult;
-            rx[i] += vx[i] * dt;
-            ry[i] += vy[i] * dt;
+            
+            arrayWrite(vx, i, arrayLookup(vx, i, i, "increase-time") + xresult, i, "increase-time");
+            arrayWrite(vy, i, arrayLookup(vy, i, i, "increase-time") + yresult, i, "increase-time");
+
+            arrayWrite(rx, i, arrayLookup(rx, i, i, "increase-time") + arrayLookup(vx, i, i, "increase-time") * dt, i, "increase-time");
+            arrayWrite(ry, i, arrayLookup(ry, i, i, "increase-time") + arrayLookup(vy, i, i, "increase-time") * dt, i, "increase-time");
         }
     }
+    
+    // public static double arrayLookup(double[] array, int index, int loopIterator, String loopId)
+    
+    // public static void arrayWrite(double[] array, int index, double value, int loopIterator, String loopId)
     
     public void computeForces(double[] rx, double[] ry, double[] mass, double[] fx, double[] fy) {
         // compute the forces
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if (i != j) {
-                double rxresult = rx[j] - rx[i];
-                double ryresult = ry[j] - ry[i];
+                double rxresult = arrayLookup(rx, j, j, "compute-forces") - arrayLookup(rx, i, j, "compute-forces");
+                double ryresult = arrayLookup(ry, j, j, "compute-forces") - arrayLookup(ry, i, j, "compute-forces");
                 double G = 6.67e-11;
                 double dist = Math.sqrt((rxresult * rxresult) + (ryresult * ryresult));
-                double F = (G * mass[i] * mass[j]) / (dist * dist);
+                double F = (G * arrayLookup(mass, i, j, "compute-forces") * arrayLookup(mass, j, j, "compute-forces") / dist * dist);
                 rxresult = rxresult * (1.0/dist);
                 ryresult = ryresult * (1.0/dist);
                 rxresult = rxresult * F;
                 ryresult = ryresult * F;
-                fx[i] += rxresult;
-                fy[i] += ryresult;
+                arrayWrite(fx, i, rxresult, j, "compute-forces");
+                arrayWrite(fy, i, rxresult, j, "compute-forces");
                 }
             }
         }
@@ -89,11 +97,11 @@ public class Universe {
     }
 
     public void draw() {
-        for (int i = 0; i < N; i++) {
-            //StdDraw.setPenRadius(0.025);
-            Vector r = new Vector(new double[]{rx[i],ry[i]});
-            //StdDraw.point(r.cartesian(0), r.cartesian(1));
-        }
+//        for (int i = 0; i < N; i++) {
+//            //StdDraw.setPenRadius(0.025);
+//            //Vector r = new Vector(new double[]{rx[i],ry[i]});
+//            //StdDraw.point(r.cartesian(0), r.cartesian(1));
+//        }
     } 
 
     // client to simulate a universe

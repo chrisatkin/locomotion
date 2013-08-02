@@ -1,48 +1,145 @@
 \chapter{Instrumentation} \label{chp:instrumentation}
+\section{Introduction} \label{sec:instrumentation/introduction}
 Flexible and efficient instrumentation is the foundation of this project. Here, possible approaches to this instrumentation are discussed, along with critical analyses.
 
-\section{Graal} \label{sec:instrumentation/graal}
-\textit{To write.}
+There are two main approaches to the instrumentation: automatic, and manual. 
 
-\section{Bytecode Instrumentation} \label{sec:instrumentation/bytecode-instr}
+\section{Automatic Approaches} \label{sec:instrumentation/automatic}
+	In this context, an automatic approach to instrumentation is a technique that can be applied directly at compile-time (or just before run-time in an agent-like fashion). Such approaches require no human intervention whatsoever, and have the additional advantage of having access to additional compile-time meta-data which is not possible to gain at run-time or using manual instrumentation.
+
+	\subsection{Graal} \label{sec:instrumentation/graal}
+	In the first instance, an automatic approach based on Graal was investigated.
+	
+	As mentioned, Graal uses various different forms of intermediate representation, based on graphs (see section \ref{sec:graal/ir}). In principle, it should be possible to modify these graphs in order to invoke the instrumentation (described in chapter \ref{chp:runtime}).
+	
+	Modifying graphs in Graal is made easy through a simple API. A user can define custom phases (see section \ref{sec:graal/transformations}). Pseudocode for this is as follows:
+	
+	\newpage
+	
+	\begin{lstlisting}[caption=Sample code for adding a phase and manipulating a graph,label=list:graph-trans]
+	// create the phase
+	public class MyPhase extends Phase {
+	    @Override
+	    protected void run(StructuredGraph graph) {
+	        // modify the graph
+	        for (LoadIndexedNode node:
+	            graph.getNodes(LoadIndexedNode.class)) {
+	            graph.addAfterFixed(node,
+	                graph.add(new MyCustomNode()));
+	        }
+	    }
+	}
+	
+	// add the phase
+	Suites s = Graal.getRequiredCapability(SuitesProvider.class)
+	    .createSuites();
+	s.getHighTier().appendPhase(new MyPhase());
+	\end{lstlisting}
+	
+	The call to \texttt{getHighTier()} can be replaced with equivalent methods for the other IRs (\ie, \texttt{getLowTier()} and \texttt{getMidTier()}.
+	
+	As we can see in figure \ref{fig:access-index}, which displays the high-level graph for a simple method that takes an array actual parameter and returns index $0$ of that array, there are specialised nodes for array accesses: \texttt{LoadIndexedNode}. Note that there is also an equivalent for array store operations, \texttt{StoreIndexedNode}.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=.7\textwidth]{graphics/access-index.png}
+		\caption{A high-level graph (with inlining disabled) for a simple method taking an array actual parameter, returning index 0}
+		\label{fig:access-index}
+	\end{figure}
+	
+	This is the basis for selecting the appropriate nodes to instrument. One additional advantage of Graal is the richness of the information available at compile-time. Figure \ref{fig:graal-meta} shows all the available information, as seen in Eclipse's debugger.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{graphics/graal-metadata.png}
+		\caption{Information available at compile-time for the \texttt{LoadIndexedNode} shown in figure \ref{fig:access-index}}
+		\label{fig:graal-meta}
+	\end{figure}
+	
+	The availability of predecessor and next nodes, as well as nodes representing indexes (in this case, a \texttt{ConstantNode}) highlights another advantage of using Graal for these transformations - static analysis is possible, which means that instrumentation can be disabled if dependencies can be proven statically. 
+	
+	There are several possibilities for adding instrumentation in Graal.
+	
+	\begin{enumerate}
+		\item \label{item:instr1} Add a custom node type, which is lowered to an invoke instruction after each applicable node.
+	
+		\item \label{item:instr2} Replace the nodes in question with a custom node that implements the same operation in addition to the required behaviour.
+	
+		\item \label{item:instr3} Javassist includes a method for replacing all array accesses with method calls \citep{JavassistDocs}. It may be possible to use Graal to replace the method call targets where instrumentation is required. In cases where no instrumentation is required, the method would return the array value (or perform the store), which would then be inlined by the compiler.
+	\end{enumerate}
+	
+	In cases \ref{item:instr1} and \ref{item:instr2}, then node would need to implement \texttt{Lowerable}, an interface in Graal that allows nodes to be lowered between IR levels.
+	
+	\textit{However}, there is currently a limitation in Graal which means that it is not currently possible to insert calls to (static) methods. This is because there is no \emph{bytecode index} (or BCI) for the interpreter/compiler to return to if a deoptimisation occurs (details on Graal's deoptimisation mechanisms are available in section \ref{sec:graal/deopt}). Since methods calls cannot be guaranteed to be deoptimisation-free, they cannot be inserted into graphs.
+	
+	In Java bytecode, each instruction has an associated index (this example was compiled using \texttt{javap -c} from a basic `hello, world!' application):
+	
+	\begin{verbatim}
+	Compiled from "Hello.java"
+	public class Hello {
+	  public Hello();
+	    Code:
+	       0: aload_0       
+	       1: invokespecial #1    // Method java/lang/Object."<init>":()V
+	       4: return        
+	
+	  public static void main(java.lang.String[]);
+	    Code:
+	       0: getstatic     #2    // Field java/lang/System.out:Ljava/io/PrintStream;
+	       3: ldc           #3    // String Hello, world
+	       5: invokevirtual #4    // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+	       8: return        
+	}
+	
+	\end{verbatim}
+	
+	We can clearly see the BCIs of the various operations: the \texttt{invokespecial \#1} has a BCI of 1, and so on.
+	
+	The problem is that there is no BCI of inserted instructions, which the runtime continues at if a deoptimisation occurs.
+	
+	In the coming months, the Graal core developers are adding this required feature. Once the feature has been added, it is a simple modification (as the infrastructure has already been created) to add this into Graal.
+	
+	As an alternative, we used manual instrumentation (section \ref{sec:instrumentation/manual}). Although this does have the disadvantage of requiring both source-code access as well as human effort, this will not affect the results or correctness of the evaluation as the semantics are equivalent.
+
+	\subsection{Bytecode Instrumentation} \label{sec:instrumentation/bytecode-instr}
 	The first approach uses so-called \textit{bytecode instrumentation} (BCI) - that is, modifying the bytecode directly, either at compile-time or runtime. This approach is advantageous in that arbitrary commands can be inserted, and is only subject to the limitations of the bytecode format. In this sense, arbitrary functionality can be inserted into \texttt{.class} files. However, it is complex (requiring advanced knowledge of the JVM and bytecode formats), as well as being difficult to use. Graal already performs a lot of the work that would be required with this kind of approach, in that it detects control flow and memory dependencies from bytecode. Such systems require a large degree of programmer effort.
 
-	\subsection{Java Agents} \label{sec:instrumentation/bytecode-instr/agents}
-	At the heart of BCI is the idea of Java Agents \citep{javaagents}. In order to understand them, however, one must first understand some details of the Java platform.
-	
-	Unlike some other languages (for example, C and C++\footnote{Although note that C and C++ \emph{also} support dynamic linking}), Java is a dynamically linked language. That is to say that the various different libraries (JARs) that Java programs used are linked at run-time, rather than compile-time. The advantage to this approach is that it allows distributables to be smaller in size (recall Java Network Launching Protocol, a method for launching (and therefore, distributing) Java applications over the Internet). The disadvantage to this approach is that it can lead to `dependency hell', although through the combination of versioning metadata in JARs and the extreme backwards compatability mantra in Java, this is not currently a significant issue.
-	
-	There are three main class loaders in Java:
-	
-	\begin{itemize}
-		\item The system class loader loads the classes found in the \texttt{java.lang} package
-		\item Any extensions to Java are loaded via the extension loader
-		\item JARs found within the class path are loaded with the lowest precedence, these include the majority of user-level libraries
-	\end{itemize}
-	
-	Java Agents manipulate class files at load-time, through the \texttt{java.lang.instrument} package. The package defines the \texttt{ClassFileTransformer} interface, which provides implementations of class transformers. An advantage of this approach is that since Java Agents are included in the core Java package, developers wishing to use \textit{Locomotion} would not need to download and install Graal.
-	
-	There are several different libraries which provide an abstraction layer for such bytecode transformations. The following sections describe various different libraries that could be used (or use themselves) for agent-based bytecode instrumentation.
+		\subsubsection{Java Agents} \label{sec:instrumentation/bytecode-instr/agents}
+		At the heart of BCI is the idea of Java Agents \citep{javaagents}. In order to understand them, however, one must first understand some details of the Java platform.
+		
+		Unlike some other languages (for example, C and C++\footnote{Although note that C and C++ \emph{also} support dynamic linking}), Java is a dynamically linked language. That is to say that the various different libraries (JARs) that Java programs used are linked at run-time, rather than compile-time. The advantage to this approach is that it allows distributables to be smaller in size (recall Java Network Launching Protocol, a method for launching (and therefore, distributing) Java applications over the Internet). The disadvantage to this approach is that it can lead to `dependency hell', although through the combination of versioning metadata in JARs and the extreme backwards compatability mantra in Java, this is not currently a significant issue.
+		
+		There are three main class loaders in Java:
+		
+		\begin{itemize}
+			\item The system class loader loads the classes found in the \texttt{java.lang} package
+			\item Any extensions to Java are loaded via the extension loader
+			\item JARs found within the class path are loaded with the lowest precedence, these include the majority of user-level libraries
+		\end{itemize}
+		
+		Java Agents manipulate class files at load-time, through the \texttt{java.lang.instrument} package. The package defines the \texttt{ClassFileTransformer} interface, which provides implementations of class transformers. An advantage of this approach is that since Java Agents are included in the core Java package, developers wishing to use \textit{Locomotion} would not need to download and install Graal.
+		
+		There are several different libraries which provide an abstraction layer for such bytecode transformations. The following sections describe various different libraries that could be used (or use themselves) for agent-based bytecode instrumentation.
 
-	\subsection{ASM} \label{sec:instrumentation/bytecode-instr/asm}
-	Despite Java Agents providing the capability to manipulate raw Java bytecode (indeed, the bytecode is made available as a \texttt{byte} array), performing such transformations are difficult and awkward. For this reason, there exists many different libraries for manipulating Java bytecode, ObjectWeb ASM being one of them.
-	
-	ASM \citep{Bruneton2002} is a simple-to-use bytecode manipulation library, itself written in Java. It uses a high-level abstraction for the bytecode, which is advantageous because it allows developers to remain unconcerned with the specifics of control flow analysis, dependency analysis and other such concerns.
-	
-	Although now common, when ASM was first developed it was considered particularly innovative because it allowed the use of the visitor pattern \citep[p.~331]{Gamma1995} for traversing bytecode. The visitor pattern `allows for one or more operations to be applied to a set of objects at runtime, decoupling the operations from the object structure' \citep{McDonald2008}. The advantage to this approach is that it allows a user to walk a serialized object graph \emph{without} de-serialising it or defining large numbers of classes (for reference, an alternative to ASM for bytecode generation, BECL \citep{ApacheBECL} contains 270 classes for representing each bytecode). Additionally, it allows users to also reconstruct a modified version of the graph (in ASM, graphs are immutable).
-	
-	Several well-known existing projects use ASM already for bytecode generation, including the Groovy programming language \citep{GroovyDocs}. I also have some experience of ASM through the \textit{Compiling Techniques} coursework \citep{CTcoursework}.
-	
-	ASM was selected as a possible alternative for this project for several reasons. Firstly, its visitor pattern-based approach to bytecode generation/modification is high-level and easily understandable. It also has high performance, being a factor of 12 more performance than BECL for serialisation/deserialisation, and a factor of 35 times more performance than BECL for computing maximum stack frame sizes. ASM is also superior to BECL for performing modifications, although with a significantly lower margin of just a factor of four.
-	
-	The reason for this performance improvement is likely the way ASM and BECL are designed. BECL follows a strict, classical interpretation of object-oriented design principles. Although `good' software design, it is well known that object models have considerable overhead.
+		\subsubsection{ASM} \label{sec:instrumentation/bytecode-instr/asm}
+		Despite Java Agents providing the capability to manipulate raw Java bytecode (indeed, the bytecode is made available as a \texttt{byte} array), performing such transformations are difficult and awkward. For this reason, there exists many different libraries for manipulating Java bytecode, ObjectWeb ASM being one of them.
+		
+		ASM \citep{Bruneton2002} is a simple-to-use bytecode manipulation library, itself written in Java. It uses a high-level abstraction for the bytecode, which is advantageous because it allows developers to remain unconcerned with the specifics of control flow analysis, dependency analysis and other such concerns.
+		
+		Although now common, when ASM was first developed it was considered particularly innovative because it allowed the use of the visitor pattern \citep[p.~331]{Gamma1995} for traversing bytecode. The visitor pattern `allows for one or more operations to be applied to a set of objects at runtime, decoupling the operations from the object structure' \citep{McDonald2008}. The advantage to this approach is that it allows a user to walk a serialized object graph \emph{without} de-serialising it or defining large numbers of classes (for reference, an alternative to ASM for bytecode generation, BECL \citep{ApacheBECL} contains 270 classes for representing each bytecode). Additionally, it allows users to also reconstruct a modified version of the graph (in ASM, graphs are immutable).
+		
+		Several well-known existing projects use ASM already for bytecode generation, including the Groovy programming language \citep{GroovyDocs}. I also have some experience of ASM through the \textit{Compiling Techniques} coursework \citep{CTcoursework}.
+		
+		ASM was selected as a possible alternative for this project for several reasons. Firstly, its visitor pattern-based approach to bytecode generation/modification is high-level and easily understandable. It also has high performance, being a factor of 12 more performance than BECL for serialisation/deserialisation, and a factor of 35 times more performance than BECL for computing maximum stack frame sizes. ASM is also superior to BECL for performing modifications, although with a significantly lower margin of just a factor of four.
+		
+		The reason for this performance improvement is likely the way ASM and BECL are designed. BECL follows a strict, classical interpretation of object-oriented design principles. Although `good' software design, it is well known that object models have considerable overhead.
 
-	\subsection{Javassist} \label{sec:instrumentation/alt-instr/bytecode-instr/javassist}
-	Javassist \citep{Chiba1998} is similar to ASM in that it is also a library for manipulating bytecode, but its method of operation is significantly different. It allows for run-time polymorphism, by dynamically switching implementation of classes at run-time.
+		\subsubsection{Javassist} \label{sec:instrumentation/alt-instr/bytecode-instr/javassist}
+		Javassist \citep{Chiba1998} is similar to ASM in that it is also a library for manipulating bytecode, but its method of operation is significantly different. It allows for run-time polymorphism, by dynamically switching implementation of classes at run-time.
 	
-	There are also additional libraries for manipulating Java bytecode, but due to their features (or lack of), they were not considered for this project.
+		There are also additional libraries for manipulating Java bytecode, but due to their features (or lack of), they were not considered for this project.
 
-\section{Aspect-Oriented Programming} \label{sec:instrumentation/alt-instr/aop}
+	\subsection{Aspect-Oriented Programming} \label{sec:instrumentation/alt-instr/aop}
 	Aspect-Oriented Programming (AOP) \citep{Kiczales1997} is another dialect of object-oriented programming that aims to significantly increase separation of concern within programs, so that programs are more loosely coupled. AOP is a direct descendent from object-oriented programming as well as reflection. Reflection allows programmers to dynamically introspect classes at run-time; changing values and so on. AOP takes this to another level, by allowing so-called \textit{advice} to be specified (essentially the additional behaviour to be added) and added to \textit{join points}, which are arbitrary points of control flow within the program.
 	
 	When combined, aspect-oriented systems add these behaviours to the program in question at compile-time through a process called \textit{weaving}.
@@ -96,28 +193,28 @@ def aspect TraceMethods {
 		
 		It is anticipated that, if these projects are combined, it would present a feasible approach to instrumentation.
 
-\section{Hybrid Models} \label{sec:instrumentation/hybrid}
-	\subsection{DiSL} \label{sec:instrumentation/hybrid/disl}
-	Recently, there has been renewed interest in Java bytecode instrumentation. Clearly, the use of aspect-oriented techniques is advantageous, but the current implementations (AspectJ/abc) are deeply flawed. In a sense, they are \textit{static} - they rely on predefined join and point-cuts before any aspect definitions can be constructed. DiSL is considered a hybrid approach because, unlike AspectJ which relies on access to source code, it uses an agents-based approach to aspect-oriented programming.
-	
-	DiSL (\textit{Domain Specific Language for Instrumentation}) \citep{Marek2012} is a new approach to a domain-specific language (which incidentally, implies that DiSL is declarative) for bytecode instrumentation. It does rely on the use of aspects, but it instead uses an open join-point model where any area of bytecode can be instrumented.
-	
-	\begin{itemize}
-		\item Lower overheads
-		\item Greater expressibility of aspect and join-point definition
-		\item Greater code coverage
-		\item Efficient synthetic local variables for data exchange between join-points
-	\end{itemize}
-	
-	As opposed to AspectJ, which requires compile-time definition of join-points, DiSL uses an open-ended join point format which can be evaluated at weave-time. This allows arbitrary regions of bytecodes to be used as join points. \textit{Markers} are used to specify such bytecode regions (markers are included for common join points, such as method calls and, unusually, exception handling - a novel addition to aspect-systems in Java although control-flow analysis can be used to implement user-defined markers), while \textit{guards} allow users to further restrict selected join-points. Guards are essentially predicates which have access to only static information which can be evaluated at weave-time.
-	
-	DiSL implements advice in the form of \textit{code snippets}. Note the distinction between DiSL snippets and Graal snippets - although they are similar, DiSL snippets allow arbitrary behaviour to be inserted whilst Graal snippets are used to mainly lower complex bytecodes into simpler ones. Unlike other aspect-systems, DiSL does not support `around' advice. However, this is not usually regarded as a disadvantage per-se as synthetic local variables mitigate this.
-	
-	The semantics of snippets and guards is novel in DiSL. Both have complete access to local static (\ie, weave-time) reflective join-point information, meaning they can make (theoretically) unbounded numbers of references to static contexts. In addition, snippets have access to dynamic (\ie, run-time) information, including local variables and the operand stack.
-	
-	\citeauthor{Marek2012} present benchmarks of overheads with DiSL versus AspectJ, and their results are promising - a factor of three lower overheads, yet DiSL manages greater code coverage than AspectJ (the number of join-points captured is greater).
-	
-	In conclusion, DiSL represents a significant advancement in aspect-systems in general. DiSL allows many semantics of dynamically-typed languages to be expressed in the (statically-typed) Java language.
+	\subsection{Hybrid Models} \label{sec:instrumentation/hybrid}
+		\subsubsection{DiSL} \label{sec:instrumentation/hybrid/disl}
+		Recently, there has been renewed interest in Java bytecode instrumentation. Clearly, the use of aspect-oriented techniques is advantageous, but the current implementations (AspectJ/abc) are deeply flawed. In a sense, they are \textit{static} - they rely on predefined join and point-cuts before any aspect definitions can be constructed. DiSL is considered a hybrid approach because, unlike AspectJ which relies on access to source code, it uses an agents-based approach to aspect-oriented programming.
+		
+		DiSL (\textit{Domain Specific Language for Instrumentation}) \citep{Marek2012} is a new approach to a domain-specific language (which incidentally, implies that DiSL is declarative) for bytecode instrumentation. It does rely on the use of aspects, but it instead uses an open join-point model where any area of bytecode can be instrumented.
+		
+		\begin{itemize}
+			\item Lower overheads
+			\item Greater expressibility of aspect and join-point definition
+			\item Greater code coverage
+			\item Efficient synthetic local variables for data exchange between join-points
+		\end{itemize}
+		
+		As opposed to AspectJ, which requires compile-time definition of join-points, DiSL uses an open-ended join point format which can be evaluated at weave-time. This allows arbitrary regions of bytecodes to be used as join points. \textit{Markers} are used to specify such bytecode regions (markers are included for common join points, such as method calls and, unusually, exception handling - a novel addition to aspect-systems in Java although control-flow analysis can be used to implement user-defined markers), while \textit{guards} allow users to further restrict selected join-points. Guards are essentially predicates which have access to only static information which can be evaluated at weave-time.
+		
+		DiSL implements advice in the form of \textit{code snippets}. Note the distinction between DiSL snippets and Graal snippets - although they are similar, DiSL snippets allow arbitrary behaviour to be inserted whilst Graal snippets are used to mainly lower complex bytecodes into simpler ones. Unlike other aspect-systems, DiSL does not support `around' advice. However, this is not usually regarded as a disadvantage per-se as synthetic local variables mitigate this.
+		
+		The semantics of snippets and guards is novel in DiSL. Both have complete access to local static (\ie, weave-time) reflective join-point information, meaning they can make (theoretically) unbounded numbers of references to static contexts. In addition, snippets have access to dynamic (\ie, run-time) information, including local variables and the operand stack.
+		
+		\citeauthor{Marek2012} present benchmarks of overheads with DiSL versus AspectJ, and their results are promising - a factor of three lower overheads, yet DiSL manages greater code coverage than AspectJ (the number of join-points captured is greater).
+		
+		In conclusion, DiSL represents a significant advancement in aspect-systems in general. DiSL allows many semantics of dynamically-typed languages to be expressed in the (statically-typed) Java language.
 	
 		\subsubsection{Turbo DiSL} \label{sec:instrumentation/hybrid/disl/turbo}
 		An extension to DiSL, Turbo DiSL has been proposed by \citet[p.~353-368]{Furia2012}. Turbo DiSL is essentially an optimiser for DiSL which processes the bytecode produced by `vanilla' DiSL.
@@ -132,7 +229,7 @@ def aspect TraceMethods {
 
 		The authors present several uses cases where TurboDiSl is superior to DiSL (dynamic instrument configuration, tracking monitor ownership, field access analysis and execution trace profiling). However, this author speculates that, in spite of the aforementioned increase in weave-time, Turbo DiSL will completely supersede DiSL in all situations. 
 		
-	\subsection{\textsc{Teams}} \label{sec:instrumentation/hybrid/teams}
-	An alternative to DiSL is the \textsc{Teams} project \citep{Rahnavard2013}.
-		
-	\subsection{Bytecode Instrumentation \& Graal Transformations} \label{sec:instrumentation/hybrid/graalbytecode}
+\section{Manual Approaches} \label{sec:instrumentation/manual}	
+	
+\section{Summary} \label{sec:instrumentation/summary}
+In this section, we have 

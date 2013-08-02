@@ -1,56 +1,61 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}The Runtime Library}{29}{chapter.5}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}The Runtime Library}{37}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chp:runtime}{{5}{29}{The Runtime Library}{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Trace Collection}{29}{section.5.1}}
-\newlabel{sec:runtime/trace-collection}{{5.1}{29}{Trace Collection}{section.5.1}{}}
-\newlabel{lst:sigs}{{5.1}{29}{Method signatures for instrumentation methods}{lstlisting.5.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.1}Method signatures for instrumentation methods}{29}{lstlisting.5.1}}
+\newlabel{chp:runtime}{{5}{37}{The Runtime Library}{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Introduction}{37}{section.5.1}}
+\newlabel{sec:runtime/introduction}{{5.1}{37}{Introduction}{section.5.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Trace Collection}{37}{section.5.2}}
+\newlabel{sec:runtime/trace-collection}{{5.2}{37}{Trace Collection}{section.5.2}{}}
+\newlabel{lst:sigs}{{5.1}{38}{Method signatures for instrumentation methods}{lstlisting.5.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.1}Method signatures for instrumentation methods}{38}{lstlisting.5.1}}
+\newlabel{items:trace-args}{{5.2}{38}{Trace Collection}{lstnumber.5.1.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Trace Storage}{38}{section.5.3}}
+\newlabel{sec:runtime/storage}{{5.3}{38}{Trace Storage}{section.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Exact Approaches}{38}{subsection.5.3.1}}
+\newlabel{sec:runtime/storage/exact}{{5.3.1}{38}{Exact Approaches}{subsection.5.3.1}{}}
 \citation{Bloom1970}
 \citation{Carter1979}
-\newlabel{items:trace-args}{{5.1}{30}{Trace Collection}{lstnumber.5.1.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Trace Storage}{30}{section.5.2}}
-\newlabel{sec:runtime/storage}{{5.2}{30}{Trace Storage}{section.5.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Exact Approaches}{30}{subsection.5.2.1}}
-\newlabel{sec:runtime/storage/exact}{{5.2.1}{30}{Exact Approaches}{subsection.5.2.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Probabilistic Approaches}{30}{subsection.5.2.2}}
-\newlabel{sec:runtime/storage/probabilistic}{{5.2.2}{30}{Probabilistic Approaches}{subsection.5.2.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Bloom Filters}{30}{subsection.5.2.3}}
-\newlabel{sec:runtime/storage/probabilistic/bloom}{{5.2.3}{30}{Bloom Filters}{subsection.5.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Probabilistic Approaches}{39}{subsection.5.3.2}}
+\newlabel{sec:runtime/storage/probabilistic}{{5.3.2}{39}{Probabilistic Approaches}{subsection.5.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Bloom Filters}{39}{subsection.5.3.3}}
+\newlabel{sec:runtime/storage/probabilistic/bloom}{{5.3.3}{39}{Bloom Filters}{subsection.5.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Bloom filter operation with $m=18$ and $k=3$\relax }}{39}{figure.caption.11}}
+\newlabel{fig:bloom-filter}{{5.1}{39}{Bloom filter operation with $m=18$ and $k=3$\relax }{figure.caption.11}{}}
 \citation{Swamidass2007}
+\citation{Allen2000}
 \citation{Ibbett2009,ArchitectureBook}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Bloom filter operation with $m=18$ and $k=3$\relax }}{31}{figure.caption.5}}
-\newlabel{fig:bloom-filter}{{5.1}{31}{Bloom filter operation with $m=18$ and $k=3$\relax }{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Dependency Analysis Algorithms}{31}{section.5.3}}
-\newlabel{sec:runtime/analysis}{{5.3}{31}{Dependency Analysis Algorithms}{section.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Dependency Analysis Algorithms}{40}{section.5.4}}
+\newlabel{sec:runtime/analysis}{{5.4}{40}{Dependency Analysis Algorithms}{section.5.4}{}}
+\newlabel{fig:dep-kinds}{{5.4}{40}{Dependency Analysis Algorithms}{Item.5}{}}
 \citation{TAOCPvol2}
-\newlabel{fig:dep-kinds}{{5.3}{32}{Dependency Analysis Algorithms}{section.5.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Offline Algorithms}{32}{subsection.5.3.1}}
-\newlabel{sec:runtime/analysis/offline}{{5.3.1}{32}{Offline Algorithms}{subsection.5.3.1}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Offline dependency algorithm\relax }}{33}{algorithm.1}}
-\newlabel{alg:offline-dependency}{{1}{33}{Offline dependency algorithm\relax }{algorithm.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Finite state machine for the online algorithm\relax }}{33}{figure.caption.6}}
-\newlabel{fig:online-fsm}{{5.2}{33}{Finite state machine for the online algorithm\relax }{figure.caption.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Online Algorithns}{34}{subsection.5.3.2}}
-\newlabel{sec:runtime/analysis/online}{{5.3.2}{34}{Online Algorithns}{subsection.5.3.2}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Online dependency algorithm\relax }}{34}{algorithm.2}}
-\newlabel{alg:online-dependency}{{2}{34}{Online dependency algorithm\relax }{algorithm.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Implementation Details}{34}{section.5.4}}
-\newlabel{sec:runtime/implementation}{{5.4}{34}{Implementation Details}{section.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Offline Algorithms}{42}{subsection.5.4.1}}
+\newlabel{sec:runtime/analysis/offline}{{5.4.1}{42}{Offline Algorithms}{subsection.5.4.1}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Offline dependency algorithm\relax }}{42}{algorithm.1}}
+\newlabel{alg:offline-dependency}{{1}{42}{Offline dependency algorithm\relax }{algorithm.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Finite state machine for the online algorithm\relax }}{43}{figure.caption.12}}
+\newlabel{fig:online-fsm}{{5.2}{43}{Finite state machine for the online algorithm\relax }{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Online Algorithns}{43}{subsection.5.4.2}}
+\newlabel{sec:runtime/analysis/online}{{5.4.2}{43}{Online Algorithns}{subsection.5.4.2}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Online dependency algorithm\relax }}{43}{algorithm.2}}
+\newlabel{alg:online-dependency}{{2}{43}{Online dependency algorithm\relax }{algorithm.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Implementation Details}{43}{section.5.5}}
+\newlabel{sec:runtime/implementation}{{5.5}{43}{Implementation Details}{section.5.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}Summary}{43}{section.5.6}}
+\newlabel{sec:runtime/summary}{{5.6}{43}{Summary}{section.5.6}{}}
 \@setckpt{chapters/runtime-library}{
-\setcounter{page}{35}
+\setcounter{page}{44}
 \setcounter{equation}{0}
-\setcounter{enumi}{0}
+\setcounter{enumi}{3}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
-\setcounter{footnote}{0}
+\setcounter{footnote}{1}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{5}
-\setcounter{section}{4}
+\setcounter{section}{6}
 \setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
@@ -59,9 +64,9 @@
 \setcounter{table}{0}
 \setcounter{ContinuedFloat}{0}
 \setcounter{NAT@ctr}{0}
-\setcounter{Item}{0}
-\setcounter{Hfootnote}{8}
-\setcounter{bookmark@seq@number}{41}
+\setcounter{Item}{8}
+\setcounter{Hfootnote}{12}
+\setcounter{bookmark@seq@number}{49}
 \setcounter{lstnumber}{6}
 \setcounter{float@type}{16}
 \setcounter{algorithm}{2}
@@ -69,7 +74,37 @@
 \setcounter{ALC@line}{1}
 \setcounter{ALC@rem}{1}
 \setcounter{ALC@depth}{0}
+\setcounter{subfloatfiguremax}{0}
+\setcounter{subfloattablemax}{0}
 \setcounter{lips@count}{0}
+\setcounter{@letterindex}{0}
+\setcounter{@@letterindex}{0}
+\setcounter{@@@letterindex}{0}
+\setcounter{@wordindex}{0}
+\setcounter{@iargc}{0}
+\setcounter{@gobblesize}{0}
+\setcounter{@maxrotation}{0}
+\setcounter{@stringsize}{0}
+\setcounter{@@stringsize}{0}
+\setcounter{@@@stringsize}{0}
+\setcounter{@revisedstringsize}{0}
+\setcounter{@gobbleindex}{0}
+\setcounter{@charsfound}{0}
+\setcounter{@alph}{0}
+\setcounter{@alphaindex}{0}
+\setcounter{@capstrigger}{0}
+\setcounter{@fromindex}{0}
+\setcounter{@toindex}{0}
+\setcounter{@previousindex}{0}
+\setcounter{@flag}{0}
+\setcounter{@matchloc}{0}
+\setcounter{@matchend}{0}
+\setcounter{@matchsize}{0}
+\setcounter{@matchmax}{0}
+\setcounter{@skipped}{0}
+\setcounter{@lcwords}{0}
+\setcounter{@@matchloc}{0}
+\setcounter{VerbboxLineNo}{0}
 \setcounter{fignum}{0}
 \setcounter{section@level}{1}
 \setcounter{lstlisting}{1}

@@ -1,4 +1,6 @@
 \chapter{Methodology} \label{chp:methodology}
+\section{Introduction} \label{sec:methodology/introduction}
+
 \section{Experimental Setup} \label{sec:methodology/setup}
 The hardware used for the experiments is a mid-2009 MacBook Pro with the following specifications:
 	
@@ -69,3 +71,5 @@ In order to improve the results, each experiment was repeat three times. The ave
 	In addition, there is a Java Agent for measuring memory usage of an object - the Java Agent for Memory Measurements \citep{JAMM} (JAMM). JAMM is essentially a wrapper for the \texttt{java.lang.instrument.Instrumentation.getObjectSize()} method. There are several methods available, and the framework uses \texttt{measureDeep()} for the greatest accuracy.
 	
 	\texttt{measureDeep()} crawls the object graph, calling \texttt{getObjectSize()} on each object it encounters. An \texttt{IdentityHashMap} is used to detect loops in the object graph. Unfortunately, this does affect execution time - but memory usage is recorded after execution time has been recorded. \citeauthor{JAMM} does suggest investigating the possible use of bloom filters to overcome this memory usage, but this it outside the scope of this project.
+	
+\section{Summary} \label{sec:methodology/summary}

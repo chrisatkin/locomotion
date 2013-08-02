@@ -1,4 +1,5 @@
 \chapter{The Runtime Library} \label{chp:runtime}
+\section{Introduction} \label{sec:runtime/introduction}
 In this chapter, the work performed towards implementing the runtime library is presented. This library handles several core functions critical to the infrastructure of the application:
 
 \begin{itemize}
@@ -84,14 +85,17 @@ Generating traces for large programs -- the kind of programs which would benefit
 \section{Dependency Analysis Algorithms} \label{sec:runtime/analysis}
 	Computing dependency between two operations is of critical importance to this project; an efficient algorithm is important.
 	
-	The problem statement for dependency analysis is as follows:
+	From \citet[p.~37]{Allen2000}, there is a data dependence from statement $\sigma_x$ to statement $\sigma_y$ (where $T(\sigma_x) \rightarrow T(\sigma_y)$\footnote{For two statements $x$ and $y$, $x \rightarrow y$ iff $T(x) < T(y)$ where $T(e)$ returns the time at which $e$ occured}) if and only if:
 	
-	Let $i^l_n$ be the set of memory accesses for iteration $n$ in loop $l$. For a memory access $\alpha \in i^l_n$, determine whether there exists a previous iteration such that $\alpha \in i^l_{n-c}$ for some integer $c$. Additionally, for an access $\alpha_i$ and previous access $\alpha_{i-c}$, $kind(\alpha_i) \neq read \wedge kind(\alpha_{i-c}) \neq read$.
+	\begin{enumerate}
+		\item both statements access the same memory location and at least one of them stores into it
+		\item there is a feasible run-time execution path from $\sigma_x$ to $\sigma_y$
+	\end{enumerate}
 	
 	There are several kinds of inter-iteration dependency \citep[p.~526]{Ibbett2009,ArchitectureBook}:
 	
 	\begin{itemize}\label{fig:dep-kinds}
-		\item \textbf{Write-after-write} or \textit{output dependency}: given two instructions $\sigma_x$ and $\sigma_y$, there is a write-after-write dependency if a total ordering is required for $\sigma_x$ and $\sigma_y$. For example:
+		\item \textbf{Write-after-write} or \textit{output dependency}: given two statements $\sigma_x$ and $\sigma_y$, there is a write-after-write dependency if a total ordering is required for $\sigma_x$ and $\sigma_y$. For example:
 		
 		\begin{verbatim}
 		R3 = R1 + R2
@@ -100,7 +104,9 @@ Generating traces for large programs -- the kind of programs which would benefit
 		
 		If the second statement were executed before the first statement, program correctness would be violated, so speculative execution is not possible.
 		
-		\item \textbf{Write-after-read} or \textit{antidependency}: given two instructions $\sigma_x$ and $\sigma_y$, there is a write-after-read dependency if evaluation of $\sigma_y$ is dependent on the evaluation of $\sigma_x$:
+		Output dependence for two statements $\sigma_x$ and $\sigma_y$ is denoted as $\sigma_x \delta^0 \sigma_y$.
+		
+		\item \textbf{Write-after-read} or \textit{antidependency}: given two statements $\sigma_x$ and $\sigma_y$, there is a write-after-read dependency if evaluation of $\sigma_y$ is dependent on the evaluation of $\sigma_x$:
 		
 		\begin{verbatim}
 		R1 = R2 + R3
@@ -108,6 +114,8 @@ Generating traces for large programs -- the kind of programs which would benefit
 		\end{verbatim}
 		
 		In this case, if the statements are re-ordered, the wrong value of \texttt{R2} will be used.
+		
+		Antidependence for two statements $\sigma_x$ and $\sigma_y$ is denoted as $\sigma_x \delta^{-1} \sigma_y$.
 		
 		\item \textbf{Read-after-write} or \textit{true dependency}: given two statements $\sigma_x$ and $\sigma_y$, there is a read-after-write dependency if $\sigma_y$ stores the value (or derivative value) of $\sigma_x$:
 		
@@ -117,9 +125,34 @@ Generating traces for large programs -- the kind of programs which would benefit
 		\end{verbatim}
 		
 		If the statements are reordered, either a stale value of R1 will be used, or R1 may not have been initialized.
+		
+		True dependency for two statements $\sigma_x$ and $\sigma_y$ is denoted as $\sigma_x \delta \sigma_y$.
 	\end{itemize}
 	
 	There is also a theoretical dependency that can be detected by the framework, read-after-read, but since this does not cause two iterations to be dependent, they are not considered by the framework.
+	
+	For an arbitrary loop in which the loop index $I$ runs from $L$ to $U$ in steps of $S$, the iteration number $i$ of a specific iteration is equal to the value $\frac{I-L+S}{S}$, were $I$ is the value of the index on that iteration.
+	
+	Given a nest of $n$ loops, the \textit{iteration vector} $i$ of a particular iteration of the inner-most loop is a vector of integers that contain the iteration numbers for each of the loops in order of nesting level. $i$ is given by $i=\{i_1, i_2, ..., i_n\}$ where $ik$, $1 \leq k \leq n$, represents the iteration number for the loop at level $k$.
+	
+	There exists a loop dependence from statement $\sigma_1$ to $\sigma_2$ in a common next of loops iff there exists two iteration vectors $i$ and $j$ for the nets, such that:
+	
+	\begin{enumerate}
+		\item $i < j \lor i = j$ and there is an execution path from $\sigma_x$ to $\sigma_y$ in the body of the loop
+		\item Statement $\sigma_x$ accesses memory location $m$ on iteration $i$ (access $\alpha_x$) and statement $\sigma_y$ accesses location $m$ on iteration $j$ (access $\alpha_y$)
+		\item Either $\alpha_x$ or $\alpha_y$ is a store
+	\end{enumerate}
+	
+	Thus, the following problem declaration can be constructed for computing dependencies:
+	
+	Let $i^l_n$ be the set of memory accesses for iteration $n$ in loop $l$. For a memory access $\alpha \in i^l_n$, determine whether there exists a previous iteration such that $\alpha \in i^l_{n-c}$ for some integer $c$. Additionally, for an access $\alpha_i$ and previous access $\alpha_{i-c}$, $kind(\alpha_i) \neq read \land kind(\alpha_{i-c}) \neq read$.
+	
+	In addition, there are two kinds of loop dependence.
+	
+	\begin{itemize}
+		\item \textbf{Loop-carried dependence}: $\sigma_x$ can reference a common location $m_c$ on an iteration, $\sigma_y$ can reference the same location $m_c$
+		\item \textbf{Loop-independent dependence}: $\sigma_x$ and $\sigma_y$ can both access $m_c$ on the same iteration, but with $\sigma_x$ preceding $\sigma_y$ during execution
+	\end{itemize}
 
 	\subsection{Offline Algorithms} \label{sec:runtime/analysis/offline}
 	An offline algorithm means that any processing is performed after the trace has been collected \citep[p.~525-526]{TAOCPvol2}. It is the simplest form of dependency analysis algorithm, but it show poor performance. For a number of loops $l$ with an average of $i$ iterations each, where each iteration has an average of $o$ operations, then $T_{offline}=O(lio)$.
@@ -176,4 +209,5 @@ Generating traces for large programs -- the kind of programs which would benefit
 	\end{algorithm}
 
 \section{Implementation Details} \label{sec:runtime/implementation}
-\
+
+\section{Summary} \label{sec:runtime/summary}

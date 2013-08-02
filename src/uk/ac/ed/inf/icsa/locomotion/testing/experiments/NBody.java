@@ -23,6 +23,6 @@ public final class NBody implements Experiment {
 
 	@Override
 	public String getIdentifier() {
-		return ("universe,config=" + file).replaceAll("/", "-");
+		return ("universe,config=" + file + ",steps=" + steps).replaceAll("/", "-");
 	}
 }

@@ -35,34 +35,34 @@ public final class Formatter {
 	
 	private void run() {
 		try {
-			for (final String name: new String[] { "all-dependent", "none-dependent" }) {
+			for (final String name: new String[] {/* "all-dependent", "none-dependent", "vector-addition",*/ "universe" }) {
 				for (final String instrument: new String[] { "true", "false"}) {
 					ThreeAxisVariables length_memory_accesses = new ThreeAxisVariables(
-						getFile(name + "-memory-instrumentation=" + instrument),
+						getFile(name + "-instrumentation=" + instrument),
 						results,
 						new HashMap<String, String>() {{
 							put("name", name);
 							put("instrumentation", instrument);
 						}},
-						"length",
+						"time",
 						"finalmemory",
 						"dependencies"
 					);
 					length_memory_accesses.run();
 					length_memory_accesses.toFile();
 					
-					ThreeAxisVariables length_time_accesses= new ThreeAxisVariables(
-						getFile(name + "-time-instrumentation=" + instrument),
-						results,
-						new HashMap<String, String>() {{
-							put("name", name);
-							put("instrumentation", instrument);
-						}},
-						"length",
-						"time",
-						"dependencies");
-					length_time_accesses.run();
-					length_time_accesses.toFile();
+//					ThreeAxisVariables length_time_accesses= new ThreeAxisVariables(
+//						getFile(name + "-time-instrumentation=" + instrument),
+//						results,
+//						new HashMap<String, String>() {{
+//							put("name", name);
+//							put("instrumentation", instrument);
+//						}},
+//						"length",
+//						"time",
+//						"dependencies");
+//					length_time_accesses.run();
+//					length_time_accesses.toFile();
 				}
 			}
 		} catch (Exception e) {

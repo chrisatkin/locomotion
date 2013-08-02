@@ -44,8 +44,8 @@ final class Experiments {
 		// add probabilistic tests
 		for (int i = 1000; i <= 10000; i += 1000) {
 			// Basic tests
-			experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}, output));
-			experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}, output));
+			//experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}, output));
+			//experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}, output));
 			
 			// Probabilistic tests
 			//experiments.add(new Test(FractionalDependent.class, instrument, new Object[] {i, 300, 300, 300}, output));
@@ -57,12 +57,14 @@ final class Experiments {
 				a[j] = (int) Math.random() * j;
 				b[j] = (int) Math.random() * j;
 			}
-			experiments.add(new Test(VectorAddition.class, instrument, new Object[] {a, b}, output));
+			//experiments.add(new Test(VectorAddition.class, instrument, new Object[] {a, b}, output));
+			
+			experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/2body.txt", i }, output));
 		}
 		
-		//experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/2body.txt", 10000 }, output));
-		//experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/3body.txt", 10000 }, output));
-		//experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/4body.txt", 10000 }, output));
+		
+		//experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/3body.txt", 1000 }, output));
+		//experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/4body.txt", 1000 }, output));
 	}
 	
 	private void run() throws IOException, InterruptedException, ExecutionException, TimeoutException {

@@ -1,14 +1,22 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Graal HIR created for a vector addition using two array literals\relax }}{17}{figure.caption.4}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces The compiler pipeline in Microsoft Roslyn, a similar project to Graal. Roslyn operates at a higher level than Graal, instead manipulating abstract syntax trees.\relax }}{14}{figure.caption.4}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Graal HIR created for a vector addition using two array literals\relax }}{16}{figure.caption.5}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Relationships between IR levels and lowering types in Graal\relax }}{18}{figure.caption.6}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Method substitution in Graal\relax }}{20}{figure.caption.7}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Relationship between optimisations and deoptimisations\relax }}{21}{figure.caption.8}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces A high-level graph (with inlining disabled) for a simple method taking an array actual parameter, returning index 0\relax }}{27}{figure.caption.9}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Information available at compile-time for the \texttt {LoadIndexedNode} shown in figure \ref {fig:access-index}\relax }}{28}{figure.caption.10}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Bloom filter operation with $m=18$ and $k=3$\relax }}{39}{figure.caption.11}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Finite state machine for the online algorithm\relax }}{43}{figure.caption.12}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Bloom filter operation with $m=18$ and $k=3$\relax }}{31}{figure.caption.5}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Finite state machine for the online algorithm\relax }}{33}{figure.caption.6}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Memory usage\relax }}{51}{figure.caption.13}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Execution time\relax }}{52}{figure.caption.14}
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Dependencies\relax }}{52}{figure.caption.15}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Memory usage\relax }}{39}{figure.caption.7}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Execution time\relax }}{40}{figure.caption.8}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Dependencies\relax }}{40}{figure.caption.9}
 \addvspace {10\p@ }

@@ -1,9 +1,20 @@
-\begin{thebibliography}{57}
+\begin{thebibliography}{60}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Dubach et~al.(2012)Dubach, Cheng, Rabbah, Bacon, and Fink]{Dubach2012}
+Christophe Dubach, Perry Cheng, Rodric Rabbah, David~F. Bacon, and Stephen~J.
+  Fink.
+\newblock {Compiling a high-level language for GPUs via language support for
+  architectures and compilers}.
+\newblock \emph{ACM SIGPLAN Notices}, 47\penalty0 (6):\penalty0 1--1--12--12,
+  August 2012.
+\newblock ISSN 0362-1340.
+\newblock \doi{10.1145/2345156.2254066}.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=2345156.2254066}.
 
 \bibitem[Fraser(2004)]{Fraser04}
 Keir Fraser.
@@ -52,56 +63,6 @@ Casey Marshall.
 \newblock Technical report, University of California, Santa Cruz, Santa Cruz,
   2005.
 \newblock URL \url{http://www.cs.uic.edu/~ajayk/STM.pdf}.
-
-\bibitem[Peyton-Jones(2011)]{PeytonJones2011}
-Simon Peyton-Jones.
-\newblock {The Future is Parallel, and the Future of Parallel is Declarative}.
-\newblock In \emph{YOW}, Melbourne, 2011. Presented at YOW 2011.
-\newblock URL
-  \url{http://yow.eventer.com/yow-2011-1004/the-future-is-parallel-and-the-future-of-parallel-is-declarative-by-simon-peyton-jones-1055}.
-
-\bibitem[Anderson et~al.(2013)Anderson, Petersen, Lui, and Glew]{Anderson2013}
-Todd~A Anderson, Leaf Petersen, Hai Lui, and Neal Glew.
-\newblock {Measuring the Haskell Gap}.
-\newblock 2013.
-\newblock URL
-  \url{http://www.leafpetersen.com/leaf/publications/hs2013/haskell-gap.pdf}.
-
-\bibitem[Mainland et~al.(2013)Mainland, Leshchinskiy, and
-  Peyton-Jones]{Mainland2013}
-Geoffrey Mainland, Roman Leshchinskiy, and Simon Peyton-Jones.
-\newblock {Exploiting Vector Instructions with Generalized Stream Fusion}.
-\newblock 2013.
-\newblock URL
-  \url{http://research.microsoft.com/en-us/um/people/simonpj/papers/ndp/haskell-beats-C.pdf}.
-
-\bibitem[Orchard et~al.(2010)Orchard, Bolingbroke, and Mycroft]{Orchard2010}
-Dominic~A. Orchard, Max Bolingbroke, and Alan Mycroft.
-\newblock {Ypnos}.
-\newblock In \emph{Proceedings of the 5th ACM SIGPLAN workshop on Declarative
-  aspects of multicore programming - DAMP '10}, page~15, New York, New York,
-  USA, January 2010. ACM Press.
-\newblock ISBN 9781605588599.
-\newblock \doi{10.1145/1708046.1708053}.
-\newblock URL \url{http://dl.acm.org/citation.cfm?id=1708046.1708053
-  http://portal.acm.org/citation.cfm?doid=1708046.1708053}.
-
-\bibitem[Grossman et~al.(2011)Grossman, {Simion Sb\^{\i}rlea}, Budimli\'{c},
-  and Sarkar]{Grossman2011}
-M~Grossman, A~{Simion Sb\^{\i}rlea}, Z~Budimli\'{c}, and V~Sarkar.
-\newblock {CnC-CUDA: Declarative programming for GPUs}.
-\newblock \emph{Lecture Notes in Computer Science including subseries Lecture
-  Notes in Artificial Intelligence and Lecture Notes in Bioinformatics}, 6548
-  LNCS:\penalty0 230--245, 2011.
-
-\bibitem[Holk et~al.(2011)Holk, Byrd, Mahajan, and Willcock]{Holk2011}
-E~Holk, WE~Byrd, Nilesh Mahajan, and Jeremiah Willcock.
-\newblock {Declarative Parallel Programming for GPUs.}
-\newblock In Deschere Boss, Erik~H. D'hollander, Gerhard~R. Joubert, David
-  Padua, Frans Peters, and Mark Sawyer, editors, \emph{Parallel Computing},
-  volume~22, pages 297--304, Bloomington, 2011. IOS Press.
-\newblock URL
-  \url{http://osl.iu.edu/publications/prints/2011/2011-parco-holk-harlan.pdf}.
 
 \bibitem[Backus(1979)]{Backus1979}
 John Backus.
@@ -153,11 +114,64 @@ Oracle and OpenJDK.
 \newblock {Graal Project}, 2012.
 \newblock URL \url{http://openjdk.java.net/projects/graal/}.
 
+\bibitem[Ros()]{RoslynProject}
+{Roslyn Project}.
+\newblock URL
+  \url{https://www.microsoft.com/en-us/download/details.aspx?id=27744}.
+
 \bibitem[Lindholm et~al.(2013)Lindholm, Buckley, Bracha, and Yellin]{JVMSpec}
 Tim Lindholm, Alex Buckley, Gilad Bracha, and Frank Yellin.
 \newblock {The Java Virtual Machine Specification Java SE 7 Edition}.
 \newblock Technical report, Oracle, Inc, Redwood City, 2013.
 \newblock URL \url{http://docs.oracle.com/javase/specs/jvms/se7/jvms7.pdf}.
+
+\bibitem[Aho et~al.(2007)Aho, Lam, Sethi, and Ullman]{DragonBook}
+Alfred~V. Aho, Monica~S. Lam, R~Sethi, and Jeffrey~D. Ullman.
+\newblock \emph{{Compilers: Principles, Techniques and Tools}}.
+\newblock Pearson, second edition, 2007.
+\newblock ISBN 0-321-49169-6.
+
+\bibitem[Muchnick(1997)]{ACDI}
+Steven~S. Muchnick.
+\newblock {Advanced Compiler Design and Implementation}.
+\newblock Morgan Kaufmann, San Francisco, first edition, 1997.
+\newblock ISBN 1-55860-320-4.
+
+\bibitem[Glew and Palsberg(2002)]{Magnusson2002}
+Neal Glew and Jen Palsberg.
+\newblock {Type-Safe Method Inlining}.
+\newblock In Boris Magnusson, editor, \emph{ECOOP 2002 — Object-Oriented
+  Programming}, volume 2374 of \emph{Lecture Notes in Computer Science}, pages
+  525--544. Springer Berlin Heidelberg, Berlin, Heidelberg, May 2002.
+\newblock ISBN 978-3-540-43759-8.
+\newblock \doi{10.1007/3-540-47993-7}.
+\newblock URL \url{http://link.springer.com/10.1007/3-540-47993-7}.
+
+\bibitem[Peng(2010)]{LoopPrediction}
+Chang Peng.
+\newblock {Loop Prediction}, 2010.
+\newblock URL
+  \url{https://wikis.oracle.com/display/HotSpotInternals/LoopPredication}.
+
+\bibitem[H\"{o}lzle et~al.(1992)H\"{o}lzle, Chambers, and Ungar]{Holzle1992}
+Urs H\"{o}lzle, Craig Chambers, and David Ungar.
+\newblock {Debugging optimized code with dynamic deoptimization}.
+\newblock \emph{ACM Sigplan Notices}, 27:\penalty0 32--43, 1992.
+\newblock ISSN 03621340.
+\newblock \doi{10.1145/143103.143114}.
+
+\bibitem[Schwaighofer(2009)]{Schwaighofer2009}
+Arnold Schwaighofer.
+\newblock \emph{{Tail Call Optimization in the Java HotSpot ™ VM
+  Diplom-Ingenieur}}.
+\newblock Masterstudium informatik thesis, Johannes Kepler University Linz,
+  2009.
+\newblock URL
+  \url{http://www.ssw.uni-linz.ac.at/Research/Papers/Schwaighofer09Master/schwaighofer09master.pdf}.
+
+\bibitem[{Javassist Project}(2013)]{JavassistDocs}
+{Javassist Project}.
+\newblock {Javasssist documentation}, 2013.
 
 \bibitem[Javabeats.com(2012)]{javaagents}
 Javabeats.com.
@@ -313,12 +327,6 @@ S~M Blackburn, R~Garner, C~Hoffman, A~M Khan, K~S McKinley, R~Bentzur, A~Diwan,
 \newblock ISSN 03621340.
 \newblock \doi{10.1145/1167515.1167488}.
 
-\bibitem[Rahnavard and Cook(2013)]{Rahnavard2013}
-Gholamali Rahnavard and Jonathan Cook.
-\newblock {An Extensible AOP Framework for Runtime Monitoring}.
-\newblock In \emph{11th International Workshop on Dynamic Analysis}, 2013.
-\newblock URL \url{http://web.eecs.umich.edu/~nsatish/woda-2013/Rahnavard.pdf}.
-
 \bibitem[Bloom(1970)]{Bloom1970}
 Burton~H. Bloom.
 \newblock {Space/time trade-offs in hash coding with allowable errors}.
@@ -347,6 +355,13 @@ S~Joshua Swamidass and Pierre Baldi.
 \newblock ISSN 1549-9596.
 \newblock \doi{10.1021/ci600526a}.
 \newblock URL \url{http://www.ncbi.nlm.nih.gov/pubmed/17444629}.
+
+\bibitem[Allen and Kennedy(2000)]{Allen2000}
+Randy Allen and Ken Kennedy.
+\newblock \emph{{Optimising Compilers for Modern Architectures: A
+  Dependence-based Approach}}.
+\newblock Morgan Kaufmann, San Francisco, first edition, 2000.
+\newblock ISBN 1-55860-286-0.
 
 \bibitem[Ibbett(2009)]{Ibbett2009}
 Ronald Ibbett.

@@ -42,12 +42,13 @@ public class MemoryOperationInstrumentationPhase extends LocomotionPhase {
 	
 	@Override
 	protected void run(StructuredGraph graph) {
+		graph.getNodes(LoadIndexedNode.class);
 		for (Node node: graph.getNodes()) {	
 //			if (node instanceof StoreIndexedNode/* || node instanceof LoadIndexedNode*/ && GraphUtilities.nodeInLoop(node))
 //				noop();
 //			
-//			if (node instanceof StoreFieldNode)
-//				noop();
+			if (node instanceof LoadIndexedNode)
+				noop();
 //			
 //			if (node instanceof WriteNode/* && GraphUtilities.nodeInLoop(node)*/)
 //				graph.addAfterFixed((WriteNode) node, graph.add(new ArrayStoreBehaviourNode((WriteNode) node, templates)));
@@ -78,23 +79,23 @@ public class MemoryOperationInstrumentationPhase extends LocomotionPhase {
 //				graph.replaceFixedWithFixed(lin, new_lin);
 //				}
 			
-			if (node instanceof LoadIndexedNode) {
-				LoadIndexedNode lin = (LoadIndexedNode) node;
-				
-				try {
-					ResolvedJavaMethod method = MethodUtilities.getResolvedMethod((CodeCacheProvider) runtime, CodeSamples.class.getMethod("testInstrument", new Class<?>[] {}));
-					MethodCallTargetNode call = graph.add(new MethodCallTargetNode(MethodCallTargetNode.InvokeKind.Static, method, new ValueNode[] {}, new HotSpotResolvedPrimitiveType(Kind.Void)));
-					InvokeNode invoke = graph.add(new InvokeNode(call, 0));
-					invoke.setUseForInlining(true);
-//					invoke.setStateAfter(graph.add(new FrameState(FrameState.UNKNOWN_BCI)));
-					graph.addAfterFixed(lin, invoke);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+//			if (node instanceof LoadIndexedNode) {
+//				LoadIndexedNode lin = (LoadIndexedNode) node;
+//				
+//				try {
+//					ResolvedJavaMethod method = MethodUtilities.getResolvedMethod((CodeCacheProvider) runtime, CodeSamples.class.getMethod("testInstrument", new Class<?>[] {}));
+//					MethodCallTargetNode call = graph.add(new MethodCallTargetNode(MethodCallTargetNode.InvokeKind.Static, method, new ValueNode[] {}, new HotSpotResolvedPrimitiveType(Kind.Void)));
+//					InvokeNode invoke = graph.add(new InvokeNode(call, 0));
+//					invoke.setUseForInlining(true);
+////					invoke.setStateAfter(graph.add(new FrameState(FrameState.UNKNOWN_BCI)));
+//					graph.addAfterFixed(lin, invoke);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+			//}
 		}
 		
-		GraphUtilities.dumpGraphToIgv(graph, "high-level");
+//		GraphUtilities.dumpGraphToIgv(graph, "high-level");
 	}
 
 }

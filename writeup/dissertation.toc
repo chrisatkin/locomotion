@@ -4,65 +4,84 @@
 \contentsline {section}{\numberline {1.3}Cheating the System}{3}{section.1.3}
 \contentsline {section}{\numberline {1.4}Hello, Parallelism}{3}{section.1.4}
 \contentsline {section}{\numberline {1.5}Parallelist Approaches}{4}{section.1.5}
-\contentsline {section}{\numberline {1.6}Language Semantics and Compiler Reasoning}{9}{section.1.6}
-\contentsline {section}{\numberline {1.7}Outline}{11}{section.1.7}
-\contentsline {chapter}{\numberline {2}Related Work}{13}{chapter.2}
-\contentsline {section}{\numberline {2.1}Parallelising Compilers}{13}{section.2.1}
-\contentsline {section}{\numberline {2.2}Parallelism Detection}{14}{section.2.2}
-\contentsline {chapter}{\numberline {3}The Graal Compiler Infrastructure}{15}{chapter.3}
-\contentsline {section}{\numberline {3.1}Background}{15}{section.3.1}
-\contentsline {section}{\numberline {3.2}Introduction}{16}{section.3.2}
-\contentsline {section}{\numberline {3.3}Intermediate Representations}{17}{section.3.3}
-\contentsline {section}{\numberline {3.4}Graph Transformations}{18}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}The \texttt {.class} File Format - Constant Pools}{19}{subsection.3.4.1}
-\contentsline {chapter}{\numberline {4}Instrumentation}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Graal}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}Bytecode Instrumentation}{21}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Java Agents}{21}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}ASM}{22}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Javassist}{23}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Aspect-Oriented Programming}{23}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}AspectJ/ABC}{25}{subsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.1.1}Array and Loop Pointcuts}{25}{subsubsection.4.3.1.1}
-\contentsline {section}{\numberline {4.4}Hybrid Models}{26}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}DiSL}{26}{subsection.4.4.1}
-\contentsline {subsubsection}{\numberline {4.4.1.1}Turbo DiSL}{27}{subsubsection.4.4.1.1}
-\contentsline {subsection}{\numberline {4.4.2}\textsc {Teams}}{27}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Bytecode Instrumentation \& Graal Transformations}{28}{subsection.4.4.3}
-\contentsline {chapter}{\numberline {5}The Runtime Library}{29}{chapter.5}
-\contentsline {section}{\numberline {5.1}Trace Collection}{29}{section.5.1}
-\contentsline {section}{\numberline {5.2}Trace Storage}{30}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Exact Approaches}{30}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Probabilistic Approaches}{30}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Bloom Filters}{30}{subsection.5.2.3}
-\contentsline {section}{\numberline {5.3}Dependency Analysis Algorithms}{31}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Offline Algorithms}{32}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Online Algorithns}{34}{subsection.5.3.2}
-\contentsline {section}{\numberline {5.4}Implementation Details}{34}{section.5.4}
-\contentsline {chapter}{\numberline {6}Methodology}{35}{chapter.6}
-\contentsline {section}{\numberline {6.1}Experimental Setup}{35}{section.6.1}
-\contentsline {section}{\numberline {6.2}Repeats}{35}{section.6.2}
-\contentsline {section}{\numberline {6.3}Benchmarks}{36}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}Validation and Basic Testing}{36}{subsection.6.3.1}
-\contentsline {subsection}{\numberline {6.3.2}Parametric Benchmarks}{36}{subsection.6.3.2}
-\contentsline {subsection}{\numberline {6.3.3}Graph Processing Algorithms}{36}{subsection.6.3.3}
-\contentsline {subsection}{\numberline {6.3.4}Java Grande}{36}{subsection.6.3.4}
-\contentsline {subsection}{\numberline {6.3.5}N-Body Simulation}{36}{subsection.6.3.5}
-\contentsline {section}{\numberline {6.4}Measurement Methodology}{37}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Execution Time}{37}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}Memory Usage}{37}{subsection.6.4.2}
-\contentsline {chapter}{\numberline {7}Results}{39}{chapter.7}
-\contentsline {section}{\numberline {7.1}Basic Testing}{39}{section.7.1}
-\contentsline {section}{\numberline {7.2}Parametric}{41}{section.7.2}
-\contentsline {section}{\numberline {7.3}Graph Processing}{41}{section.7.3}
-\contentsline {section}{\numberline {7.4}Java Grande}{41}{section.7.4}
-\contentsline {section}{\numberline {7.5}Mandelbrot}{41}{section.7.5}
-\contentsline {section}{\numberline {7.6}Overhead}{41}{section.7.6}
-\contentsline {subsection}{\numberline {7.6.1}Execution Time}{41}{subsection.7.6.1}
-\contentsline {subsection}{\numberline {7.6.2}Memory Usage}{41}{subsection.7.6.2}
-\contentsline {section}{\numberline {7.7}Analysis}{41}{section.7.7}
-\contentsline {chapter}{\numberline {8}Conclusion}{43}{chapter.8}
-\contentsline {subsection}{\numberline {8.0.1}Concluding Remarks}{43}{subsection.8.0.1}
-\contentsline {subsection}{\numberline {8.0.2}Unsolved Problems}{43}{subsection.8.0.2}
-\contentsline {subsection}{\numberline {8.0.3}Future Work}{43}{subsection.8.0.3}
-\contentsline {chapter}{Bibliography}{45}{chapter*.10}
+\contentsline {section}{\numberline {1.6}Contributions}{9}{section.1.6}
+\contentsline {section}{\numberline {1.7}Outline}{9}{section.1.7}
+\contentsline {chapter}{\numberline {2}Related Work}{11}{chapter.2}
+\contentsline {section}{\numberline {2.1}Parallelising Compilers}{11}{section.2.1}
+\contentsline {section}{\numberline {2.2}Parallelism Detection}{12}{section.2.2}
+\contentsline {chapter}{\numberline {3}The Graal Compiler Infrastructure}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Background}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}Introduction}{15}{section.3.2}
+\contentsline {section}{\numberline {3.3}Intermediate Representations}{15}{section.3.3}
+\contentsline {section}{\numberline {3.4}Graph Transformations}{17}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}The \texttt {.class} File Format - Constant Pools}{18}{subsection.3.4.1}
+\contentsline {section}{\numberline {3.5}Snippets}{18}{section.3.5}
+\contentsline {section}{\numberline {3.6}Replacements}{19}{section.3.6}
+\contentsline {section}{\numberline {3.7}Optimisations and Deoptimisations}{20}{section.3.7}
+\contentsline {section}{\numberline {3.8}Summary}{22}{section.3.8}
+\contentsline {chapter}{\numberline {4}Instrumentation}{25}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{25}{section.4.1}
+\contentsline {section}{\numberline {4.2}Automatic Approaches}{25}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Graal}{25}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Bytecode Instrumentation}{29}{subsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.2.1}Java Agents}{29}{subsubsection.4.2.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2.2}ASM}{30}{subsubsection.4.2.2.2}
+\contentsline {subsubsection}{\numberline {4.2.2.3}Javassist}{31}{subsubsection.4.2.2.3}
+\contentsline {subsection}{\numberline {4.2.3}Aspect-Oriented Programming}{31}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}AspectJ/ABC}{33}{subsection.4.2.4}
+\contentsline {subsubsection}{\numberline {4.2.4.1}Array and Loop Pointcuts}{33}{subsubsection.4.2.4.1}
+\contentsline {subsection}{\numberline {4.2.5}Hybrid Models}{34}{subsection.4.2.5}
+\contentsline {subsubsection}{\numberline {4.2.5.1}DiSL}{34}{subsubsection.4.2.5.1}
+\contentsline {subsubsection}{\numberline {4.2.5.2}Turbo DiSL}{35}{subsubsection.4.2.5.2}
+\contentsline {section}{\numberline {4.3}Manual Approaches}{36}{section.4.3}
+\contentsline {section}{\numberline {4.4}Summary}{36}{section.4.4}
+\contentsline {chapter}{\numberline {5}The Runtime Library}{37}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{37}{section.5.1}
+\contentsline {section}{\numberline {5.2}Trace Collection}{37}{section.5.2}
+\contentsline {section}{\numberline {5.3}Trace Storage}{38}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Exact Approaches}{38}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Probabilistic Approaches}{39}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Bloom Filters}{39}{subsection.5.3.3}
+\contentsline {section}{\numberline {5.4}Dependency Analysis Algorithms}{40}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Offline Algorithms}{42}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Online Algorithns}{43}{subsection.5.4.2}
+\contentsline {section}{\numberline {5.5}Implementation Details}{43}{section.5.5}
+\contentsline {section}{\numberline {5.6}Summary}{43}{section.5.6}
+\contentsline {chapter}{\numberline {6}Methodology}{45}{chapter.6}
+\contentsline {section}{\numberline {6.1}Introduction}{45}{section.6.1}
+\contentsline {section}{\numberline {6.2}Experimental Setup}{45}{section.6.2}
+\contentsline {section}{\numberline {6.3}Repeats}{46}{section.6.3}
+\contentsline {section}{\numberline {6.4}Benchmarks}{46}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Validation and Basic Testing}{46}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Parametric Benchmarks}{46}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Graph Processing Algorithms}{46}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}Java Grande}{46}{subsection.6.4.4}
+\contentsline {subsection}{\numberline {6.4.5}N-Body Simulation}{47}{subsection.6.4.5}
+\contentsline {section}{\numberline {6.5}Measurement Methodology}{47}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Execution Time}{47}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Memory Usage}{47}{subsection.6.5.2}
+\contentsline {section}{\numberline {6.6}Summary}{48}{section.6.6}
+\contentsline {chapter}{\numberline {7}Parametric Benchmarks}{49}{chapter.7}
+\contentsline {section}{\numberline {7.1}Introduction}{49}{section.7.1}
+\contentsline {section}{\numberline {7.2}Summary}{49}{section.7.2}
+\contentsline {chapter}{\numberline {8}Results}{51}{chapter.8}
+\contentsline {section}{\numberline {8.1}Introduction}{51}{section.8.1}
+\contentsline {section}{\numberline {8.2}Basic Testing}{51}{section.8.2}
+\contentsline {section}{\numberline {8.3}Parametric}{53}{section.8.3}
+\contentsline {section}{\numberline {8.4}Graph Processing}{53}{section.8.4}
+\contentsline {section}{\numberline {8.5}Java Grande}{53}{section.8.5}
+\contentsline {section}{\numberline {8.6}Mandelbrot}{53}{section.8.6}
+\contentsline {section}{\numberline {8.7}Overhead}{53}{section.8.7}
+\contentsline {subsection}{\numberline {8.7.1}Execution Time}{53}{subsection.8.7.1}
+\contentsline {subsection}{\numberline {8.7.2}Memory Usage}{53}{subsection.8.7.2}
+\contentsline {section}{\numberline {8.8}Analysis}{53}{section.8.8}
+\contentsline {section}{\numberline {8.9}Summary}{53}{section.8.9}
+\contentsline {chapter}{\numberline {9}Optimisations}{55}{chapter.9}
+\contentsline {section}{\numberline {9.1}Introduction}{55}{section.9.1}
+\contentsline {section}{\numberline {9.2}Summary}{55}{section.9.2}
+\contentsline {chapter}{\numberline {10}Conclusion}{57}{chapter.10}
+\contentsline {section}{\numberline {10.1}Concluding Remarks}{57}{section.10.1}
+\contentsline {section}{\numberline {10.2}Contributions}{57}{section.10.2}
+\contentsline {section}{\numberline {10.3}Unsolved Problems}{57}{section.10.3}
+\contentsline {section}{\numberline {10.4}Future Work}{57}{section.10.4}
+\contentsline {chapter}{Bibliography}{59}{chapter*.16}

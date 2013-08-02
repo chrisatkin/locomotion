@@ -37,13 +37,13 @@ public class Application {
 			new Cycle() {{
 				clazz = Application.class;
 				name = "experiment";
-				types = array();
-				arguments = array();
+				types = array(Integer[].class);
+				arguments = array(1);
 			}}
 		)) {
 			try {
 				lm.process(cycle, new HashMap<Phase, Position>() {{
-					//put(new MemoryOperationInstrumentationPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);
+					put(new MemoryOperationInstrumentationPhase(lm.getRuntime(), lm.getReplacements(), lm.getRuntime().getTarget()), Position.High);
 					//put(new DumpGraphPhase("high-level"), Position.High);
 					//put(new ModifyCallTargetPhase(lm.getRuntime()), Position.High);
 				}});
@@ -58,8 +58,8 @@ public class Application {
 		new Application().run();
 	}
 	
-	public static void experiment() {
-		callA();
+	public static Integer experiment(Integer[] a) {
+		return a[0];
 	}
 	
 	public static void callA() {
