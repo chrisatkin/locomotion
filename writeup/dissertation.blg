@@ -9,7 +9,6 @@ A level-1 auxiliary file: chapters/runtime-library.aux
 A level-1 auxiliary file: chapters/methodology.aux
 A level-1 auxiliary file: chapters/parametric-benchmarks.aux
 A level-1 auxiliary file: chapters/results.aux
-A level-1 auxiliary file: chapters/optimisations.aux
 A level-1 auxiliary file: chapters/conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
@@ -27,45 +26,45 @@ Warning--empty booktitle in ACDI
 Warning--can't use both author and editor fields in Allen2000
 Warning--can't use both author and editor fields in ArchitectureBook
 Warning--empty journal in JSR133
-You've used 60 entries,
+You've used 62 entries,
             2481 wiz_defined-function locations,
-            1036 strings with 16579 characters,
-and the built_in function-call counts, 22591 in all, are:
-= -- 2020
-> -- 1098
-< -- 54
-+ -- 443
-- -- 323
-* -- 1689
-:= -- 3672
-add.period$ -- 263
-call.type$ -- 60
-change.case$ -- 125
-chr.to.int$ -- 60
-cite$ -- 75
-duplicate$ -- 1141
-empty$ -- 1995
-format.name$ -- 410
-if$ -- 4820
+            1047 strings with 16861 characters,
+and the built_in function-call counts, 23127 in all, are:
+= -- 2067
+> -- 1112
+< -- 56
++ -- 451
+- -- 327
+* -- 1714
+:= -- 3757
+add.period$ -- 270
+call.type$ -- 62
+change.case$ -- 129
+chr.to.int$ -- 62
+cite$ -- 77
+duplicate$ -- 1174
+empty$ -- 2055
+format.name$ -- 416
+if$ -- 4938
 int.to.chr$ -- 1
-int.to.str$ -- 61
-missing$ -- 46
-newline$ -- 386
-num.names$ -- 180
-pop$ -- 486
+int.to.str$ -- 63
+missing$ -- 48
+newline$ -- 397
+num.names$ -- 186
+pop$ -- 508
 preamble$ -- 1
-purify$ -- 60
+purify$ -- 62
 quote$ -- 0
-skip$ -- 712
+skip$ -- 734
 stack$ -- 0
-substring$ -- 665
-swap$ -- 201
+substring$ -- 669
+swap$ -- 205
 text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 402
+type$ -- 413
 warning$ -- 14
-while$ -- 174
+while$ -- 178
 width$ -- 0
-write$ -- 939
+write$ -- 966
 (There were 14 warnings)

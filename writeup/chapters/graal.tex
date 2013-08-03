@@ -115,8 +115,10 @@ In all cases, however, the basic idea of the transformation is the same. Both me
 	\label{fig:method-subs}
 \end{figure}
 
-\section{Optimisations and Deoptimisations} \label{sec:graal/deopt}	
-For maximum performance, Graal applies optimisations aggressively and speculatively. Some of the optimisations which are currently supported are highlighted here.
+\section{Optimisations and Deoptimisations} \label{sec:graal/deopt}
+For maximum performance, Graal applies optimisations aggressively and speculatively. The potential performance advantages of speculative optimisation outweighs the possible downside of occasionally requiring deoptimisation. In addition, probability of certain blocks being executed can be computed at compile-time, which in-essence provides Graal with additional metadata regarding which blocks it may prove fruitful to optimise. If a loop is to be executed 100 times, with a low probability of exception-causing errors being thrown per iteration, it makes sense to optimise the loop for the cases where no exception will be thrown. The performance advantage of doing so will be greater than the performance decrease as a result of deoptimisation in the few(er) cases where it will be required.
+
+Some of the optimisations that Graal applies are described here.
 
 \begin{itemize}
 	\item \textbf{Dead and unreachable code elimination}
@@ -173,7 +175,7 @@ For maximum performance, Graal applies optimisations aggressively and speculativ
 	\label{fig:jvm-internals}
 \end{figure}
 
-However, there are some cases where an optimisation has been applied, but it leaves programs in an inconsistent state. In this case, a deoptimisation occurs. More specifically, deoptimisation \citep{Holzle1992} is the process of converting an optimised stack frame into an unoptimised one. In HotSpot, an optimised frame is the result of the JIT compiler and unoptimised frames run using the interpreter. Figure \ref{fig:jvm-internals} (adapted from \citet[p.~24]{Schwaighofer2009}) shows the interplay between the optimisations and deoptimisations. Optimisation-deoptimisation is controlled through an assumption mechanism - in order to be (or remain) optimised, a set of assumptions must remain true. If any of the assumptions becomes false, the optimisation is broken and deoptimiastion occurs. When deoptimisation occurs, the runtime returns to the bytecode index associated with the optimisation, and executes using the interpreter instead.
+However, there are some cases where an optimisation has been applied, but it leaves programs in an inconsistent state. In this case, a deoptimisation occurs. More specifically, deoptimisation \citep{Holzle1992} is the process of converting an optimised stack frame into an unoptimised one. In HotSpot, an optimised frame is the result of the JIT compiler and unoptimised frames run using the interpreter. Figure \ref{fig:jvm-internals} (adapted from \citet[p.~24]{Schwaighofer2009}) shows the interplay between the optimisations and deoptimisations. Optimisation-deoptimisation is controlled through an assumption mechanism - in order to be (or remain) optimised, a set of assumptions must remain true. If any of the assumptions becomes false, the optimisation is broken and deoptimiastion occurs. When deoptimisation occurs, the runtime returns to the bytecode index associated with the optimisation, and executes using the interpreter instead. This technique is used because Graal currently relies on the deoptimisaton framework in HotSpot\texttrademark, which uses the approach described here. 
 
 Deoptimisations can occur for several reasons:
 

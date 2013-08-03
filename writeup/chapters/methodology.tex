@@ -1,5 +1,6 @@
 \chapter{Methodology} \label{chp:methodology}
 \section{Introduction} \label{sec:methodology/introduction}
+In this chapter, the experimental set up and technique is outlined, as well as the specific benchmarks that were used. Rationales for each benchmark are also presented.
 
 \section{Experimental Setup} \label{sec:methodology/setup}
 The hardware used for the experiments is a mid-2009 MacBook Pro with the following specifications:
@@ -23,12 +24,14 @@ The software configuration is as follows:
 
 All software used was the latest version available at the time of writing.
 
+\textit{In silico} experimental design is notoriously difficult within the context of standard scientific procedure. Reproducibility of experiments is not always guaranteed, as slight and sometimes un-noticed machine intricacies and flaws can affect experimental results. Because of this, all benchmarks were run on a separate user account (in order to reduce the number of running processes which may affect results, perhaps by consuming additional resources).
+
 \section{Repeats} \label{sec:methodology/repeats}
-In order to improve the results, each experiment was repeat three times. The average of the three repeats was used in plotting charts etc.
+In order to improve the results, each experiment was repeat three times. The average of the three repeats was used for the rest of the analyses. In doing so, the number of dependencies between repeats was checked.
 
 \section{Benchmarks} \label{sec:methodology/benchmarks}
 	\subsection{Validation and Basic Testing} \label{sec:methodology/benchmarks/simple}
-	The first `item of business' is to prove that the implementation of the instrumentation is correct. We ensure this by comparing the results of algorithms with pre-determined results to the output of the instrumentation.
+	The first `item of business' is to prove that the implementation of the instrumentation and runtime library is correct. We ensure this by comparing the results of algorithms with results known ahead-of-schedule with the results of experiments.
 	
 	Since there are several kinds of dependency (see figure \ref{sec:runtime/analysis}), these benchmarks need to take this into account.
 	
@@ -71,5 +74,7 @@ In order to improve the results, each experiment was repeat three times. The ave
 	In addition, there is a Java Agent for measuring memory usage of an object - the Java Agent for Memory Measurements \citep{JAMM} (JAMM). JAMM is essentially a wrapper for the \texttt{java.lang.instrument.Instrumentation.getObjectSize()} method. There are several methods available, and the framework uses \texttt{measureDeep()} for the greatest accuracy.
 	
 	\texttt{measureDeep()} crawls the object graph, calling \texttt{getObjectSize()} on each object it encounters. An \texttt{IdentityHashMap} is used to detect loops in the object graph. Unfortunately, this does affect execution time - but memory usage is recorded after execution time has been recorded. \citeauthor{JAMM} does suggest investigating the possible use of bloom filters to overcome this memory usage, but this it outside the scope of this project.
+	
+\section{Test Harness Design and Implementation} \label{sec:methodology/implementation}
 	
 \section{Summary} \label{sec:methodology/summary}

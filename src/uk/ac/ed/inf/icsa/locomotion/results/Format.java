@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.Map;
 
 abstract class Format {
-	protected static class ChartItem<A,B,C> {
+	private static class Item {}
+	
+	protected static class ChartItem3<A,B,C> extends Item {
 		private A a;
 		private B b;
 		private C c;
 		
-		public ChartItem(A a, B b, C c) {
+		public ChartItem3(A a, B b, C c) {
 			this.a = a;
 			this.b = b;
 			this.c = c;
@@ -38,9 +40,45 @@ abstract class Format {
 		}
 	}
 	
+	protected static class ChartItem4<A,B,C,D> extends Item {
+		private A a;
+		private B b;
+		private C c;
+		private D d;
+
+		public ChartItem4(A a, B b, C c, D d) {
+			this.a = a;
+			this.b = b;
+			this.c = c;
+			this.d = d;
+		}
+		
+		public A getA() {
+			return a;
+		}
+		
+		public B getB() {
+			return b;
+		}
+		
+		public C getC() {
+			return c;
+		}
+		
+		public D getD() {
+			return d;
+		}
+		
+		public String toString() {
+			StringBuilder string = new StringBuilder();
+			string.append(a.toString()).append("\t").append(b.toString()).append("\t").append(c.toString()).append("\t").append(d.toString());
+			return string.toString();
+		}
+	}
+	
 	protected File destination;
 	protected List<Result> results;
-	protected List<ChartItem<String, String, String>> items;
+	protected List<Item> items;
 	protected Map<String, String> restrictions;
 	
 	protected Format(File destination, List<Result> results, Map<String, String> restrictions) {
@@ -89,7 +127,7 @@ abstract class Format {
 	
 	public void toFile() throws FileNotFoundException {
 		try (PrintWriter writer = new PrintWriter(destination)) {
-			for (ChartItem<?, ?, ?> item: items)
+			for (Item item: items)
 				writer.println(item.toString());
 		}
 	}

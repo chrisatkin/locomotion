@@ -6,12 +6,12 @@ import java.util.Map;
 import java.util.Set;
 
 
-public final class ThreeAxisVariables extends Format {
-	private String x;
-	private String y1;
-	private String y2;
+public class ThreeVariables extends Format {
+	protected String x;
+	protected String y1;
+	protected String y2;
 
-	protected ThreeAxisVariables(File destination, List<Result> results, Map<String, String> restrictions, String x, String y1, String y2) {
+	protected ThreeVariables(File destination, List<Result> results, Map<String, String> restrictions, String x, String y1, String y2) {
 		super(destination, results, restrictions);
 		this.x = x;
 		this.y1 = y1;
@@ -25,7 +25,7 @@ public final class ThreeAxisVariables extends Format {
 			String y2_value = result.getValue(y2);
 			String x_value = result.getValue(x);
 			
-			items.add(new ChartItem<String, String, String>(x_value, y1_value, y2_value));
+			items.add(new ChartItem3<String, String, String>(x_value, y1_value, y2_value));
 		}
 	}
 }

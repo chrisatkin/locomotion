@@ -1,4 +1,4 @@
-\begin{thebibliography}{60}
+\begin{thebibliography}{62}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -327,6 +327,12 @@ S~M Blackburn, R~Garner, C~Hoffman, A~M Khan, K~S McKinley, R~Bentzur, A~Diwan,
 \newblock ISSN 03621340.
 \newblock \doi{10.1145/1167515.1167488}.
 
+\bibitem[Sartaj(1998)]{DSandAlgsCpp}
+Sahni Sartaj.
+\newblock \emph{{Data Structures, Algorithms and Applications in C++}}.
+\newblock McGraw-Hill, first edition, 1998.
+\newblock ISBN 0-07-109219-6.
+
 \bibitem[Bloom(1970)]{Bloom1970}
 Burton~H. Bloom.
 \newblock {Space/time trade-offs in hash coding with allowable errors}.
@@ -382,6 +388,12 @@ Donald~E. Knuth.
   Algorithms}}.
 \newblock Addison Wesley, third edition, 1997.
 \newblock ISBN 0-201-89683-2.
+
+\bibitem[Google(2013)]{GuavaBloomFilter}
+Inc Google.
+\newblock {Class BloomFilter<T>}, 2013.
+\newblock URL
+  \url{http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/com/google/common/hash/BloomFilter.html}.
 
 \bibitem[Smith et~al.(2001)Smith, Bull, and Obdrizalek]{Smith2001}
 L~A Smith, J~M Bull, and J~Obdrizalek.

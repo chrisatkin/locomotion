@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.12)  2 AUG 2013 03:38
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.12)  2 AUG 2013 23:11
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -425,9 +425,9 @@ Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
 \listing@line=\count153
 )
 \verbatim@out=\write3
-runsystem(touch w18-test-201382218.tex)...executed.
+runsystem(touch w18-test-2013821391.tex)...executed.
 
-runsystem(rm -f w18-test-201382218.tex)...executed.
+runsystem(rm -f w18-test-2013821391.tex)...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 108.
@@ -444,15 +444,23 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
+(/usr/local/texlive/2013/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen132
+\WF@size=\dimen133
+\c@WF@wrappedlines=\count155
+\WF@box=\box32
+\WF@everypar=\toks24
+Package: wrapfig 2003/01/31  v 3.6
+)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
 x
-\pgfutil@everybye=\toks24
+\pgfutil@everybye=\toks25
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box32
+\pgfutil@abb=\box33
 (/usr/local/texlive/2013/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
@@ -465,27 +473,27 @@ Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks25
-\pgfkeys@temptoks=\toks26
+\pgfkeys@pathtoks=\toks26
+\pgfkeys@temptoks=\toks27
 
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
 ode.tex
-\pgfkeys@tmptoks=\toks27
+\pgfkeys@tmptoks=\toks28
 ))
-\pgf@x=\dimen132
-\pgf@y=\dimen133
-\pgf@xa=\dimen134
-\pgf@ya=\dimen135
-\pgf@xb=\dimen136
-\pgf@yb=\dimen137
-\pgf@xc=\dimen138
-\pgf@yc=\dimen139
+\pgf@x=\dimen134
+\pgf@y=\dimen135
+\pgf@xa=\dimen136
+\pgf@ya=\dimen137
+\pgf@xb=\dimen138
+\pgf@yb=\dimen139
+\pgf@xc=\dimen140
+\pgf@yc=\dimen141
 \w@pgf@writea=\write4
 \r@pgf@reada=\read2
-\c@pgf@counta=\count155
-\c@pgf@countb=\count156
-\c@pgf@countc=\count157
-\c@pgf@countd=\count158
+\c@pgf@counta=\count156
+\c@pgf@countb=\count157
+\c@pgf@countc=\count158
+\c@pgf@countd=\count159
 
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
@@ -503,8 +511,8 @@ File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
 code.tex
 File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
-\pgfsyssoftpath@smallbuffer@items=\count159
-\pgfsyssoftpath@bigbuffer@items=\count160
+\pgfsyssoftpath@smallbuffer@items=\count160
+\pgfsyssoftpath@bigbuffer@items=\count161
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
 code.tex
@@ -533,12 +541,12 @@ Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen140
-\pgfmath@count=\count161
-\pgfmath@box=\box33
-\pgfmath@toks=\toks28
-\pgfmath@stack@operand=\toks29
-\pgfmath@stack@operation=\toks30
+\pgfmath@dimen=\dimen142
+\pgfmath@count=\count162
+\pgfmath@box=\box34
+\pgfmath@toks=\toks29
+\pgfmath@stack@operand=\toks30
+\pgfmath@stack@operation=\toks31
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
 tex
@@ -557,57 +565,57 @@ code.tex)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
 code.tex)))
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count162
+\c@pgfmathroundto@lastzeros=\count163
 ))
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
 File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
-\pgf@picminx=\dimen141
-\pgf@picmaxx=\dimen142
-\pgf@picminy=\dimen143
-\pgf@picmaxy=\dimen144
-\pgf@pathminx=\dimen145
-\pgf@pathmaxx=\dimen146
-\pgf@pathminy=\dimen147
-\pgf@pathmaxy=\dimen148
-\pgf@xx=\dimen149
-\pgf@xy=\dimen150
-\pgf@yx=\dimen151
-\pgf@yy=\dimen152
-\pgf@zx=\dimen153
-\pgf@zy=\dimen154
+\pgf@picminx=\dimen143
+\pgf@picmaxx=\dimen144
+\pgf@picminy=\dimen145
+\pgf@picmaxy=\dimen146
+\pgf@pathminx=\dimen147
+\pgf@pathmaxx=\dimen148
+\pgf@pathminy=\dimen149
+\pgf@pathmaxy=\dimen150
+\pgf@xx=\dimen151
+\pgf@xy=\dimen152
+\pgf@yx=\dimen153
+\pgf@yy=\dimen154
+\pgf@zx=\dimen155
+\pgf@zy=\dimen156
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
 File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
-\pgf@path@lastx=\dimen155
-\pgf@path@lasty=\dimen156
+\pgf@path@lastx=\dimen157
+\pgf@path@lasty=\dimen158
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
 File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
-\pgf@shorten@end@additional=\dimen157
-\pgf@shorten@start@additional=\dimen158
+\pgf@shorten@end@additional=\dimen159
+\pgf@shorten@start@additional=\dimen160
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
 File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
-\pgfpic=\box34
-\pgf@hbox=\box35
-\pgf@layerbox@main=\box36
-\pgf@picture@serial@count=\count163
+\pgfpic=\box35
+\pgf@hbox=\box36
+\pgf@layerbox@main=\box37
+\pgf@picture@serial@count=\count164
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
 File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
-\pgflinewidth=\dimen159
+\pgflinewidth=\dimen161
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
 File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
-\pgf@pt@x=\dimen160
-\pgf@pt@y=\dimen161
-\pgf@pt@temp=\dimen162
+\pgf@pt@x=\dimen162
+\pgf@pt@y=\dimen163
+\pgf@pt@temp=\dimen164
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
@@ -628,8 +636,8 @@ File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
 File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
-\pgf@max=\dimen163
-\pgf@sys@shading@range@num=\count164
+\pgf@max=\dimen165
+\pgf@sys@shading@range@num=\count165
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
 e.tex
@@ -638,7 +646,7 @@ File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
 code.tex
 File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
-\pgfexternal@startupbox=\box37
+\pgfexternal@startupbox=\box38
 ))
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
 de.tex
@@ -655,7 +663,7 @@ File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
 e.tex
 File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
-\pgfnodeparttextbox=\box38
+\pgfnodeparttextbox=\box39
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
 tex
@@ -664,8 +672,8 @@ File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -0-65.sty
 Package: pgfcomp-version-0-65 2007/07/03 v2.10 (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen164
-\pgf@nodesepend=\dimen165
+\pgf@nodesepstart=\dimen166
+\pgf@nodesepend=\dimen167
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
@@ -676,10 +684,10 @@ Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
 ) (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
-\pgffor@iter=\dimen166
-\pgffor@skip=\dimen167
-\pgffor@stack=\toks31
-\pgffor@toks=\toks32
+\pgffor@iter=\dimen168
+\pgffor@skip=\dimen169
+\pgffor@stack=\toks32
+\pgffor@toks=\toks33
 ))
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
 e.tex
@@ -688,30 +696,30 @@ Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
-\pgf@plot@mark@count=\count165
-\pgfplotmarksize=\dimen168
+\pgf@plot@mark@count=\count166
+\pgfplotmarksize=\dimen170
 )
-\tikz@lastx=\dimen169
-\tikz@lasty=\dimen170
-\tikz@lastxsaved=\dimen171
-\tikz@lastysaved=\dimen172
-\tikzleveldistance=\dimen173
-\tikzsiblingdistance=\dimen174
-\tikz@figbox=\box39
-\tikz@tempbox=\box40
-\tikztreelevel=\count166
-\tikznumberofchildren=\count167
-\tikznumberofcurrentchild=\count168
-\tikz@fig@count=\count169
+\tikz@lastx=\dimen171
+\tikz@lasty=\dimen172
+\tikz@lastxsaved=\dimen173
+\tikz@lastysaved=\dimen174
+\tikzleveldistance=\dimen175
+\tikzsiblingdistance=\dimen176
+\tikz@figbox=\box40
+\tikz@tempbox=\box41
+\tikztreelevel=\count167
+\tikznumberofchildren=\count168
+\tikznumberofcurrentchild=\count169
+\tikz@fig@count=\count170
 
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
 e.tex
 File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
-\pgfmatrixcurrentrow=\count170
-\pgfmatrixcurrentcolumn=\count171
-\pgf@matrix@numberofcolumns=\count172
+\pgfmatrixcurrentrow=\count171
+\pgfmatrixcurrentcolumn=\count172
+\pgf@matrix@numberofcolumns=\count173
 )
-\tikz@expandcount=\count173
+\tikz@expandcount=\count174
 
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
@@ -724,7 +732,7 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
 code.tex
 File: pgflibraryarrows.code.tex 2008/10/27 v2.10 (rcs-revision 1.9)
-\arrowsize=\dimen175
+\arrowsize=\dimen177
 ))
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibraryautomata.code.tex
@@ -737,26 +745,26 @@ File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
 shapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2010/01/07 v2.10 (rcs-revision 1.2)
-\pgfnodepartlowerbox=\box41
-\pgfnodeparttwobox=\box42
-\pgfnodepartthreebox=\box43
-\pgfnodepartfourbox=\box44
-\pgfnodeparttwentybox=\box45
-\pgfnodepartnineteenbox=\box46
-\pgfnodeparteighteenbox=\box47
-\pgfnodepartseventeenbox=\box48
-\pgfnodepartsixteenbox=\box49
-\pgfnodepartfifteenbox=\box50
-\pgfnodepartfourteenbox=\box51
-\pgfnodepartthirteenbox=\box52
-\pgfnodeparttwelvebox=\box53
-\pgfnodepartelevenbox=\box54
-\pgfnodeparttenbox=\box55
-\pgfnodepartninebox=\box56
-\pgfnodeparteightbox=\box57
-\pgfnodepartsevenbox=\box58
-\pgfnodepartsixbox=\box59
-\pgfnodepartfivebox=\box60
+\pgfnodepartlowerbox=\box42
+\pgfnodeparttwobox=\box43
+\pgfnodepartthreebox=\box44
+\pgfnodepartfourbox=\box45
+\pgfnodeparttwentybox=\box46
+\pgfnodepartnineteenbox=\box47
+\pgfnodeparteighteenbox=\box48
+\pgfnodepartseventeenbox=\box49
+\pgfnodepartsixteenbox=\box50
+\pgfnodepartfifteenbox=\box51
+\pgfnodepartfourteenbox=\box52
+\pgfnodepartthirteenbox=\box53
+\pgfnodeparttwelvebox=\box54
+\pgfnodepartelevenbox=\box55
+\pgfnodeparttenbox=\box56
+\pgfnodepartninebox=\box57
+\pgfnodeparteightbox=\box58
+\pgfnodepartsevenbox=\box59
+\pgfnodepartsixbox=\box60
+\pgfnodepartfivebox=\box61
 )))
 (/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/06/27 1.5pre1 listings language file
@@ -765,30 +773,30 @@ File: lstlang1.sty 2013/06/27 1.5pre1 listings language file
 (./chapters/graal.aux) (./chapters/instrumentation.aux)
 (./chapters/runtime-library.aux) (./chapters/methodology.aux)
 (./chapters/parametric-benchmarks.aux) (./chapters/results.aux)
-(./chapters/optimisations.aux) (./chapters/conclusion.aux))
+(./chapters/conclusion.aux))
 \openout1 = `dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMS/pzccm/m/n on input line 71.
-LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 71
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMS/pzccm/m/n on input line 72.
+LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 72
 .
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omspzccm.fd
 File: omspzccm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/pzccm.
 )
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 71.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 72.
 
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1pplx.fd
@@ -830,17 +838,17 @@ File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 
 (/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count174
-\scratchdimen=\dimen176
-\scratchbox=\box61
-\nofMPsegments=\count175
-\nofMParguments=\count176
-\everyMPshowfont=\toks33
-\MPscratchCnt=\count177
-\MPscratchDim=\dimen177
-\MPnumerator=\count178
-\makeMPintoPDFobject=\count179
-\everyMPtoPDFconversion=\toks34
+\scratchcounter=\count175
+\scratchdimen=\dimen178
+\scratchbox=\box62
+\nofMPsegments=\count176
+\nofMParguments=\count177
+\everyMPshowfont=\toks34
+\MPscratchCnt=\count178
+\MPscratchDim=\dimen179
+\MPnumerator=\count179
+\makeMPintoPDFobject=\count180
+\everyMPtoPDFconversion=\toks35
 ) (/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -860,9 +868,10 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
+Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box62
-Package hyperref Info: Link coloring OFF on input line 71.
+\AtBeginShipoutBox=\box63
+Package hyperref Info: Link coloring OFF on input line 72.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -870,17 +879,17 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count180
+\c@section@level=\count181
 )
-LaTeX Info: Redefining \ref on input line 71.
-LaTeX Info: Redefining \pageref on input line 71.
-LaTeX Info: Redefining \nameref on input line 71.
+LaTeX Info: Redefining \ref on input line 72.
+LaTeX Info: Redefining \pageref on input line 72.
+LaTeX Info: Redefining \nameref on input line 72.
 
 (./dissertation.out) (./dissertation.out)
 \@outlinefile=\write5
 \openout5 = `dissertation.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 71.
+LaTeX Info: Redefining \microtypecontext on input line 72.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -894,16 +903,16 @@ Package microtype Info: No adjustment of character kerning.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-\big@size=\dimen178
-\c@lstlisting=\count181
+\big@size=\dimen180
+\c@lstlisting=\count182
 
 ABD: EveryShipout initializing macros
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 74.
+(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 75.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 74.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 75.
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
-(Font)              scaled to size 15.55188pt on input line 74.
+(Font)              scaled to size 15.55188pt on input line 75.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `phv' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
@@ -912,7 +921,7 @@ Package microtype Info: Loading generic settings for font family
 (/usr/local/texlive/2013/texmf-dist/tex/latex/microtype/mt-ptm.cfg
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
-LaTeX Font Info:    Try loading font information for U+zeur on input line 74.
+LaTeX Font Info:    Try loading font information for U+zeur on input line 75.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/eulervm/uzeur.fd
 File: uzeur.fd 2005/01/11 v4.0 (WaS)
@@ -920,7 +929,7 @@ File: uzeur.fd 2005/01/11 v4.0 (WaS)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/microtype/mt-eur.cfg
 File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
 )
-LaTeX Font Info:    Try loading font information for U+zeus on input line 74.
+LaTeX Font Info:    Try loading font information for U+zeus on input line 75.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/eulervm/uzeus.fd
 File: uzeus.fd 2005/01/11 v4.0 (WaS)
@@ -928,18 +937,18 @@ File: uzeus.fd 2005/01/11 v4.0 (WaS)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/microtype/mt-eus.cfg
 File: mt-eus.cfg 2006/07/28 v1.2 microtype config. file: AMS Euler Script (RS)
 )
-LaTeX Font Info:    Try loading font information for U+zeuex on input line 74.
+LaTeX Font Info:    Try loading font information for U+zeuex on input line 75.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/eulervm/uzeuex.fd
 File: uzeuex.fd 2005/01/11 v4.0 (WaS)
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 74.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 74.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 74.
-LaTeX Font Info:    Try loading font information for U+lasy on input line 74.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 75.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -951,15 +960,15 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 74.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 75.
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 74.
+(Font)              scaled to size 10.79993pt on input line 75.
 
-<eushield-fullcolour.pdf, id=356, 369.38pt x 373.395pt>
+<eushield-fullcolour.pdf, id=368, 369.38pt x 373.395pt>
 File: eushield-fullcolour.pdf Graphic file (type pdf)
 
 <use eushield-fullcolour.pdf>
-Package pdftex.def Info: eushield-fullcolour.pdf used on input line 74.
+Package pdftex.def Info: eushield-fullcolour.pdf used on input line 75.
 (pdftex.def)             Requested size: 369.37909pt x 373.39409pt.
  [1
 
@@ -968,18 +977,18 @@ eld-fullcolour.pdf>] [2
 
 ]
 LaTeX Font Info:    Font shape `OT1/phv/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 74.
+(Font)              scaled to size 9.85492pt on input line 75.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 74.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 75.
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
-(Font)              scaled to size 9.85492pt on input line 74.
+(Font)              scaled to size 9.85492pt on input line 75.
  [3] [4] [5] [6]
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 81.
+(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 82.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 81.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 82.
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
-(Font)              scaled to size 22.39185pt on input line 81.
+(Font)              scaled to size 22.39185pt on input line 82.
 
 (./dissertation.toc
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <10.95> not available
@@ -1009,16 +1018,10 @@ Package microtype Info: Loading generic settings for font family
  [11] [12
 
 ]
-(./dissertation.loa)
-\tf@loa=\write8
-\openout8 = `dissertation.loa'.
-
- [13] [14
-
-]
 \openout2 = `chapters/introduction.aux'.
 
- (./chapters/introduction.tex
+
+(./chapters/introduction.tex
 Chapter 1.
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <20.74> not available
 (Font)              Font shape `OT1/pplx/b/n' tried instead on input line 1.
@@ -1080,7 +1083,7 @@ Chapter 3.
 
 
 
-] <graphics/roslyn-pipeline.pdf, id=692, 433.62pt x 219.82124pt>
+] <graphics/roslyn-pipeline.pdf, id=700, 433.62pt x 219.82124pt>
 File: graphics/roslyn-pipeline.pdf Graphic file (type pdf)
 
 <use graphics/roslyn-pipeline.pdf>
@@ -1090,7 +1093,7 @@ Package pdftex.def Info: graphics/roslyn-pipeline.pdf used on input line 17.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [14 <./graphics/roslyn-pipeline.pdf>]
-<graphics/loop-inline.png, id=713, 446.66875pt x 379.4175pt>
+<graphics/loop-inline.png, id=721, 446.66875pt x 379.4175pt>
 File: graphics/loop-inline.png Graphic file (type png)
 
 <use graphics/loop-inline.png>
@@ -1100,7 +1103,7 @@ Package pdftex.def Info: graphics/loop-inline.png used on input line 34.
 Underfull \vbox (badness 1325) has occurred while \output is active []
 
  [16 <./graphics/loop-inline.png>] [17]
-<graphics/lowering-stages.pdf, id=736, 495.8525pt x 40.15pt>
+<graphics/lowering-stages.pdf, id=743, 495.8525pt x 40.15pt>
 File: graphics/lowering-stages.pdf Graphic file (type pdf)
 
 <use graphics/lowering-stages.pdf>
@@ -1111,7 +1114,7 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <12> not available
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <12> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 86.
  [18 <./graphics/lowering-stages.pdf>]
-<graphics/graph-replacement.pdf, id=769, 636.3775pt x 100.375pt>
+<graphics/graph-replacement.pdf, id=776, 636.3775pt x 100.375pt>
 File: graphics/graph-replacement.pdf Graphic file (type pdf)
 
 <use graphics/graph-replacement.pdf>
@@ -1123,20 +1126,23 @@ Underfull \vbox (badness 1910) has occurred while \output is active []
 
  [19]
 [20 <./graphics/graph-replacement.pdf>]
-<graphics/jvminternals.pdf, id=812, 372.39125pt x 161.60374pt>
+<graphics/jvminternals.pdf, id=820, 372.39125pt x 161.60374pt>
 File: graphics/jvminternals.pdf Graphic file (type pdf)
 
 <use graphics/jvminternals.pdf>
-Package pdftex.def Info: graphics/jvminternals.pdf used on input line 171.
+Package pdftex.def Info: graphics/jvminternals.pdf used on input line 173.
 (pdftex.def)             Requested size: 330.05322pt x 143.23506pt.
- [21 <./graphics/jvminternals.pdf>]
-Overfull \hbox (18.89687pt too wide) in paragraph at lines 181--182
+ [21]
+Overfull \hbox (18.89687pt too wide) in paragraph at lines 183--184
 \OT1/pplx/m/n/10.95 (-20) rupt con-trol flow. These ex-cep-tions are \OT1/pcr/m
 /n/10.95 NullCheckException\OT1/pplx/m/n/10.95 (-20) , \OT1/pcr/m/n/10.95 Bound
 sCheckException\OT1/pplx/m/n/10.95 (-20) ,
  []
 
-) [22] [23]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22 <./graphics/jvminternals.pdf>]) [23]
 \openout2 = `chapters/instrumentation.aux'.
 
  (./chapters/instrumentation.tex [24
@@ -1147,91 +1153,113 @@ sCheckException\OT1/pplx/m/n/10.95 (-20) ,
 Chapter 4.
 [25]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 19.
- <graphics/access-index.png, id=861, 442.65375pt x 375.4025pt>
+nput line 17.
+ <graphics/access-index.png, id=869, 442.65375pt x 375.4025pt>
 File: graphics/access-index.png Graphic file (type png)
 
 <use graphics/access-index.png>
-Package pdftex.def Info: graphics/access-index.png used on input line 45.
+Package pdftex.def Info: graphics/access-index.png used on input line 43.
 (pdftex.def)             Requested size: 288.79422pt x 244.93097pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<graphics/graal-metadata.png, id=863, 655.44875pt x 320.19624pt>
+<graphics/graal-metadata.png, id=871, 655.44875pt x 320.19624pt>
 File: graphics/graal-metadata.png Graphic file (type png)
 
 <use graphics/graal-metadata.png>
-Package pdftex.def Info: graphics/graal-metadata.png used on input line 54.
+Package pdftex.def Info: graphics/graal-metadata.png used on input line 52.
 (pdftex.def)             Requested size: 330.05322pt x 161.23611pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [26] [27 <./graphics/access-index.png>]
-Overfull \hbox (38.10196pt too wide) in paragraph at lines 88--88
+Overfull \hbox (38.10196pt too wide) in paragraph at lines 86--86
 []       \OT1/pcr/m/n/10.95 0: getstatic     #2    // Field java/lang/System.ou
 t:Ljava/io/PrintStream;[] 
  []
 
 
-Overfull \hbox (84.17935pt too wide) in paragraph at lines 90--90
+Overfull \hbox (84.17935pt too wide) in paragraph at lines 88--88
 []       \OT1/pcr/m/n/10.95 5: invokevirtual #4    // Method java/io/PrintStrea
 m.println:(Ljava/lang/String;)V[] 
  []
 
-[28 <./graphics/graal-metadata.png>] [29] [30] [31] [32] [33] [34] [35])
-[36]
+[28 <./graphics/graal-metadata.png>] [29] [30] [31] [32] [33] [34]
+Underfull \vbox (badness 1215) has occurred while \output is active []
+
+ [35]
+Underfull \vbox (badness 7558) has occurred while \output is active []
+
+ [36])
+[37]
 \openout2 = `chapters/runtime-library.aux'.
 
- (./chapters/runtime-library.tex
+ (./chapters/runtime-library.tex [38
+
+
+
+]
 Chapter 5.
+[39] <graphics/hash-table.pdf, id=1056, 252.945pt x 184.69pt>
+File: graphics/hash-table.pdf Graphic file (type pdf)
 
-LaTeX Warning: Reference `items:reqs' on page 37 undefined on input line 18.
-
-[37
-
-
-
-] [38] <graphics/bloomfilter.pdf, id=1045, 521.14702pt x 187.20018pt>
+<use graphics/hash-table.pdf>
+Package pdftex.def Info: graphics/hash-table.pdf used on input line 40.
+(pdftex.def)             Requested size: 288.79422pt x 210.87003pt.
+ [40]
+<graphics/bloomfilter.pdf, id=1068, 521.14702pt x 187.20018pt>
 File: graphics/bloomfilter.pdf Graphic file (type pdf)
 
 <use graphics/bloomfilter.pdf>
-Package pdftex.def Info: graphics/bloomfilter.pdf used on input line 58.
+Package pdftex.def Info: graphics/bloomfilter.pdf used on input line 55.
 (pdftex.def)             Requested size: 330.05322pt x 118.56229pt.
- [39 <./graphics/bloomfilter.pdf>] [40] [41]
+ [41 <./graphics/hash-table.pdf> <./graphics/bloomfilter.pdf
+
+pdfTeX warning: /usr/texbin/pdflatex (file ./graphics/bloomfilter.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+>] [42] [43]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 161.
+put line 160.
+ [44] [45]
+<graphics/instrument-support.pdf, id=1166, 176.66pt x 130.4875pt>
+File: graphics/instrument-support.pdf Graphic file (type pdf)
 
-Underfull \vbox (badness 4792) has occurred while \output is active []
+<use graphics/instrument-support.pdf>
+Package pdftex.def Info: graphics/instrument-support.pdf used on input line 218
+.
+(pdftex.def)             Requested size: 165.02347pt x 121.89368pt.
+ [46 <./graphics/instrument-support.pdf>]
+[47] <graphics/trace-classes.pdf, id=1203, 334.24875pt x 273.02pt>
+File: graphics/trace-classes.pdf Graphic file (type pdf)
 
- [42])
-[43]
+<use graphics/trace-classes.pdf>
+Package pdftex.def Info: graphics/trace-classes.pdf used on input line 270.
+(pdftex.def)             Requested size: 288.79422pt x 235.90909pt.
+ [48 <./graphics/trace-classes.pdf>]) [49]
 \openout2 = `chapters/methodology.aux'.
 
- (./chapters/methodology.tex [44
+
+(./chapters/methodology.tex [50
 
 
 
 ]
 Chapter 6.
-
-Underfull \vbox (badness 2181) has occurred while \output is active []
-
- [45]
-[46] [47]) [48]
+[51] [52] [53]) [54]
 \openout2 = `chapters/parametric-benchmarks.aux'.
 
  (./chapters/parametric-benchmarks.tex
 Chapter 7.
-) [49
+) [55
 
 
 
 ]
 \openout2 = `chapters/results.aux'.
 
- (./chapters/results.tex [50
+ (./chapters/results.tex [56
 
 
 
@@ -1245,7 +1273,7 @@ runsystem(gnuplot dissertation-gnuplottex-fig1.gnuplot)...executed.
 Package gnuplottex Info: dissertation-gnuplottex-fig1.gnuplot converted on inpu
 t line 10.
 
-<dissertation-gnuplottex-fig1.pdf, id=1191, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig1.pdf, id=1297, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig1.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig1.pdf>
@@ -1261,14 +1289,14 @@ runsystem(gnuplot dissertation-gnuplottex-fig2.gnuplot)...executed.
 Package gnuplottex Info: dissertation-gnuplottex-fig2.gnuplot converted on inpu
 t line 16.
 
-<dissertation-gnuplottex-fig2.pdf, id=1192, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig2.pdf, id=1298, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig2.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig2.pdf>
 Package pdftex.def Info: dissertation-gnuplottex-fig2.pdf used on input line 16
 .
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
- [51 <./dissertation-gnuplottex-fig1.pdf>]
+ [57 <./dissertation-gnuplottex-fig1.pdf>]
 \openout3 = `dissertation-gnuplottex-fig3.gnuplot'.
 
  Opening gnuplot stream dissertation-gnuplottex-fig3.gnuplot
@@ -1277,7 +1305,7 @@ runsystem(gnuplot dissertation-gnuplottex-fig3.gnuplot)...executed.
 Package gnuplottex Info: dissertation-gnuplottex-fig3.gnuplot converted on inpu
 t line 22.
 
-<dissertation-gnuplottex-fig3.pdf, id=1201, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig3.pdf, id=1307, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig3.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig3.pdf>
@@ -1287,34 +1315,25 @@ Package pdftex.def Info: dissertation-gnuplottex-fig3.pdf used on input line 22
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [52 <./dissertation-gnuplottex-fig2.pdf> <./dissertation-gnuplottex-fig3.pdf>]
- [53]
-\openout2 = `chapters/optimisations.aux'.
+ [58 <./dissertation-gnuplottex-fig2.pdf> <./dissertation-gnuplottex-fig3.pdf>]
+ [59]
+\openout2 = `chapters/conclusion.aux'.
 
 
-(./chapters/optimisations.tex [54
+(./chapters/conclusion.tex [60
 
 
 
 ]
 Chapter 9.
-) [55]
-\openout2 = `chapters/conclusion.aux'.
-
- (./chapters/conclusion.tex [56
-
-
-
-]
-Chapter 10.
-) [57] [58] (./dissertation.bbl [59
+) [61] [62] (./dissertation.bbl [63
 
 
 ]
 Missing character: There is no â in font pplri9t!
 Missing character: There is no € in font pplri9t!
 Missing character: There is no ” in font pplri9t!
- [60]
+ [64]
 Missing character: There is no â in font pplri9t!
 Missing character: There is no „ in font pplri9t!
 Missing character: There is no ¢ in font pplri9t!
@@ -1324,49 +1343,51 @@ Underfull \hbox (badness 1509) in paragraph at lines 212--216
 us.groovy.classgen.asm,
  []
 
-[61] [62]
-Underfull \hbox (badness 2828) in paragraph at lines 367--371
+[65] [66]
+Underfull \hbox (badness 2828) in paragraph at lines 373--377
 []\OT1/pplx/m/n/10.95 (+20) Ronald Ib-bett.  High Per-for-mance Com-puter Ar-ch
 i-tec-tures, 2009.  URL
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 367--371
+Underfull \hbox (badness 10000) in paragraph at lines 373--377
 []$\OT1/pcr/m/n/10.95 http : / / homepages . inf . ed . ac . uk / cgi / rni / c
 omp-[]arch . pl ? Paru / depend . html ,[]
  []
 
-[63])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 99.
- [64]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 99.
+
+Underfull \hbox (badness 10000) in paragraph at lines 393--397
+\OT1/pcr/m/n/10.95 googlecode . com / git-[]history / release / javadoc / com /
+ google / common / hash /
+ []
+
+[67])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
+ [68]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
  (./dissertation.aux (./chapters/introduction.aux)
 (./chapters/related-work.aux) (./chapters/graal.aux)
 (./chapters/instrumentation.aux) (./chapters/runtime-library.aux)
 (./chapters/methodology.aux) (./chapters/parametric-benchmarks.aux)
-(./chapters/results.aux) (./chapters/optimisations.aux)
-(./chapters/conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 99.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 99.
+(./chapters/results.aux) (./chapters/conclusion.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 100.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: D8ED80461AF82FE7729E20FFB1C76DE1;5500.
+(rerunfilecheck)             Checksum: EDFA40CCDEF849438C9111E27ABB84B2;5841.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 99.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
  ) 
 Here is how much of TeX's memory you used:
- 22447 strings out of 493311
- 396904 string characters out of 6137850
- 677304 words of memory out of 5000000
- 24625 multiletter control sequences out of 15000+600000
+ 22536 strings out of 493311
+ 398522 string characters out of 6137850
+ 678562 words of memory out of 5000000
+ 24704 multiletter control sequences out of 15000+600000
  95894 words of font info for 457 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 56i,10n,70p,2140b,1691s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,10n,70p,2140b,1057s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
 xlive/2013/texmf-dist/fonts/type1/public/amsfonts/euler/euex10.pfb></usr/local/
@@ -1386,10 +1407,10 @@ ist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2013/texmf-dist/fon
 ts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type
 1/urw/palatino/uplri8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb>
-Output written on dissertation.pdf (78 pages, 607261 bytes).
+Output written on dissertation.pdf (80 pages, 666266 bytes).
 PDF statistics:
- 1477 PDF objects out of 1728 (max. 8388607)
- 1309 compressed objects within 14 object streams
- 320 named destinations out of 1000 (max. 500000)
- 78081 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 1580 PDF objects out of 1728 (max. 8388607)
+ 1395 compressed objects within 14 object streams
+ 333 named destinations out of 1000 (max. 500000)
+ 78120 words of extra memory for PDF output out of 89155 (max. 10000000)
 

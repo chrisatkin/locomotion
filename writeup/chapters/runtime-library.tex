@@ -1,6 +1,6 @@
 \chapter{The Runtime Library} \label{chp:runtime}
 \section{Introduction} \label{sec:runtime/introduction}
-In this chapter, the work performed towards implementing the runtime library is presented. This library handles several core functions critical to the infrastructure of the application:
+In this chapter, the work performed towards implementing the runtime library, known as Locomotion, is presented. This library handles several core functions critical to the infrastructure of the application:
 
 \begin{itemize}
 	\item Functions for collecting trace analyses
@@ -8,47 +8,44 @@ In this chapter, the work performed towards implementing the runtime library is 
 	\item Algorithms for offline and online dependency analysis
 \end{itemize}
 
-Additionally, tools for generating sample dependency patterns are also included.
-
 The programs described within this chapter are open-source, released under The University of Edinburgh GPL license. They are available at \url{https://github.com/chrisatkin/locomotion}.
 
 The fully-qualified package identifier for the runtime library is\\\texttt{uk.ac.ed.inf.icsa.locomotion.instrumentation}.
 
-\section{Trace Collection} \label{sec:runtime/trace-collection}
-One of the main functionalities of the runtime library is to enable the collection of traces. This entails logging all appropriate memory operations (i.e., the ones matching conditions presented in \ref{items:reqs}), with some additional semantic information which is also required.
-
-The user-facing methods for trace collection have the following signatures:
-
-\begin{lstlisting}[caption=Method signatures for instrumentation methods,label=lst:sigs]
-public static <T> void
-arrayLookup(T[] array, int index, int iterator, int id);
-
-public static <T> void
-arrayStore(T[] array, int index, T value, int iterator, int id);
-\end{lstlisting}
-
-The arguments are:
-
-\begin{itemize} \label{items:trace-args}
-	\item \texttt{T[] array}: the array upon which the operation is occuring
-	\item \texttt{int index}: the array index in question
-	\item \texttt{int iterator}: the value of the iteration variable
-	\item \texttt{T value}: the value being written to the array at the index
-	\item \texttt{int id}: a loop identifier
-\end{itemize}
-
-The Java generics system was leveraged in order to reduce the amount of code required to implement the collection; it is important to recognise that the Java type system allows the trace collection mechanism to be unconcerned with the type of the array being accessed (and the type of the item being inserted if appropriate).
-
 \section{Trace Storage} \label{sec:runtime/storage}
 Generating traces for large programs -- the kind of programs which would benefit from hot-loop analysis -- requires a large amount of storage as it scales linearly with the number of memory operations ($S=O(n)$). Although the number of storage operations conforming to the requirements in a program may be relatively small, this number is increased when the standard library is included.
+
+The main problem that the storage format must be able to determine is this. Given trace $T$ and access $\alpha$, is $\alpha \in T$?
 	
 	\subsection{Exact Approaches} \label{sec:runtime/storage/exact}
-	Exact approaches provide an accurate deterministic response to the 
+	Exact approaches provide an accurate deterministic response to this question. They are not probabilistic or statistical in nature.
+	
+		\subsubsection{Hash Tables and Sets} \label{sec:runtime/storage/exact/hashing}
+		A hash function maps keys to indexes, where buckets are stored. Buckets contain all items with the same key. Ideally, a lookup of $T=O(1)$ is possible (\ie, a hash function with ideal distribution). Worst-case cost is $T=O(n)$, in the case of multiple collisions or a low load factor, as the bucket will need to be traversed sequentially to find the item.
+		
+		It is common to use hashing by division for the hash function:
+		
+		\[
+			f(k) = k \bmod{D}
+		\]
+		
+		Where $k$ is the key and $D$ is the size (\ie, number of positions of the hash table) \citep{DSandAlgsCpp}.
+		
+		The constant-time lookup assumes that the \textit{load factor} $L$ is bounded below some constant. The load factor is computed by $L=\frac{n}{k}$.
+		
+		Figure \ref{fig:hash-table} demonstrates a simple hash table without collisions.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\textwidth]{graphics/hash-table.pdf}
+			\caption{A simple hash table for a phone book}
+			\label{fig:hash-table}
+		\end{figure}
 
 	\subsection{Probabilistic Approaches} \label{sec:runtime/storage/probabilistic}
 	The main disadvantage to using exact approaches is that the storage required scales linearly such that $S=O(n)$. For anything but the most trivial programs, this means that it becomes infeasible to store traces for all memory operations.
 	
-		\subsection{Bloom Filters} \label{sec:runtime/storage/probabilistic/bloom}
+		\subsubsection{Bloom Filters} \label{sec:runtime/storage/probabilistic/bloom}
 		One alternative is the use of Bloom Filters \citep{Bloom1970}. A Bloom Filter is a randomised data structure which supports membership queries, with the possibility of false positives. In the context of parallelism detection, this means that we may conclude that a loop is not parallelisable when in reality, it is.
 		
 		The operation of a Bloom Filter is simple: there exists a bit vector of size $m$ and a number $k$ of hash functions (which could use universal hashing \citep{Carter1979}). Upon insertation of an item $i$, for each hash $k_n$ the value of $v_n=k_n(i)$ is computed, which is an integer in the range $0..m$. The corresponding index of the vector is then set to $1$.
@@ -81,6 +78,8 @@ Generating traces for large programs -- the kind of programs which would benefit
 		\[
 		E = -n \ln \frac{1-n/n}{k}
 		\]
+		
+		An advantage of bloom filters is that the space complexity is constant $S=O(c)$, where $c$ is the size of the bit vector. This will allow memory overhead to be substantially lower, whilst still retaining $T=O(1)$ lookup time complexity.
 
 \section{Dependency Analysis Algorithms} \label{sec:runtime/analysis}
 	Computing dependency between two operations is of critical importance to this project; an efficient algorithm is important.
@@ -209,5 +208,79 @@ Generating traces for large programs -- the kind of programs which would benefit
 	\end{algorithm}
 
 \section{Implementation Details} \label{sec:runtime/implementation}
+In this section, we consider the techniques used to implement the runtime library and online dependency algorithm from a software engineering perspective.
+
+	\subsection{Entry Point} \label{sec:runtime/implementation/entry-point}
+	The main entry point to the instrumentation is the \texttt{InstrumentSupport} class. It includes an \texttt{Instrument}, which is an implementation of instrumentation. There is also a number of static methods for accessing the instrumentation framework, such as starting and ending timers (and getting time differences in nanoseconds) and flushing the instrument buffers. Figure \ref{fig:instrument-support} shows the class diagram with public methods for \texttt{InstrumentSupport}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.4\textwidth]{graphics/instrument-support.pdf}
+		\caption{Class diagram for \texttt{InstrumentSupport}}
+		\label{fig:instrument-support}
+	\end{figure}
+	
+	\subsection{Instrument Implementation} \label{sec:runtime/implementation/instrument}
+	\texttt{InstrumentSupport} is initalised at load-time with an \texttt{Instrument} (via static blocks). \texttt{Instrument} is an implementation of instrumentation, and it has a configuration. This configuration contains parameters such as whether the instrumentation should be enabled and so on.
+	
+	The user-facing methods for trace collection have the following signatures:
+	
+	\begin{lstlisting}[caption=Method signatures for instrumentation methods,label=lst:sigs]
+	public static <T> void
+	arrayLookup(T[] array, int index, int i, int id);
+	
+	public static <T> void
+	arrayStore(T[] array, int index, T value, int i, int id);\end{lstlisting}
+	
+	The arguments are:
+	
+	\begin{itemize} \label{items:trace-args}
+		\item \texttt{T[] array}: the array upon which the operation is occuring
+		\item \texttt{int index}: the array index in question
+		\item \texttt{int i}: the value of the iteration variable
+		\item \texttt{T value}: the value being written to the array at the index
+		\item \texttt{int id}: a unique loop identifier
+	\end{itemize}
+	
+	The Java generics system was leveraged in order to reduce the amount of code required to implement the collection; it is important to recognise that the Java type system allows the trace collection mechanism to be unconcerned with the type of the array being accessed (and the type of the item being inserted if appropriate).
+	
+	\subsection{Trace Storage and Configuration} \label{sec:runtime/implementation/trace}
+	The instrumentation includes implementations of both exact and inexact approaches to trace storage.
+	
+	The \texttt{Access} class provides an abstraction for an access. An \texttt{Access} represents an array access with an associated kind, index, number (``\textit{this iteration represents the $n$th access this iteration''}).
+	
+		\subsubsection{Exact - Hash Set} \label{sec:runtime/implementation/trace/hashset}
+		For the exact implementation, I chose to use the standard Java Collections Framework \texttt{HashSet} class. This is for several reasons, such as:
+		
+		\begin{itemize}
+			\item \textbf{Performance}: array lookup in hash maps is $T=O(1)$, assuming an equal distribution of hash codes. For this reason, \texttt{Access} also overrides the standard \texttt{hashCode()} implementation, so that any two accesses are equivalent iff the array ID and indexes match.
+			
+			\item \textbf{Uniform interface}: any member of the Collections framework includes by-default various capabilities, such as being \texttt{Iterable}, meaning enhanced for-each loops can be used.
+			
+			\item \textbf{Standard implementation}: the built-in implementation has been tested for bugs, and is (mostly) bug-free. A custom implementation could not be subjected to this same rigorous testing.
+		\end{itemize}
+		
+		\subsubsection{Inexact - Bloom Filters} \label{sec:runtime/implementation/trace/bloom}
+			Rather than creating a custom implementation of Bloom filters, I used an existing implementation in the form of Google Guava \citep{GuavaBloomFilter}.\
+		
+		There is a parent abstract class, \texttt{Trace} which specifies several standard methods that all interfaces must define (\texttt{add()}, \texttt{contains()} and \texttt{size()}). All implementations of traces inherit from this superclass. Figure \ref{fig:trace-classes} shows this hierarchy in detail.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\textwidth]{graphics/trace-classes.pdf}
+			\caption{Trace class hierarchy}
+			\label{fig:trace-classes}
+		\end{figure}
+		
+		A \texttt{TraceConfiguration} class is used to provide configuration details for the trace. There are no configuration variables used for hash sets, but for bloom filters this includes the initial size and the \texttt{Filter} used (an implementation detail as a result of the use of Google Guava). Dynamic configuration was preferred to constants as many experiments will need to be run, often with different variables.
+		
+		When a new access $\alpha$ in iteration $i$ and loop $l$ is detected, the library checks if $l$ is a new loop, or an existing one. If the loop is new, it instantiates a new \texttt{Loop} object, which holds the traces, as well as detecting whether an access is dependent. \texttt{Loop} stores two instantiations of the supplies \texttt{Trace} class - one for read and one for write operations. This is necessary in order to detect $\sigma_x \delta \sigma_y$, $\sigma_x \delta^0 \sigma_y$ and $\sigma_x \delta^{-1} \sigma_y$ dependencies, but not read-after-read dependencies. In order to use a single trace implementation, the semantics of the \texttt{hashCode()} and \texttt{equals()} methods, along with the \texttt{Comparable} access would need to be violated as a temporal dependence is introduced. Both bloom filters use \texttt{hashCode()} to determine an item is contained. It is not possible to use a $\sigma_x \delta \sigma_y$, $\sigma_x \delta^0 \sigma_y$ and $\sigma_x \delta^{-1} \sigma_y$ but not read-after-read dependencies.
+		
+		In order to detect dependencies, \texttt{Loop} checks all \emph{previous} iterations, using a $T=O(1)$ check on for containment within both read and write traces. Overall, for $n$ iterations the solution has a time complexity $T=O(n)$ and a space complexity $S=O(a)$, where $a$ is the number of accesses. Once a loop has been completed as detected by the finite state machine (see figure \ref{fig:online-fsm}), the accesses are deleted in order to reduce memory location.
+		
+		Dependencies are reported to the runtime via an exceptions mechanism. When a dependence is detected a special exception, \texttt{LoopDependencyException} is thrown, which is initialised with hazard metadata (which access is dependent, the kind of dependence, and the two iterations which the access occurs within). \texttt{LoopDependencyException} is a checked exception. The exception traverses up the stack until it reaches \texttt{Instrument}, which stores all exceptions of the same type in a linked list. This list is available to users of the framework, meaning full dependency information is available.
 
 \section{Summary} \label{sec:runtime/summary}
+In this chapter, the theory of dependence analysis has been introduced, as well as some practical approaches to implementing them. Both kinds of dependency checking algorithm (offline and online) have been covered, as well as implementation details of online algorithms in our framework.
+
+Lastly, a software engineering-based approach to the design of the instrumentation framework was discussed.

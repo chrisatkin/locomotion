@@ -8,13 +8,11 @@ There are two main approaches to the instrumentation: automatic, and manual.
 	In this context, an automatic approach to instrumentation is a technique that can be applied directly at compile-time (or just before run-time in an agent-like fashion). Such approaches require no human intervention whatsoever, and have the additional advantage of having access to additional compile-time meta-data which is not possible to gain at run-time or using manual instrumentation.
 
 	\subsection{Graal} \label{sec:instrumentation/graal}
-	In the first instance, an automatic approach based on Graal was investigated.
+	In the first instance, an automatic approach based on Graal was investigated. Graal was chosen in the first instance because it is the most flexible approach: it allows the combination of compile-time evaluation, as well as run-time evaluation of the dependency algorithms.
 	
 	As mentioned, Graal uses various different forms of intermediate representation, based on graphs (see section \ref{sec:graal/ir}). In principle, it should be possible to modify these graphs in order to invoke the instrumentation (described in chapter \ref{chp:runtime}).
 	
 	Modifying graphs in Graal is made easy through a simple API. A user can define custom phases (see section \ref{sec:graal/transformations}). Pseudocode for this is as follows:
-	
-	\newpage
 	
 	\begin{lstlisting}[caption=Sample code for adding a phase and manipulating a graph,label=list:graph-trans]
 	// create the phase
@@ -70,9 +68,9 @@ There are two main approaches to the instrumentation: automatic, and manual.
 	
 	In cases \ref{item:instr1} and \ref{item:instr2}, then node would need to implement \texttt{Lowerable}, an interface in Graal that allows nodes to be lowered between IR levels.
 	
-	\textit{However}, there is currently a limitation in Graal which means that it is not currently possible to insert calls to (static) methods. This is because there is no \emph{bytecode index} (or BCI) for the interpreter/compiler to return to if a deoptimisation occurs (details on Graal's deoptimisation mechanisms are available in section \ref{sec:graal/deopt}). Since methods calls cannot be guaranteed to be deoptimisation-free, they cannot be inserted into graphs.
+	\textit{However}, there is currently a limitation in Graal which means that it is not currently possible to insert calls to (static) methods. This is because there is no \emph{bytecode index} (or BCI) for the interpreter to return to if a deoptimisation occurs (details on Graal's deoptimisation mechanisms are available in section \ref{sec:graal/deopt}). Since methods calls cannot be guaranteed to be deoptimisation-free, they cannot be inserted into graphs. Any static methods that modify abstract data types (\ie, the storage formats described in section \ref{sec:runtime/storage}) cannot be assumed to be deoptimisation free. Modifying a data structure violates the optimisation assumptions, causing a deoptimisation. The interpreter then tries to resume from the BCI of the invoke. However, there is no BCI associated with inserted invocation, meaning that the interpreter cannot resume in the event of the inevitable deoptimisation. The end result is that insertation of arbitrary behaviour through invoke nodes to static methods is not currently possible in the Graal system.
 	
-	In Java bytecode, each instruction has an associated index (this example was compiled using \texttt{javap -c} from a basic `hello, world!' application):
+	To illustrate the concept of BCIs, consider the following example. In Java bytecode, each instruction has an associated index (this example was compiled using \texttt{javap -c} from a basic `hello, world!' application):
 	
 	\begin{verbatim}
 	Compiled from "Hello.java"
@@ -94,12 +92,12 @@ There are two main approaches to the instrumentation: automatic, and manual.
 	\end{verbatim}
 	
 	We can clearly see the BCIs of the various operations: the \texttt{invokespecial \#1} has a BCI of 1, and so on.
+
+	This is a limitation of the Graal platform. In the coming months, the Graal core developers are adding this required feature. Once the feature has been added, it is a simple modification (as the infrastructure has already been created) to add this into Graal. Indeed, the required infrastructure for this transformation has been created -- once the support for it is available, only would need to enable the transformations.
 	
-	The problem is that there is no BCI of inserted instructions, which the runtime continues at if a deoptimisation occurs.
+	As an alternative, we used manual instrumentation (section \ref{sec:instrumentation/manual}). Although this does have the disadvantage of requiring both source-code access as well as human effort, this will not affect the results or correctness of the evaluation as the semantics are equivalent. The results and conclusions of this report will not be affected by this shortcoming of Graal. The required framework and infrastructure has already been developed, the mechanism through which the framework is used cannot affect the results in this case.
 	
-	In the coming months, the Graal core developers are adding this required feature. Once the feature has been added, it is a simple modification (as the infrastructure has already been created) to add this into Graal.
-	
-	As an alternative, we used manual instrumentation (section \ref{sec:instrumentation/manual}). Although this does have the disadvantage of requiring both source-code access as well as human effort, this will not affect the results or correctness of the evaluation as the semantics are equivalent.
+	The remaining sections of this chapter consider possible alternative approaches to automatic instrumentation. 
 
 	\subsection{Bytecode Instrumentation} \label{sec:instrumentation/bytecode-instr}
 	The first approach uses so-called \textit{bytecode instrumentation} (BCI) - that is, modifying the bytecode directly, either at compile-time or runtime. This approach is advantageous in that arbitrary commands can be inserted, and is only subject to the limitations of the bytecode format. In this sense, arbitrary functionality can be inserted into \texttt{.class} files. However, it is complex (requiring advanced knowledge of the JVM and bytecode formats), as well as being difficult to use. Graal already performs a lot of the work that would be required with this kind of approach, in that it detects control flow and memory dependencies from bytecode. Such systems require a large degree of programmer effort.
@@ -229,7 +227,22 @@ def aspect TraceMethods {
 
 		The authors present several uses cases where TurboDiSl is superior to DiSL (dynamic instrument configuration, tracking monitor ownership, field access analysis and execution trace profiling). However, this author speculates that, in spite of the aforementioned increase in weave-time, Turbo DiSL will completely supersede DiSL in all situations. 
 		
-\section{Manual Approaches} \label{sec:instrumentation/manual}	
+\section{Manual Approaches} \label{sec:instrumentation/manual}
+The major alternative to automatic instrumentation is manual instrumentation, where the user manually performs the required transformations in the source code.
+
+These transformations consist of replacing array access and store operations with method calls, whilst adding relevant metadata if required. For example, consider the following array access:
+
+\begin{lstlisting}[label=list:array-access,caption=Standard array access in Java]
+int c = a[b];\end{lstlisting}
+
+Manual instrumentation refers to replacing this operation, and all such operations, with the following (or equivalent):
+
+\begin{lstlisting}[label=list:instrumented-array-access,caption=Instrumented array access]
+int c = access-array(a, b);\end{lstlisting}
+
+The \texttt{array-access} method (and the implied \texttt{array-store} method) performs the dependency checking algorithms using the techniques as described in section \ref{sec:runtime/analysis/online}.
 	
 \section{Summary} \label{sec:instrumentation/summary}
-In this section, we have 
+In this section, we have considered the use of Graal for automatic instrumentation. We have seen that, due to a limitation in the current version of Graal, it is not possible to add arbitrary static method invoke instructions. Regardless of this limitation, there are other possible approaches that could also (in principle) be used for automatic instrumentation.
+
+Lastly, we have seen how manual instrumentation is possible, and the reasons why the alternative approach used (manual instrumentation) will not affect the results or conclusions of this dissertation.

@@ -18,7 +18,7 @@
 \contentsline {section}{\numberline {3.5}Snippets}{18}{section.3.5}
 \contentsline {section}{\numberline {3.6}Replacements}{19}{section.3.6}
 \contentsline {section}{\numberline {3.7}Optimisations and Deoptimisations}{20}{section.3.7}
-\contentsline {section}{\numberline {3.8}Summary}{22}{section.3.8}
+\contentsline {section}{\numberline {3.8}Summary}{23}{section.3.8}
 \contentsline {chapter}{\numberline {4}Instrumentation}{25}{chapter.4}
 \contentsline {section}{\numberline {4.1}Introduction}{25}{section.4.1}
 \contentsline {section}{\numberline {4.2}Automatic Approaches}{25}{section.4.2}
@@ -32,56 +32,59 @@
 \contentsline {subsubsection}{\numberline {4.2.4.1}Array and Loop Pointcuts}{33}{subsubsection.4.2.4.1}
 \contentsline {subsection}{\numberline {4.2.5}Hybrid Models}{34}{subsection.4.2.5}
 \contentsline {subsubsection}{\numberline {4.2.5.1}DiSL}{34}{subsubsection.4.2.5.1}
-\contentsline {subsubsection}{\numberline {4.2.5.2}Turbo DiSL}{35}{subsubsection.4.2.5.2}
-\contentsline {section}{\numberline {4.3}Manual Approaches}{36}{section.4.3}
-\contentsline {section}{\numberline {4.4}Summary}{36}{section.4.4}
-\contentsline {chapter}{\numberline {5}The Runtime Library}{37}{chapter.5}
-\contentsline {section}{\numberline {5.1}Introduction}{37}{section.5.1}
-\contentsline {section}{\numberline {5.2}Trace Collection}{37}{section.5.2}
-\contentsline {section}{\numberline {5.3}Trace Storage}{38}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Exact Approaches}{38}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Probabilistic Approaches}{39}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Bloom Filters}{39}{subsection.5.3.3}
-\contentsline {section}{\numberline {5.4}Dependency Analysis Algorithms}{40}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Offline Algorithms}{42}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Online Algorithns}{43}{subsection.5.4.2}
-\contentsline {section}{\numberline {5.5}Implementation Details}{43}{section.5.5}
-\contentsline {section}{\numberline {5.6}Summary}{43}{section.5.6}
-\contentsline {chapter}{\numberline {6}Methodology}{45}{chapter.6}
-\contentsline {section}{\numberline {6.1}Introduction}{45}{section.6.1}
-\contentsline {section}{\numberline {6.2}Experimental Setup}{45}{section.6.2}
-\contentsline {section}{\numberline {6.3}Repeats}{46}{section.6.3}
-\contentsline {section}{\numberline {6.4}Benchmarks}{46}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Validation and Basic Testing}{46}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}Parametric Benchmarks}{46}{subsection.6.4.2}
-\contentsline {subsection}{\numberline {6.4.3}Graph Processing Algorithms}{46}{subsection.6.4.3}
-\contentsline {subsection}{\numberline {6.4.4}Java Grande}{46}{subsection.6.4.4}
-\contentsline {subsection}{\numberline {6.4.5}N-Body Simulation}{47}{subsection.6.4.5}
-\contentsline {section}{\numberline {6.5}Measurement Methodology}{47}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Execution Time}{47}{subsection.6.5.1}
-\contentsline {subsection}{\numberline {6.5.2}Memory Usage}{47}{subsection.6.5.2}
-\contentsline {section}{\numberline {6.6}Summary}{48}{section.6.6}
-\contentsline {chapter}{\numberline {7}Parametric Benchmarks}{49}{chapter.7}
-\contentsline {section}{\numberline {7.1}Introduction}{49}{section.7.1}
-\contentsline {section}{\numberline {7.2}Summary}{49}{section.7.2}
-\contentsline {chapter}{\numberline {8}Results}{51}{chapter.8}
-\contentsline {section}{\numberline {8.1}Introduction}{51}{section.8.1}
-\contentsline {section}{\numberline {8.2}Basic Testing}{51}{section.8.2}
-\contentsline {section}{\numberline {8.3}Parametric}{53}{section.8.3}
-\contentsline {section}{\numberline {8.4}Graph Processing}{53}{section.8.4}
-\contentsline {section}{\numberline {8.5}Java Grande}{53}{section.8.5}
-\contentsline {section}{\numberline {8.6}Mandelbrot}{53}{section.8.6}
-\contentsline {section}{\numberline {8.7}Overhead}{53}{section.8.7}
-\contentsline {subsection}{\numberline {8.7.1}Execution Time}{53}{subsection.8.7.1}
-\contentsline {subsection}{\numberline {8.7.2}Memory Usage}{53}{subsection.8.7.2}
-\contentsline {section}{\numberline {8.8}Analysis}{53}{section.8.8}
-\contentsline {section}{\numberline {8.9}Summary}{53}{section.8.9}
-\contentsline {chapter}{\numberline {9}Optimisations}{55}{chapter.9}
-\contentsline {section}{\numberline {9.1}Introduction}{55}{section.9.1}
-\contentsline {section}{\numberline {9.2}Summary}{55}{section.9.2}
-\contentsline {chapter}{\numberline {10}Conclusion}{57}{chapter.10}
-\contentsline {section}{\numberline {10.1}Concluding Remarks}{57}{section.10.1}
-\contentsline {section}{\numberline {10.2}Contributions}{57}{section.10.2}
-\contentsline {section}{\numberline {10.3}Unsolved Problems}{57}{section.10.3}
-\contentsline {section}{\numberline {10.4}Future Work}{57}{section.10.4}
-\contentsline {chapter}{Bibliography}{59}{chapter*.16}
+\contentsline {subsubsection}{\numberline {4.2.5.2}Turbo DiSL}{36}{subsubsection.4.2.5.2}
+\contentsline {section}{\numberline {4.3}Manual Approaches}{37}{section.4.3}
+\contentsline {section}{\numberline {4.4}Summary}{37}{section.4.4}
+\contentsline {chapter}{\numberline {5}The Runtime Library}{39}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{39}{section.5.1}
+\contentsline {section}{\numberline {5.2}Trace Storage}{39}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Exact Approaches}{40}{subsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.1.1}Hash Tables and Sets}{40}{subsubsection.5.2.1.1}
+\contentsline {subsection}{\numberline {5.2.2}Probabilistic Approaches}{40}{subsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Bloom Filters}{40}{subsubsection.5.2.2.1}
+\contentsline {section}{\numberline {5.3}Dependency Analysis Algorithms}{42}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Offline Algorithms}{44}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Online Algorithns}{44}{subsection.5.3.2}
+\contentsline {section}{\numberline {5.4}Implementation Details}{46}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Entry Point}{46}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Instrument Implementation}{46}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Trace Storage and Configuration}{47}{subsection.5.4.3}
+\contentsline {subsubsection}{\numberline {5.4.3.1}Exact - Hash Set}{47}{subsubsection.5.4.3.1}
+\contentsline {subsubsection}{\numberline {5.4.3.2}Inexact - Bloom Filters}{48}{subsubsection.5.4.3.2}
+\contentsline {section}{\numberline {5.5}Summary}{49}{section.5.5}
+\contentsline {chapter}{\numberline {6}Methodology}{51}{chapter.6}
+\contentsline {section}{\numberline {6.1}Introduction}{51}{section.6.1}
+\contentsline {section}{\numberline {6.2}Experimental Setup}{51}{section.6.2}
+\contentsline {section}{\numberline {6.3}Repeats}{52}{section.6.3}
+\contentsline {section}{\numberline {6.4}Benchmarks}{52}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Validation and Basic Testing}{52}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Parametric Benchmarks}{52}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Graph Processing Algorithms}{52}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}Java Grande}{52}{subsection.6.4.4}
+\contentsline {subsection}{\numberline {6.4.5}N-Body Simulation}{53}{subsection.6.4.5}
+\contentsline {section}{\numberline {6.5}Measurement Methodology}{53}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Execution Time}{53}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Memory Usage}{54}{subsection.6.5.2}
+\contentsline {section}{\numberline {6.6}Test Harness Design and Implementation}{54}{section.6.6}
+\contentsline {section}{\numberline {6.7}Summary}{54}{section.6.7}
+\contentsline {chapter}{\numberline {7}Parametric Benchmarks}{55}{chapter.7}
+\contentsline {section}{\numberline {7.1}Introduction}{55}{section.7.1}
+\contentsline {section}{\numberline {7.2}Summary}{55}{section.7.2}
+\contentsline {chapter}{\numberline {8}Results}{57}{chapter.8}
+\contentsline {section}{\numberline {8.1}Introduction}{57}{section.8.1}
+\contentsline {section}{\numberline {8.2}Basic Testing}{57}{section.8.2}
+\contentsline {section}{\numberline {8.3}Parametric}{59}{section.8.3}
+\contentsline {section}{\numberline {8.4}Graph Processing}{59}{section.8.4}
+\contentsline {section}{\numberline {8.5}Java Grande}{59}{section.8.5}
+\contentsline {section}{\numberline {8.6}Mandelbrot}{59}{section.8.6}
+\contentsline {section}{\numberline {8.7}Overhead}{59}{section.8.7}
+\contentsline {subsection}{\numberline {8.7.1}Execution Time}{59}{subsection.8.7.1}
+\contentsline {subsection}{\numberline {8.7.2}Memory Usage}{59}{subsection.8.7.2}
+\contentsline {section}{\numberline {8.8}Analysis}{59}{section.8.8}
+\contentsline {section}{\numberline {8.9}Summary}{59}{section.8.9}
+\contentsline {chapter}{\numberline {9}Conclusion}{61}{chapter.9}
+\contentsline {section}{\numberline {9.1}Concluding Remarks}{61}{section.9.1}
+\contentsline {section}{\numberline {9.2}Contributions}{61}{section.9.2}
+\contentsline {section}{\numberline {9.3}Unsolved Problems}{61}{section.9.3}
+\contentsline {section}{\numberline {9.4}Future Work}{61}{section.9.4}
+\contentsline {chapter}{Bibliography}{63}{chapter*.18}

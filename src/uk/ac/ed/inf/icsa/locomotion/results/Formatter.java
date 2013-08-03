@@ -3,6 +3,7 @@ package uk.ac.ed.inf.icsa.locomotion.results;
 import static io.atkin.collections.literals.set;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,6 +11,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public final class Formatter {
+	private interface Executable{
+		public void execute(String  testName, String instrument, String storage) throws FileNotFoundException;
+	}
+	
 	private final File targetDirectory;
 	private List<Result> results;
 	private List<Format> formats;
@@ -35,39 +40,74 @@ public final class Formatter {
 	
 	private void run() {
 		try {
-			for (final String name: new String[] {/* "all-dependent", "none-dependent", "vector-addition",*/ "universe" }) {
-				for (final String instrument: new String[] { "true", "false"}) {
-					ThreeAxisVariables length_memory_accesses = new ThreeAxisVariables(
-						getFile(name + "-instrumentation=" + instrument),
-						results,
-						new HashMap<String, String>() {{
-							put("name", name);
-							put("instrumentation", instrument);
-						}},
-						"time",
-						"finalmemory",
-						"dependencies"
-					);
-					length_memory_accesses.run();
-					length_memory_accesses.toFile();
+			// First, only hash sets
+			executeFormatter(new Executable() {
+				@SuppressWarnings("serial")
+				@Override
+				public void execute(final String name, final String instrument, final String storage) throws FileNotFoundException {
+					if (storage.equals("HashSetTrace")) {
+						FourVariables axis = new FourVariables(
+							getFile(name + "-instrumentation=" + instrument + "-storage=" + storage),
+							results,
+							new HashMap<String, String>() {{
+								put("name", name);
+								put("instrumentation", instrument);
+								put("storage", storage);
+							}},
+							"length",
+							"finalmemory",
+							"time",
+							"dependencies");
+						axis.run();
+						axis.toFile();
+					}
 					
-//					ThreeAxisVariables length_time_accesses= new ThreeAxisVariables(
-//						getFile(name + "-time-instrumentation=" + instrument),
-//						results,
-//						new HashMap<String, String>() {{
-//							put("name", name);
-//							put("instrumentation", instrument);
-//						}},
-//						"length",
-//						"time",
-//						"dependencies");
-//					length_time_accesses.run();
-//					length_time_accesses.toFile();
-				}
-			}
+					if (storage.equals("BloomFilterTrace")) {
+						FourVariables axis = new FourVariables(
+							getFile(name + "-instrumentation=" + instrument + "-storage=" + storage),
+							results,
+							new HashMap<String, String>() {{
+								put("name", name);
+								put("instrumentation", instrument);
+								put("storage", storage);
+							}},
+							"length",
+							"finalmemory",
+							"size",
+							"dependencies"
+							);
+						axis.run();
+						axis.toFile();
+					}
+				}});
+						
+	//					ThreeAxisVariables length_time_accesses= new ThreeAxisVariables(
+	//						getFile(name + "-time-instrumentation=" + instrument),
+	//						results,
+	//						new HashMap<String, String>() {{
+	//							put("name", name);
+	//							put("instrumentation", instrument);
+	//						}},
+	//						"length",
+	//						"time",
+	//						"dependencies");
+	//					length_time_accesses.run();
+	//					length_time_accesses.toFile();
+
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void executeFormatter(Executable e) throws FileNotFoundException {
+		for (final String name: new String[] { "all-dependent", "none-dependent", "fractional-dependent", "vector-addition", "universe"}) {
+			for (final String instrument: new String[] { "true", "false" }) {
+				for (final String storage: new String[] { "HashSetTrace", "BloomFilterTrace"}) {
+					e.execute(name, instrument, storage);
+				}
+			}
+ 		}
 	}
 	
 	private static File getFile(String f) {
