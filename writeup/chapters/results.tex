@@ -7,20 +7,15 @@ The first testing that was
 
 \begin{figure}[H]
 	\centering
-	\gnuplotloadfile[terminal=pdf]{../graphs/none-all_memory.gnuplot}
+	\begin{gnuplot}[terminal=pdf]
+		test
+	\end{gnuplot}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\gnuplotloadfile[terminal=pdf]{../graphs/all-dependent_size-deps_BloomFilterTrace.gnuplot}
 	\caption{Memory usage}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\gnuplotloadfile[terminal=pdf]{../graphs/none-all_time.gnuplot}
-	\caption{Execution time}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\gnuplotloadfile[terminal=pdf]{../graphs/none-all_dependencies.gnuplot}
-	\caption{Dependencies}
 \end{figure}
 
 \section{Parametric} \label{sec:results/parametric}

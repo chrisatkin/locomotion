@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class FourVariables extends ThreeVariables {
-	private String y3;
+	protected String y3;
 
 	protected FourVariables(File destination, List<Result> results,	Map<String, String> restrictions, String x, String y1, String y2, String y3) {
 		super(destination, results, restrictions, x, y1, y2);

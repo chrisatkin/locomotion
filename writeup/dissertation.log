@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.12)  2 AUG 2013 23:11
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.12)  3 AUG 2013 17:58
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -425,9 +425,9 @@ Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
 \listing@line=\count153
 )
 \verbatim@out=\write3
-runsystem(touch w18-test-2013821391.tex)...executed.
+runsystem(touch w18-test-2013831078.tex)...executed.
 
-runsystem(rm -f w18-test-2013821391.tex)...executed.
+runsystem(rm -f w18-test-2013831078.tex)...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 108.
@@ -1083,7 +1083,7 @@ Chapter 3.
 
 
 
-] <graphics/roslyn-pipeline.pdf, id=700, 433.62pt x 219.82124pt>
+] <graphics/roslyn-pipeline.pdf, id=696, 433.62pt x 219.82124pt>
 File: graphics/roslyn-pipeline.pdf Graphic file (type pdf)
 
 <use graphics/roslyn-pipeline.pdf>
@@ -1093,7 +1093,7 @@ Package pdftex.def Info: graphics/roslyn-pipeline.pdf used on input line 17.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [14 <./graphics/roslyn-pipeline.pdf>]
-<graphics/loop-inline.png, id=721, 446.66875pt x 379.4175pt>
+<graphics/loop-inline.png, id=717, 446.66875pt x 379.4175pt>
 File: graphics/loop-inline.png Graphic file (type png)
 
 <use graphics/loop-inline.png>
@@ -1103,7 +1103,7 @@ Package pdftex.def Info: graphics/loop-inline.png used on input line 34.
 Underfull \vbox (badness 1325) has occurred while \output is active []
 
  [16 <./graphics/loop-inline.png>] [17]
-<graphics/lowering-stages.pdf, id=743, 495.8525pt x 40.15pt>
+<graphics/lowering-stages.pdf, id=739, 495.8525pt x 40.15pt>
 File: graphics/lowering-stages.pdf Graphic file (type pdf)
 
 <use graphics/lowering-stages.pdf>
@@ -1114,7 +1114,7 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <12> not available
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <12> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 86.
  [18 <./graphics/lowering-stages.pdf>]
-<graphics/graph-replacement.pdf, id=776, 636.3775pt x 100.375pt>
+<graphics/graph-replacement.pdf, id=772, 636.3775pt x 100.375pt>
 File: graphics/graph-replacement.pdf Graphic file (type pdf)
 
 <use graphics/graph-replacement.pdf>
@@ -1126,7 +1126,7 @@ Underfull \vbox (badness 1910) has occurred while \output is active []
 
  [19]
 [20 <./graphics/graph-replacement.pdf>]
-<graphics/jvminternals.pdf, id=820, 372.39125pt x 161.60374pt>
+<graphics/jvminternals.pdf, id=816, 372.39125pt x 161.60374pt>
 File: graphics/jvminternals.pdf Graphic file (type pdf)
 
 <use graphics/jvminternals.pdf>
@@ -1154,7 +1154,7 @@ Chapter 4.
 [25]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 17.
- <graphics/access-index.png, id=869, 442.65375pt x 375.4025pt>
+ <graphics/access-index.png, id=865, 442.65375pt x 375.4025pt>
 File: graphics/access-index.png Graphic file (type png)
 
 <use graphics/access-index.png>
@@ -1164,7 +1164,7 @@ Package pdftex.def Info: graphics/access-index.png used on input line 43.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<graphics/graal-metadata.png, id=871, 655.44875pt x 320.19624pt>
+<graphics/graal-metadata.png, id=867, 655.44875pt x 320.19624pt>
 File: graphics/graal-metadata.png Graphic file (type png)
 
 <use graphics/graal-metadata.png>
@@ -1202,14 +1202,14 @@ Underfull \vbox (badness 7558) has occurred while \output is active []
 
 ]
 Chapter 5.
-[39] <graphics/hash-table.pdf, id=1056, 252.945pt x 184.69pt>
+[39] <graphics/hash-table.pdf, id=1052, 252.945pt x 184.69pt>
 File: graphics/hash-table.pdf Graphic file (type pdf)
 
 <use graphics/hash-table.pdf>
 Package pdftex.def Info: graphics/hash-table.pdf used on input line 40.
 (pdftex.def)             Requested size: 288.79422pt x 210.87003pt.
  [40]
-<graphics/bloomfilter.pdf, id=1068, 521.14702pt x 187.20018pt>
+<graphics/bloomfilter.pdf, id=1064, 521.14702pt x 187.20018pt>
 File: graphics/bloomfilter.pdf Graphic file (type pdf)
 
 <use graphics/bloomfilter.pdf>
@@ -1223,7 +1223,7 @@ lusion: multiple pdfs with page group included in a single page
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 160.
  [44] [45]
-<graphics/instrument-support.pdf, id=1166, 176.66pt x 130.4875pt>
+<graphics/instrument-support.pdf, id=1162, 176.66pt x 130.4875pt>
 File: graphics/instrument-support.pdf Graphic file (type pdf)
 
 <use graphics/instrument-support.pdf>
@@ -1231,7 +1231,7 @@ Package pdftex.def Info: graphics/instrument-support.pdf used on input line 218
 .
 (pdftex.def)             Requested size: 165.02347pt x 121.89368pt.
  [46 <./graphics/instrument-support.pdf>]
-[47] <graphics/trace-classes.pdf, id=1203, 334.24875pt x 273.02pt>
+[47] <graphics/trace-classes.pdf, id=1199, 334.24875pt x 273.02pt>
 File: graphics/trace-classes.pdf Graphic file (type pdf)
 
 <use graphics/trace-classes.pdf>
@@ -1271,13 +1271,13 @@ Opening gnuplot stream dissertation-gnuplottex-fig1.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig1.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig1.gnuplot converted on inpu
-t line 10.
+t line 12.
 
-<dissertation-gnuplottex-fig1.pdf, id=1297, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig1.pdf, id=1293, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig1.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig1.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig1.pdf used on input line 10
+Package pdftex.def Info: dissertation-gnuplottex-fig1.pdf used on input line 12
 .
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig2.gnuplot'.
@@ -1287,53 +1287,37 @@ Opening gnuplot stream dissertation-gnuplottex-fig2.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig2.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig2.gnuplot converted on inpu
-t line 16.
+t line 17.
 
-<dissertation-gnuplottex-fig2.pdf, id=1298, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig2.pdf, id=1294, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig2.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig2.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig2.pdf used on input line 16
+Package pdftex.def Info: dissertation-gnuplottex-fig2.pdf used on input line 17
 .
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
- [57 <./dissertation-gnuplottex-fig1.pdf>]
-\openout3 = `dissertation-gnuplottex-fig3.gnuplot'.
 
- Opening gnuplot stream dissertation-gnuplottex-fig3.gnuplot
-runsystem(gnuplot dissertation-gnuplottex-fig3.gnuplot)...executed.
+Underfull \vbox (badness 2591) has occurred while \output is active []
 
-Package gnuplottex Info: dissertation-gnuplottex-fig3.gnuplot converted on inpu
-t line 22.
-
-<dissertation-gnuplottex-fig3.pdf, id=1307, 361.35pt x 216.81pt>
-File: dissertation-gnuplottex-fig3.pdf Graphic file (type pdf)
-
-<use dissertation-gnuplottex-fig3.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig3.pdf used on input line 22
-.
-(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [58 <./dissertation-gnuplottex-fig2.pdf> <./dissertation-gnuplottex-fig3.pdf>]
- [59]
+ [57 <./dissertation-gnuplottex-fig1.pdf>]) [58 <./dissertation-gnuplottex-fig2
+.pdf>]
 \openout2 = `chapters/conclusion.aux'.
 
 
-(./chapters/conclusion.tex [60
-
-
-
-]
+(./chapters/conclusion.tex
 Chapter 9.
-) [61] [62] (./dissertation.bbl [63
+) [59
+
+
+
+] [60] (./dissertation.bbl [61
 
 
 ]
 Missing character: There is no â in font pplri9t!
 Missing character: There is no € in font pplri9t!
 Missing character: There is no ” in font pplri9t!
- [64]
+ [62]
 Missing character: There is no â in font pplri9t!
 Missing character: There is no „ in font pplri9t!
 Missing character: There is no ¢ in font pplri9t!
@@ -1343,7 +1327,7 @@ Underfull \hbox (badness 1509) in paragraph at lines 212--216
 us.groovy.classgen.asm,
  []
 
-[65] [66]
+[63] [64]
 Underfull \hbox (badness 2828) in paragraph at lines 373--377
 []\OT1/pplx/m/n/10.95 (+20) Ronald Ib-bett.  High Per-for-mance Com-puter Ar-ch
 i-tec-tures, 2009.  URL
@@ -1361,9 +1345,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 393--397
  google / common / hash /
  []
 
-[67])
+[65])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
- [68]
+ [66]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
  (./dissertation.aux (./chapters/introduction.aux)
 (./chapters/related-work.aux) (./chapters/graal.aux)
@@ -1373,7 +1357,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 100.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: EDFA40CCDEF849438C9111E27ABB84B2;5841.
+(rerunfilecheck)             Checksum: 72607D5B85731831846AA644222BB64B;5841.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1381,10 +1365,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
  ) 
 Here is how much of TeX's memory you used:
- 22536 strings out of 493311
- 398522 string characters out of 6137850
+ 22528 strings out of 493311
+ 398312 string characters out of 6137850
  678562 words of memory out of 5000000
- 24704 multiletter control sequences out of 15000+600000
+ 24700 multiletter control sequences out of 15000+600000
  95894 words of font info for 457 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  56i,10n,70p,2140b,1057s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1407,10 +1391,10 @@ ist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2013/texmf-dist/fon
 ts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type
 1/urw/palatino/uplri8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb>
-Output written on dissertation.pdf (80 pages, 666266 bytes).
+Output written on dissertation.pdf (78 pages, 671610 bytes).
 PDF statistics:
- 1580 PDF objects out of 1728 (max. 8388607)
- 1395 compressed objects within 14 object streams
- 333 named destinations out of 1000 (max. 500000)
- 78120 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 1587 PDF objects out of 1728 (max. 8388607)
+ 1398 compressed objects within 14 object streams
+ 330 named destinations out of 1000 (max. 500000)
+ 78115 words of extra memory for PDF output out of 89155 (max. 10000000)
 

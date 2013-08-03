@@ -38,6 +38,13 @@ public final class InstrumentSupport {
 		instrument.instrumentArrayLoad(array, index, loopIterator, loopId);
 		return array[index];
 	}
+
+	public static int arrayLookup(int[] array, int index, int loopIterator, String loopId) {
+		assert instrument != null: "instrument configuration not set";
+		
+		instrument.instrumentArrayLoad(array, index, loopIterator, loopId);
+		return array[index];
+	}
 	
 	public static <T> void arrayWrite(T[] array, int index, T value, int loopIterator, String loopId) {
 		assert instrument != null: "instrument configuration not set";
@@ -47,6 +54,12 @@ public final class InstrumentSupport {
 	}
 	
 	public static void arrayWrite(double[] array, int index, double value, int loopIterator, String loopId) {
+		assert instrument != null: "instrument configuration not set";
+		
+		instrument.instrumentArrayWrite(array, index, value, loopIterator, loopId);
+	}
+	
+	public static void arrayWrite(int[] array, int index, double value, int loopIterator, String loopId) {
 		assert instrument != null: "instrument configuration not set";
 		
 		instrument.instrumentArrayWrite(array, index, value, loopIterator, loopId);

@@ -40,7 +40,7 @@ public final class Formatter {
 	
 	private void run() {
 		try {
-			// First, only hash sets
+			// hash sets
 			executeFormatter(new Executable() {
 				@SuppressWarnings("serial")
 				@Override
@@ -61,9 +61,13 @@ public final class Formatter {
 						axis.run();
 						axis.toFile();
 					}
-					
+				}});
+			
+			executeFormatter(new Executable() {
+				@SuppressWarnings("serial")
+				public void execute(final String name, final String instrument, final String storage) throws FileNotFoundException {
 					if (storage.equals("BloomFilterTrace")) {
-						FourVariables axis = new FourVariables(
+						FiveVariables axis = new FiveVariables(
 							getFile(name + "-instrumentation=" + instrument + "-storage=" + storage),
 							results,
 							new HashMap<String, String>() {{
@@ -74,27 +78,14 @@ public final class Formatter {
 							"length",
 							"finalmemory",
 							"size",
-							"dependencies"
+							"dependencies",
+							"time"
 							);
 						axis.run();
 						axis.toFile();
 					}
-				}});
-						
-	//					ThreeAxisVariables length_time_accesses= new ThreeAxisVariables(
-	//						getFile(name + "-time-instrumentation=" + instrument),
-	//						results,
-	//						new HashMap<String, String>() {{
-	//							put("name", name);
-	//							put("instrumentation", instrument);
-	//						}},
-	//						"length",
-	//						"time",
-	//						"dependencies");
-	//					length_time_accesses.run();
-	//					length_time_accesses.toFile();
-
-			
+					}
+			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

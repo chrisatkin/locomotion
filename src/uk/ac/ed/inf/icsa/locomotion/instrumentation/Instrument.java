@@ -54,7 +54,38 @@ public class Instrument {
 		}
 	}
 	
+	public void instrumentArrayLoad(final int[] array, final int index, final int loopIterator, final String loopId) {
+		if (!configuration.instrumentationEnabled())
+			return;
+		
+		if (!store.containsKey(loopId))
+			store.put(loopId, new Loop(loopId, configuration.getLoopStoreClass(), configuration.getLoopStoreConfiguration()));
+		
+		try {
+			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Load);
+		} catch (LoopDependencyException e) {
+			dependencies.add(e);
+		}
+	}
+	
 	public void instrumentArrayWrite(final double[] array, final int index, final double value, final int loopIterator, final String loopId) {
+		if (!configuration.instrumentationEnabled())
+			return;
+		
+		if (!store.containsKey(loopId))
+			store.put(loopId, new Loop(loopId, configuration.getLoopStoreClass(), configuration.getLoopStoreConfiguration()));
+		
+		try {
+			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Store);
+		} catch (LoopDependencyException e) {
+			dependencies.add(e);
+		}
+		
+		if (configuration.reportMemory())
+			reportMemory();
+	}
+	
+	public void instrumentArrayWrite(final int[] array, final int index, final double value, final int loopIterator, final String loopId) {
 		if (!configuration.instrumentationEnabled())
 			return;
 		
