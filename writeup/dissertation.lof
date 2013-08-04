@@ -18,5 +18,6 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces Memory usage\relax }}{58}{figure.caption.16}
+\contentsline {figure}{\numberline {8.1}{\ignorespaces No dependencies with hash set and bloom filter storage\relax }}{58}{figure.caption.15}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Memory usage for no dependencies found\relax }}{58}{figure.caption.16}
 \addvspace {10\p@ }

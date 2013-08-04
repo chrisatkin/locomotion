@@ -23,6 +23,6 @@ public final class BloomFilterConfiguration extends TraceConfiguration {
 	
 	@Override
 	public String toString() {
-		return "size=" + expectedInsertations;
+		return "bitvector=" + expectedInsertations;
 	}
 }

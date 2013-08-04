@@ -1,4 +1,4 @@
-set title "bloom filter, none dependent"
+set title "bloom filter"
 set xlabel "bit vector length"
 set ylabel "dependencies"
 set grid

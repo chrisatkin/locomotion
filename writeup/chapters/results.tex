@@ -3,28 +3,80 @@
 In this chapter, the results of using Locomotion on the benchmarks presented in section \ref{sec:methodology/benchmarks} are presented, along with a critical analysis of the results.
 
 \section{Basic Testing} \label{sec:results/basic}
-The first testing that was
+The first testing that was conduct was to determine the correct operation of the instrumentation and runtime library. Several tests were constructed in order to test at the extremes (for edge cases) of dependency analysis - every access is dependent, and no access is dependent.
 
-\begin{figure}[H]
-	\centering
-	\begin{gnuplot}[terminal=pdf]
-		test
-	\end{gnuplot}
-\end{figure}
+The algorithm used to create these tests is similar to that presented in chapter \ref{chp:parametric}, with some slight modifications to produce the desired test configurations.
 
-\begin{figure}[H]
-	\centering
-	\gnuplotloadfile[terminal=pdf]{../graphs/all-dependent_size-deps_BloomFilterTrace.gnuplot}
-	\caption{Memory usage}
-\end{figure}
+The methodology used has been described in chapter \ref{chp:methodology}.
+
+	\subsection{No Dependencies} \label{sec:result/basic/no-dep}
+	We first consider the case of where no dependencies are detected. We observed the following results for the exact and inexact storage mechanisms as described in section \ref{sec:runtime/storage}.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+		set multiplot layout 1, 2
+		
+		load '../charts/none-dependent_length-deps_HashSetTrace-with-instrument.gnuplot'
+		load '../charts/none-dependent_size-deps_BloomFilterTrace-with-instrument.gnuplot'
+		
+		unset multiplot
+		\end{gnuplot}
+		\label{chart:none-dependent-deps-comparison}
+		\caption{No dependencies with hash set and bloom filter storage}
+	\end{figure}
+	
+	As we can see, there are (correctly) no dependencies detected.
+	
+	Next, we consider the memory usage of detecting these dependencies. Of course, we must still retain a data structure for all previous accesses (recall from section \ref{sec:runtime/storage/exact/hashing} that this scales $S=O(n)$).
+	
+	\begin{figure}[H]
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+			set multiplot layout 1,2
+				load '../charts/none-dependent_length-memory_HashSetTrace-with-instrument.gnuplot'
+				load '../charts/none-dependent_size-memory_BloomFilterTrace-with-instrument.gnuplot'
+			unset multiplot
+		\end{gnuplot}
+		\label{chart:none-dependent-memory-comparison}
+		\caption{Memory usage for no dependencies found}
+	\end{figure}
+	
+	We can see that, as expected, the storage space required when using exact storage does indeed increase almost linearly as a function of the number of accesses increases.
+	
+	Additionally, we can see that as the number of accesses the amount of memory required for the bloom filter implementation. Although not visible on this graph due to the scale, the required memory for bit vector size increases also scales almost linearly with the bit vector size. We will investigate this in a later section.
+	
+	\subsection{All Dependent} \label{sec:result/basic/all-dep}
+	Next, the instrumentation is tested when all of the accesses are dependent. In this case, the dependencies are $\delta^{0}$ dependencies, but this does not effect the results.
+	
+	\begin{figure}[H]
+		\begin{gnuplot}[terminal=pdf]
+			set multiplot layout 1,2
+				load '../charts/all-dependent_length-deps_HashSetTrace-with-instrument.gnuplot'
+				load '../charts/all-dependent_size-deps_BloomFilterTrace-with-instrument.gnuplot'		
+			unset multiplot
+		\end{gnuplot}
+	\end{figure}
+	
+	We can see here that for both trace formats, the correct number of dependencies are detected.
+	
+	\begin{figure}[H]
+		\begin{gnuplot}[terminal=pdf]
+		set multiplot layout 1,2
+			load '../charts/all-dependent_length-memory_HashSetTrace-with-instrument.gnuplot'
+			load '../charts/all-dependent_size-memory_BloomFilterTrace-with-instrument.gnuplot'
+					unset multiplot
+		\end{gnuplot}
+	\end{figure}
 
 \section{Parametric} \label{sec:results/parametric}
+See chapter \ref{chp:parametric}.
+
+\section{N-Body} \label{sec:results/nbody}
 
 \section{Graph Processing} \label{sec:results/graph}
 
 \section{Java Grande} \label{sec:results/grande}
-
-\section{Mandelbrot} \label{sec:results/mandelbrot}
 
 \section{Overhead} \label{sec:results/overhead}
 	\subsection{Execution Time} \label{sec:results/overhead/time}

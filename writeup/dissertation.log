@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.12)  3 AUG 2013 17:58
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.12)  4 AUG 2013 03:13
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -348,12 +348,10 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \ALC@tlm=\skip47
 \algorithmicindent=\skip48
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/subfloat/subfloat.sty
-Package: subfloat 2003/08/21 version 2.14
-
-Package `subfloat', Version 2.14 of 2003/08/21.
-\c@subfloatfiguremax=\count120
-\c@subfloattablemax=\count121
+(/usr/local/texlive/2013/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count120
+\c@subtable=\count121
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2011/04/14 v1.2 150 paragraphs of Lorem Ipsum dummy text
@@ -425,9 +423,9 @@ Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
 \listing@line=\count153
 )
 \verbatim@out=\write3
-runsystem(touch w18-test-2013831078.tex)...executed.
+runsystem(touch w18-test-201384193.tex)...executed.
 
-runsystem(rm -f w18-test-2013831078.tex)...executed.
+runsystem(rm -f w18-test-201384193.tex)...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 108.
@@ -776,27 +774,27 @@ File: lstlang1.sty 2013/06/27 1.5pre1 listings language file
 (./chapters/conclusion.aux))
 \openout1 = `dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMS/pzccm/m/n on input line 72.
-LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 72
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMS/pzccm/m/n on input line 73.
+LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 73
 .
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omspzccm.fd
 File: omspzccm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/pzccm.
 )
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 72.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 73.
 
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1pplx.fd
@@ -871,7 +869,7 @@ Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box63
-Package hyperref Info: Link coloring OFF on input line 72.
+Package hyperref Info: Link coloring OFF on input line 73.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -881,15 +879,15 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count181
 )
-LaTeX Info: Redefining \ref on input line 72.
-LaTeX Info: Redefining \pageref on input line 72.
-LaTeX Info: Redefining \nameref on input line 72.
+LaTeX Info: Redefining \ref on input line 73.
+LaTeX Info: Redefining \pageref on input line 73.
+LaTeX Info: Redefining \nameref on input line 73.
 
 (./dissertation.out) (./dissertation.out)
 \@outlinefile=\write5
 \openout5 = `dissertation.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 72.
+LaTeX Info: Redefining \microtypecontext on input line 73.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -908,11 +906,11 @@ File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 
 ABD: EveryShipout initializing macros
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 75.
+(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 76.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 75.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 76.
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
-(Font)              scaled to size 15.55188pt on input line 75.
+(Font)              scaled to size 15.55188pt on input line 76.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `phv' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
@@ -921,7 +919,7 @@ Package microtype Info: Loading generic settings for font family
 (/usr/local/texlive/2013/texmf-dist/tex/latex/microtype/mt-ptm.cfg
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
-LaTeX Font Info:    Try loading font information for U+zeur on input line 75.
+LaTeX Font Info:    Try loading font information for U+zeur on input line 76.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/eulervm/uzeur.fd
 File: uzeur.fd 2005/01/11 v4.0 (WaS)
@@ -929,7 +927,7 @@ File: uzeur.fd 2005/01/11 v4.0 (WaS)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/microtype/mt-eur.cfg
 File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
 )
-LaTeX Font Info:    Try loading font information for U+zeus on input line 75.
+LaTeX Font Info:    Try loading font information for U+zeus on input line 76.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/eulervm/uzeus.fd
 File: uzeus.fd 2005/01/11 v4.0 (WaS)
@@ -937,18 +935,18 @@ File: uzeus.fd 2005/01/11 v4.0 (WaS)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/microtype/mt-eus.cfg
 File: mt-eus.cfg 2006/07/28 v1.2 microtype config. file: AMS Euler Script (RS)
 )
-LaTeX Font Info:    Try loading font information for U+zeuex on input line 75.
+LaTeX Font Info:    Try loading font information for U+zeuex on input line 76.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/eulervm/uzeuex.fd
 File: uzeuex.fd 2005/01/11 v4.0 (WaS)
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 76.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 76.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
-LaTeX Font Info:    Try loading font information for U+lasy on input line 75.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 76.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 76.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -960,15 +958,15 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 75.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 76.
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 75.
+(Font)              scaled to size 10.79993pt on input line 76.
 
-<eushield-fullcolour.pdf, id=368, 369.38pt x 373.395pt>
+<eushield-fullcolour.pdf, id=376, 369.38pt x 373.395pt>
 File: eushield-fullcolour.pdf Graphic file (type pdf)
 
 <use eushield-fullcolour.pdf>
-Package pdftex.def Info: eushield-fullcolour.pdf used on input line 75.
+Package pdftex.def Info: eushield-fullcolour.pdf used on input line 76.
 (pdftex.def)             Requested size: 369.37909pt x 373.39409pt.
  [1
 
@@ -977,18 +975,18 @@ eld-fullcolour.pdf>] [2
 
 ]
 LaTeX Font Info:    Font shape `OT1/phv/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 75.
+(Font)              scaled to size 9.85492pt on input line 76.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 75.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 76.
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
-(Font)              scaled to size 9.85492pt on input line 75.
+(Font)              scaled to size 9.85492pt on input line 76.
  [3] [4] [5] [6]
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 82.
+(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 83.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 82.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 83.
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
-(Font)              scaled to size 22.39185pt on input line 82.
+(Font)              scaled to size 22.39185pt on input line 83.
 
 (./dissertation.toc
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <10.95> not available
@@ -1083,7 +1081,7 @@ Chapter 3.
 
 
 
-] <graphics/roslyn-pipeline.pdf, id=696, 433.62pt x 219.82124pt>
+] <graphics/roslyn-pipeline.pdf, id=708, 433.62pt x 219.82124pt>
 File: graphics/roslyn-pipeline.pdf Graphic file (type pdf)
 
 <use graphics/roslyn-pipeline.pdf>
@@ -1093,7 +1091,7 @@ Package pdftex.def Info: graphics/roslyn-pipeline.pdf used on input line 17.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [14 <./graphics/roslyn-pipeline.pdf>]
-<graphics/loop-inline.png, id=717, 446.66875pt x 379.4175pt>
+<graphics/loop-inline.png, id=729, 446.66875pt x 379.4175pt>
 File: graphics/loop-inline.png Graphic file (type png)
 
 <use graphics/loop-inline.png>
@@ -1103,7 +1101,7 @@ Package pdftex.def Info: graphics/loop-inline.png used on input line 34.
 Underfull \vbox (badness 1325) has occurred while \output is active []
 
  [16 <./graphics/loop-inline.png>] [17]
-<graphics/lowering-stages.pdf, id=739, 495.8525pt x 40.15pt>
+<graphics/lowering-stages.pdf, id=751, 495.8525pt x 40.15pt>
 File: graphics/lowering-stages.pdf Graphic file (type pdf)
 
 <use graphics/lowering-stages.pdf>
@@ -1114,7 +1112,7 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <12> not available
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <12> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 86.
  [18 <./graphics/lowering-stages.pdf>]
-<graphics/graph-replacement.pdf, id=772, 636.3775pt x 100.375pt>
+<graphics/graph-replacement.pdf, id=784, 636.3775pt x 100.375pt>
 File: graphics/graph-replacement.pdf Graphic file (type pdf)
 
 <use graphics/graph-replacement.pdf>
@@ -1126,7 +1124,7 @@ Underfull \vbox (badness 1910) has occurred while \output is active []
 
  [19]
 [20 <./graphics/graph-replacement.pdf>]
-<graphics/jvminternals.pdf, id=816, 372.39125pt x 161.60374pt>
+<graphics/jvminternals.pdf, id=828, 372.39125pt x 161.60374pt>
 File: graphics/jvminternals.pdf Graphic file (type pdf)
 
 <use graphics/jvminternals.pdf>
@@ -1154,7 +1152,7 @@ Chapter 4.
 [25]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 17.
- <graphics/access-index.png, id=865, 442.65375pt x 375.4025pt>
+ <graphics/access-index.png, id=877, 442.65375pt x 375.4025pt>
 File: graphics/access-index.png Graphic file (type png)
 
 <use graphics/access-index.png>
@@ -1164,7 +1162,7 @@ Package pdftex.def Info: graphics/access-index.png used on input line 43.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<graphics/graal-metadata.png, id=867, 655.44875pt x 320.19624pt>
+<graphics/graal-metadata.png, id=879, 655.44875pt x 320.19624pt>
 File: graphics/graal-metadata.png Graphic file (type png)
 
 <use graphics/graal-metadata.png>
@@ -1202,14 +1200,14 @@ Underfull \vbox (badness 7558) has occurred while \output is active []
 
 ]
 Chapter 5.
-[39] <graphics/hash-table.pdf, id=1052, 252.945pt x 184.69pt>
+[39] <graphics/hash-table.pdf, id=1064, 252.945pt x 184.69pt>
 File: graphics/hash-table.pdf Graphic file (type pdf)
 
 <use graphics/hash-table.pdf>
 Package pdftex.def Info: graphics/hash-table.pdf used on input line 40.
 (pdftex.def)             Requested size: 288.79422pt x 210.87003pt.
  [40]
-<graphics/bloomfilter.pdf, id=1064, 521.14702pt x 187.20018pt>
+<graphics/bloomfilter.pdf, id=1076, 521.14702pt x 187.20018pt>
 File: graphics/bloomfilter.pdf Graphic file (type pdf)
 
 <use graphics/bloomfilter.pdf>
@@ -1221,21 +1219,21 @@ pdfTeX warning: /usr/texbin/pdflatex (file ./graphics/bloomfilter.pdf): PDF inc
 lusion: multiple pdfs with page group included in a single page
 >] [42] [43]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 160.
+put line 170.
  [44] [45]
-<graphics/instrument-support.pdf, id=1162, 176.66pt x 130.4875pt>
+<graphics/instrument-support.pdf, id=1174, 176.66pt x 130.4875pt>
 File: graphics/instrument-support.pdf Graphic file (type pdf)
 
 <use graphics/instrument-support.pdf>
-Package pdftex.def Info: graphics/instrument-support.pdf used on input line 218
+Package pdftex.def Info: graphics/instrument-support.pdf used on input line 228
 .
 (pdftex.def)             Requested size: 165.02347pt x 121.89368pt.
  [46 <./graphics/instrument-support.pdf>]
-[47] <graphics/trace-classes.pdf, id=1199, 334.24875pt x 273.02pt>
+[47] <graphics/trace-classes.pdf, id=1211, 334.24875pt x 273.02pt>
 File: graphics/trace-classes.pdf Graphic file (type pdf)
 
 <use graphics/trace-classes.pdf>
-Package pdftex.def Info: graphics/trace-classes.pdf used on input line 270.
+Package pdftex.def Info: graphics/trace-classes.pdf used on input line 280.
 (pdftex.def)             Requested size: 288.79422pt x 235.90909pt.
  [48 <./graphics/trace-classes.pdf>]) [49]
 \openout2 = `chapters/methodology.aux'.
@@ -1247,7 +1245,11 @@ Package pdftex.def Info: graphics/trace-classes.pdf used on input line 270.
 
 ]
 Chapter 6.
-[51] [52] [53]) [54]
+[51]
+Package microtype Info: Character `013' is missing
+(microtype)             in font `OT1/pplx/m/sc/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+ [52] [53]) [54]
 \openout2 = `chapters/parametric-benchmarks.aux'.
 
  (./chapters/parametric-benchmarks.tex
@@ -1271,15 +1273,16 @@ Opening gnuplot stream dissertation-gnuplottex-fig1.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig1.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig1.gnuplot converted on inpu
-t line 12.
+t line 24.
 
-<dissertation-gnuplottex-fig1.pdf, id=1293, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig1.pdf, id=1309, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig1.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig1.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig1.pdf used on input line 12
+Package pdftex.def Info: dissertation-gnuplottex-fig1.pdf used on input line 24
 .
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+ [57]
 \openout3 = `dissertation-gnuplottex-fig2.gnuplot'.
 
 
@@ -1287,37 +1290,70 @@ Opening gnuplot stream dissertation-gnuplottex-fig2.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig2.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig2.gnuplot converted on inpu
-t line 17.
+t line 40.
 
-<dissertation-gnuplottex-fig2.pdf, id=1294, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig2.pdf, id=1315, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig2.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig2.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig2.pdf used on input line 17
+Package pdftex.def Info: dissertation-gnuplottex-fig2.pdf used on input line 40
+.
+(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+ [58 <./dissertation-gnuplottex-fig1.pdf> <./dissertation-gnuplottex-fig2.pdf>]
+\openout3 = `dissertation-gnuplottex-fig3.gnuplot'.
+
+
+Opening gnuplot stream dissertation-gnuplottex-fig3.gnuplot
+runsystem(gnuplot dissertation-gnuplottex-fig3.gnuplot)...executed.
+
+Package gnuplottex Info: dissertation-gnuplottex-fig3.gnuplot converted on inpu
+t line 58.
+
+<dissertation-gnuplottex-fig3.pdf, id=1328, 361.35pt x 216.81pt>
+File: dissertation-gnuplottex-fig3.pdf Graphic file (type pdf)
+
+<use dissertation-gnuplottex-fig3.pdf>
+Package pdftex.def Info: dissertation-gnuplottex-fig3.pdf used on input line 58
+.
+(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+\openout3 = `dissertation-gnuplottex-fig4.gnuplot'.
+
+
+Opening gnuplot stream dissertation-gnuplottex-fig4.gnuplot
+runsystem(gnuplot dissertation-gnuplottex-fig4.gnuplot)...executed.
+
+Package gnuplottex Info: dissertation-gnuplottex-fig4.gnuplot converted on inpu
+t line 68.
+
+<dissertation-gnuplottex-fig4.pdf, id=1329, 361.35pt x 216.81pt>
+File: dissertation-gnuplottex-fig4.pdf Graphic file (type pdf)
+
+<use dissertation-gnuplottex-fig4.pdf>
+Package pdftex.def Info: dissertation-gnuplottex-fig4.pdf used on input line 68
 .
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 
-Underfull \vbox (badness 2591) has occurred while \output is active []
+Underfull \vbox (badness 1694) has occurred while \output is active []
 
- [57 <./dissertation-gnuplottex-fig1.pdf>]) [58 <./dissertation-gnuplottex-fig2
-.pdf>]
+ [59 <./dissertation-gnuplottex-fig3.pdf> <./dissertation-gnuplottex-fig4.pdf>]
+) [60]
 \openout2 = `chapters/conclusion.aux'.
 
 
 (./chapters/conclusion.tex
 Chapter 9.
-) [59
+) [61
 
 
 
-] [60] (./dissertation.bbl [61
+] [62] (./dissertation.bbl [63
 
 
 ]
 Missing character: There is no â in font pplri9t!
 Missing character: There is no € in font pplri9t!
 Missing character: There is no ” in font pplri9t!
- [62]
+ [64]
 Missing character: There is no â in font pplri9t!
 Missing character: There is no „ in font pplri9t!
 Missing character: There is no ¢ in font pplri9t!
@@ -1327,7 +1363,7 @@ Underfull \hbox (badness 1509) in paragraph at lines 212--216
 us.groovy.classgen.asm,
  []
 
-[63] [64]
+[65] [66]
 Underfull \hbox (badness 2828) in paragraph at lines 373--377
 []\OT1/pplx/m/n/10.95 (+20) Ronald Ib-bett.  High Per-for-mance Com-puter Ar-ch
 i-tec-tures, 2009.  URL
@@ -1345,31 +1381,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 393--397
  google / common / hash /
  []
 
-[65])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
- [66]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
+[67])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 101.
+ [68]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 101.
  (./dissertation.aux (./chapters/introduction.aux)
 (./chapters/related-work.aux) (./chapters/graal.aux)
 (./chapters/instrumentation.aux) (./chapters/runtime-library.aux)
 (./chapters/methodology.aux) (./chapters/parametric-benchmarks.aux)
 (./chapters/results.aux) (./chapters/conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 100.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 101.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 101.
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 72607D5B85731831846AA644222BB64B;5841.
+(rerunfilecheck)             Checksum: EAD118515F4A09E2104003BDD1CCABE5;5973.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 101.
  ) 
 Here is how much of TeX's memory you used:
- 22528 strings out of 493311
- 398312 string characters out of 6137850
- 678562 words of memory out of 5000000
- 24700 multiletter control sequences out of 15000+600000
- 95894 words of font info for 457 fonts, out of 8000000 for 9000
+ 22559 strings out of 493311
+ 398865 string characters out of 6137850
+ 677977 words of memory out of 5000000
+ 24712 multiletter control sequences out of 15000+600000
+ 97633 words of font info for 466 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  56i,10n,70p,2140b,1057s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -1380,21 +1416,22 @@ l/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/loc
 al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/l
 ocal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb></usr/
 local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></us
-r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
-pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></us
-r/local/texlive/2013/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/
-texlive/2013/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive
-/2013/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/t
-exmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/2013/texmf-d
-ist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2013/texmf-dist/fon
-ts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type
-1/urw/palatino/uplri8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/
-times/utmr8a.pfb>
-Output written on dissertation.pdf (78 pages, 671610 bytes).
+r/local/texlive/2013/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/lo
+cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></us
+r/local/texlive/2013/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/
+2013/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2013/te
+xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/texmf-dis
+t/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/2013/texmf-dist/font
+s/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1
+/urw/palatino/uplr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/pa
+latino/uplri8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/ut
+mr8a.pfb>
+Output written on dissertation.pdf (80 pages, 683167 bytes).
 PDF statistics:
- 1587 PDF objects out of 1728 (max. 8388607)
- 1398 compressed objects within 14 object streams
- 330 named destinations out of 1000 (max. 500000)
- 78115 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 1605 PDF objects out of 1728 (max. 8388607)
+ 1417 compressed objects within 15 object streams
+ 336 named destinations out of 1000 (max. 500000)
+ 82237 words of extra memory for PDF output out of 89155 (max. 10000000)
 

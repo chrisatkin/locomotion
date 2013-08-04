@@ -76,8 +76,8 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl.test"/>
 	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/lib/jamm-0.2.5.jar"/>
-	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/lib/guava-14.0.1.jar"/>
 	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/lib/commons-lang3-3.1.jar"/>
 	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/lib/tools.jar"/>
+	<classpathentry kind="lib" path="/Users/chris/Desktop/guava-libraries/guava/target/guava-15.0-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

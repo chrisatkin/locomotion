@@ -1,4 +1,4 @@
-set title "hash set, none dependent"
+set title "hash set"
 set xlabel "accesses"
 set ylabel "dependencies"
 set grid

@@ -79,7 +79,17 @@ The main problem that the storage format must be able to determine is this. Give
 		E = -n \ln \frac{1-n/n}{k}
 		\]
 		
-		An advantage of bloom filters is that the space complexity is constant $S=O(c)$, where $c$ is the size of the bit vector. This will allow memory overhead to be substantially lower, whilst still retaining $T=O(1)$ lookup time complexity.
+		% return (long) (-n * Math.log(p) / (Math.log(2) * Math.log(2)));
+		
+		It is possible to calculate the theoretical optimal length of the bit vector $m$ from the number of expected insertions $n$ and the \textit{false positive rate} $p$. This is defined as
+
+		\[
+			m = -n \times \log(p) \div \log(2) \times \log(2)
+		\]
+		
+		The main advantage of bloom filters is that the space complexity is constant $S=O(c)$, where $c$ is the size of the bit vector. This will allow memory overhead to be substantially lower, whilst still retaining $T=O(1)$ lookup time complexity. As mentioned above, this is a significant (factor $n$) improvement over the exact approach.
+		
+		We hypothesise that, with the correct parameters, it is possible to effectively use probabilistic approaches in order to reduce both the memory and execution time overhead associated with dependency analysis.
 
 \section{Dependency Analysis Algorithms} \label{sec:runtime/analysis}
 	Computing dependency between two operations is of critical importance to this project; an efficient algorithm is important.

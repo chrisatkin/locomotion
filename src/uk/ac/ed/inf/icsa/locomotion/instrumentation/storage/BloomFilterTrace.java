@@ -14,7 +14,7 @@ public final class BloomFilterTrace extends Trace {
 		super((BloomFilterConfiguration) configuration);
 		
 		BloomFilterConfiguration bfc = (BloomFilterConfiguration) this.configuration;
-		this.bloom = BloomFilter.create(bfc.getFunnel(), bfc.getExpectedInsertations());
+		this.bloom = BloomFilter.create(bfc.getFunnel(), 0.03d, bfc.getExpectedInsertations()/*, bfc.getExpectedInsertations()*/);
 	}
 
 	@Override

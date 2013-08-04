@@ -40,6 +40,7 @@ public final class Formatter {
 	
 	private void run() {
 		try {
+			
 			// hash sets
 			executeFormatter(new Executable() {
 				@SuppressWarnings("serial")
@@ -77,7 +78,7 @@ public final class Formatter {
 							}},
 							"length",
 							"finalmemory",
-							"size",
+							"bitvector",
 							"dependencies",
 							"time"
 							);
@@ -95,6 +96,7 @@ public final class Formatter {
 		for (final String name: new String[] { "all-dependent", "none-dependent", "fractional-dependent", "vector-addition", "universe"}) {
 			for (final String instrument: new String[] { "true", "false" }) {
 				for (final String storage: new String[] { "HashSetTrace", "BloomFilterTrace"}) {
+					System.out.println("name=" + name + " instrument=" + instrument + " storage=" + storage);
 					e.execute(name, instrument, storage);
 				}
 			}
