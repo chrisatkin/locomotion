@@ -30,27 +30,44 @@ All software used was the latest version available at the time of writing.
 In order to improve the results, each experiment was repeat three times. The average of the three repeats was used for the rest of the analyses. In doing so, the number of dependencies between repeats was checked.
 
 \section{Benchmarks} \label{sec:methodology/benchmarks}
-	\subsection{Validation and Basic Testing} \label{sec:methodology/benchmarks/simple}
+	\subsection{Validation, Basic Testing and Parametric Testing} \label{sec:methodology/benchmarks/simple}
+	These benchmarks fall under the same category, and are covered in chapter \ref{chp:parametric}.
+	
 	The first `item of business' is to prove that the implementation of the instrumentation and runtime library is correct. We ensure this by comparing the results of algorithms with results known ahead-of-schedule with the results of experiments.
 	
 	Since there are several kinds of dependency (see figure \ref{sec:runtime/analysis}), these benchmarks need to take this into account.
+	
+	The way these experiments work is by generating three arrays:
+	
+	\begin{itemize}
+		\item \textbf{Value arrays}: since the basic memory operation is that of \texttt{a[b[i]]} (where \texttt{a} and \texttt{b} are both arrays), these must both be generated. These arrays are randomly generated, but the parameters
+		\item \textbf{Operation array} 
+	\end{itemize}
 	
 	\subsection{Parametric Benchmarks} \label{sec:methodology/benchmarks/parametric}
 	In addition to basic verification, a parametric benchmark has been created. This benchmark -- called \textsc{HazardMark-II} -- allows a user to specify the number of each kind of dependency. This was used to determine the relative overheads of the analysis.
 	
 	\subsection{Graph Processing Algorithms} \label{sec:methodology/benchmarks/graphs}
+	Many graph processing algorithms are known to be parallelisable in the sense that each node can, in some cases, be operated upon in parallel. An example of such an algorithm would be a in a ray-tracer. Scene data is stored as a graph (\eg, the top level node is the scene, with sub-scenes occuring). Ray-tracing is an embarrassingly parallel problem (in that each ray can be traced without being dependent on other rays). Hence, the scene graph must be at-least traversable in parallel.
+	
+	Another example is that of divide-and-conquer algorithms. This class of algorithm uses recursive decomposition in order to `break-down' tasks into smaller sub-tasks which can be computed in parallel. These tasks are represented as a tree, which are undirected graphs. At a given recursion depth, each task is computed in parallel and then merged (also in parallel). This cycle continues until all sub-tasks have been merged.
+	
+	However, not all graph algorithms are parallelisable.
+	
+	In this benchmark, we consider several graph algorithms from the JGraphT project. The algorithms which we consider are:
+	
+	\begin{itemize}
+		\item Blah.
+	\end{itemize}
 	
 	\subsection{Java Grande} \label{sec:methodology/benchmarks/grande}
 	Java Grande \citep{Smith2001,Bull2001} is a platform-independent benchmark for Java Virtual Machines and their associated compilers. Indeed, it is aimed at measuring the performance of the \emph{virtual machine}, rather than the Java language.
 	
-	The authors cite a \textit{grande application} as one that ``uses large amounts of processing, I/O, network bandwidth or memory''. The benchmarks that are included in the Grande suite are:
+	The authors cite a \textit{grande application} as one that ``uses large amounts of processing, I/O, network bandwidth or memory''.
+	Each test runs in three sizes: A, B and C. The tests which are are including are:
 	
 	\begin{itemize}
-		\item \textbf{euler} solves a set of equations using a fourth-order Runge-Kutta method
-		\item \textbf{moldyn} compute molecular; it is a Java port of a program originally written in Fortran, for this reason it does not use object-oriented programming techniques.
-		\item \textbf{montecarlo} is a financial simulation based on Monte-Carlo methods
-		\item \textbf{raytracer} computes a scene containing 64 spheres
-		\item \textbf{search} solves a game of Connect4
+		\item \textbf{Fast Fourier Transform}: one-dimensional transform of $n$ complex numbers. FFT uses complex arithmetic, 
 	\end{itemize}
 	
 	\subsection{N-Body Simulation} \label{sec:methodology/benchmarks/nbody}

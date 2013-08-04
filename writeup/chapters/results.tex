@@ -56,9 +56,11 @@ The methodology used has been described in chapter \ref{chp:methodology}.
 				load '../charts/all-dependent_size-deps_BloomFilterTrace-with-instrument.gnuplot'		
 			unset multiplot
 		\end{gnuplot}
+		\label{chart:all-dependent-deps-comparison}
+		\caption{Overview of the dependencies detected when all iterations are dependent}.
 	\end{figure}
 	
-	We can see here that for both trace formats, the correct number of dependencies are detected.
+	We can see here that for both trace formats, the correct number of dependencies are detected. For the bloom filter, this is due to the `no false negative' property - a false negative, in this case, is wrongly reporting that an access has not been seen before.
 	
 	\begin{figure}[H]
 		\begin{gnuplot}[terminal=pdf]
@@ -67,7 +69,16 @@ The methodology used has been described in chapter \ref{chp:methodology}.
 			load '../charts/all-dependent_size-memory_BloomFilterTrace-with-instrument.gnuplot'
 					unset multiplot
 		\end{gnuplot}
+		\caption{Overview of the memory usage when all iterations are dependent}
+		\label{chart:all-dependent-memory-comparison}
 	\end{figure}
+	
+	From figure \ref{chart:all-dependent-memory-comparison}, we can begin to see the results of using a bloom filter. When the memory usage is compared, we notice that the bloom filter is significantly lower.
+	
+	From these memory usage results we can also begin to understand why memory usage measurement is so difficult in the JVM -- there are several anomalies in both datasets. This is likely due to the unpredictable/non-deterministic nature of the garbage collection algorithm, as well as the OS memory allocation mechanism. However, when we only take into account the non-anomalous results and see the overall trends, we see a clear pattern already -- bloom filters offer a significant memory usage improvement over sets.
+	
+	In these experiments, we used a fixed $ffp$ of 0.03. In later experiments, this value will be modified in order to determine the optimal configuration for the bloom filter.
+	
 
 \section{Parametric} \label{sec:results/parametric}
 See chapter \ref{chp:parametric}.

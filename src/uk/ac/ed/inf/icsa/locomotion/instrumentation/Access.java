@@ -1,20 +1,20 @@
 package uk.ac.ed.inf.icsa.locomotion.instrumentation;
 
-public class Access implements Comparable<Access> {
+public class Access/* implements Comparable<Access>*/ {
 	private final Kind kind;
 	private final int arrayId;
 	private final int index;
-	private final int number; // this is the i'th access this iteration
+	//private final int number; // this is the i'th access this iteration
 	
-	public Access(final int arrayId, final int index, final int number, final Kind kind) {
+	public Access(final int arrayId, final int index,/* final int number,*/ final Kind kind) {
 		this.kind = kind;
-		this.number = number;
+		//this.number = number;
 		this.arrayId = arrayId;
 		this.index = index;
 	}
 	
 	public String toString() {
-		return new StringBuilder().append("[kind=").append(kind.toString()).append(" arrayId=").append(arrayId).append(" index=").append(index).append(" number=").append(number).append("]").toString();
+		return new StringBuilder().append("[kind=").append(kind.toString()).append(" arrayId=").append(arrayId).append(" index=").append(index)/*.append(" number=").append(number)*/.append("]").toString();
 	}
 	
 	@Override
@@ -22,9 +22,9 @@ public class Access implements Comparable<Access> {
 		return arrayId + index;
 	}
 	
-	public int getNumber() {
-		return number;
-	}
+//	public int getNumber() {
+//		return number;
+//	}
 	
 	public int getArrayId() {
 		return arrayId;
@@ -33,17 +33,21 @@ public class Access implements Comparable<Access> {
 	public int getIndex() {
 		return index;
 	}
-
-	@Override
-	public int compareTo(Access other) {			
-		if (this.getNumber() > other.getNumber())
-			return +1;
-		
-		if (this.getNumber() < other.getNumber())
-			return -1;
-		
-		return 0;
+	
+	public Kind getKind() {
+		return kind;
 	}
+
+//	@Override
+//	public int compareTo(Access other) {			
+//		if (this.getNumber() > other.getNumber())
+//			return +1;
+//		
+//		if (this.getNumber() < other.getNumber())
+//			return -1;
+//		
+//		return 0;
+//	}
 	
 	public boolean equals(Object other) {
 		return (this.arrayId == ((Access) other).arrayId) && (this.index == ((Access) other).index);

@@ -57,7 +57,7 @@
 \BOOKMARK [1][-]{section.6.2}{Experimental Setup}{chapter.6}% 57
 \BOOKMARK [1][-]{section.6.3}{Repeats}{chapter.6}% 58
 \BOOKMARK [1][-]{section.6.4}{Benchmarks}{chapter.6}% 59
-\BOOKMARK [2][-]{subsection.6.4.1}{Validation and Basic Testing}{section.6.4}% 60
+\BOOKMARK [2][-]{subsection.6.4.1}{Validation, Basic Testing and Parametric Testing}{section.6.4}% 60
 \BOOKMARK [2][-]{subsection.6.4.2}{Parametric Benchmarks}{section.6.4}% 61
 \BOOKMARK [2][-]{subsection.6.4.3}{Graph Processing Algorithms}{section.6.4}% 62
 \BOOKMARK [2][-]{subsection.6.4.4}{Java Grande}{section.6.4}% 63
@@ -69,24 +69,31 @@
 \BOOKMARK [1][-]{section.6.7}{Summary}{chapter.6}% 69
 \BOOKMARK [0][-]{chapter.7}{Parametric Benchmarks}{}% 70
 \BOOKMARK [1][-]{section.7.1}{Introduction}{chapter.7}% 71
-\BOOKMARK [1][-]{section.7.2}{Summary}{chapter.7}% 72
-\BOOKMARK [0][-]{chapter.8}{Results}{}% 73
-\BOOKMARK [1][-]{section.8.1}{Introduction}{chapter.8}% 74
-\BOOKMARK [1][-]{section.8.2}{Basic Testing}{chapter.8}% 75
-\BOOKMARK [2][-]{subsection.8.2.1}{No Dependencies}{section.8.2}% 76
-\BOOKMARK [2][-]{subsection.8.2.2}{All Dependent}{section.8.2}% 77
-\BOOKMARK [1][-]{section.8.3}{Parametric}{chapter.8}% 78
-\BOOKMARK [1][-]{section.8.4}{N-Body}{chapter.8}% 79
-\BOOKMARK [1][-]{section.8.5}{Graph Processing}{chapter.8}% 80
-\BOOKMARK [1][-]{section.8.6}{Java Grande}{chapter.8}% 81
-\BOOKMARK [1][-]{section.8.7}{Overhead}{chapter.8}% 82
-\BOOKMARK [2][-]{subsection.8.7.1}{Execution Time}{section.8.7}% 83
-\BOOKMARK [2][-]{subsection.8.7.2}{Memory Usage}{section.8.7}% 84
-\BOOKMARK [1][-]{section.8.8}{Analysis}{chapter.8}% 85
-\BOOKMARK [1][-]{section.8.9}{Summary}{chapter.8}% 86
-\BOOKMARK [0][-]{chapter.9}{Conclusion}{}% 87
-\BOOKMARK [1][-]{section.9.1}{Concluding Remarks}{chapter.9}% 88
-\BOOKMARK [1][-]{section.9.2}{Contributions}{chapter.9}% 89
-\BOOKMARK [1][-]{section.9.3}{Unsolved Problems}{chapter.9}% 90
-\BOOKMARK [1][-]{section.9.4}{Future Work}{chapter.9}% 91
-\BOOKMARK [0][-]{chapter*.19}{Bibliography}{}% 92
+\BOOKMARK [1][-]{section.7.2}{Problem Statement}{chapter.7}% 72
+\BOOKMARK [2][-]{subsection.7.2.1}{Array Aliasing}{section.7.2}% 73
+\BOOKMARK [1][-]{section.7.3}{Solutions}{chapter.7}% 74
+\BOOKMARK [2][-]{subsection.7.3.1}{Single-Command, Dual Value}{section.7.3}% 75
+\BOOKMARK [2][-]{subsection.7.3.2}{Dual Command, Single Value}{section.7.3}% 76
+\BOOKMARK [1][-]{section.7.4}{Implementation Details}{chapter.7}% 77
+\BOOKMARK [1][-]{section.7.5}{Additional Parameters}{chapter.7}% 78
+\BOOKMARK [1][-]{section.7.6}{Summary}{chapter.7}% 79
+\BOOKMARK [0][-]{chapter.8}{Results}{}% 80
+\BOOKMARK [1][-]{section.8.1}{Introduction}{chapter.8}% 81
+\BOOKMARK [1][-]{section.8.2}{Basic Testing}{chapter.8}% 82
+\BOOKMARK [2][-]{subsection.8.2.1}{No Dependencies}{section.8.2}% 83
+\BOOKMARK [2][-]{subsection.8.2.2}{All Dependent}{section.8.2}% 84
+\BOOKMARK [1][-]{section.8.3}{Parametric}{chapter.8}% 85
+\BOOKMARK [1][-]{section.8.4}{N-Body}{chapter.8}% 86
+\BOOKMARK [1][-]{section.8.5}{Graph Processing}{chapter.8}% 87
+\BOOKMARK [1][-]{section.8.6}{Java Grande}{chapter.8}% 88
+\BOOKMARK [1][-]{section.8.7}{Overhead}{chapter.8}% 89
+\BOOKMARK [2][-]{subsection.8.7.1}{Execution Time}{section.8.7}% 90
+\BOOKMARK [2][-]{subsection.8.7.2}{Memory Usage}{section.8.7}% 91
+\BOOKMARK [1][-]{section.8.8}{Analysis}{chapter.8}% 92
+\BOOKMARK [1][-]{section.8.9}{Summary}{chapter.8}% 93
+\BOOKMARK [0][-]{chapter.9}{Conclusion}{}% 94
+\BOOKMARK [1][-]{section.9.1}{Concluding Remarks}{chapter.9}% 95
+\BOOKMARK [1][-]{section.9.2}{Contributions}{chapter.9}% 96
+\BOOKMARK [1][-]{section.9.3}{Unsolved Problems}{chapter.9}% 97
+\BOOKMARK [1][-]{section.9.4}{Future Work}{chapter.9}% 98
+\BOOKMARK [0][-]{chapter*.19}{Bibliography}{}% 99

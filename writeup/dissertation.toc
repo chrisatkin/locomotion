@@ -57,36 +57,43 @@
 \contentsline {section}{\numberline {6.2}Experimental Setup}{51}{section.6.2}
 \contentsline {section}{\numberline {6.3}Repeats}{52}{section.6.3}
 \contentsline {section}{\numberline {6.4}Benchmarks}{52}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Validation and Basic Testing}{52}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.1}Validation, Basic Testing and Parametric Testing}{52}{subsection.6.4.1}
 \contentsline {subsection}{\numberline {6.4.2}Parametric Benchmarks}{52}{subsection.6.4.2}
-\contentsline {subsection}{\numberline {6.4.3}Graph Processing Algorithms}{52}{subsection.6.4.3}
-\contentsline {subsection}{\numberline {6.4.4}Java Grande}{52}{subsection.6.4.4}
+\contentsline {subsection}{\numberline {6.4.3}Graph Processing Algorithms}{53}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}Java Grande}{53}{subsection.6.4.4}
 \contentsline {subsection}{\numberline {6.4.5}N-Body Simulation}{53}{subsection.6.4.5}
-\contentsline {section}{\numberline {6.5}Measurement Methodology}{53}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Execution Time}{53}{subsection.6.5.1}
+\contentsline {section}{\numberline {6.5}Measurement Methodology}{54}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Execution Time}{54}{subsection.6.5.1}
 \contentsline {subsection}{\numberline {6.5.2}Memory Usage}{54}{subsection.6.5.2}
-\contentsline {section}{\numberline {6.6}Test Harness Design and Implementation}{54}{section.6.6}
-\contentsline {section}{\numberline {6.7}Summary}{54}{section.6.7}
-\contentsline {chapter}{\numberline {7}Parametric Benchmarks}{55}{chapter.7}
-\contentsline {section}{\numberline {7.1}Introduction}{55}{section.7.1}
-\contentsline {section}{\numberline {7.2}Summary}{55}{section.7.2}
-\contentsline {chapter}{\numberline {8}Results}{57}{chapter.8}
-\contentsline {section}{\numberline {8.1}Introduction}{57}{section.8.1}
-\contentsline {section}{\numberline {8.2}Basic Testing}{57}{section.8.2}
-\contentsline {subsection}{\numberline {8.2.1}No Dependencies}{57}{subsection.8.2.1}
-\contentsline {subsection}{\numberline {8.2.2}All Dependent}{59}{subsection.8.2.2}
-\contentsline {section}{\numberline {8.3}Parametric}{60}{section.8.3}
-\contentsline {section}{\numberline {8.4}N-Body}{60}{section.8.4}
-\contentsline {section}{\numberline {8.5}Graph Processing}{60}{section.8.5}
-\contentsline {section}{\numberline {8.6}Java Grande}{60}{section.8.6}
-\contentsline {section}{\numberline {8.7}Overhead}{60}{section.8.7}
-\contentsline {subsection}{\numberline {8.7.1}Execution Time}{60}{subsection.8.7.1}
-\contentsline {subsection}{\numberline {8.7.2}Memory Usage}{60}{subsection.8.7.2}
-\contentsline {section}{\numberline {8.8}Analysis}{60}{section.8.8}
-\contentsline {section}{\numberline {8.9}Summary}{60}{section.8.9}
-\contentsline {chapter}{\numberline {9}Conclusion}{61}{chapter.9}
-\contentsline {section}{\numberline {9.1}Concluding Remarks}{61}{section.9.1}
-\contentsline {section}{\numberline {9.2}Contributions}{61}{section.9.2}
-\contentsline {section}{\numberline {9.3}Unsolved Problems}{61}{section.9.3}
-\contentsline {section}{\numberline {9.4}Future Work}{61}{section.9.4}
-\contentsline {chapter}{Bibliography}{63}{chapter*.19}
+\contentsline {section}{\numberline {6.6}Test Harness Design and Implementation}{55}{section.6.6}
+\contentsline {section}{\numberline {6.7}Summary}{55}{section.6.7}
+\contentsline {chapter}{\numberline {7}Parametric Benchmarks}{57}{chapter.7}
+\contentsline {section}{\numberline {7.1}Introduction}{57}{section.7.1}
+\contentsline {section}{\numberline {7.2}Problem Statement}{57}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Array Aliasing}{57}{subsection.7.2.1}
+\contentsline {section}{\numberline {7.3}Solutions}{57}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Single-Command, Dual Value}{58}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Dual Command, Single Value}{58}{subsection.7.3.2}
+\contentsline {section}{\numberline {7.4}Implementation Details}{58}{section.7.4}
+\contentsline {section}{\numberline {7.5}Additional Parameters}{58}{section.7.5}
+\contentsline {section}{\numberline {7.6}Summary}{58}{section.7.6}
+\contentsline {chapter}{\numberline {8}Results}{59}{chapter.8}
+\contentsline {section}{\numberline {8.1}Introduction}{59}{section.8.1}
+\contentsline {section}{\numberline {8.2}Basic Testing}{59}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}No Dependencies}{59}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}All Dependent}{61}{subsection.8.2.2}
+\contentsline {section}{\numberline {8.3}Parametric}{62}{section.8.3}
+\contentsline {section}{\numberline {8.4}N-Body}{63}{section.8.4}
+\contentsline {section}{\numberline {8.5}Graph Processing}{63}{section.8.5}
+\contentsline {section}{\numberline {8.6}Java Grande}{63}{section.8.6}
+\contentsline {section}{\numberline {8.7}Overhead}{63}{section.8.7}
+\contentsline {subsection}{\numberline {8.7.1}Execution Time}{63}{subsection.8.7.1}
+\contentsline {subsection}{\numberline {8.7.2}Memory Usage}{63}{subsection.8.7.2}
+\contentsline {section}{\numberline {8.8}Analysis}{63}{section.8.8}
+\contentsline {section}{\numberline {8.9}Summary}{63}{section.8.9}
+\contentsline {chapter}{\numberline {9}Conclusion}{65}{chapter.9}
+\contentsline {section}{\numberline {9.1}Concluding Remarks}{65}{section.9.1}
+\contentsline {section}{\numberline {9.2}Contributions}{65}{section.9.2}
+\contentsline {section}{\numberline {9.3}Unsolved Problems}{65}{section.9.3}
+\contentsline {section}{\numberline {9.4}Future Work}{65}{section.9.4}
+\contentsline {chapter}{Bibliography}{67}{chapter*.19}

@@ -45,15 +45,16 @@ final class Experiments {
 		// add probabilistic tests
 		for (int i = 1000; i <= 10000; i += 1000) {
 			// Basic tests
-			experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}, output));
-			experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}, output));
+//			experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}, output));
+//			experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}, output));
 ////			
 ////			// Probabilistic tests
-//			experiments.add(new Test(FractionalDependent.class, instrument, new Object[] {i, 300, 300, 300}, output));
+//			experiments.add(new Test(FractionalDependent.class, instrument, new Object[] {i, Math.round(i/3), Math.round(i/3), Math.round(i/3)}, output));
+			experiments.add(new Test(FractionalDependent.class, instrument, new Object[] {i, 300,300,300}, output));
 ////
 ////			
-//			experiments.add(new Test(VectorAddition.class, instrument, new Object[] {i / 10}, output));
-//			experiments.add(new Test(NBody.class, instrument, new Object[] {"nbody-data/2body.txt", i / 10}, output));
+//			experiments.add(new Test(VectorAddition.class, instrument, new Object[] {i}, output));
+//			experiments.add(new Test(NBody.class, instrument, new Object[] {"nbody-data/2body.txt", i}, output));
 		}
 		
 //		experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/2body.txt", 10000 }, output));
@@ -64,7 +65,7 @@ final class Experiments {
 	private void run() throws IOException, InterruptedException, ExecutionException, TimeoutException {
 		Runtime.getRuntime().gc();
 		
-		for (boolean instrumentationEnabled: new boolean[] {true, false}) {
+		for (boolean instrumentationEnabled: new boolean[] {true}) {
 			runExactExperiments(instrumentationEnabled);
 			runInexactExperiments(instrumentationEnabled);
 		}
@@ -75,7 +76,7 @@ final class Experiments {
 		// BloomFilter
 		Class<? extends Trace> traceFormat = BloomFilterTrace.class;
 		
-		for (int i = 100; i <= 1000; i += 100) {
+		for (int i = 100; i <= 10000; i += 100) {
 			BloomFilterConfiguration bfc = new BloomFilterConfiguration(i*1, new Funnel<Access>() {
 				@Override
 				public void funnel(Access access, PrimitiveSink sink) {
