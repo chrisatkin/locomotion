@@ -43,17 +43,17 @@ final class Experiments {
 		);
 		
 		// add probabilistic tests
-		for (int i = 1000; i <= 10000; i += 1000) {
+		for (int i = 100; i <= 1000; i += 100) {
 			// Basic tests
-//			experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}, output));
-//			experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}, output));
+			experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}, output));
+			experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}, output));
 //			
 //			// Probabilistic tests
 //			experiments.add(new Test(FractionalDependent.class, instrument, new Object[] {i, 300, 300, 300}, output));
 //
 //			
 			//experiments.add(new Test(VectorAddition.class, instrument, new Object[] {i / 10}, output));
-			experiments.add(new Test(NBody.class, instrument, new Object[] {"nbody-data/2body.txt", i / 10}, output));
+//			experiments.add(new Test(NBody.class, instrument, new Object[] {"nbody-data/2body.txt", i / 10}, output));
 		}
 		
 //		experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/2body.txt", 10000 }, output));
@@ -73,7 +73,7 @@ final class Experiments {
 		// BloomFilter
 		Class<? extends Trace> traceFormat = BloomFilterTrace.class;
 		
-		for (int i = 100; i <= 1000; i += 100) {
+		for (int i = 1000; i <= 10000; i += 100) {
 			BloomFilterConfiguration bfc = new BloomFilterConfiguration(i, new Funnel<Access>() {
 				@Override
 				public void funnel(Access access, PrimitiveSink sink) {
@@ -97,8 +97,8 @@ final class Experiments {
 				experiment.run();
 				
 				InstrumentSupport.stopTimer();
-				//output.put("finalmemory=" + (new MemoryMeter().measureDeep(this)));
-				output.put("finalmemory=" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
+				output.put("finalmemory=" + (InstrumentSupport.getTraceMemoryUsage()));
+				//output.put("finalmemory=" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
 				output.put("dependencies=" + InstrumentSupport.getDependencies().size());
 				output.put("time=" + InstrumentSupport.getTimeDifference());
 				output.close();
@@ -132,7 +132,7 @@ final class Experiments {
 				
 				InstrumentSupport.stopTimer();
 				//output.put("finalmemory=" + (new MemoryMeter().measureDeep(this)));
-				output.put("finalmemory=" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
+				output.put("finalmemory=" + (InstrumentSupport.getTraceMemoryUsage()));
 				output.put("dependencies=" + InstrumentSupport.getDependencies().size());
 				output.put("time=" + InstrumentSupport.getTimeDifference());
 				output.close();

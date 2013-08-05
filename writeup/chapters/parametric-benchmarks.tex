@@ -1,4 +1,24 @@
 \chapter{Parametric Benchmarks} \label{chp:parametric}
 \section{Introduction} \label{sec:parametric/introduction}
+As we have already investigated in section \ref{sec:runtime/analysis}, there are multiple kinds of dependency and hazards. In order to complete a thorough analysis, a new kind of benchmark has been developed in order to analyse the effect of the three kinds of dependency.
+
+\section{Problem Statement} \label{sec:parametric/problem}
+The problem statement is somewhat simple. Given $n$ accesses, generate patterns of access such that there are $n^{\delta}$, $n^{\delta^{0}}$ and $n^{\delta^{-1}}$ dependencies. These values are by definition probabilistic in nature, as the issue of array aliasing is important.
+
+In this context, we consider an \textit{access pattern} to be two sequential accesses , $\alpha_x$ and $\alpha_y$, to the same index in an array. It is given that $x < y$ (\ie, $T(\alpha_x) < T(\alpha_y)$)1, but they may or may not be immediate.
+
+	\subsection{Array Aliasing} \label{sec:parametric/problem/aliasing}
+
+\section{Solutions} \label{sec:parametric/solutions}
+There are several solutions that are possible, we consider several here.
+
+	\subsection{Single-Command, Dual Value} \label{sec:parametric/solutions/scdv}
+	
+	\subsection{Dual Command, Single Value} \label{sec:parametric/solutions/dcsv}
+
+\section{Implementation Details} \label{sec:parametric/implementation}
+
+\section{Additional Parameters} \label{sec:parametric/additional-params}
 
 \section{Summary} \label{sec:parametric/summary}
+In this section, a new kind of benchmark has been introduced. This benchmark is capable of producing configurations for various computations involving the three different dependency types (see section \ref{sec:runtime/analysis}). The problem statement for such a benchmark has been introduced, as well as possible solutions and implementation details of the chosen solution. Such a benchmark is likely useful to the wider parallelism community, so we included various additional parameters, such as the `amount of computation' done per cycle (which can be configured dynamically).

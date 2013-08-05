@@ -26,45 +26,45 @@ Warning--empty booktitle in ACDI
 Warning--can't use both author and editor fields in Allen2000
 Warning--can't use both author and editor fields in ArchitectureBook
 Warning--empty journal in JSR133
-You've used 62 entries,
+You've used 65 entries,
             2481 wiz_defined-function locations,
-            1047 strings with 16861 characters,
-and the built_in function-call counts, 23127 in all, are:
-= -- 2067
-> -- 1112
-< -- 56
-+ -- 451
-- -- 327
-* -- 1714
-:= -- 3757
-add.period$ -- 270
-call.type$ -- 62
-change.case$ -- 129
-chr.to.int$ -- 62
-cite$ -- 77
-duplicate$ -- 1174
-empty$ -- 2055
-format.name$ -- 416
-if$ -- 4938
+            1070 strings with 17425 characters,
+and the built_in function-call counts, 24343 in all, are:
+= -- 2186
+> -- 1156
+< -- 60
++ -- 469
+- -- 339
+* -- 1800
+:= -- 3940
+add.period$ -- 286
+call.type$ -- 65
+change.case$ -- 134
+chr.to.int$ -- 65
+cite$ -- 80
+duplicate$ -- 1241
+empty$ -- 2169
+format.name$ -- 433
+if$ -- 5213
 int.to.chr$ -- 1
-int.to.str$ -- 63
-missing$ -- 48
-newline$ -- 397
-num.names$ -- 186
-pop$ -- 508
+int.to.str$ -- 66
+missing$ -- 50
+newline$ -- 418
+num.names$ -- 196
+pop$ -- 535
 preamble$ -- 1
-purify$ -- 62
+purify$ -- 65
 quote$ -- 0
-skip$ -- 734
+skip$ -- 777
 stack$ -- 0
-substring$ -- 669
-swap$ -- 205
-text.length$ -- 15
+substring$ -- 707
+swap$ -- 223
+text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 413
+type$ -- 431
 warning$ -- 14
-while$ -- 178
+while$ -- 187
 width$ -- 0
-write$ -- 966
+write$ -- 1019
 (There were 14 warnings)
