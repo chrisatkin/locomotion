@@ -1,0 +1,4 @@
+name=all-dependent;length=500;instrumentation=true;storage=BloomFilterTrace;size=7200
+finalmemory=135424
+dependencies=500
+time=2110000

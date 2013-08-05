@@ -13,13 +13,24 @@
 \contentsline {figure}{\numberline {5.1}{\ignorespaces A simple hash table for a phone book\relax }}{41}{figure.caption.10}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Bloom filter operation with $m=18$ and $k=3$\relax }}{41}{figure.caption.11}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Finite state machine for the online algorithm\relax }}{45}{figure.caption.12}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Class diagram for \texttt {InstrumentSupport}\relax }}{46}{figure.caption.13}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Trace class hierarchy\relax }}{48}{figure.caption.14}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Class diagram for \texttt {InstrumentSupport}\relax }}{47}{figure.caption.13}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Trace class hierarchy\relax }}{50}{figure.caption.14}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+<<<<<<< HEAD
 \contentsline {figure}{\numberline {8.1}{\ignorespaces No dependencies with hash set and bloom filter storage\relax }}{60}{figure.caption.15}
 \contentsline {figure}{\numberline {8.2}{\ignorespaces Memory usage for no dependencies found\relax }}{60}{figure.caption.16}
 \contentsline {figure}{\numberline {8.3}{\ignorespaces Overview of the dependencies detected when all iterations are dependent\relax }}{61}{figure.caption.17}
 \contentsline {figure}{\numberline {8.4}{\ignorespaces Overview of the memory usage when all iterations are dependent\relax }}{62}{figure.caption.18}
+=======
+\contentsline {figure}{\numberline {8.1}{\ignorespaces No dependencies with hash set and bloom filter storage\relax }}{62}{figure.caption.15}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Memory usage for no dependencies found\relax }}{62}{figure.caption.16}
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Overview of the dependencies detected when all iterations are dependent\relax }}{63}{figure.caption.17}
+\contentsline {figure}{\numberline {8.4}{\ignorespaces Overview of the memory usage when all iterations are dependent\relax }}{64}{figure.caption.18}
+\contentsline {figure}{\numberline {8.5}{\ignorespaces Execution time for all dependent\relax }}{65}{figure.caption.19}
+\contentsline {figure}{\numberline {8.6}{\ignorespaces Execution time for none dependent\relax }}{66}{figure.caption.20}
+\contentsline {figure}{\numberline {8.7}{\ignorespaces Constant number of dependences, 900, with a hash set\relax }}{66}{figure.caption.21}
+\contentsline {figure}{\numberline {8.8}{\ignorespaces Constant number of dependences, 900, with a bloom filter\relax }}{67}{figure.caption.22}
+>>>>>>> post
 \addvspace {10\p@ }

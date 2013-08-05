@@ -6,6 +6,9 @@ set xtics nomirror
 set ytics nomirror
 set key top right
 
+set logscale x
+set xr [1000:10000]
+
 set style line 80 lt rgb "#808080"
 set style line 81 lt 0  # dashed
 set style line 81 lt rgb "#808080"  # grey

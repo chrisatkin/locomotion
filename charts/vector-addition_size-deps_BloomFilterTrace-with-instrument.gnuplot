@@ -11,6 +11,7 @@ set style line 81 lt 0  # dashed
 set style line 81 lt rgb "#808080"  # grey
 set grid back linestyle 81
 
+<<<<<<< HEAD
 plot "< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 100'" using 3:4 with linespoints title "vector-length=100" ls 1 axes x1y1, \
 	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 200'" using 3:4 with linespoints title "vector-length=200" ls 2 axes x1y1, \
 	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 300'" using 3:4 with linespoints title "vector-length=300" ls 3 axes x1y1, \
@@ -21,3 +22,15 @@ plot "< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentat
 	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 800'" using 3:4 with linespoints title "vector-length=800" ls 7 axes x1y1, \
 	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 900'" using 3:4 with linespoints title "vector-length=900" ls 8 axes x1y1, \
 	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 1000'" using 3:4 with linespoints title "vector-length=100" ls 9 axes x1y1
+=======
+plot "< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 1000'" using 3:4 with linespoints title "vector-length=100" ls 1 axes x1y1, \
+	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 2000'" using 3:4 with linespoints title "vector-length=200" ls 2 axes x1y1, \
+	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 3000'" using 3:4 with linespoints title "vector-length=300" ls 3 axes x1y1, \
+	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 4000'" using 3:4 with linespoints title "vector-length=400" ls 10 axes x1y1, \
+	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 5000'" using 3:4 with linespoints title "vector-length=500" ls 4 axes x1y1, \
+	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 6000'" using 3:4 with linespoints title "vector-length=600" ls 5 axes x1y1, \
+	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 7000'" using 3:4 with linespoints title "vector-length=700" ls 6 axes x1y1, \
+	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 8000'" using 3:4 with linespoints title "vector-length=800" ls 7 axes x1y1, \
+	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 9000'" using 3:4 with linespoints title "vector-length=900" ls 8 axes x1y1, \
+	"< sort -k1,1 -n -k3,3 -n ../formatted-results/vector-addition-instrumentation=true-storage=BloomFilterTrace | awk '$1 == 10000'" using 3:4 with linespoints title "vector-length=100" ls 9 axes x1y1
+>>>>>>> post

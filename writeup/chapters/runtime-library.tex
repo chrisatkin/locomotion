@@ -61,9 +61,10 @@ The main problem that the storage format must be able to determine is this. Give
 		
 		For a given number of entries $s$ and a bit vector of size $m$, we need to use $k$ hash functions such that:
 		
-		\[
-		k = \frac{m}{s} \ln 2
-		\]
+		\begin{equation}
+			k = \frac{m}{s} \ln 2
+			\label{eqn:optimal-hashes}
+		\end{equation}
 		
 		The error rate is defined as:
 		
@@ -89,6 +90,11 @@ The main problem that the storage format must be able to determine is this. Give
 		
 		The main advantage of bloom filters is that the space complexity is constant $S=O(c)$, where $c$ is the size of the bit vector. This will allow memory overhead to be substantially lower, whilst still retaining $T=O(1)$ lookup time complexity. As mentioned above, this is a significant (factor $n$) improvement over the exact approach.
 		
+<<<<<<< HEAD
+=======
+		However, lookup time in bloom filters is asymptotically greater than the hash-based alternative. Unlike the hashing-based approach which has, with an optimal load factor, a lookup time of $T_{lookup}^{hash}=O(1)$, a bloom filter has a lookup time of $T_{lookup}^{bloom}=O(k)$ (where $k$ is the number of hash functions). This is unlike amongst array/vector-based approaches, which in many cases are $T=O(1)$. As the number of optimal hash functions is dependent on the number of expected entries and the bit vector size (see equation \ref{eqn:optimal-hashes}), it is predicted that execution time will increase slightly as a result, with the assumption that the hashing-based approach is operating efficiently (\ie, with an adequate load factor).
+		
+>>>>>>> post
 		We hypothesise that, with the correct parameters, it is possible to effectively use probabilistic approaches in order to reduce both the memory and execution time overhead associated with dependency analysis.
 
 \section{Dependency Analysis Algorithms} \label{sec:runtime/analysis}
@@ -213,7 +219,21 @@ The main problem that the storage format must be able to determine is this. Give
 		\caption{Online dependency algorithm}
 		\label{alg:online-dependency}
 		\begin{algorithmic}
-			\STATE something
+			\STATE $d \gets \varnothing$ %\COMMENT{$d$ is the set of dependencies}
+						\FORALL{loops $l$}
+							\STATE $p \gets \varnothing$ %\COMMENT{$p$ is the set of previous iterations}
+							\FORALL{iteration $i \in l$}
+								\FORALL{access $\alpha \in i$}
+									\FORALL{$p_{\alpha} \in p$}
+										\IF{$\alpha \in p{_\alpha}$}
+											\STATE $d \gets \alpha$
+										\ENDIF
+										
+										\STATE $p \gets \alpha$
+									\ENDFOR
+								\ENDFOR
+							\ENDFOR
+						\ENDFOR
 		\end{algorithmic}
 	\end{algorithm}
 
@@ -253,6 +273,24 @@ In this section, we consider the techniques used to implement the runtime librar
 	\end{itemize}
 	
 	The Java generics system was leveraged in order to reduce the amount of code required to implement the collection; it is important to recognise that the Java type system allows the trace collection mechanism to be unconcerned with the type of the array being accessed (and the type of the item being inserted if appropriate).
+	
+	Although it would be possible to use the above generics-based methods for all data types, this would require the use of the object-oriented wrapper libraries (also called the reference types) for \texttt{int} $\rightarrow$ \texttt{Integer}, \texttt{float} $\rightarrow$ \texttt{Float} and so on. This would have the disadvantage of incurring the overhead of autoboxing \citep{boxing} in the library.
+	
+		\subsubsection{Java Auto(un)boxing} \label{sec:runtime/implementation/instrument/boxing}
+		Despite being an object-oriented language, Java has several non-object-oriented types. These are known as \textit{primitive values}. They are not part of the standard object-hierarchy, and no methods can be called upon them. The primitive types are \texttt{int}, \texttt{long}, \texttt{char}, \texttt{float}, \texttt{double}, \texttt{boolean} and \texttt{short}.
+		
+		Unlike in C\# which has a \textit{unified type system} -- where \emph{all} types inherit from a single objct, regardless of being value/primitive types or reference types -- Java does not. Each primitive type has a corresponding reference type (named as such because Java uses pass-by-reference for objects), which is an object and hence part of the class hierarchy. Indeed, in C\# the `short names' for value types are actually aliases for the full identifiers, such as \texttt{System.Byte}, \texttt{System.Int32} and so on.
+		
+		Although this approach does have some advantages -- primitive types require less over head than the object-oriented value types -- there are some disadvantages. The Java compiler will automatically perform transformations on instances where:
+		
+		\begin{itemize}
+			\item An identifier for a primitive type is passed where an identifier for a reference type is required or vica-versa
+			\item \textbf{And} there is not a type error (so \texttt{int} cannot be transformed to \texttt{short})
+		\end{itemize}
+		
+		This process is called auto boxing (in the case of primitive-to-reference type occurs) or auto unboxing (where reference-to-primitive type occurs). The advantage of this approach is that it simplifies programming and reduces `crufty' code. For example, adding two \texttt{Integer}, \texttt{a} and \texttt{b} doesn't require \texttt{Integer c = a.add(b);}, but instead the more natural \texttt{Integer c = a + b} can be used. In this case, \texttt{a} and \texttt{b} will be auto-unboxed to primitive types, the addition is performed and the result is autoboxed back to \texttt{Integer}.
+		
+		However, this automatic casting operation does occur a slight performance overhead, both in terms of memory and execution time. Although in most cases the overheads are small, for benchmarking a runtime system with somewhat significant overheads, another solution was opted for. Instead of only supporting value types, we \emph{also} support primitive types by overloading the appropriate methods. 
 	
 	\subsection{Trace Storage and Configuration} \label{sec:runtime/implementation/trace}
 	The instrumentation includes implementations of both exact and inexact approaches to trace storage.

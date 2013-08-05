@@ -20,6 +20,23 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata}
 
+% use eps
+\newif\ifpdf
+\ifx\pdfoutput\undefined
+   \pdffalse
+\else
+   \pdfoutput=1
+   \pdftrue
+\fi
+\ifpdf
+   \usepackage{graphicx}
+   \usepackage{epstopdf}
+   \DeclareGraphicsRule{.eps}{pdf}{.pdf}{`epstopdf #1`}
+   \pdfcompresslevel=9
+\else
+   \usepackage{graphicx}
+\fi
+
 % set colour for listings
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
