@@ -1,4 +1,0 @@
-name=fractional-dependent;length=7000;prob=0.0;instrumentation=true;storage=BloomFilterTrace;size=1000
-finalmemory=111328
-dependencies=922
-time=10324000
