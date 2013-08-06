@@ -38,7 +38,7 @@ The main problem that the storage format must be able to determine is this. Give
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.7\textwidth]{graphics/hash-table.pdf}
-			\caption{A simple hash table for a phone book}
+			\caption{A simple hash table for a phone book \citep{HashTableWikiDiagram}}
 			\label{fig:hash-table}
 		\end{figure}
 
@@ -53,7 +53,7 @@ The main problem that the storage format must be able to determine is this. Give
 		\begin{figure}[h!]
 				\centering
 				\includegraphics[width=0.8\textwidth]{graphics/bloomfilter.pdf}
-				\caption{Bloom filter operation with $m=18$ and $k=3$}
+				\caption{Bloom filter operation with $m=18$ and $k=3$ \citep{BloomFilterWikiDiagram}}
 				\label{fig:bloom-filter}
 		\end{figure}
 			
@@ -89,12 +89,9 @@ The main problem that the storage format must be able to determine is this. Give
 		\]
 		
 		The main advantage of bloom filters is that the space complexity is constant $S=O(c)$, where $c$ is the size of the bit vector. This will allow memory overhead to be substantially lower, whilst still retaining $T=O(1)$ lookup time complexity. As mentioned above, this is a significant (factor $n$) improvement over the exact approach.
-		
-<<<<<<< HEAD
-=======
+
 		However, lookup time in bloom filters is asymptotically greater than the hash-based alternative. Unlike the hashing-based approach which has, with an optimal load factor, a lookup time of $T_{lookup}^{hash}=O(1)$, a bloom filter has a lookup time of $T_{lookup}^{bloom}=O(k)$ (where $k$ is the number of hash functions). This is unlike amongst array/vector-based approaches, which in many cases are $T=O(1)$. As the number of optimal hash functions is dependent on the number of expected entries and the bit vector size (see equation \ref{eqn:optimal-hashes}), it is predicted that execution time will increase slightly as a result, with the assumption that the hashing-based approach is operating efficiently (\ie, with an adequate load factor).
 		
->>>>>>> post
 		We hypothesise that, with the correct parameters, it is possible to effectively use probabilistic approaches in order to reduce both the memory and execution time overhead associated with dependency analysis.
 
 \section{Dependency Analysis Algorithms} \label{sec:runtime/analysis}

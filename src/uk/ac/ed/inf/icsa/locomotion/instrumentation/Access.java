@@ -1,12 +1,12 @@
 package uk.ac.ed.inf.icsa.locomotion.instrumentation;
 
 public class Access/* implements Comparable<Access>*/ {
-	private final Kind kind;
+	private final AccessKind kind;
 	private final int arrayId;
 	private final int index;
 	//private final int number; // this is the i'th access this iteration
 	
-	public Access(final int arrayId, final int index,/* final int number,*/ final Kind kind) {
+	public Access(final int arrayId, final int index,/* final int number,*/ final AccessKind kind) {
 		this.kind = kind;
 		//this.number = number;
 		this.arrayId = arrayId;
@@ -34,7 +34,7 @@ public class Access/* implements Comparable<Access>*/ {
 		return index;
 	}
 	
-	public Kind getKind() {
+	public AccessKind getKind() {
 		return kind;
 	}
 

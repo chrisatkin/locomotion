@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import uk.ac.ed.inf.icsa.locomotion.instrumentation.Kind;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.AccessKind;
 
 public final class FractionalGenerator extends Generator {
 	private int num_ww, num_wr, num_rw;
@@ -22,37 +22,37 @@ public final class FractionalGenerator extends Generator {
 
 	@Override
 	public void generate() {
-		Kind[] first;// = new Kind[length];
-		Kind[] second;// = new Kind[length];
+		AccessKind[] first;// = new Kind[length];
+		AccessKind[] second;// = new Kind[length];
 		Integer[] array = new Integer[length];
 		
 		StaticGenerator gen;
 		
 		// Write write
-		Kind[] ww_first, ww_second;
-		gen = new StaticGenerator(num_ww, Kind.Store, Kind.Store);
+		AccessKind[] ww_first, ww_second;
+		gen = new StaticGenerator(num_ww, AccessKind.Store, AccessKind.Store);
 		gen.generate();
 		ww_first = gen.getFirst();
 		ww_second = gen.getSecond();
 		
 		// Write-read
-		Kind[] wr_first, wr_second;
-		gen = new StaticGenerator(num_wr, Kind.Store, Kind.Load);
+		AccessKind[] wr_first, wr_second;
+		gen = new StaticGenerator(num_wr, AccessKind.Store, AccessKind.Load);
 		gen.generate();
 		wr_first = gen.getFirst();
 		wr_second = gen.getSecond();
 		
 		// Read-write
-		Kind[] rw_first, rw_second;
-		gen = new StaticGenerator(num_rw, Kind.Load, Kind.Store);
+		AccessKind[] rw_first, rw_second;
+		gen = new StaticGenerator(num_rw, AccessKind.Load, AccessKind.Store);
 		gen.generate();
 		rw_first = gen.getFirst();
 		rw_second = gen.getSecond();
 		
 		// Any left?
 		int left = length - (num_ww + num_rw + num_wr);
-		Kind[] rr_first, rr_second;
-		gen = new StaticGenerator(left, Kind.Load, Kind.Load);
+		AccessKind[] rr_first, rr_second;
+		gen = new StaticGenerator(left, AccessKind.Load, AccessKind.Load);
 		gen.generate();
 		rr_first = gen.getFirst();
 		rr_second = gen.getSecond();

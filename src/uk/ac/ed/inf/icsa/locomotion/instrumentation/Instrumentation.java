@@ -130,13 +130,13 @@ public final class Instrumentation {
 	}
 	
 	private <T> T arrayLoad(T[] array, int index) {
-		Access a = new Access(array.hashCode(), index, Kind.Load);
+		Access a = new Access(array.hashCode(), index, AccessKind.Load);
 		
 		if (loads.contains(a))
-			dependencies.add(new LoopDependencyException(a, currentIterationNumber, LoopDependencyException.DependencyKind.ReadWrite));
+			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.ReadWrite));
 		
 		if (stores.contains(a))
-			dependencies.add(new LoopDependencyException(a, currentIterationNumber, LoopDependencyException.DependencyKind.WriteRead));
+			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteRead));
 		
 		currentIterationAccesses.add(a);
 		
@@ -144,10 +144,10 @@ public final class Instrumentation {
 	}
 	
 	private <T> T[] arrayStore(T[] array, int index, T value) {
-		Access a = new Access(array.hashCode(), index, Kind.Store);
+		Access a = new Access(array.hashCode(), index, AccessKind.Store);
 		
 		if (stores.contains(a))
-			dependencies.add(new LoopDependencyException(a, currentIterationNumber, LoopDependencyException.DependencyKind.WriteWrite));
+			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteWrite));
 		
 		currentIterationAccesses.add(a);
 		

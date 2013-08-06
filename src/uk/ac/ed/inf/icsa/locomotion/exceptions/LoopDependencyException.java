@@ -1,15 +1,9 @@
 package uk.ac.ed.inf.icsa.locomotion.exceptions;
 
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Access;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.DependencyKind;
 
 public class LoopDependencyException extends LocomotionException {
-	public enum DependencyKind {
-		ReadWrite,
-		WriteRead,
-		WriteWrite
-		// we are unconcerned with read-read
-	}
-	
 	private static final long serialVersionUID = 5046561957950653407L;
 	private Access access;
 	private int iteration1;

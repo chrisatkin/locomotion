@@ -38,7 +38,7 @@ class Loop {
 		this.iterations = new HashMap<Integer, Tuple<Trace>>();
 	}
 	
-	public void addIterationAccess(final int iteration, final int index, final int arrayId, final Kind kind) throws LoopDependencyException {
+	public void addIterationAccess(final int iteration, final int index, final int arrayId, final AccessKind kind) throws LoopDependencyException {
 		if (!iterations.containsKey(iteration))
 			try {
 				Tuple<Trace> t = new Tuple<Trace>();
@@ -52,7 +52,7 @@ class Loop {
 		
 		//Trace currentAccesses = (Trace) iterations.get(iteration);
 		Tuple<Trace> t = iterations.get(iteration);
-		Access access = new Access(arrayId, index, t.read.size() + t.write.size(), kind);
+		Access access = new Access(arrayId, index/*, t.read.size() + t.write.size()*/, kind);
 		
 		// check for inter-iteration dependency
 		for (Map.Entry<Integer, Tuple<Trace>> otherIterations: iterations.entrySet()) {
@@ -65,26 +65,26 @@ class Loop {
 			
 			switch (kind) {
 				case Store:
-					if (((Trace) otherIterationTuple.read).contains(access)) {
+					if ((otherIterationTuple.read).contains(access)) {
 						// read-write dependency
-						throw new LoopDependencyException(access, iteration, otherIterationNumber, LoopDependencyException.DependencyKind.ReadWrite);
+						throw new LoopDependencyException(access, iteration, DependencyKind.ReadWrite);
 					}
 					
-					if (((Trace) otherIterationTuple.write).contains(access)) {
+					if ((otherIterationTuple.write).contains(access)) {
 						// write-write dependency
-						throw new LoopDependencyException(access, iteration, otherIterationNumber, LoopDependencyException.DependencyKind.WriteWrite);
+						throw new LoopDependencyException(access, iteration, DependencyKind.WriteWrite);
 					}
 				break;
 				
 				case Load:
-					if (((Trace) otherIterationTuple.read).contains(access)) {
+					if ((otherIterationTuple.read).contains(access)) {
 						// read-read dependency, do nothing
 						;
 					}
 					
 					if (((Trace) otherIterationTuple.write).contains(access)) {
 						// write-read dependency
-						throw new LoopDependencyException(access, iteration, otherIterationNumber, LoopDependencyException.DependencyKind.WriteRead);
+						throw new LoopDependencyException(access, iteration, DependencyKind.WriteRead);
 					}
 				
 				break;
@@ -92,7 +92,7 @@ class Loop {
 		}
 		
 		// add the access to the right store
-		if (kind == Kind.Load)
+		if (kind == AccessKind.Load)
 			iterations.get(iteration).read.add(access);
 		else
 			iterations.get(iteration).write.add(access);

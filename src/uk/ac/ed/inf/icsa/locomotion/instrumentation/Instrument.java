@@ -34,7 +34,7 @@ public class Instrument {
 			store.put(loopId, new Loop(loopId, configuration.getLoopStoreClass(), configuration.getLoopStoreConfiguration()));
 		
 		try {
-			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Load);
+			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), AccessKind.Load);
 		} catch (LoopDependencyException e) {
 			dependencies.add(e);
 		}
@@ -48,7 +48,7 @@ public class Instrument {
 			store.put(loopId, new Loop(loopId, configuration.getLoopStoreClass(), configuration.getLoopStoreConfiguration()));
 		
 		try {
-			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Load);
+			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), AccessKind.Load);
 		} catch (LoopDependencyException e) {
 			dependencies.add(e);
 		}
@@ -62,7 +62,7 @@ public class Instrument {
 			store.put(loopId, new Loop(loopId, configuration.getLoopStoreClass(), configuration.getLoopStoreConfiguration()));
 		
 		try {
-			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Load);
+			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), AccessKind.Load);
 		} catch (LoopDependencyException e) {
 			dependencies.add(e);
 		}
@@ -76,7 +76,7 @@ public class Instrument {
 			store.put(loopId, new Loop(loopId, configuration.getLoopStoreClass(), configuration.getLoopStoreConfiguration()));
 		
 		try {
-			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Store);
+			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), AccessKind.Store);
 		} catch (LoopDependencyException e) {
 			dependencies.add(e);
 		}
@@ -93,7 +93,7 @@ public class Instrument {
 			store.put(loopId, new Loop(loopId, configuration.getLoopStoreClass(), configuration.getLoopStoreConfiguration()));
 		
 		try {
-			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Store);
+			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), AccessKind.Store);
 		} catch (LoopDependencyException e) {
 			dependencies.add(e);
 		}
@@ -111,7 +111,7 @@ public class Instrument {
 			store.put(loopId, new Loop(loopId, configuration.getLoopStoreClass(), configuration.getLoopStoreConfiguration()));
 		
 		try {
-			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), Kind.Store);
+			store.get(loopId).addIterationAccess(loopIterator, index, array.hashCode(), AccessKind.Store);
 		} catch (LoopDependencyException e) {
 			dependencies.add(e);
 		}

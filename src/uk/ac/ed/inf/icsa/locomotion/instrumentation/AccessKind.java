@@ -1,6 +1,6 @@
 package uk.ac.ed.inf.icsa.locomotion.instrumentation;
 
-public enum Kind {
+public enum AccessKind {
 	Store,
 	Load
 }

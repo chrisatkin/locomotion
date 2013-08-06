@@ -6,7 +6,7 @@ import uk.ac.ed.inf.icsa.locomotion.benchmarks.generated.StaticGenerator;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Access;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Configuration;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
-import uk.ac.ed.inf.icsa.locomotion.instrumentation.Kind;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.AccessKind;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.BloomFilterConfiguration;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.BloomFilterTrace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.HashSetTrace;
@@ -33,18 +33,18 @@ public class CodeSamples {
 		return c;
 	}
 	
-	public static void loopDependency(Integer[] array, Kind[] first, Kind[] second, String ident) {
+	public static void loopDependency(Integer[] array, AccessKind[] first, AccessKind[] second, String ident) {
 		for (int i = 0; i <= 1; i++) {
 			for (int j = 0; j < array.length; j++) {
 				// Get the right array
-				Kind[] which = (i == 0) ? first : second;
+				AccessKind[] which = (i == 0) ? first : second;
 				
 				// Get the actual kind
-				Kind type = which[j];
+				AccessKind type = which[j];
 				
-				if (type == Kind.Load)
+				if (type == AccessKind.Load)
 					InstrumentSupport.arrayLookup(array, j, i, ident);
-				else if (type == Kind.Store)
+				else if (type == AccessKind.Store)
 					InstrumentSupport.arrayWrite(array, j, j, i, ident);
 			}
 		}
@@ -58,8 +58,8 @@ public class CodeSamples {
 		//Generator some = new StaticGenerator(10, Kind.Store, Kind.Load);
 		Generator some = new FractionalGenerator(10, 5, 3, 2);
 		some.generate();
-		Kind[] first = some.getFirst();
-		Kind[] second = some.getSecond();
+		AccessKind[] first = some.getFirst();
+		AccessKind[] second = some.getSecond();
 		Integer[] array = some.getArray();
 		//loopDependency(array, first, second);
 	}

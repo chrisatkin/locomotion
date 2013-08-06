@@ -1,9 +1,20 @@
-\begin{thebibliography}{65}
+\begin{thebibliography}{67}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Wikipedia(2013{\natexlab{a}})]{HashTableWikiDiagram}
+Wikipedia.
+\newblock {Hash table diagram}, 2013{\natexlab{a}}.
+\newblock URL
+  \url{https://en.wikipedia.org/wiki/File:Hash\_table\_3\_1\_1\_0\_1\_0\_0\_SP.svg}.
+
+\bibitem[Wikipedia(2013{\natexlab{b}})]{BloomFilterWikiDiagram}
+Wikipedia.
+\newblock {Bloom filter diagram}, 2013{\natexlab{b}}.
+\newblock URL \url{https://en.wikipedia.org/wiki/File:Bloom\_filter.svg}.
 
 \bibitem[Dubach et~al.(2012)Dubach, Cheng, Rabbah, Bacon, and Fink]{Dubach2012}
 Christophe Dubach, Perry Cheng, Rodric Rabbah, David~F. Bacon, and Stephen~J.

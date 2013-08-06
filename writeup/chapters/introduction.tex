@@ -70,13 +70,19 @@ It is interesting to note that languages with theoretical, rather than pragmatic
 Indeed, this idea of higher-level languages displaying good parallelisation characteristics extends to languages other than just functional languages. Many declarative languages (where the programmer describes \emph{what} he/she wants to happen, in a sense without expressing control flow) lend themselves to automatic parallelisation, because they allow the compiler (or interpreter) to reason about the language.
 
 \section{Contributions} \label{sec:introduction/contributions}
-There are several novel contributions to the field by this dissertation.
+\begin{itemize}
+	\item \textbf{Comparison between hash sets and bloom filters for dependency analysis}
+	
+	The first contribution is the comparison between exact approaches (hash sets) and inexact approaches (bloom filters). The use of bloom filters was not found in a the literature review for this dissertation (section \ref{chp:related}). We compare and contrast the relative overheads of using exact and inexact approaches, as well as the impact on the systems ability to detect parallelisable loops.
 
-The first is the comparison between exact approaches (hash sets) and inexact approaches (bloom filters). The use of bloom filters was not found in a the literature review for this dissertation (section \ref{chp:related}). We compare and contrast the relative overheads of using exact and inexact approaches, as well as the impact on the systems ability to detect parallelisable loops.
+	\item \textbf{Implementation of parametric benchmark}
+	
+	Also introduced is a parametric benchmark that allows the statistic generation of hazards. This benchmark has been used to not only measure the correctness of the framework, but also measure the relative overhead of the instrumentation. The parametric benchmark will be useful for testing the performance of similar techniques in the future.
 
-Also introduced is a parametric benchmark that allows the statistic generation of hazards. This benchmark has been used to not only measure the correctness of the framework, but also measure the relative overhead of the instrumentation. The parametric benchmark will be useful for testing the performance of similar techniques in the future.
-
-Lastly, a framework for dynamically proving dependencies between loop iterations is presented. Although the current framework is `stand-alone', the framework has been designed to `drop-into' the just-in-time compiler in the Java Runtime Environment (JRE). An analysis of possible techniques for JRE-hosted runtime detection techniques is also presented.
+	\item \textbf{Dynamic dependency analysis framework}
+	
+	Lastly, a framework for dynamically proving dependencies between loop iterations is presented. Although the current framework is `stand-alone', the framework has been designed to `drop-into' the just-in-time compiler in the Java Runtime Environment (JRE). An analysis of possible techniques for JRE-hosted runtime detection techniques is also presented.
+\end{itemize}
 
 \section{Outline} \label{sec:introduction/outline}
 This dissertation is split into several chapters.

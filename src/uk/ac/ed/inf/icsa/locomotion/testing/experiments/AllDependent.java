@@ -1,6 +1,6 @@
 package uk.ac.ed.inf.icsa.locomotion.testing.experiments;
 
-import uk.ac.ed.inf.icsa.locomotion.instrumentation.Kind;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.AccessKind;
 import uk.ac.ed.inf.icsa.locomotion.benchmarks.basic.CodeSamples;
 import uk.ac.ed.inf.icsa.locomotion.benchmarks.generated.StaticGenerator;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
@@ -18,10 +18,10 @@ public final class AllDependent implements Experiment {
 
 	@Override
 	public void run(Output output, InstrumentSupport instrument) {
-		StaticGenerator gen = new StaticGenerator(length, Kind.Store, Kind.Store);
+		StaticGenerator gen = new StaticGenerator(length, AccessKind.Store, AccessKind.Store);
 		gen.generate();
-		Kind[] first = gen.getFirst();
-		Kind[] second = gen.getSecond();
+		AccessKind[] first = gen.getFirst();
+		AccessKind[] second = gen.getSecond();
 		Integer[] array = gen.getArray();
 		
 		CodeSamples.loopDependency(array, first, second, getIdentifier());

@@ -20,8 +20,8 @@ import org.apache.commons.math3.util.Pair;
 public class Test {
 	
 	public void run() {
-		final int length = 100000;
-		final int deps = 50000;
+		final int length = 10;
+		final int deps = 10;
 		final double prob_write_write = 0.3d;
 		final double prob_write_read = 0.3d;
 		final double prob_read_write = 0.3d;
@@ -40,7 +40,7 @@ public class Test {
 //		println(Arrays.toString(a));
 		
 		// generate b
-		int dep_ops = deps * 2;
+		int dep_ops = deps;
 		Integer[] b_temp1 = new Integer[dep_ops];
 		Integer[] b_temp2 = range(dep_ops, length);
 		int current_nextval = length - dep_ops;
@@ -61,7 +61,7 @@ public class Test {
 		Collections.shuffle(l);
 		b = (Integer[]) l.toArray();
 		
-//		println(Arrays.toString(b));
+		println(Arrays.toString(b));
 		
 		// generate P
 		for (int i = 0; i < length; i++) {
@@ -76,6 +76,7 @@ public class Test {
 			}
 			
 			if (has_match) {
+				
 				@SuppressWarnings("serial")
 				ArrayList<Pair<DependencyKind, Double>> singletons = new ArrayList<Pair<DependencyKind, Double>>() {{
 					add(new Pair<>(DependencyKind.WriteWrite, prob_write_write));
@@ -104,9 +105,20 @@ public class Test {
 			}
 		}
 		
-//		println(Arrays.toString(P));
+		for (int i = 0; i < length; i++)
+			if (P[i] == null) {
+				ArrayList<Pair<AccessKind, Double>> s = new ArrayList<Pair<AccessKind, Double>>() {{
+					add(new Pair<>(AccessKind.Store, 0.5d));
+					add(new Pair<>(AccessKind.Load, 0.5d));
+				}};
+				
+				EnumeratedDistribution<AccessKind> d = new EnumeratedDistribution<>(s);
+				P[i] = d.sample();
+			}
 		
-//		statistics(b, P);
+		println(Arrays.toString(P));
+		
+		statistics(b, P);
 	}
 	
 	private void statistics(Integer[] b, AccessKind k[]) {
@@ -124,22 +136,21 @@ public class Test {
 				}
 			}
 			
+			System.out.println(found_match);
+			System.out.println(i + "(" + k[i] + ") has " + match + "(" + k[match] + ")");
+			
 			if (!found_match) {
 				count_nodep++;
-				continue;
-			}
-	
-//			System.out.println(i + "(" + k[i] + ") has " + match + "(" + k[match] + ")");
-			
-			if (k[i] == AccessKind.Store && k[match] == AccessKind.Store)
-				count_writewrite++;
-			
-			else if (k[i] == AccessKind.Store && k[match] == AccessKind.Load)
-				count_writeread++;
-			
-			else if (k[i] == AccessKind.Load && k[match]== AccessKind.Store)
-				count_readwrite++;
+			} else {
+				if (k[i] == AccessKind.Store && k[match] == AccessKind.Store)
+					count_writewrite++;
 				
+				else if (k[i] == AccessKind.Store && k[match] == AccessKind.Load)
+					count_writeread++;
+				
+				else if (k[i] == AccessKind.Load && k[match]== AccessKind.Store)
+					count_readwrite++;
+				}	
 		}
 		
 		System.out.println("write-write = " + count_writewrite);

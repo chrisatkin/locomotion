@@ -2,12 +2,18 @@ package uk.ac.ed.inf.icsa.locomotion.testing;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
+import org.apache.commons.math3.random.MersenneTwister;
+
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.hazardmark.Generator;
+import uk.ac.ed.inf.icsa.locomotion.benchmarks.hazardmark.HazardGenerator;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Access;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.AccessKind;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Configuration;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.BloomFilterConfiguration;
@@ -16,6 +22,7 @@ import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.HashSetTrace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.TraceConfiguration;
 import uk.ac.ed.inf.icsa.locomotion.testing.experiments.*;
+import uk.ac.ed.inf.icsa.locomotion.testing.output.Console;
 import uk.ac.ed.inf.icsa.locomotion.testing.output.File;
 import uk.ac.ed.inf.icsa.locomotion.testing.output.Output;
 
@@ -23,6 +30,13 @@ import com.google.common.hash.Funnel;
 import com.google.common.hash.PrimitiveSink;
 
 final class Experiments {
+	private static class C {
+		public int[] a;
+		public int[] b;
+		public AccessKind[] k;
+		public String i;
+	}
+	
 	private Output output;
 	private InstrumentSupport instrument;
 	private List<Test> experiments;
@@ -30,48 +44,30 @@ final class Experiments {
 	private Experiments() {
 		this.output = new File("results/");
 		this.experiments = new LinkedList<>();
-		//this.output = new Console();
 		
-		InstrumentSupport.setInstrumentConfiguration(
-			new Configuration(
-				true,							// enable instrumentation
-				HashSetTrace.class,				// storage class
-				new TraceConfiguration(),		// storage configuration
-				false,							// report memory usage
-				output
-			)
-		);
+		long seed = System.nanoTime();
+//		this.output = new Console();
 		
-		// add probabilistic tests
+		
+		// generate tests
+		C[] tests = new C[11];
 		for (int i = 100; i <= 1000; i += 100) {
-			// Basic tests
-<<<<<<< HEAD
-//			experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}, output));
-//			experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}, output));
-////			
-////			// Probabilistic tests
-//			experiments.add(new Test(FractionalDependent.class, instrument, new Object[] {i, Math.round(i/3), Math.round(i/3), Math.round(i/3)}, output));
-			experiments.add(new Test(FractionalDependent.class, instrument, new Object[] {i, 300,300,300}, output));
-////
-////			
-//			experiments.add(new Test(VectorAddition.class, instrument, new Object[] {i}, output));
-//			experiments.add(new Test(NBody.class, instrument, new Object[] {"nbody-data/2body.txt", i}, output));
-=======
-			experiments.add(new Test(AllDependent.class, instrument, new Object[] {i}, output));
-			experiments.add(new Test(NoneDependent.class, instrument, new Object[] {i}, output));
-//			
-//			// Probabilistic tests
-//			experiments.add(new Test(FractionalDependent.class, instrument, new Object[] {i, 300, 300, 300}, output));
-//
-//			
-			//experiments.add(new Test(VectorAddition.class, instrument, new Object[] {i / 10}, output));
-//			experiments.add(new Test(NBody.class, instrument, new Object[] {"nbody-data/2body.txt", i / 10}, output));
->>>>>>> post
+			Generator g = HazardGenerator.noDependencies(i, seed);
+			C c = new C();
+			c.a = g.getA();
+			c.b = g.getB();
+			c.k = g.getAccessPattern();
+			c.i = "none-dependent;" + g.toString();
+			
+			System.out.println(HazardGenerator.statistics(c.b, c.k));
+			
+			tests[i/100] = c;
 		}
 		
-//		experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/2body.txt", 10000 }, output));
-//		experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/3body.txt", 10000 }, output));
-//		experiments.add(new Test(NBody.class, instrument, new Object[]{ "nbody-data/4body.txt", 10000 }, output));
+		for (int i = 100; i <= 1000; i += 100) {
+			C c = tests[i / 100];
+			experiments.add(new Test(HazardTest.class, instrument, new Object[] { c.a, c.b, c.k, c.i }, output));
+		}
 	}
 	
 	private void run() throws IOException, InterruptedException, ExecutionException, TimeoutException {
@@ -88,13 +84,9 @@ final class Experiments {
 		// BloomFilter
 		Class<? extends Trace> traceFormat = BloomFilterTrace.class;
 		
-<<<<<<< HEAD
-		for (int i = 100; i <= 10000; i += 100) {
-			BloomFilterConfiguration bfc = new BloomFilterConfiguration(i*1, new Funnel<Access>() {
-=======
-		for (int i = 1000; i <= 10000; i += 100) {
-			BloomFilterConfiguration bfc = new BloomFilterConfiguration(i, new Funnel<Access>() {
->>>>>>> post
+		for (int i = 100; i <= 1000; i += 100) {
+			BloomFilterConfiguration bfc = new BloomFilterConfiguration(i/100, new Funnel<Access>() {
+
 				@Override
 				public void funnel(Access access, PrimitiveSink sink) {
 					sink.putInt(access.getArrayId())
@@ -119,7 +111,7 @@ final class Experiments {
 				InstrumentSupport.stopTimer();
 				output.put("finalmemory=" + (InstrumentSupport.getTraceMemoryUsage()));
 				//output.put("finalmemory=" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
-				output.put("dependencies=" + InstrumentSupport.getDependencies().size());
+				output.put("dependencies=" + InstrumentSupport.getDependencies().size() * 2);
 				output.put("time=" + InstrumentSupport.getTimeDifference());
 				output.close();
 				
@@ -153,7 +145,7 @@ final class Experiments {
 				InstrumentSupport.stopTimer();
 				//output.put("finalmemory=" + (new MemoryMeter().measureDeep(this)));
 				output.put("finalmemory=" + (InstrumentSupport.getTraceMemoryUsage()));
-				output.put("dependencies=" + InstrumentSupport.getDependencies().size());
+				output.put("dependencies=" + InstrumentSupport.getDependencies().size() * 2);
 				output.put("time=" + InstrumentSupport.getTimeDifference());
 				output.close();
 				
