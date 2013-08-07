@@ -3,6 +3,7 @@ package uk.ac.ed.inf.icsa.locomotion.testing;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -16,6 +17,7 @@ import uk.ac.ed.inf.icsa.locomotion.instrumentation.Access;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.AccessKind;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Configuration;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.Instrumentation;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.BloomFilterConfiguration;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.BloomFilterTrace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.HashSetTrace;
@@ -45,29 +47,30 @@ final class Experiments {
 		this.output = new File("results/");
 		this.experiments = new LinkedList<>();
 		
-		long seed = System.nanoTime();
+		long seed = 938839;
 //		this.output = new Console();
 		
 		
-		// generate tests
-		C[] tests = new C[11];
-		for (int i = 100; i <= 1000; i += 100) {
-			Generator g = HazardGenerator.noDependencies(i, seed);
+		// generate test
+		int scale = 1000;
+		int base = 50;
+		
+		for (int i = 100000; i <= 1000000; i += 100000) {
 			C c = new C();
+			Generator g = HazardGenerator.allDependentEqual(i, seed);
 			c.a = g.getA();
 			c.b = g.getB();
 			c.k = g.getAccessPattern();
-			c.i = "none-dependent;" + g.toString();
+			c.i = "all-dependent;" + g.toString();
 			
-			System.out.println(HazardGenerator.statistics(c.b, c.k));
-			
-			tests[i/100] = c;
-		}
-		
-		for (int i = 100; i <= 1000; i += 100) {
-			C c = tests[i / 100];
 			experiments.add(new Test(HazardTest.class, instrument, new Object[] { c.a, c.b, c.k, c.i }, output));
 		}
+		
+//		Generator g = HazardGenerator.allDependentEqual(100000, seed);
+//		C c = new C();
+//		c.a = g.getA(); c.b = g.getB(); c.k = g.getAccessPattern(); c.i = g.toString();
+//		
+//		experiments.add(new Test(HazardTest.class, instrument, new Object[] {c.a, c.b, c.k, "all-dependent;" + c.i}, output));
 	}
 	
 	private void run() throws IOException, InterruptedException, ExecutionException, TimeoutException {
@@ -84,8 +87,8 @@ final class Experiments {
 		// BloomFilter
 		Class<? extends Trace> traceFormat = BloomFilterTrace.class;
 		
-		for (int i = 100; i <= 1000; i += 100) {
-			BloomFilterConfiguration bfc = new BloomFilterConfiguration(i/100, new Funnel<Access>() {
+		for (int i = 100000; i <= 100000000; i += 100000) {
+			BloomFilterConfiguration bfc = new BloomFilterConfiguration(i, new Funnel<Access>() {
 
 				@Override
 				public void funnel(Access access, PrimitiveSink sink) {
@@ -93,7 +96,7 @@ final class Experiments {
 						.putInt(access.getIndex());
 				}});
 			
-			InstrumentSupport.setInstrumentConfiguration(new Configuration(
+			Instrumentation.setConfiguration(new Configuration(
 				withInstrumentation,
 				traceFormat,
 				bfc,
@@ -104,18 +107,24 @@ final class Experiments {
 			for (Test experiment: experiments) {
 				System.out.println("testing " + experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
 				output.open(experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
-				InstrumentSupport.startTimer();
+				//InstrumentSupport.startTimer();
+				long startTime = System.nanoTime();
 				
 				experiment.run();
 				
-				InstrumentSupport.stopTimer();
-				output.put("finalmemory=" + (InstrumentSupport.getTraceMemoryUsage()));
+				long endTime = System.nanoTime();
+				//InstrumentSupport.stopTimer();
+				//output.put("finalmemory=" + (InstrumentSupport.getTraceMemoryUsage()));
 				//output.put("finalmemory=" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
-				output.put("dependencies=" + InstrumentSupport.getDependencies().size() * 2);
-				output.put("time=" + InstrumentSupport.getTimeDifference());
+				//output.put("dependencies=" + InstrumentSupport.getDependencies().size() * 2);
+				
+				output.put("finalmemory=" + Instrumentation.memoryUsage());
+				output.put("dependencies=" + Instrumentation.dependencies().size() * 2);
+				output.put("time=" + (endTime - startTime));
 				output.close();
 				
-				InstrumentSupport.clean();
+				Instrumentation.clean();
+//				InstrumentSupport.clean();
 				Runtime.getRuntime().gc();
 			}
 		}
@@ -128,7 +137,7 @@ final class Experiments {
 		for(Class<?> t: new Class<?>[] { HashSetTrace.class }) {
 			Class<? extends Trace> traceFormat = (Class<? extends Trace>) t;
 			
-			InstrumentSupport.setInstrumentConfiguration(new Configuration(
+			Instrumentation.setConfiguration(new Configuration(
 				withInstrumentation,		// instrumentation enabled
 				traceFormat,
 				traceConfiguration,
@@ -138,18 +147,24 @@ final class Experiments {
 			for (Test experiment: experiments) {	
 				System.out.println("testing " + experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + t.getSimpleName()/* + ";" + traceConfiguration.toString()*/);
 				output.open(experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + t.getSimpleName()/* + ";" + traceConfiguration.toString()*/);
-				InstrumentSupport.startTimer();
-
+				//InstrumentSupport.startTimer();
+				long startTime = System.nanoTime();
+				
 				experiment.run();
 				
-				InstrumentSupport.stopTimer();
-				//output.put("finalmemory=" + (new MemoryMeter().measureDeep(this)));
-				output.put("finalmemory=" + (InstrumentSupport.getTraceMemoryUsage()));
-				output.put("dependencies=" + InstrumentSupport.getDependencies().size() * 2);
-				output.put("time=" + InstrumentSupport.getTimeDifference());
+				long endTime = System.nanoTime();
+				//InstrumentSupport.stopTimer();
+				//output.put("finalmemory=" + (InstrumentSupport.getTraceMemoryUsage()));
+				//output.put("finalmemory=" + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
+				//output.put("dependencies=" + InstrumentSupport.getDependencies().size() * 2);
+				
+				output.put("finalmemory=" + Instrumentation.memoryUsage());
+				output.put("dependencies=" + Instrumentation.dependencies().size() * 2);
+				output.put("time=" + (endTime - startTime));
 				output.close();
 				
-				InstrumentSupport.clean();
+				Instrumentation.clean();
+//				InstrumentSupport.clean();
 				Runtime.getRuntime().gc();
 			}
 		}

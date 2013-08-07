@@ -47,7 +47,7 @@ public class HazardGenerator implements Generator {
 	 */
 	public static void main(String[] args) {
 		//Generator g = new HazardGenerator(new MersenneTwister()).configure(1000, 500, System.nanoTime(), 0.3d, 0.3d, 0.3d).generate();
-		Generator g = HazardGenerator.noDependencies(10, 938839);
+		Generator g = HazardGenerator.allDependentEqual(6, 938839);
 		
 		int[] a = g.getA();
 		int[] b = g.getB();
@@ -104,7 +104,7 @@ public class HazardGenerator implements Generator {
 		return result.toString();
 	}
 	
-	private int[] a;
+	public int[] a;
 	private int[] b;
 	private int dependencies;
 	private AccessKind k[];
@@ -127,12 +127,30 @@ public class HazardGenerator implements Generator {
 		this.rand = gen;
 	}
 	
+	private class FillArrayThread implements Runnable {
+		private int start;
+		private int end;
+		
+		public FillArrayThread(int start, int end) {
+			this.start = start;
+			this.end = end;
+		}
+		
+		@Override
+		public void run() {
+			for (int i = start; i < end; i++) {
+				HazardGenerator.this.a[i] = i;
+			}
+		}
+	}
+	
 	/**
 	 * 
 	 */
 	private void _generate_a() {
-		for (int i = 0; i < length; i++)
-			a[i] = (int) (random() * length);
+		// assume dual core, since this is all I have access to
+		new FillArrayThread(0, length / 2).run();
+		new FillArrayThread(length /2, length).run();
 	}
 	
 	/**

@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.github.jamm.MemoryMeter;
+
 import uk.ac.ed.inf.icsa.locomotion.exceptions.LoopDependencyException;
 
 public class Instrument {
@@ -152,12 +154,14 @@ public class Instrument {
 	}
 
 	public long getTraceMemoryUsage() {
-		long result = 0;
+//		long result = 0;
+//		
+//		for (Map.Entry<String, Loop> entry: store.entrySet()) {
+//			result += entry.getValue().getMemoryUsage();
+//		}
+//		
+//		return result;
 		
-		for (Map.Entry<String, Loop> entry: store.entrySet()) {
-			result += entry.getValue().getMemoryUsage();
-		}
-		
-		return result;
+		return new MemoryMeter().measureDeep(store);
 	}
 }

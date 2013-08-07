@@ -14,4 +14,6 @@ public abstract class Trace {
 	public abstract boolean contains(Access entry);
 	
 	public abstract int size();
+	
+	public abstract long memoryUsage();
 }

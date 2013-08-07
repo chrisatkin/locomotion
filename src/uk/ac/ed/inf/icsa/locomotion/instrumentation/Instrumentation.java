@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.github.jamm.MemoryMeter;
+
 import uk.ac.ed.inf.icsa.locomotion.exceptions.LoopDependencyException;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.TraceConfiguration;
@@ -50,12 +52,28 @@ public final class Instrumentation {
 		return i.arrayLoad(array, index);
 	}
 	
+	public static int load(int[] array, int index) {
+		return i.arrayLoad(array, index);
+	}
+	
 	public static <T> T[] store(T[] array, int index, T value) {
+		return i.arrayStore(array, index, value);
+	}
+	
+	public static int[] store(int[] array, int index, int value) {
 		return i.arrayStore(array, index, value);
 	}
 	
 	public static List<LoopDependencyException> dependencies() {
 		return i.listDependencies();
+	}
+	
+	public static long memoryUsage() {
+		return i.getMemoryUsage();
+	}
+	
+	public static void clean() {
+		i._flush();
 	}
 	
 	private static Instrumentation i;
@@ -91,7 +109,7 @@ public final class Instrumentation {
 		if  (loopState == LoopState.InLoop)
 			throw new IllegalStateException("cannot enter loop whilst already in loop " + currentLoopId);
 		
-		loopState = LoopState.OutLoop;
+		loopState = LoopState.InLoop;
 		currentLoopId = id;
 	}
 	
@@ -110,7 +128,7 @@ public final class Instrumentation {
 		if (loopState == LoopState.OutLoop)
 			throw new IllegalStateException("cannot leave loop when not in loop");
 		
-		_flushAfterLoop();
+		//_flushAfterLoop();
 		
 		loopState = LoopState.OutLoop;
 		currentLoopId = null;
@@ -132,8 +150,16 @@ public final class Instrumentation {
 	private <T> T arrayLoad(T[] array, int index) {
 		Access a = new Access(array.hashCode(), index, AccessKind.Load);
 		
-		if (loads.contains(a))
-			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.ReadWrite));
+		if (stores.contains(a))
+			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteRead));
+		
+		currentIterationAccesses.add(a);
+		
+		return array[index];
+	}
+	
+	private int arrayLoad(int[] array, int index) {
+		Access a = new Access(array.hashCode(), index, AccessKind.Load);
 		
 		if (stores.contains(a))
 			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteRead));
@@ -149,6 +175,24 @@ public final class Instrumentation {
 		if (stores.contains(a))
 			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteWrite));
 		
+		if (loads.contains(a))
+			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.ReadWrite));
+		
+		currentIterationAccesses.add(a);
+		
+		array[index] = value;
+		return array;
+	}
+	
+	private int[] arrayStore(int[] array, int index, int value) {
+		Access a = new Access(array.hashCode(), index, AccessKind.Store);
+		
+		if (stores.contains(a))
+			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteWrite));
+		
+		if (loads.contains(a))
+			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.ReadWrite));
+		
 		currentIterationAccesses.add(a);
 		
 		array[index] = value;
@@ -156,7 +200,7 @@ public final class Instrumentation {
 	}
 	
 	private List<LoopDependencyException> listDependencies() {
-		return new LinkedList<>();
+		return dependencies;
 	}
 	
 	private void _flushAfterIteration() {
@@ -176,7 +220,7 @@ public final class Instrumentation {
 		currentIterationAccesses = new HashSet<>();
 	}
 	
-	private void _flushAfterLoop() {
+	private void _flush() {
 		loads = null;
 		stores = null;
 		
@@ -187,7 +231,12 @@ public final class Instrumentation {
 	}
 	
 	private void _create_stores() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		stores = config.getLoopStoreClass().getDeclaredConstructor(TraceConfiguration.class).newInstance(_config.getLoopStoreConfiguration());
-		loads = config.getLoopStoreClass().getDeclaredConstructor(TraceConfiguration.class).newInstance(_config.getLoopStoreConfiguration());
+		stores = _config.getLoopStoreClass().getDeclaredConstructor(TraceConfiguration.class).newInstance(_config.getLoopStoreConfiguration());
+		loads = _config.getLoopStoreClass().getDeclaredConstructor(TraceConfiguration.class).newInstance(_config.getLoopStoreConfiguration());
+		dependencies = new LinkedList<>();
+	}
+	
+	private long getMemoryUsage() {
+		return loads.memoryUsage() + stores.memoryUsage();
 	}
 }

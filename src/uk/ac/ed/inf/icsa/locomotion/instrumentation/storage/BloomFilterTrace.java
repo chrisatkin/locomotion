@@ -1,5 +1,7 @@
 package uk.ac.ed.inf.icsa.locomotion.instrumentation.storage;
 
+import org.github.jamm.MemoryMeter;
+
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Access;
 
 import com.google.common.hash.BloomFilter;
@@ -31,5 +33,10 @@ public final class BloomFilterTrace extends Trace {
 	@Override
 	public int size() {
 		return size;
+	}
+	
+	@Override
+	public long memoryUsage() {
+		return new MemoryMeter().measureDeep(bloom);
 	}
 }

@@ -5,7 +5,7 @@ import java.util.Set;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Access;
 
 abstract class SetTrace extends Trace {
-	private Set<Access> entries;
+	protected Set<Access> entries;
 
 	public SetTrace(TraceConfiguration configuration, Set<Access> set) {
 		super(configuration);

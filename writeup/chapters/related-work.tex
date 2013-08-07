@@ -3,18 +3,35 @@ The idea of an automatic parallelising compiler is not a particularly new one, a
 
 In this chapter, some background of both parallelising compilers and parallelism detection will be presented. The areas have a rich and full history spanning many decades (indeed, the objective of automatic parallelising compilers has been sought for many years), so this is a somewhat brief introduction; only the major results are considered.
 
-\section{Parallelising Compilers} \label{sec:related/compilers}
-Programs and/or runtime systems are attractive because they require no access to the source code. In \citeyear{Yang2011}, \citet{Yang2011} introduced one of the main advances on the field, \textit{Dynamic Binary Parallelisation}. It requires no access to the source code, and instead operates only using object code. The mechanism through which it operates is by detecting hot loops -- loops where the program spends a majority of execution time -- and parallelises them, executing the parallel versions speculatively. This speculation is likely the cause of the inefficiencies of their approach - using 256 cores they achieved a somewhat negligible performance improvement of just 4.5 times. One of the advantages of the approach presented in this dissertation is that it does not require the use of speculative execution - a loop is only executed if it can be proven to contain no inter-iteration dependencies.
+\section{Dynamic Parallelism} \label{sec:related/compilers}
+Programs and/or runtime systems are attractive because they require no access to the source code. In \citeyear{Yang2011}, \citet{Yang2011} introduced one of the main advances on the field, \textit{Dynamic Binary Parallelisation}. It requires no access to the source code, and instead operates only using object code. The mechanism through which it operates is by detecting hot loops -- loops where the program spends a majority of execution time -- and parallelises them, executing the parallel versions speculatively. This speculation is likely the cause of the inefficiencies of their approach - using 256 cores they achieved a somewhat negligible performance improvement of just 4.5 times, and the reason for this is likely hazards spoiling the speculation frequently, which requires expensive rollbacks. However, one of the advantages of the approach presented in this dissertation is that it does not require the use of speculative execution - a loop is only executed if it can be proven to contain no inter-iteration dependencies.
 	
 The main difference between \citeauthor{Yang2011}'s work and the work outlined here is the nature of the dynamic detection. \citeauthor{Yang2011} used dynamic trace analysis, which can only identify the hot loops within a program, and not whether the iterations within those loops have dependencies. The work presented in this dissertation \emph{does} determine whether there are inter-loop dependencies, therefore the use of speculative execution is not required. Although we have not yet done so, the addition of hot-loop detection would be a trivial addition to our framework.
 
-\citet{Wang2009} used a technique called \textit{backwards slicing} \citep{Weiser} in order to preserve essential dependence and data flow. The advantage of an approach based on slicing is that it can detect parallelism regardless of the granularity. This is in contrast to the work presented in this 
+\citet{Wang2009} used a technique called \textit{backwards slicing} \citep{Weiser} in order to preserve essential dependence and data flow. The advantage of an approach based on slicing is that it can detect parallelism regardless of the granularity. This is in contrast to the work presented in this dissertation which can currently only detect parallelism at a loop-level. \citet{Wang2009} represents the first work in the area of dynamic parallelisation using a splicing-based approach. An approach based on slicing can determine different `sections' of a program (such as blocks, if-then-else statements and so on) which can be executed in parallel, allowing the runtime system to execute in parallel. The algorithms in this paper are speculative - if a dependency is detected at runtime, the pararallelisation for both blocks must be rolled back and instead executed in parallel. \citeauthor{Wang2009} present a new set of algorithms for extraction of parallelism. These algorithms can:
+
+\begin{itemize}
+	\item Determine loop-unrolling factors to expose maximum parallelism
+	\item Identify backwards slices for hot regions
+	\item Exploit speculation in program slicing
+	\item Group the large number of slices 
+\end{itemize}
+
+The approach to slicing is based on static analysis, with an additional speculative execution model. The speculations performed are:
+
+\begin{itemize}
+	\item \textbf{Memory speculation}: memory dependencies on operations that occur infrequently ($<$0.1\% according to profiling) are ignored
+	\item \textbf{Control speculation}: control flow edges that are rarely executed ($<$0.5\%) are cut
+	\item \textbf{Branch prediction}: highly identifiable branches are cut
+\end{itemize}
+
+Performance of the system was adequate, with a roughly 3x performance improvement with unlimited threads, and 1.8x parallelism with four threads. The major disadvantage to this approach is that the complexity of the slicing algorithms increases exponentially with the length of each slice, meaning that only relatively small slices can be detected and hence parallelised. 
 
 \citet{Ketterlin}
 
 \citet{Dong}
 
-\section{Parallelism Detection} \label{sec:related/detection}
+An alternative to these approaches is the one taken by \citet{Tournavitis2009}. 
 
 \section{Instrumentation} \label{sec:related/instrumentation}
 Although in this dissertation we consider dynamic instrumentation, a significant amount of work is available in the literature describing \emph{static instrumentation}. Static instrumentation modifies bytecode directly at load-time and is `dumb' in the sense that it is not possible to do any kind of analysis on control flow graph etc. This is unlike dynamic instrumentation which has access to the full control flow graph and other such information.
