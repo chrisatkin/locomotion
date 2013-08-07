@@ -23,19 +23,19 @@ import uk.ac.ed.inf.icsa.locomotion.instrumentation.DependencyKind;
 public class HazardGenerator implements Generator {
 
 	public static Generator allDependentAllReadWrite(int length, long seed) {
-		return new HazardGenerator(new MersenneTwister()).configure(length, length / 2, seed, 0.0d, 0.0d, 1.0d).generate();
+		return new HazardGenerator(new MersenneTwister()).configure(length, length, seed, 0.0d, 0.0d, 1.0d).generate();
 	}
 	
 	public static Generator allDependentAllWriteRead(int length, long seed) {
-		return new HazardGenerator(new MersenneTwister()).configure(length, length / 2, seed, 0.0d, 1.0d, 0.0d).generate();
+		return new HazardGenerator(new MersenneTwister()).configure(length, length, seed, 0.0d, 1.0d, 0.0d).generate();
 	}
 	
 	public static Generator allDependentAllWriteWrite(int length, long seed) {
-		return new HazardGenerator(new MersenneTwister()).configure(length, length / 2, seed, 1.0d, 0.0d, 0.0d).generate();
+		return new HazardGenerator(new MersenneTwister()).configure(length, length, seed, 1.0d, 0.0d, 0.0d).generate();
 	}
 	
 	public static Generator allDependentEqual(int length, long seed) {
-		return new HazardGenerator(new MersenneTwister()).configure(length, length / 2, seed, 0.3d, 0.3d, 0.3d).generate();
+		return new HazardGenerator(new MersenneTwister()).configure(length, length, seed, 0.3d, 0.3d, 0.3d).generate();
 	}
 	
 	public static Generator someDependentEqual(int length, int deps, long seed) {
@@ -51,7 +51,7 @@ public class HazardGenerator implements Generator {
 	 */
 	public static void main(String[] args) {
 		//Generator g = new HazardGenerator(new MersenneTwister()).configure(1000, 500, System.nanoTime(), 0.3d, 0.3d, 0.3d).generate();
-		Generator g = HazardGenerator.allDependentEqual(6, 938839);
+		Generator g = HazardGenerator.someDependentEqual(10, 8, 938839);
 		
 		int[] a = g.getA();
 		int[] b = g.getB();
@@ -162,7 +162,7 @@ public class HazardGenerator implements Generator {
 	 */
 	private void _generate_b() {
 		// each dependency consists of two operations
-		int numDependentOperations = dependencies * 2;
+		int numDependentOperations = dependencies;
 		int[] temp1 = new int[numDependentOperations];
 		int[] temp2 = range(numDependentOperations, length);
 		
@@ -311,6 +311,7 @@ public class HazardGenerator implements Generator {
 		StringBuilder result = new StringBuilder();
 		
 		result.append("length=").append(length);
+		result.append(";dependent=").append(dependencies);
 		result.append(";writewrite=").append(prob_write_write);
 		result.append(";writeread=").append(prob_write_read);
 		result.append(";readwrite=").append(prob_read_write);

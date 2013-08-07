@@ -17,15 +17,11 @@ public final class Formatter {
 	
 	private final File targetDirectory;
 	private List<Result> results;
-	private List<Format> formats;
 	
 	@SuppressWarnings("serial")
 	private Formatter() {
 		this.targetDirectory = new File(System.getProperty("user.dir") + File.separator + "results");
 		this.results = _getFilesInDirectory(this.targetDirectory);
-		this.formats = new LinkedList<Format>() {{
-			
-		}};
 	}
 	
 	private List<Result> _getFilesInDirectory(File directory) {
@@ -85,7 +81,7 @@ public final class Formatter {
 						axis.run();
 						axis.toFile();
 					}
-					}
+				}
 			});
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,7 +89,7 @@ public final class Formatter {
 	}
 	
 	private void executeFormatter(Executable e) throws FileNotFoundException {
-		for (final String name: new String[] { "all-dependent", "none-dependent", "fractional-dependent", "vector-addition", "universe"}) {
+		for (final String name: new String[] { "all-smallvector", "none-smallvector"}) {
 			for (final String instrument: new String[] { "true", "false" }) {
 				for (final String storage: new String[] { "HashSetTrace", "BloomFilterTrace"}) {
 					System.out.println("name=" + name + " instrument=" + instrument + " storage=" + storage);

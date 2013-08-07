@@ -40,7 +40,8 @@ final class Experiments {
 	}
 	
 	private String name, generator;
-	private int length_start, length_end, steps, dependencies, vector_start, vector_end, vector_step;
+	private int length_start, length_end, steps, vector_start, vector_end, vector_step;
+	double dependencies;
 	//private double prob_writewrite, prob_writeread, prob_readwrite;
 	private long seed;
 	private Output output;
@@ -48,9 +49,10 @@ final class Experiments {
 	private List<Test> experiments;
 	private int instr_mode;
 	
-	private Experiments(String name, String generator, int length_start, int length_end, int step, int dependencies, int vector_start, int vector_end, int vector_step, int instr_mode) {
+	private Experiments(String name, String generator, int length_start, int length_end, int step, double dependencies, int vector_start, int vector_end, int vector_step, int instr_mode) {
 		this.output = new File("results/");
-		this.experiments = new LinkedList<>();
+		this.output = new Console();
+//		this.experiments = new LinkedList<>();
 		
 		this.name = name;
 		this.generator = generator;
@@ -91,7 +93,7 @@ final class Experiments {
 				return HazardGenerator.noDependencies(l, seed);
 				
 			case "some-dependent-equal":
-				return HazardGenerator.someDependentEqual(l, dependencies, seed);
+				return HazardGenerator.someDependentEqual(l, ((int) (dependencies * l)), seed);
 		}
 		
 		// public Generator configure(int length, int dependencies, long seed, double prob_writewrite, double prob_writeread, double prob_readwrite)
@@ -113,7 +115,7 @@ final class Experiments {
 		if (instr_mode == 2)
 			run_using = new boolean[] {false};
 		
-		if (instr_mode == 4)
+		if (instr_mode == 3)
 			run_using = new boolean[] {true, false};
 		
 		for (boolean instrumentationEnabled: run_using) {
@@ -208,7 +210,7 @@ final class Experiments {
 			int length_start = Integer.parseInt(args[2]);
 			int length_end = Integer.parseInt(args[3]);
 			int step = Integer.parseInt(args[4]);
-			int dependencies = Integer.parseInt(args[5]);
+			double dependencies = Double.parseDouble(args[5]);
 			int vector_start = Integer.parseInt(args[6]);
 			int vector_end = Integer.parseInt(args[7]);
 			int vector_step = Integer.parseInt(args[8]);
