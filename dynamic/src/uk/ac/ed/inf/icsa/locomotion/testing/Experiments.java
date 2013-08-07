@@ -46,8 +46,9 @@ final class Experiments {
 	private Output output;
 	private InstrumentSupport instrument;
 	private List<Test> experiments;
+	private int instr_mode;
 	
-	private Experiments(String name, String generator, int length_start, int length_end, int step, int dependencies, int vector_start, int vector_end, int vector_step) {
+	private Experiments(String name, String generator, int length_start, int length_end, int step, int dependencies, int vector_start, int vector_end, int vector_step, int instr_mode) {
 		this.output = new File("results/");
 		this.experiments = new LinkedList<>();
 		
@@ -60,6 +61,7 @@ final class Experiments {
 		this.vector_start = vector_start;
 		this.vector_end = vector_end;
 		this.vector_step = vector_step;
+		this.instr_mode = instr_mode;
 		
 		// generate test
 		for (int i = length_start; i <= length_end; i += steps) {
@@ -100,7 +102,21 @@ final class Experiments {
 	private void run() throws IOException, InterruptedException, ExecutionException, TimeoutException {
 		Runtime.getRuntime().gc();
 		
-		for (boolean instrumentationEnabled: new boolean[] {true, false}) {
+		boolean[] run_using = new boolean[] {};
+		
+		if (instr_mode == 0)
+			run_using = new boolean[] {};
+		
+		if (instr_mode == 1)
+			run_using = new boolean[] {true};
+		
+		if (instr_mode == 2)
+			run_using = new boolean[] {false};
+		
+		if (instr_mode == 4)
+			run_using = new boolean[] {true, false};
+		
+		for (boolean instrumentationEnabled: run_using) {
 			runExactExperiments(instrumentationEnabled);
 			runInexactExperiments(instrumentationEnabled);
 		}
@@ -197,7 +213,11 @@ final class Experiments {
 			int vector_end = Integer.parseInt(args[7]);
 			int vector_step = Integer.parseInt(args[8]);
 			
-			new Experiments(name, generator, length_start, length_end, step, dependencies, vector_start, vector_end, vector_step).run();
+			int instr_mode = 3;
+			if (args.length == 10)
+				instr_mode = Integer.parseInt(args[9]);
+			
+			new Experiments(name, generator, length_start, length_end, step, dependencies, vector_start, vector_end, vector_step, instr_mode).run();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

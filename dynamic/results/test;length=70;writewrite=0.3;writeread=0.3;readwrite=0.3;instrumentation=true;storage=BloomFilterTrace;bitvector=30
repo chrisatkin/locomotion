@@ -1,4 +1,4 @@
 name=test;length=70;writewrite=0.3;writeread=0.3;readwrite=0.3;instrumentation=true;storage=BloomFilterTrace;bitvector=30
 finalmemory=71712
-dependencies=14
-time=3728000
+dependencies=10
+time=4264000

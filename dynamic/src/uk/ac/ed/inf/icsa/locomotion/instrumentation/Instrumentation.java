@@ -150,10 +150,12 @@ public final class Instrumentation {
 	private <T> T arrayLoad(T[] array, int index) {
 		Access a = new Access(array.hashCode(), index, AccessKind.Load);
 		
-		if (stores.contains(a))
-			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteRead));
-		
-		currentIterationAccesses.add(a);
+		if (_config.instrumentationEnabled()) {
+			if (stores.contains(a))
+				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteRead));
+			
+			currentIterationAccesses.add(a);
+		}
 		
 		return array[index];
 	}
@@ -161,10 +163,12 @@ public final class Instrumentation {
 	private int arrayLoad(int[] array, int index) {
 		Access a = new Access(array.hashCode(), index, AccessKind.Load);
 		
-		if (stores.contains(a))
-			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteRead));
-		
-		currentIterationAccesses.add(a);
+		if (_config.instrumentationEnabled()) {
+			if (stores.contains(a))
+				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteRead));
+			
+			currentIterationAccesses.add(a);
+		}
 		
 		return array[index];
 	}
@@ -172,13 +176,15 @@ public final class Instrumentation {
 	private <T> T[] arrayStore(T[] array, int index, T value) {
 		Access a = new Access(array.hashCode(), index, AccessKind.Store);
 		
-		if (stores.contains(a))
-			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteWrite));
-		
-		if (loads.contains(a))
-			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.ReadWrite));
-		
-		currentIterationAccesses.add(a);
+		if (_config.instrumentationEnabled()) {
+			if (stores.contains(a))
+				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteWrite));
+			
+			if (loads.contains(a))
+				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.ReadWrite));
+			
+			currentIterationAccesses.add(a);
+		}
 		
 		array[index] = value;
 		return array;
@@ -187,13 +193,15 @@ public final class Instrumentation {
 	private int[] arrayStore(int[] array, int index, int value) {
 		Access a = new Access(array.hashCode(), index, AccessKind.Store);
 		
-		if (stores.contains(a))
-			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteWrite));
-		
-		if (loads.contains(a))
-			dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.ReadWrite));
-		
-		currentIterationAccesses.add(a);
+		if (_config.instrumentationEnabled()) {
+			if (stores.contains(a))
+				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteWrite));
+			
+			if (loads.contains(a))
+				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.ReadWrite));
+			
+			currentIterationAccesses.add(a);
+		}
 		
 		array[index] = value;
 		return array;
