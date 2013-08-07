@@ -1,0 +1,4 @@
+name=all-dependent;length=200000;writewrite=0.3;writeread=0.3;readwrite=0.3;instrumentation=true;storage=BloomFilterTrace;bitvector=4000000
+finalmemory=14552112
+dependencies=200000
+time=686640000
