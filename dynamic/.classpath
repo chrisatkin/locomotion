@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/graal-fastdebug"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.alloc"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.amd64"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.graal.api.code"/>
@@ -75,11 +74,10 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.dsl.processor"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.oracle.truffle.sl.test"/>
-	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/lib/jamm-0.2.5.jar"/>
-	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/lib/commons-lang3-3.1.jar"/>
-	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/lib/tools.jar"/>
-	<classpathentry kind="lib" path="/Volumes/Acme/Development/libs/guava-14.0.1.jar"/>
-	<classpathentry kind="lib" path="/Volumes/Acme/Development/libs/commons-math3-3.2-sources.jar"/>
-	<classpathentry kind="lib" path="/Volumes/Acme/Downloads/commons-math3-3.2/commons-math3-3.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/dynamic/lib/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/dynamic/lib/commons-math3-3.2.jar"/>
+	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/dynamic/lib/guava-14.0.1.jar"/>
+	<classpathentry kind="lib" path="/Volumes/Acme/Development/locomotion/dynamic/lib/jamm-0.2.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

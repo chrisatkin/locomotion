@@ -1,2 +1,2 @@
 #!/bin/bash
-java -cp bin:lib/guava-14.0.1.jar:lib/commons-lang3-3.1.jar:lib/commons-math3-3.2.jar -javaagent:lib/jamm-0.2.5.jar uk.ac.ed.inf.icsa.locomotion.testing.Experiments "test" "all-dependent" "10" "100" "10" "10" "10" "100" "10"
+java -Xms4096m -Xmx4096m -cp bin:lib/guava-14.0.1.jar:lib/commons-lang3-3.1.jar:lib/commons-math3-3.2.jar -javaagent:lib/jamm-0.2.5.jar uk.ac.ed.inf.icsa.locomotion.testing.Experiments "$@"

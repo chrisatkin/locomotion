@@ -100,7 +100,7 @@ final class Experiments {
 	private void run() throws IOException, InterruptedException, ExecutionException, TimeoutException {
 		Runtime.getRuntime().gc();
 		
-		for (boolean instrumentationEnabled: new boolean[] {true}) {
+		for (boolean instrumentationEnabled: new boolean[] {true, false}) {
 			runExactExperiments(instrumentationEnabled);
 			runInexactExperiments(instrumentationEnabled);
 		}

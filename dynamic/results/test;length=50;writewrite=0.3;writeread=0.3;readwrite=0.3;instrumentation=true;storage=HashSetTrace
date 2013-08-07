@@ -1,4 +1,4 @@
 name=test;length=50;writewrite=0.3;writeread=0.3;readwrite=0.3;instrumentation=true;storage=HashSetTrace
-finalmemory=6152
-dependencies=50
-time=1596000
+finalmemory=6600
+dependencies=0
+time=941000
