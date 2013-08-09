@@ -6,20 +6,16 @@ In this chapter, the experimental set up and technique is outlined, as well as t
 The hardware used for the experiments is a mid-2009 MacBook Pro with the following specifications:
 	
 \begin{itemize}
-	\item Intel Core 2 Duo P8800 @ 2.66GHz
+	\item Intel Core 2 Duo Esomething
 	\item 8GB 1067MHz DDR3
-	\item Nvidia GeForce 9600M GT 256MB
-	\item Disks:
-	\begin{itemize}
-		\item Samsung SSD 830 Series 128GB via SATA-2
-		\item Western Digital Scorpio Blue 1TB via SATA-2
-	\end{itemize}
+	\item Integrated Intel graphics
+	\item AFS filesystem
 \end{itemize}
 
 The software configuration is as follows:
 \begin{itemize}
-	\item OS X 10.8.4 (build 12E55)
-	\item Java 7 update 25
+	\item Scientific Linux 6.3 \texttt{DICE} 64-bit
+	\item Java 7 update 21
 \end{itemize}
 
 All software used was the latest version available at the time of writing.
@@ -27,57 +23,14 @@ All software used was the latest version available at the time of writing.
 \textit{In silico} experimental design is notoriously difficult within the context of standard scientific procedure. Reproducibility of experiments is not always guaranteed, as slight and sometimes un-noticed machine intricacies and flaws can affect experimental results. Because of this, all benchmarks were run on a separate user account (in order to reduce the number of running processes which may affect results, perhaps by consuming additional resources).
 
 \section{Repeats} \label{sec:methodology/repeats}
-In order to improve the results, each experiment was repeat three times. The average of the three repeats was used for the rest of the analyses. In doing so, the number of dependencies between repeats was checked.
-
-\section{Benchmarks} \label{sec:methodology/benchmarks}
-	\subsection{Validation, Basic Testing and Parametric Testing} \label{sec:methodology/benchmarks/simple}
-	These benchmarks fall under the same category, and are covered in chapter \ref{chp:parametric}.
-	
-	The first `item of business' is to prove that the implementation of the instrumentation and runtime library is correct. We ensure this by comparing the results of algorithms with results known ahead-of-schedule with the results of experiments.
-	
-	Since there are several kinds of dependency (see figure \ref{sec:runtime/analysis}), these benchmarks need to take this into account.
-	
-	The way these experiments work is by generating three arrays:
-	
-	\begin{itemize}
-		\item \textbf{Value arrays}: since the basic memory operation is that of \texttt{a[b[i]]} (where \texttt{a} and \texttt{b} are both arrays), these must both be generated. These arrays are randomly generated, but the parameters
-		\item \textbf{Operation array} 
-	\end{itemize}
-	
-	\subsection{Parametric Benchmarks} \label{sec:methodology/benchmarks/parametric}
-	In addition to basic verification, a parametric benchmark has been created. This benchmark -- called \textsc{HazardMark-II} -- allows a user to specify the number of each kind of dependency. This was used to determine the relative overheads of the analysis.
-	
-	\subsection{Graph Processing Algorithms} \label{sec:methodology/benchmarks/graphs}
-	Many graph processing algorithms are known to be parallelisable in the sense that each node can, in some cases, be operated upon in parallel. An example of such an algorithm would be a in a ray-tracer. Scene data is stored as a graph (\eg, the top level node is the scene, with sub-scenes occuring). Ray-tracing is an embarrassingly parallel problem (in that each ray can be traced without being dependent on other rays). Hence, the scene graph must be at-least traversable in parallel.
-	
-	Another example is that of divide-and-conquer algorithms. This class of algorithm uses recursive decomposition in order to `break-down' tasks into smaller sub-tasks which can be computed in parallel. These tasks are represented as a tree, which are undirected graphs. At a given recursion depth, each task is computed in parallel and then merged (also in parallel). This cycle continues until all sub-tasks have been merged.
-	
-	However, not all graph algorithms are parallelisable.
-	
-	In this benchmark, we consider several graph algorithms from the JGraphT project. The algorithms which we consider are:
-	
-	\begin{itemize}
-		\item Blah.
-	\end{itemize}
-	
-	\subsection{Java Grande} \label{sec:methodology/benchmarks/grande}
-	Java Grande \citep{Smith2001,Bull2001} is a platform-independent benchmark for Java Virtual Machines and their associated compilers. Indeed, it is aimed at measuring the performance of the \emph{virtual machine}, rather than the Java language.
-	
-	The authors cite a \textit{grande application} as one that ``uses large amounts of processing, I/O, network bandwidth or memory''.
-	Each test runs in three sizes: A, B and C. The tests which are are including are:
-	
-	\begin{itemize}
-		\item \textbf{Fast Fourier Transform}: one-dimensional transform of $n$ complex numbers. FFT uses complex arithmetic, 
-	\end{itemize}
-	
-	\subsection{N-Body Simulation} \label{sec:methodology/benchmarks/nbody}
-	N-Body simulations \citep{Trenti2008} are computational simulations of real-world physical systems. They simulate a number ($N$) of particles (although in this context a particle does not need to be very small as in particle physics), acting under some forces (usually gravity).
-	
-	The N-Body problem was chosen because it is known to be computable in parallel \citep{Warren1993,Nyland2007}. The program used for these benchmarks is available from Princeton University\footnote{\url{http://introcs.cs.princeton.edu/java/34nbody/Universe.java.html}}, although it has been slightly modified by fellow Master of Science student Ranjeet Singh. In the modified version, computation of forces has been vectorised, rather than by calling a method on the \texttt{Vector} class. The benchmark will focus on a this vectorisation.
+In order to improve the results, each experiment was repeat ten times. The median of the three repeats was used for the rest of the analyses.
 	
 \section{Measurement Methodology} \label{sec:methodology/measurements}
 	\subsection{Execution Time} \label{sec:methodology/measurements/time}
 	Execution time was measured by taking the difference between \texttt{System.nanoTime()} before and after the experiment was run. This is superior to using other methods, such as the Unix \texttt{time} program because it computes an accurate value, instead of elapsed user-space CPU time.
+	
+	\subsection{Dependencies} \label{sec:methodology/measurements/dependencies}
+	When a dependency is detected, an exception is thrown to the caller, which collects dependencies in a linked list. This technique was chosen because it allows the most flexibility and separation of concern.
 	
 	\subsection{Memory Usage} \label{sec:methodology/measurements/memory}
 	The difficulties of measuring memory usage in Java programs due to the non-deterministic nature of the garbage collector are well documented in the literature \citep{Kim2000,Ogata2010}. Despite this, the Java 7 API presents several techniques \citep{RuntimeDocs} of measuring memory within the JVM:
@@ -92,6 +45,158 @@ In order to improve the results, each experiment was repeat three times. The ave
 	
 	\texttt{measureDeep()} crawls the object graph, calling \texttt{getObjectSize()} on each object it encounters. An \texttt{IdentityHashMap} is used to detect loops in the object graph. Unfortunately, this does affect execution time - but memory usage is recorded after execution time has been recorded. \citeauthor{JAMM} does suggest investigating the possible use of bloom filters to overcome this memory usage, but this it outside the scope of this project.
 	
-\section{Test Harness Design and Implementation} \label{sec:methodology/implementation}
+	In order to take the most accurate readings possible, the JAMM library was used to measure the overhead. As an implementation detail, this led to an interesting bug in measuring the usage, which is worthy of mention.
 	
+	As previously mentioned, JAMM walks the object graph, which is created by instantiation within classes - this forms an implicit directed edge between the calling context and the instantiated object. Such link is used for determining scope visibility.
+	
+	In section we highlighted the use of the Google Guava library, which contains an implementation of a bloom filter. In order to decrease coupling, the Guava implementation uses so-called \textit{Funnel<T>}, which allows a class of type \texttt{T} to stream primitive values into \texttt{PrimitiveSink}s, of which the bloom filter is a member. In this way, a funnel can be thought of an interface between the filter and the type of object it contains - the \texttt{Funnel} specifies which fields should be hashed.
+	
+	Initial implementations of the instrumentation used an anonymous class for the sink in a fashion similar to:
+	
+	\begin{lstlisting}
+Instrument.setContainer(new BloomFilter<Access>(new Funnel<Access> {
+    public void funnel(Access from, PrimitiveSink to) {
+        to.putInt(from.getArrayId())
+          .putInt(from.getIndex());
+    }
+}));\end{lstlisting}
+	
+	This, however, results a bug in measurement of memory usage. Anonymous inner classes have an implicit edge on the object graph from their lexical context to the context of the scope they were declared in.
+	
+	\begin{lstlisting}
+public class OuterClass {
+    public void doSomething() {
+        // things
+    }
+	
+    public class InnerClass {
+        public void test() {
+            OuterClass.this.doSomething();
+        }
+    }}\end{lstlisting}
+	
+	As the funnel is stored as a field in the bloom filter, when the code to measure the size of the bloom filter was called:
+	
+	\begin{lstlisting}
+public class BloomFilterTrace extends Trace {
+    BloomFilter<Access> bloom;
+    
+    public long getMemoryUsage() {
+        return new MemoryMeter().measureDeep(bloom);
+    }
+}\end{lstlisting}
+
+	The memory meter would not only walk the bloom filter, but \emph{also} the object graph of the main testing class, which contains hundereds to thousands of experiment configurations -- resulting in significant memory measurements for bloom filters, despite the memory usage being very low.
+	
+\section{Parametric Benchmarks} \label{sec:methodology/params}
+As we have already investigated in section \ref{sec:runtime/analysis}, there are multiple kinds of dependency and hazards. In order to complete a thorough analysis, a new kind of benchmark has been developed in order to analyse the effect of the three kinds of dependency.
+
+	\subsection{Motivation} \label{sec:methodology/params/motivation}
+	In order to critically analyse the effectiveness of the bloom filter versus hash set, a controlled (\ie, non-deterministic) environment is required. In addition, a custom benchmark allows us to control the non-instrumentation workload; in order to determine an `upper-bound' on the instrumentation overhead a benchmark where \emph{only} instrumentation operations are performed. 
+
+	\subsection{Problem Statement} \label{sec:methodology/params/problem}
+	The problem statement is somewhat simple. Given $n$ accesses, generate patterns of access such that there are $n^{\delta}$, $n^{\delta^{0}}$ and $n^{\delta^{-1}}$ dependencies. These values are by definition probabilistic in nature, as the issue of array aliasing is important.
+	
+	In this context, we consider an \textit{access pattern} to be two sequential accesses , $\alpha_x$ and $\alpha_y$, to the same index in an array. It is given that $x < y$ (\ie, $T(\alpha_x) < T(\alpha_y)$)1, but they may or may not be immediate. In other words, there is a viable code path between $\sigma_x$ and $\sigma_y$.
+	
+	\subsection{Algorithm Design} \label{sec:methodology/params/algo}
+	There are five parameters to the main algorithm:
+	
+	\begin{itemize}
+		\item Length of resulting arrays, $l$
+		\item Percent of dependencies (expressed as a boolean in the range $0.0 <= x >= 1.0$), $d$
+		\item Of $d$, what percentage of $n^{\delta}$, $n^{\delta^{0}}$ and $n^{\delta^{-1}}$
+	\end{itemize}
+	
+	The results of the algorithm are:
+	
+	\begin{itemize}
+		\item An array, \texttt{a}, of random numbers within the range $0...(l - 1)$
+		\item A second array, \texttt{b}, containing the indices of \texttt{a} to access at access $i$
+		\item An operation array, determining which operation should be performed
+	\end{itemize}
+	
+	To illustrate, the usage of the results are:
+	
+	\begin{lstlisting}
+int[] a = getA();
+int[] b = getB();
+Operation[] ops = getOperations();
+
+int temp;
+
+for (int i = 0 to m) {
+    if op[i] == Load
+        temp = a[b[i]];
+    else if op[i] == Store
+        a[b[i]] = randomInteger(0, m);
+}\end{lstlisting}
+
+	This structure allows the algorithm to generate configurations of \texttt{b} and \texttt{op} to produce each kind of dependency.
+	
+	The algorithm is split into three stages, one for each array. \texttt{a} is an array of random numbers.
+	
+		\texttt{Generating \texttt{b}} \label{sec:methodology/params/algo/gen-b}
+		\texttt{b} can be split into two conceptual sub-arrays: the section for dependent operations, and the section for independent operations. The length of these sub-arrays depends on the parameter $d$. The independent sub-array contains simply the values $0..l_{indep}$ in incremental order, and in this dependent sub-array each value must have exactly one duplicate (in theory a value could have more than one duplicate, but this would not affect the results of the instrumentation).
+		
+		To illustrate, this is an array of \texttt{b} with no dependencies:
+		
+		\begin{verbatim}
+		0  1  2  3  4  5  6  7  8  9
+		\end{verbatim}
+		
+		Whereas this one has 100\% dependency:
+		
+		\begin{verbatim}
+		0  0  1  1  2  2  3  3  4  4
+		\end{verbatim}
+		
+		The dependent sub-array is generated using an incremental loop with a simple state machine.
+		
+		After this, the arrays are merged and shuffled using the Yates-Fisher algorithm.
+		
+		As a result, this stage operates in $T=O(n)$ time.
+		
+		\texttt{Generating \texttt{ops}} \label{sec:methodology/params/algo/gen-ops}
+		Again, a state machine is used in order to determine that exactly two operations are dependent.
+		
+		As the dependency kinds can be weighted with different values, a discrete probability distribution over the hazard types is used. The algorithm performs a scan over \texttt{b}, at each index performing a second scan over the array to kind an equal value. If one is found, a probability function is created, with the appropriate values being written. If a pair is not found, an operation is randomly chosen.
+	
+	\subsection{Implementation Details} \label{sec:methodology/params/implementation}
+	The algorithm is presented as a class, with the following public interface:
+	
+	\begin{lstlisting}
+public class HazardGenerator implements Generator {
+	public HazardGenerator(RandomGenerator gen);
+	
+	public Generator configure(int length, int dependencies, long seed, double prob_writewrite, double prob_writeread, double prob_readwrite);
+	
+	public Generator generate();
+	
+	public int[] getA();
+	
+	public int[] getB();
+	
+	public AccessKind[] getAccessPattern();
+	
+	public static String statistics(int[] a, int[] b, AccssKind[] k);
+}\end{lstlisting}
+
+	The Apache Commons mathematics library is used to compute the probability distributions \citep{ApacheCommonsMath}.
+	
+	Several methods return instances of \texttt{Generator} in order to fit into the rest of the instrumentation framework, as well as to allow method chaining.
+
+\section{Test Harness Design and Implementation} \label{sec:methodology/implementation}
+The main experimental class is \texttt{Experiments}, which contains the entry point. \texttt{Experiments} takes the parameters for the experiment, and generates an appropriate number of experiments matching the configuration. The configuration variables include the length start, end and step size; the expected number of insertions start, end and step size for the bloom filter; the test name and so on.
+
+There is a generic \texttt{Experiment} interface, which all experiments must implement. An experiment in this context is a specific benchmark class, not a configuration. An \texttt{Experiment} must be able to take an arbitrary number of arguments (through polymorphism to \texttt{Object[]}) and return an identifier.
+
+An experiment class (\ie, \texttt{Class<? extends Experiment>}) is packaged with a configuration, an output format and parameters through the \texttt{Test} class, which handles instantiation of the experiment classes and so on. In addition, \texttt{Test}s can be marked to run in parallel using an \texttt{ExecutorService}, but since this may impact execution times, this feature was not used for the data collection runs.
+
+Output is handled via the \texttt{Output} interface, for which two implementations are provided. The \texttt{Console} implementation pipes results to standard output for debugging purposes, whilst \texttt{File} uses a \texttt{PrintWriter} to pipe to a file, which can later be analysed. For performance reasons, output lines are buffered into a linked list (with $T=O(1)$ node addition time complexity) and only written to file after the experiment is over.
+
+\section{Result Collection} \label{sec:methodology/collection}
+Each experiments writes it's identifier, configuration, execution time, memory usage and number of detected dependencies to a file. A separate program is then used to collate all similar results (\ie, same configuration with varying numbers of iterations and bit vector lengths if appropriate) into a single file for plotting and analysis.
+
 \section{Summary} \label{sec:methodology/summary}
+In this chapter, the experimental setup for the data collection has been outlined, as well as the measurement technique for the various results. A parametric benchmark has been introduced, including a methology, set of algorithms and some implementation details. Lastly, we covered the design of the test harness and the methodology used to collect, collate and analyse the results.

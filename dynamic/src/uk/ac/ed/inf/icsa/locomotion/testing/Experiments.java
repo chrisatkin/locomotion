@@ -13,7 +13,6 @@ import org.apache.commons.math3.random.MersenneTwister;
 
 import uk.ac.ed.inf.icsa.locomotion.benchmarks.hazardmark.Generator;
 import uk.ac.ed.inf.icsa.locomotion.benchmarks.hazardmark.HazardGenerator;
-import uk.ac.ed.inf.icsa.locomotion.instrumentation.Access;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.AccessKind;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Configuration;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
@@ -27,9 +26,6 @@ import uk.ac.ed.inf.icsa.locomotion.testing.experiments.*;
 import uk.ac.ed.inf.icsa.locomotion.testing.output.Console;
 import uk.ac.ed.inf.icsa.locomotion.testing.output.File;
 import uk.ac.ed.inf.icsa.locomotion.testing.output.Output;
-
-import com.google.common.hash.Funnel;
-import com.google.common.hash.PrimitiveSink;
 
 final class Experiments {
 	private static class C {
@@ -51,8 +47,8 @@ final class Experiments {
 	
 	private Experiments(String name, String generator, int length_start, int length_end, int step, double dependencies, int vector_start, int vector_end, int vector_step, int instr_mode) {
 		this.output = new File("results/");
-		this.output = new Console();
-//		this.experiments = new LinkedList<>();
+//		this.output = new Console();
+		this.experiments = new LinkedList<>();
 		
 		this.name = name;
 		this.generator = generator;
@@ -77,7 +73,7 @@ final class Experiments {
 			experiments.add(new Test(HazardTest.class, instrument, new Object[] { c.a, c.b, c.k, c.i }, output));
 		}
 		
-//		Generator g = HazardGenerator.allDependentEqual(100000, seed);
+//		Generator g = HazardGenerator.noDependencies(1000, seed);
 //		C c = new C();
 //		c.a = g.getA(); c.b = g.getB(); c.k = g.getAccessPattern(); c.i = g.toString();
 //		
@@ -130,13 +126,8 @@ final class Experiments {
 		Class<? extends Trace> traceFormat = BloomFilterTrace.class;
 		
 		for (int i = vector_start; i <= vector_end; i += vector_step) {
-			BloomFilterConfiguration bfc = new BloomFilterConfiguration(i, new Funnel<Access>() {
-
-				@Override
-				public void funnel(Access access, PrimitiveSink sink) {
-					sink.putInt(access.getArrayId())
-						.putInt(access.getIndex());
-				}});
+//		for (int i = 1000; i <= 10000; i += 1000) {
+			BloomFilterConfiguration bfc = new BloomFilterConfiguration(i, new BloomFunnel());
 			
 			Instrumentation.setConfiguration(new Configuration(
 				withInstrumentation,

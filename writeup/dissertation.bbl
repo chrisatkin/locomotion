@@ -1,9 +1,23 @@
-\begin{thebibliography}{67}
+\begin{thebibliography}{64}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ros()]{RoslynProject}
+{Roslyn Project}.
+\newblock URL
+  \url{https://www.microsoft.com/en-us/download/details.aspx?id=27744}.
+
+\bibitem[Schwaighofer(2009)]{Schwaighofer2009}
+Arnold Schwaighofer.
+\newblock \emph{{Tail Call Optimization in the Java HotSpot ™ VM
+  Diplom-Ingenieur}}.
+\newblock Masterstudium informatik thesis, Johannes Kepler University Linz,
+  2009.
+\newblock URL
+  \url{http://www.ssw.uni-linz.ac.at/Research/Papers/Schwaighofer09Master/schwaighofer09master.pdf}.
 
 \bibitem[Wikipedia(2013{\natexlab{a}})]{HashTableWikiDiagram}
 Wikipedia.
@@ -120,69 +134,14 @@ Guoxing Dong, Kai Chen, Erzhou Zhu, Yichao Zhang, Zhengwei Qi, and Haibing
   GPU Architecture}.
 \newblock \doi{10.1109/PAAP.2010.53}.
 
-\bibitem[Oracle and OpenJDK(2012)]{Graal}
-Oracle and OpenJDK.
-\newblock {Graal Project}, 2012.
-\newblock URL \url{http://openjdk.java.net/projects/graal/}.
-
-\bibitem[Ros()]{RoslynProject}
-{Roslyn Project}.
-\newblock URL
-  \url{https://www.microsoft.com/en-us/download/details.aspx?id=27744}.
-
-\bibitem[Lindholm et~al.(2013)Lindholm, Buckley, Bracha, and Yellin]{JVMSpec}
-Tim Lindholm, Alex Buckley, Gilad Bracha, and Frank Yellin.
-\newblock {The Java Virtual Machine Specification Java SE 7 Edition}.
-\newblock Technical report, Oracle, Inc, Redwood City, 2013.
-\newblock URL \url{http://docs.oracle.com/javase/specs/jvms/se7/jvms7.pdf}.
-
-\bibitem[Aho et~al.(2007)Aho, Lam, Sethi, and Ullman]{DragonBook}
-Alfred~V. Aho, Monica~S. Lam, R~Sethi, and Jeffrey~D. Ullman.
-\newblock \emph{{Compilers: Principles, Techniques and Tools}}.
-\newblock Pearson, second edition, 2007.
-\newblock ISBN 0-321-49169-6.
-
-\bibitem[Muchnick(1997)]{ACDI}
-Steven~S. Muchnick.
-\newblock {Advanced Compiler Design and Implementation}.
-\newblock Morgan Kaufmann, San Francisco, first edition, 1997.
-\newblock ISBN 1-55860-320-4.
-
-\bibitem[Glew and Palsberg(2002)]{Magnusson2002}
-Neal Glew and Jen Palsberg.
-\newblock {Type-Safe Method Inlining}.
-\newblock In Boris Magnusson, editor, \emph{ECOOP 2002 — Object-Oriented
-  Programming}, volume 2374 of \emph{Lecture Notes in Computer Science}, pages
-  525--544. Springer Berlin Heidelberg, Berlin, Heidelberg, May 2002.
-\newblock ISBN 978-3-540-43759-8.
-\newblock \doi{10.1007/3-540-47993-7}.
-\newblock URL \url{http://link.springer.com/10.1007/3-540-47993-7}.
-
-\bibitem[Peng(2010)]{LoopPrediction}
-Chang Peng.
-\newblock {Loop Prediction}, 2010.
-\newblock URL
-  \url{https://wikis.oracle.com/display/HotSpotInternals/LoopPredication}.
-
-\bibitem[H\"{o}lzle et~al.(1992)H\"{o}lzle, Chambers, and Ungar]{Holzle1992}
-Urs H\"{o}lzle, Craig Chambers, and David Ungar.
-\newblock {Debugging optimized code with dynamic deoptimization}.
-\newblock \emph{ACM Sigplan Notices}, 27:\penalty0 32--43, 1992.
+\bibitem[Tournavitis et~al.(2009)Tournavitis, Wang, Franke, and
+  O'Boyle]{Tournavitis2009}
+Georgios Tournavitis, Zheng Wang, Bj\"{o}rn Franke, and Michael~F.P. O'Boyle.
+\newblock {Towards a holistic approach to auto-parallelization}.
+\newblock \emph{ACM SIGPLAN Notices}, 44\penalty0 (6):\penalty0 177, May 2009.
 \newblock ISSN 03621340.
-\newblock \doi{10.1145/143103.143114}.
-
-\bibitem[Schwaighofer(2009)]{Schwaighofer2009}
-Arnold Schwaighofer.
-\newblock \emph{{Tail Call Optimization in the Java HotSpot ™ VM
-  Diplom-Ingenieur}}.
-\newblock Masterstudium informatik thesis, Johannes Kepler University Linz,
-  2009.
-\newblock URL
-  \url{http://www.ssw.uni-linz.ac.at/Research/Papers/Schwaighofer09Master/schwaighofer09master.pdf}.
-
-\bibitem[{Javassist Project}(2013)]{JavassistDocs}
-{Javassist Project}.
-\newblock {Javasssist documentation}, 2013.
+\newblock \doi{10.1145/1543135.1542496}.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=1543135.1542496}.
 
 \bibitem[Javabeats.com(2012)]{javaagents}
 Javabeats.com.
@@ -338,6 +297,56 @@ S~M Blackburn, R~Garner, C~Hoffman, A~M Khan, K~S McKinley, R~Bentzur, A~Diwan,
 \newblock ISSN 03621340.
 \newblock \doi{10.1145/1167515.1167488}.
 
+\bibitem[Oracle and OpenJDK(2012)]{Graal}
+Oracle and OpenJDK.
+\newblock {Graal Project}, 2012.
+\newblock URL \url{http://openjdk.java.net/projects/graal/}.
+
+\bibitem[Lindholm et~al.(2013)Lindholm, Buckley, Bracha, and Yellin]{JVMSpec}
+Tim Lindholm, Alex Buckley, Gilad Bracha, and Frank Yellin.
+\newblock {The Java Virtual Machine Specification Java SE 7 Edition}.
+\newblock Technical report, Oracle, Inc, Redwood City, 2013.
+\newblock URL \url{http://docs.oracle.com/javase/specs/jvms/se7/jvms7.pdf}.
+
+\bibitem[Aho et~al.(2007)Aho, Lam, Sethi, and Ullman]{DragonBook}
+Alfred~V. Aho, Monica~S. Lam, R~Sethi, and Jeffrey~D. Ullman.
+\newblock \emph{{Compilers: Principles, Techniques and Tools}}.
+\newblock Pearson, second edition, 2007.
+\newblock ISBN 0-321-49169-6.
+
+\bibitem[Muchnick(1997)]{ACDI}
+Steven~S. Muchnick.
+\newblock {Advanced Compiler Design and Implementation}.
+\newblock Morgan Kaufmann, San Francisco, first edition, 1997.
+\newblock ISBN 1-55860-320-4.
+
+\bibitem[Glew and Palsberg(2002)]{Magnusson2002}
+Neal Glew and Jen Palsberg.
+\newblock {Type-Safe Method Inlining}.
+\newblock In Boris Magnusson, editor, \emph{ECOOP 2002 — Object-Oriented
+  Programming}, volume 2374 of \emph{Lecture Notes in Computer Science}, pages
+  525--544. Springer Berlin Heidelberg, Berlin, Heidelberg, May 2002.
+\newblock ISBN 978-3-540-43759-8.
+\newblock \doi{10.1007/3-540-47993-7}.
+\newblock URL \url{http://link.springer.com/10.1007/3-540-47993-7}.
+
+\bibitem[Peng(2010)]{LoopPrediction}
+Chang Peng.
+\newblock {Loop Prediction}, 2010.
+\newblock URL
+  \url{https://wikis.oracle.com/display/HotSpotInternals/LoopPredication}.
+
+\bibitem[H\"{o}lzle et~al.(1992)H\"{o}lzle, Chambers, and Ungar]{Holzle1992}
+Urs H\"{o}lzle, Craig Chambers, and David Ungar.
+\newblock {Debugging optimized code with dynamic deoptimization}.
+\newblock \emph{ACM Sigplan Notices}, 27:\penalty0 32--43, 1992.
+\newblock ISSN 03621340.
+\newblock \doi{10.1145/143103.143114}.
+
+\bibitem[{Javassist Project}(2013)]{JavassistDocs}
+{Javassist Project}.
+\newblock {Javasssist documentation}, 2013.
+
 \bibitem[Sartaj(1998)]{DSandAlgsCpp}
 Sahni Sartaj.
 \newblock \emph{{Data Structures, Algorithms and Applications in C++}}.
@@ -412,38 +421,6 @@ Inc Google.
 \newblock URL
   \url{http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/com/google/common/hash/BloomFilter.html}.
 
-\bibitem[Smith et~al.(2001)Smith, Bull, and Obdrizalek]{Smith2001}
-L~A Smith, J~M Bull, and J~Obdrizalek.
-\newblock {A Parallel Java Grande Benchmark Suite}.
-\newblock \emph{ACMIEEE SC 2001 Conference SC01}, pages 8--8, 2001.
-\newblock \doi{10.1109/SC.2001.10025}.
-
-\bibitem[Bull et~al.(2001)Bull, Smith, Pottage, and Freeman]{Bull2001}
-J~M Bull, L~A Smith, L~Pottage, and R~Freeman.
-\newblock {Benchmarking Java against C and Fortran for scientific
-  applications}.
-\newblock In \emph{Proceedings of the 2001 joint ACM-ISCOPE conference on Java
-  Grande - JGI '01}, volume~15, pages 97--105, New York, New York, USA, 2001.
-  ACM Press.
-\newblock ISBN 1581133596.
-\newblock \doi{10.1145/376656.376823}.
-\newblock URL \url{http://portal.acm.org/citation.cfm?doid=376656.376823}.
-
-\bibitem[Trenti and Hut(2008)]{Trenti2008}
-M~Trenti and P~Hut.
-\newblock {Gravitational N-body Simulations}.
-\newblock \emph{Scholarpedia}, 3:\penalty0 13, 2008.
-
-\bibitem[Warren and Salmon(1993)]{Warren1993}
-Michael~S Warren and John~K Salmon.
-\newblock {A parallel Hashed Oct-Tree N-Body Algorithm}.
-\newblock In \emph{Proceedings of Supercomputing}, 1993.
-
-\bibitem[Nyland and Prins(2007)]{Nyland2007}
-Lars Nyland and Jan Prins.
-\newblock {Fast N-Body Simulation with CUDA}.
-\newblock \emph{Simulation}, 3:\penalty0 677--696, 2007.
-
 \bibitem[Kim and Hsu(2000)]{Kim2000}
 Jin-Soo Kim and Yarsun Hsu.
 \newblock {Memory system behavior of Java programs}.
@@ -474,6 +451,12 @@ Kazunori Ogata, Dai Mikurube, Kiyokuni Kawachiya, Scott Trent, and Tamiya
 Jonathan Ellis.
 \newblock {Java Agent for Memory Measurements}, 2011.
 \newblock URL \url{https://github.com/jbellis/jamm/}.
+
+\bibitem[{Apache Commons}(2013)]{ApacheCommonsMath}
+{Apache Commons}.
+\newblock {EnumeratedDistribution<T> documentation}, 2013.
+\newblock URL
+  \url{http://commons.apache.org/proper/commons-math/javadocs/api-3.2/org/apache/commons/math3/distribution/EnumeratedDistribution.html}.
 
 \bibitem[Azar and Erlebach(2006)]{Azar2006}
 Yossi Azar and Thomas Erlebach, editors.

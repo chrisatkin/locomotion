@@ -1,4 +1,0 @@
-name=all-smallvector;length=400000;writewrite=0.3;writeread=0.3;readwrite=0.3;instrumentation=false;storage=BloomFilterTrace;bitvector=700000
-finalmemory=133336304
-dependencies=0
-time=70059406

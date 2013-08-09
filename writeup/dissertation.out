@@ -1,87 +1,90 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.1.1}{Background}{chapter.1}% 2
-\BOOKMARK [1][-]{section.1.2}{Golden Age}{chapter.1}% 3
-\BOOKMARK [1][-]{section.1.3}{Cheating the System}{chapter.1}% 4
-\BOOKMARK [1][-]{section.1.4}{Hello, Parallelism}{chapter.1}% 5
-\BOOKMARK [1][-]{section.1.5}{Parallelist Approaches}{chapter.1}% 6
-\BOOKMARK [1][-]{section.1.6}{Contributions}{chapter.1}% 7
-\BOOKMARK [1][-]{section.1.7}{Outline}{chapter.1}% 8
-\BOOKMARK [0][-]{chapter.2}{Related Work}{}% 9
-\BOOKMARK [1][-]{section.2.1}{Parallelising Compilers}{chapter.2}% 10
-\BOOKMARK [1][-]{section.2.2}{Parallelism Detection}{chapter.2}% 11
-\BOOKMARK [1][-]{section.2.3}{Instrumentation}{chapter.2}% 12
-\BOOKMARK [2][-]{subsection.2.3.1}{Bytecode Instrumentation}{section.2.3}% 13
-\BOOKMARK [3][-]{subsubsection.2.3.1.1}{Java Agents}{subsection.2.3.1}% 14
-\BOOKMARK [3][-]{subsubsection.2.3.1.2}{ASM}{subsection.2.3.1}% 15
-\BOOKMARK [3][-]{subsubsection.2.3.1.3}{Javassist}{subsection.2.3.1}% 16
-\BOOKMARK [2][-]{subsection.2.3.2}{Aspect-Oriented Programming}{section.2.3}% 17
-\BOOKMARK [2][-]{subsection.2.3.3}{AspectJ/ABC}{section.2.3}% 18
-\BOOKMARK [3][-]{subsubsection.2.3.3.1}{Array and Loop Pointcuts}{subsection.2.3.3}% 19
-\BOOKMARK [2][-]{subsection.2.3.4}{Hybrid Models}{section.2.3}% 20
-\BOOKMARK [3][-]{subsubsection.2.3.4.1}{DiSL}{subsection.2.3.4}% 21
-\BOOKMARK [3][-]{subsubsection.2.3.4.2}{Turbo DiSL}{subsection.2.3.4}% 22
-\BOOKMARK [0][-]{chapter.3}{The Graal Compiler Infrastructure}{}% 23
-\BOOKMARK [1][-]{section.3.1}{Background}{chapter.3}% 24
-\BOOKMARK [1][-]{section.3.2}{Introduction}{chapter.3}% 25
-\BOOKMARK [1][-]{section.3.3}{Intermediate Representations}{chapter.3}% 26
-\BOOKMARK [1][-]{section.3.4}{Graph Transformations}{chapter.3}% 27
-\BOOKMARK [2][-]{subsection.3.4.1}{The .class File Format - Constant Pools}{section.3.4}% 28
-\BOOKMARK [1][-]{section.3.5}{Snippets}{chapter.3}% 29
-\BOOKMARK [1][-]{section.3.6}{Replacements}{chapter.3}% 30
-\BOOKMARK [1][-]{section.3.7}{Optimisations and Deoptimisations}{chapter.3}% 31
-\BOOKMARK [1][-]{section.3.8}{Summary}{chapter.3}% 32
-\BOOKMARK [0][-]{chapter.4}{Instrumentation}{}% 33
-\BOOKMARK [1][-]{section.4.1}{Introduction}{chapter.4}% 34
-\BOOKMARK [1][-]{section.4.2}{Automatic Approaches}{chapter.4}% 35
-\BOOKMARK [2][-]{subsection.4.2.1}{Graal}{section.4.2}% 36
-\BOOKMARK [1][-]{section.4.3}{Manual Approaches}{chapter.4}% 37
-\BOOKMARK [1][-]{section.4.4}{Summary}{chapter.4}% 38
-\BOOKMARK [0][-]{chapter.5}{The Runtime Library}{}% 39
-\BOOKMARK [1][-]{section.5.1}{Introduction}{chapter.5}% 40
-\BOOKMARK [1][-]{section.5.2}{Trace Storage}{chapter.5}% 41
-\BOOKMARK [2][-]{subsection.5.2.1}{Exact Approaches}{section.5.2}% 42
-\BOOKMARK [3][-]{subsubsection.5.2.1.1}{Hash Tables and Sets}{subsection.5.2.1}% 43
-\BOOKMARK [2][-]{subsection.5.2.2}{Probabilistic Approaches}{section.5.2}% 44
-\BOOKMARK [3][-]{subsubsection.5.2.2.1}{Bloom Filters}{subsection.5.2.2}% 45
-\BOOKMARK [1][-]{section.5.3}{Dependency Analysis Algorithms}{chapter.5}% 46
-\BOOKMARK [2][-]{subsection.5.3.1}{Offline Algorithms}{section.5.3}% 47
-\BOOKMARK [2][-]{subsection.5.3.2}{Online Algorithns}{section.5.3}% 48
-\BOOKMARK [1][-]{section.5.4}{Implementation Details}{chapter.5}% 49
-\BOOKMARK [2][-]{subsection.5.4.1}{Entry Point}{section.5.4}% 50
-\BOOKMARK [2][-]{subsection.5.4.2}{Instrument Implementation}{section.5.4}% 51
-\BOOKMARK [3][-]{subsubsection.5.4.2.1}{Java Auto\(un\)boxing}{subsection.5.4.2}% 52
-\BOOKMARK [2][-]{subsection.5.4.3}{Trace Storage and Configuration}{section.5.4}% 53
-\BOOKMARK [3][-]{subsubsection.5.4.3.1}{Exact - Hash Set}{subsection.5.4.3}% 54
-\BOOKMARK [3][-]{subsubsection.5.4.3.2}{Inexact - Bloom Filters}{subsection.5.4.3}% 55
-\BOOKMARK [1][-]{section.5.5}{Summary}{chapter.5}% 56
-\BOOKMARK [0][-]{chapter.6}{Methodology}{}% 57
-\BOOKMARK [1][-]{section.6.1}{Introduction}{chapter.6}% 58
-\BOOKMARK [1][-]{section.6.2}{Experimental Setup}{chapter.6}% 59
-\BOOKMARK [1][-]{section.6.3}{Repeats}{chapter.6}% 60
-\BOOKMARK [1][-]{section.6.4}{Benchmarks}{chapter.6}% 61
-\BOOKMARK [2][-]{subsection.6.4.1}{Validation, Basic Testing and Parametric Testing}{section.6.4}% 62
-\BOOKMARK [2][-]{subsection.6.4.2}{Parametric Benchmarks}{section.6.4}% 63
-\BOOKMARK [2][-]{subsection.6.4.3}{Graph Processing Algorithms}{section.6.4}% 64
-\BOOKMARK [2][-]{subsection.6.4.4}{Java Grande}{section.6.4}% 65
-\BOOKMARK [2][-]{subsection.6.4.5}{N-Body Simulation}{section.6.4}% 66
-\BOOKMARK [1][-]{section.6.5}{Measurement Methodology}{chapter.6}% 67
-\BOOKMARK [2][-]{subsection.6.5.1}{Execution Time}{section.6.5}% 68
-\BOOKMARK [2][-]{subsection.6.5.2}{Memory Usage}{section.6.5}% 69
-\BOOKMARK [1][-]{section.6.6}{Test Harness Design and Implementation}{chapter.6}% 70
-\BOOKMARK [1][-]{section.6.7}{Summary}{chapter.6}% 71
-\BOOKMARK [0][-]{chapter.7}{Parametric Benchmarks}{}% 72
-\BOOKMARK [1][-]{section.7.1}{Introduction}{chapter.7}% 73
-\BOOKMARK [1][-]{section.7.2}{Problem Statement}{chapter.7}% 74
-\BOOKMARK [2][-]{subsection.7.2.1}{Array Aliasing}{section.7.2}% 75
-\BOOKMARK [1][-]{section.7.3}{Solutions}{chapter.7}% 76
-\BOOKMARK [2][-]{subsection.7.3.1}{Single-Command, Dual Value}{section.7.3}% 77
-\BOOKMARK [2][-]{subsection.7.3.2}{Dual Command, Single Value}{section.7.3}% 78
-\BOOKMARK [1][-]{section.7.4}{Implementation Details}{chapter.7}% 79
-\BOOKMARK [1][-]{section.7.5}{Additional Parameters}{chapter.7}% 80
-\BOOKMARK [1][-]{section.7.6}{Summary}{chapter.7}% 81
-\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 82
-\BOOKMARK [1][-]{section.8.1}{Concluding Remarks}{chapter.8}% 83
-\BOOKMARK [1][-]{section.8.2}{Contributions}{chapter.8}% 84
-\BOOKMARK [1][-]{section.8.3}{Unsolved Problems}{chapter.8}% 85
-\BOOKMARK [1][-]{section.8.4}{Future Work}{chapter.8}% 86
-\BOOKMARK [0][-]{chapter*.15}{Bibliography}{}% 87
+\BOOKMARK [1][-]{section.1.1}{Golden Age}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Cheating the System}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Hello, Parallelism}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.4}{Parallelising Compilers}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.5}{Contributions}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.6}{Outline}{chapter.1}% 7
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Parallelist Approaches}{chapter.2}% 9
+\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 10
+\BOOKMARK [1][-]{section.3.1}{Dynamic Parallelism and Parallelism Extraction}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.2}{Instrumentation}{chapter.3}% 12
+\BOOKMARK [2][-]{subsection.3.2.1}{Bytecode Instrumentation}{section.3.2}% 13
+\BOOKMARK [3][-]{subsubsection.3.2.1.1}{Java Agents}{subsection.3.2.1}% 14
+\BOOKMARK [3][-]{subsubsection.3.2.1.2}{ASM}{subsection.3.2.1}% 15
+\BOOKMARK [3][-]{subsubsection.3.2.1.3}{Javassist}{subsection.3.2.1}% 16
+\BOOKMARK [2][-]{subsection.3.2.2}{Aspect-Oriented Programming}{section.3.2}% 17
+\BOOKMARK [2][-]{subsection.3.2.3}{AspectJ/ABC}{section.3.2}% 18
+\BOOKMARK [3][-]{subsubsection.3.2.3.1}{Array and Loop Pointcuts}{subsection.3.2.3}% 19
+\BOOKMARK [2][-]{subsection.3.2.4}{Hybrid Models}{section.3.2}% 20
+\BOOKMARK [3][-]{subsubsection.3.2.4.1}{DiSL}{subsection.3.2.4}% 21
+\BOOKMARK [3][-]{subsubsection.3.2.4.2}{Turbo DiSL}{subsection.3.2.4}% 22
+\BOOKMARK [0][-]{chapter.4}{The Graal Compiler Infrastructure}{}% 23
+\BOOKMARK [1][-]{section.4.1}{Background}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.2}{Introduction}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.3}{Intermediate Representations}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.4}{Graph Transformations}{chapter.4}% 27
+\BOOKMARK [2][-]{subsection.4.4.1}{The .class File Format - Constant Pools}{section.4.4}% 28
+\BOOKMARK [1][-]{section.4.5}{Snippets}{chapter.4}% 29
+\BOOKMARK [1][-]{section.4.6}{Replacements}{chapter.4}% 30
+\BOOKMARK [1][-]{section.4.7}{Optimisations and Deoptimisations}{chapter.4}% 31
+\BOOKMARK [1][-]{section.4.8}{Summary}{chapter.4}% 32
+\BOOKMARK [0][-]{chapter.5}{Dynamic Instrumentation}{}% 33
+\BOOKMARK [1][-]{section.5.1}{Introduction}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.2}{Automatic Approaches}{chapter.5}% 35
+\BOOKMARK [2][-]{subsection.5.2.1}{Graal}{section.5.2}% 36
+\BOOKMARK [1][-]{section.5.3}{Manual Approaches}{chapter.5}% 37
+\BOOKMARK [1][-]{section.5.4}{Summary}{chapter.5}% 38
+\BOOKMARK [0][-]{chapter.6}{The Runtime Library}{}% 39
+\BOOKMARK [1][-]{section.6.1}{Introduction}{chapter.6}% 40
+\BOOKMARK [1][-]{section.6.2}{Trace Storage}{chapter.6}% 41
+\BOOKMARK [2][-]{subsection.6.2.1}{Exact Approaches: Hash Tables and Sets}{section.6.2}% 42
+\BOOKMARK [2][-]{subsection.6.2.2}{Probabilistic Approaches: Bloom Filters}{section.6.2}% 43
+\BOOKMARK [1][-]{section.6.3}{Dependency Analysis Algorithms}{chapter.6}% 44
+\BOOKMARK [2][-]{subsection.6.3.1}{Why are dependencies important?}{section.6.3}% 45
+\BOOKMARK [2][-]{subsection.6.3.2}{Dependency Theory}{section.6.3}% 46
+\BOOKMARK [2][-]{subsection.6.3.3}{Offline Algorithms}{section.6.3}% 47
+\BOOKMARK [2][-]{subsection.6.3.4}{Online Algorithns}{section.6.3}% 48
+\BOOKMARK [1][-]{section.6.4}{Implementation Details}{chapter.6}% 49
+\BOOKMARK [2][-]{subsection.6.4.1}{Entry Point}{section.6.4}% 50
+\BOOKMARK [2][-]{subsection.6.4.2}{Instrument Implementation}{section.6.4}% 51
+\BOOKMARK [3][-]{subsubsection.6.4.2.1}{Java Auto\(un\)boxing}{subsection.6.4.2}% 52
+\BOOKMARK [2][-]{subsection.6.4.3}{Trace Storage and Configuration}{section.6.4}% 53
+\BOOKMARK [3][-]{subsubsection.6.4.3.1}{Exact - Hash Set}{subsection.6.4.3}% 54
+\BOOKMARK [3][-]{subsubsection.6.4.3.2}{Inexact - Bloom Filters}{subsection.6.4.3}% 55
+\BOOKMARK [1][-]{section.6.5}{Summary}{chapter.6}% 56
+\BOOKMARK [0][-]{chapter.7}{Methodology}{}% 57
+\BOOKMARK [1][-]{section.7.1}{Introduction}{chapter.7}% 58
+\BOOKMARK [1][-]{section.7.2}{Experimental Setup}{chapter.7}% 59
+\BOOKMARK [1][-]{section.7.3}{Repeats}{chapter.7}% 60
+\BOOKMARK [1][-]{section.7.4}{Measurement Methodology}{chapter.7}% 61
+\BOOKMARK [2][-]{subsection.7.4.1}{Execution Time}{section.7.4}% 62
+\BOOKMARK [2][-]{subsection.7.4.2}{Dependencies}{section.7.4}% 63
+\BOOKMARK [2][-]{subsection.7.4.3}{Memory Usage}{section.7.4}% 64
+\BOOKMARK [1][-]{section.7.5}{Parametric Benchmarks}{chapter.7}% 65
+\BOOKMARK [2][-]{subsection.7.5.1}{Motivation}{section.7.5}% 66
+\BOOKMARK [2][-]{subsection.7.5.2}{Problem Statement}{section.7.5}% 67
+\BOOKMARK [2][-]{subsection.7.5.3}{Algorithm Design}{section.7.5}% 68
+\BOOKMARK [2][-]{subsection.7.5.4}{Implementation Details}{section.7.5}% 69
+\BOOKMARK [1][-]{section.7.6}{Test Harness Design and Implementation}{chapter.7}% 70
+\BOOKMARK [1][-]{section.7.7}{Result Collection}{chapter.7}% 71
+\BOOKMARK [1][-]{section.7.8}{Summary}{chapter.7}% 72
+\BOOKMARK [0][-]{chapter.8}{Results}{}% 73
+\BOOKMARK [1][-]{section.8.1}{Introduction}{chapter.8}% 74
+\BOOKMARK [1][-]{section.8.2}{Basic Testing}{chapter.8}% 75
+\BOOKMARK [2][-]{subsection.8.2.1}{No Dependencies}{section.8.2}% 76
+\BOOKMARK [2][-]{subsection.8.2.2}{All Dependent}{section.8.2}% 77
+\BOOKMARK [1][-]{section.8.3}{Parametric}{chapter.8}% 78
+\BOOKMARK [1][-]{section.8.4}{N-Body}{chapter.8}% 79
+\BOOKMARK [1][-]{section.8.5}{Overhead}{chapter.8}% 80
+\BOOKMARK [2][-]{subsection.8.5.1}{Execution Time}{section.8.5}% 81
+\BOOKMARK [2][-]{subsection.8.5.2}{Memory Usage}{section.8.5}% 82
+\BOOKMARK [1][-]{section.8.6}{Analysis}{chapter.8}% 83
+\BOOKMARK [1][-]{section.8.7}{Summary}{chapter.8}% 84
+\BOOKMARK [0][-]{chapter.9}{Conclusion}{}% 85
+\BOOKMARK [1][-]{section.9.1}{Concluding Remarks}{chapter.9}% 86
+\BOOKMARK [1][-]{section.9.2}{Contributions}{chapter.9}% 87
+\BOOKMARK [1][-]{section.9.3}{Unsolved Problems}{chapter.9}% 88
+\BOOKMARK [1][-]{section.9.4}{Future Work}{chapter.9}% 89
+\BOOKMARK [0][-]{chapter*.16}{Bibliography}{}% 90

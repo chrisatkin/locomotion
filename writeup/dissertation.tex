@@ -62,7 +62,7 @@
 \renewcommand{\rmdefault}{pplx} % rm
 \linespread{1.05}        % Palatino needs more leading
 
-\title{Dynamic Parallelism Detection for the HotSpot\texttrademark Java Virtual Machine}
+\title{Parallelism Detection using Dynamic\\Instrumentation in a Virtual Machine}
 \author{Christopher Edward Atkin-Granville}
 
 \abstract{Contemporary computers are highly based around highly parallel architectures through chip multiprocessors, instruction-level parallelism and graphics processing units with potentially thousands of cores. Despite this, many popular programs are based around a sequential programming paradigm. This project investigates the use of the Graal compiler infrastructure in order to dynamically profile running programs within the Java Virtual Machine and determine which hot loops are good candidates for automatic parallelism transformations, possibly JIT recompilation to an OpenCL target.
@@ -86,13 +86,14 @@ We consider two main approaches to trace collection: exact approaches and probab
 	\end{preliminary}
 
 	\include{chapters/introduction}
+	\include{chapters/background}
 	\include{chapters/related-work}
 	\include{chapters/graal}
 	\include{chapters/instrumentation}
 	\include{chapters/runtime-library}
 	\include{chapters/methodology}
-	\include{chapters/parametric-benchmarks}
-	%\include{chapters/results}
+	%\include{chapters/parametric-benchmarks}
+	\include{chapters/results}
 	%\include{chapters/optimisations}
 	\include{chapters/conclusion}
 

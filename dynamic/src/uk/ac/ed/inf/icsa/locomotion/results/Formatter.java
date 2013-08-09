@@ -89,7 +89,23 @@ public final class Formatter {
 	}
 	
 	private void executeFormatter(Executable e) throws FileNotFoundException {
-		for (final String name: new String[] { "all-smallvector", "none-smallvector"}) {
+		for (final String name: new String[] {
+				/*"all-map",
+				"all-smallvector",
+				"none-smallvector",
+				"all-longvector",
+				"none-longvector",
+				"all-tinyvector",
+				"none-tinyvector",
+				"some-0.8equal-smallvector",
+				"some-0.6equal-smallvector",
+				"some-0.4equal-smallvector",
+				"some-0.2equal-smallvector",
+				"some-0.2equal-longvector",
+				"some-0.4equal-longvector"
+				*/
+				
+				"test"}) {
 			for (final String instrument: new String[] { "true", "false" }) {
 				for (final String storage: new String[] { "HashSetTrace", "BloomFilterTrace"}) {
 					System.out.println("name=" + name + " instrument=" + instrument + " storage=" + storage);

@@ -17,94 +17,96 @@ Generating traces for large programs -- the kind of programs which would benefit
 
 The main problem that the storage format must be able to determine is this. Given trace $T$ and access $\alpha$, is $\alpha \in T$?
 	
-	\subsection{Exact Approaches} \label{sec:runtime/storage/exact}
+	\subsection{Exact Approaches: Hash Tables and Sets} \label{sec:runtime/storage/exact}
 	Exact approaches provide an accurate deterministic response to this question. They are not probabilistic or statistical in nature.
-	
-		\subsubsection{Hash Tables and Sets} \label{sec:runtime/storage/exact/hashing}
-		A hash function maps keys to indexes, where buckets are stored. Buckets contain all items with the same key. Ideally, a lookup of $T=O(1)$ is possible (\ie, a hash function with ideal distribution). Worst-case cost is $T=O(n)$, in the case of multiple collisions or a low load factor, as the bucket will need to be traversed sequentially to find the item.
-		
-		It is common to use hashing by division for the hash function:
-		
-		\[
-			f(k) = k \bmod{D}
-		\]
-		
-		Where $k$ is the key and $D$ is the size (\ie, number of positions of the hash table) \citep{DSandAlgsCpp}.
-		
-		The constant-time lookup assumes that the \textit{load factor} $L$ is bounded below some constant. The load factor is computed by $L=\frac{n}{k}$.
-		
-		Figure \ref{fig:hash-table} demonstrates a simple hash table without collisions.
-		
-		\begin{figure}
-			\centering
-			\includegraphics[width=0.7\textwidth]{graphics/hash-table.pdf}
-			\caption{A simple hash table for a phone book \citep{HashTableWikiDiagram}}
-			\label{fig:hash-table}
-		\end{figure}
 
-	\subsection{Probabilistic Approaches} \label{sec:runtime/storage/probabilistic}
+	A hash function maps keys to indexes, where buckets are stored. Buckets contain all items with the same key. Ideally, a lookup of $T=O(1)$ is possible (\ie, a hash function with ideal distribution). Worst-case cost is $T=O(n)$, in the case of multiple collisions or a low load factor, as the bucket will need to be traversed sequentially to find the item.
+		
+	It is common to use hashing by division for the hash function:
+		
+	\[
+		f(k) = k \bmod{D}
+	\]
+		
+	Where $k$ is the key and $D$ is the size (\ie, number of positions of the hash table) \citep{DSandAlgsCpp}.
+		
+	The constant-time lookup assumes that the \textit{load factor} $L$ is bounded below some constant. The load factor is computed by $L=\frac{n}{k}$.
+		
+	Figure \ref{fig:hash-table} demonstrates a simple hash table without collisions.
+		
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{graphics/hash-table.pdf}
+		\caption{A simple hash table for a phone book \citep{HashTableWikiDiagram}}
+		\label{fig:hash-table}
+	\end{figure}
+
+	\subsection{Probabilistic Approaches: Bloom Filters} \label{sec:runtime/storage/probabilistic}
 	The main disadvantage to using exact approaches is that the storage required scales linearly such that $S=O(n)$. For anything but the most trivial programs, this means that it becomes infeasible to store traces for all memory operations.
 	
-		\subsubsection{Bloom Filters} \label{sec:runtime/storage/probabilistic/bloom}
-		One alternative is the use of Bloom Filters \citep{Bloom1970}. A Bloom Filter is a randomised data structure which supports membership queries, with the possibility of false positives. In the context of parallelism detection, this means that we may conclude that a loop is not parallelisable when in reality, it is.
+	One alternative is the use of Bloom Filters \citep{Bloom1970}. A Bloom Filter is a randomised data structure which supports membership queries, with the possibility of false positives. In the context of parallelism detection, this means that we may conclude that a loop is not parallelisable when in reality, it is.
 		
-		The operation of a Bloom Filter is simple: there exists a bit vector of size $m$ and a number $k$ of hash functions (which could use universal hashing \citep{Carter1979}). Upon insertation of an item $i$, for each hash $k_n$ the value of $v_n=k_n(i)$ is computed, which is an integer in the range $0..m$. The corresponding index of the vector is then set to $1$.
+	The operation of a Bloom Filter is simple: there exists a bit vector of size $m$ and a number $k$ of hash functions (which could use universal hashing \citep{Carter1979}). Upon insertation of an item $i$, for each hash $k_n$ the value of $v_n=k_n(i)$ is computed, which is an integer in the range $0..m$. The corresponding index of the vector is then set to $1$.
 		
-		\begin{figure}[h!]
-				\centering
-				\includegraphics[width=0.8\textwidth]{graphics/bloomfilter.pdf}
-				\caption{Bloom filter operation with $m=18$ and $k=3$ \citep{BloomFilterWikiDiagram}}
-				\label{fig:bloom-filter}
-		\end{figure}
-			
-		To test membership for an item, feed the item to each hash function. If all the corresponding indexes are $1$, then the item \emph{may} be contained within the filter - if any of them are $0$, then the item is definitely not.
+	\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.8\textwidth]{graphics/bloomfilter.pdf}
+			\caption{Bloom filter operation with $m=18$ and $k=3$ \citep{BloomFilterWikiDiagram}}
+			\label{fig:bloom-filter}
+	\end{figure}
 		
-		For a given number of entries $s$ and a bit vector of size $m$, we need to use $k$ hash functions such that:
-		
-		\begin{equation}
-			k = \frac{m}{s} \ln 2
-			\label{eqn:optimal-hashes}
-		\end{equation}
-		
-		The error rate is defined as:
-		
-		\[
-		\sigma = 0.5^k
-		\]
-		
-		In essence, the longer the bit vector, the more accurate the filter becomes - at the expense of increasing space requirements. If $m=\infty$, then there are no false positives - the filter becomes accurate and deterministic (for a fixed set of $k$).
-		
-		\citet{Swamidass2007} show is that the number of elements within a Bloom Filter can be estimated by:
-		
-		\[
-		E = -n \ln \frac{1-n/n}{k}
-		\]
-		
-		% return (long) (-n * Math.log(p) / (Math.log(2) * Math.log(2)));
-		
-		It is possible to calculate the theoretical optimal length of the bit vector $m$ from the number of expected insertions $n$ and the \textit{false positive rate} $p$. This is defined as
+	To test membership for an item, feed the item to each hash function. If all the corresponding indexes are $1$, then the item \emph{may} be contained within the filter - if any of them are $0$, then the item is definitely not.
+	
+	For a given number of entries $s$ and a bit vector of size $m$, we need to use $k$ hash functions such that:
+	
+	\begin{equation}
+		k = \frac{m}{s} \ln 2
+		\label{eqn:optimal-hashes}
+	\end{equation}
+	
+	The error rate is defined as:
+	
+	\[
+	\sigma = 0.5^k
+	\]
+	
+	In essence, the longer the bit vector, the more accurate the filter becomes - at the expense of increasing space requirements. If $m=\infty$, then there are no false positives - the filter becomes accurate and deterministic (for a fixed set of $k$).
+	
+	\citet{Swamidass2007} show is that the number of elements within a Bloom Filter can be estimated by:
+	
+	\[
+	E = -n \ln \frac{1-n/n}{k}
+	\]
+	
+	% return (long) (-n * Math.log(p) / (Math.log(2) * Math.log(2)));
+	
+	It is possible to calculate the theoretical optimal length of the bit vector $m$ from the number of expected insertions $n$ and the \textit{false positive rate} $p$. This is defined as
 
-		\[
-			m = -n \times \log(p) \div \log(2) \times \log(2)
-		\]
-		
-		The main advantage of bloom filters is that the space complexity is constant $S=O(c)$, where $c$ is the size of the bit vector. This will allow memory overhead to be substantially lower, whilst still retaining $T=O(1)$ lookup time complexity. As mentioned above, this is a significant (factor $n$) improvement over the exact approach.
+	\[
+		m = -n \times \log(p) \div \log(2) \times \log(2)
+	\]
+	
+	The main advantage of bloom filters is that the space complexity is constant $S=O(c)$, where $c$ is the size of the bit vector. This will allow memory overhead to be substantially lower, whilst still retaining $T=O(1)$ lookup time complexity. As mentioned above, this is a significant (factor $n$) improvement over the exact approach.
 
-		However, lookup time in bloom filters is asymptotically greater than the hash-based alternative. Unlike the hashing-based approach which has, with an optimal load factor, a lookup time of $T_{lookup}^{hash}=O(1)$, a bloom filter has a lookup time of $T_{lookup}^{bloom}=O(k)$ (where $k$ is the number of hash functions). This is unlike amongst array/vector-based approaches, which in many cases are $T=O(1)$. As the number of optimal hash functions is dependent on the number of expected entries and the bit vector size (see equation \ref{eqn:optimal-hashes}), it is predicted that execution time will increase slightly as a result, with the assumption that the hashing-based approach is operating efficiently (\ie, with an adequate load factor).
-		
-		We hypothesise that, with the correct parameters, it is possible to effectively use probabilistic approaches in order to reduce both the memory and execution time overhead associated with dependency analysis.
+	However, lookup time in bloom filters is asymptotically greater than the hash-based alternative. Unlike the hashing-based approach which has, with an optimal load factor, a lookup time of $T_{lookup}^{hash}=O(1)$, a bloom filter has a lookup time of $T_{lookup}^{bloom}=O(k)$ (where $k$ is the number of hash functions). This is unlike amongst array/vector-based approaches, which in many cases are $T=O(1)$. As the number of optimal hash functions is dependent on the number of expected entries and the bit vector size (see equation \ref{eqn:optimal-hashes}), it is predicted that execution time will increase slightly as a result, with the assumption that the hashing-based approach is operating efficiently (\ie, with an adequate load factor).
+	
+	We hypothesise that, with the correct parameters, it is possible to effectively use probabilistic approaches in order to reduce both the memory and execution time overhead associated with dependency analysis.
 
 \section{Dependency Analysis Algorithms} \label{sec:runtime/analysis}
 	Computing dependency between two operations is of critical importance to this project; an efficient algorithm is important.
 	
-	From \citet[p.~37]{Allen2000}, there is a data dependence from statement $\sigma_x$ to statement $\sigma_y$ (where $T(\sigma_x) \rightarrow T(\sigma_y)$\footnote{For two statements $x$ and $y$, $x \rightarrow y$ iff $T(x) < T(y)$ where $T(e)$ returns the time at which $e$ occured}) if and only if:
+	\subsection{Why are dependencies important?} \label{runtime/analysis/why}
+	Dependencies, also called \textit{hazards} (especially in processor architecture literature) are of critical importance to automatic parallelisation as they determine whether (or not) a loop can be automatically parallelised. If there is a dependence, the statements cannot be executed in parallel without additional transformation (which may be intractable) of the program\footnote{One example of where such a transformation is possible is a summation of a counter: \texttt{for int i = 0 to n: i++}. This program can be broken down into a tree of tasks and executed in a divide-and-conquer fashion, which is easily parallelisable}. However, such transformations are likely not possible for compilers to perform automatically. 
+	
+	\subsection{Dependency Theory} \label{sec:runtime/analysis/theory}
+	From \citet[p.~37]{Allen2000}, there is a data dependence from statement $\sigma_x$ to statement $\sigma_y$ (where $T(\sigma_x) \rightarrow T(\sigma_y)$\footnote{For two statements $x$ and $y$, $x \rightarrow y$ iff there is a viable execution path between $x$ and $y$}) if and only if:
 	
 	\begin{enumerate}
 		\item both statements access the same memory location and at least one of them stores into it
 		\item there is a feasible run-time execution path from $\sigma_x$ to $\sigma_y$
 	\end{enumerate}
 	
-	There are several kinds of inter-iteration dependency \citep[p.~526]{Ibbett2009,ArchitectureBook}:
+	There are several kinds of inter-iteration dependency \citep[p.~526]{Ibbett2009,ArchitectureBook}. In this section, $R(\alpha_x)$ denotes the set of addresses/locations read by access $\alpha_x$, and $W(\sigma_x)$ denotes the set of addresses read by access $\sigma_y$.
 	
 	\begin{itemize}\label{fig:dep-kinds}
 		\item \textbf{Write-after-write} or \textit{output dependency}: given two statements $\sigma_x$ and $\sigma_y$, there is a write-after-write dependency if a total ordering is required for $\sigma_x$ and $\sigma_y$. For example:
@@ -115,6 +117,8 @@ The main problem that the storage format must be able to determine is this. Give
 		\end{verbatim}
 		
 		If the second statement were executed before the first statement, program correctness would be violated, so speculative execution is not possible.
+		
+		Formally, there is an output dependence iff $W(\sigma_x) \cap W(\sigma_y) \neq \varnothing$.
 		
 		Output dependence for two statements $\sigma_x$ and $\sigma_y$ is denoted as $\sigma_x \delta^0 \sigma_y$.
 		
@@ -127,6 +131,8 @@ The main problem that the storage format must be able to determine is this. Give
 		
 		In this case, if the statements are re-ordered, the wrong value of \texttt{R2} will be used.
 		
+		There is an antidependency iff $R(\sigma_x) \cap W(\sigma_y) \neq \varnothing$.
+		
 		Antidependence for two statements $\sigma_x$ and $\sigma_y$ is denoted as $\sigma_x \delta^{-1} \sigma_y$.
 		
 		\item \textbf{Read-after-write} or \textit{true dependency}: given two statements $\sigma_x$ and $\sigma_y$, there is a read-after-write dependency if $\sigma_y$ stores the value (or derivative value) of $\sigma_x$:
@@ -138,8 +144,17 @@ The main problem that the storage format must be able to determine is this. Give
 		
 		If the statements are reordered, either a stale value of R1 will be used, or R1 may not have been initialized.
 		
+		There is a true dependency iff $W(\sigma_x) \cap R(\sigma_y) \neq \varnothing$.
+		
 		True dependency for two statements $\sigma_x$ and $\sigma_y$ is denoted as $\sigma_x \delta \sigma_y$.
 	\end{itemize}
+	
+	Combining these, we gain the \textbf{Bernstein Condition}. There is a dependence between $\sigma_x$ and $\sigma_y$ iff:
+	
+	\begin{equation} \label{eqn:bernstein}
+	\left[ R(\sigma_x) \cap W(\sigma_y) \right] \cup \left[ W(\sigma_x) \cap R(\sigma_y) \right] \cup
+	\left[ W(\sigma_x) \cap W(\sigma_y) \right] \neq \varnothing
+	\end{equation}
 	
 	There is also a theoretical dependency that can be detected by the framework, read-after-read, but since this does not cause two iterations to be dependent, they are not considered by the framework.
 	
@@ -276,18 +291,15 @@ In this section, we consider the techniques used to implement the runtime librar
 		\subsubsection{Java Auto(un)boxing} \label{sec:runtime/implementation/instrument/boxing}
 		Despite being an object-oriented language, Java has several non-object-oriented types. These are known as \textit{primitive values}. They are not part of the standard object-hierarchy, and no methods can be called upon them. The primitive types are \texttt{int}, \texttt{long}, \texttt{char}, \texttt{float}, \texttt{double}, \texttt{boolean} and \texttt{short}.
 		
-		Unlike in C\# which has a \textit{unified type system} -- where \emph{all} types inherit from a single objct, regardless of being value/primitive types or reference types -- Java does not. Each primitive type has a corresponding reference type (named as such because Java uses pass-by-reference for objects), which is an object and hence part of the class hierarchy. Indeed, in C\# the `short names' for value types are actually aliases for the full identifiers, such as \texttt{System.Byte}, \texttt{System.Int32} and so on.
+		Each primitive type has a corresponding reference type (named as such because Java uses pass-by-reference for objects), which is an object and hence part of the class hierarchy.
 		
-		Although this approach does have some advantages -- primitive types require less over head than the object-oriented value types -- there are some disadvantages. The Java compiler will automatically perform transformations on instances where:
-		
-		\begin{itemize}
-			\item An identifier for a primitive type is passed where an identifier for a reference type is required or vica-versa
-			\item \textbf{And} there is not a type error (so \texttt{int} cannot be transformed to \texttt{short})
-		\end{itemize}
+		Although this approach does have some advantages -- primitive types require less over head than the object-oriented value types -- there are some disadvantages -- namely, enable interoperability between the two.
 		
 		This process is called auto boxing (in the case of primitive-to-reference type occurs) or auto unboxing (where reference-to-primitive type occurs). The advantage of this approach is that it simplifies programming and reduces `crufty' code. For example, adding two \texttt{Integer}, \texttt{a} and \texttt{b} doesn't require \texttt{Integer c = a.add(b);}, but instead the more natural \texttt{Integer c = a + b} can be used. In this case, \texttt{a} and \texttt{b} will be auto-unboxed to primitive types, the addition is performed and the result is autoboxed back to \texttt{Integer}.
 		
 		However, this automatic casting operation does occur a slight performance overhead, both in terms of memory and execution time. Although in most cases the overheads are small, for benchmarking a runtime system with somewhat significant overheads, another solution was opted for. Instead of only supporting value types, we \emph{also} support primitive types by overloading the appropriate methods. 
+		
+		In order to overcome this performance problem, the instrumentation has been optimised to consider both primitive types and reference types.
 	
 	\subsection{Trace Storage and Configuration} \label{sec:runtime/implementation/trace}
 	The instrumentation includes implementations of both exact and inexact approaches to trace storage.

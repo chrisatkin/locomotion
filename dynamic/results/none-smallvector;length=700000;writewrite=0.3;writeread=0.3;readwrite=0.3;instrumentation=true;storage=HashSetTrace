@@ -1,4 +1,0 @@
-name=none-smallvector;length=700000;writewrite=0.3;writeread=0.3;readwrite=0.3;instrumentation=true;storage=HashSetTrace
-finalmemory=88886120
-dependencies=0
-time=637202579

@@ -16,7 +16,7 @@ Another feature of Graal is that it allows users (of the compiler) to interface 
 	\centering
 	\includegraphics[width=0.7\textwidth]{graphics/roslyn-pipeline.pdf}
 	\label{fig:roslyn-pipeline}
-	\caption{The compiler pipeline in Microsoft Roslyn, a similar project to Graal. Roslyn operates at a higher level than Graal, instead manipulating abstract syntax trees.}
+	\caption{The compiler pipeline in Microsoft Roslyn, a similar project to Graal. Roslyn operates at a higher level than Graal, instead manipulating abstract syntax trees. [Figure \citealp{RoslynProject}]}
 \end{figure}
 
 \section{Introduction} \label{sec:graal/introduction}
@@ -171,11 +171,11 @@ Some of the optimisations that Graal applies are described here.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{graphics/jvminternals.pdf}
-	\caption{Relationship between optimisations and deoptimisations}
+	\caption{Relationship between optimisations and deoptimisations [adapted from \citealp[p.~24]{Schwaighofer2009}]}
 	\label{fig:jvm-internals}
 \end{figure}
 
-However, there are some cases where an optimisation has been applied, but it leaves programs in an inconsistent state. In this case, a deoptimisation occurs. More specifically, deoptimisation \citep{Holzle1992} is the process of converting an optimised stack frame into an unoptimised one. In HotSpot, an optimised frame is the result of the JIT compiler and unoptimised frames run using the interpreter. Figure \ref{fig:jvm-internals} (adapted from \citet[p.~24]{Schwaighofer2009}) shows the interplay between the optimisations and deoptimisations. Optimisation-deoptimisation is controlled through an assumption mechanism - in order to be (or remain) optimised, a set of assumptions must remain true. If any of the assumptions becomes false, the optimisation is broken and deoptimiastion occurs. When deoptimisation occurs, the runtime returns to the bytecode index associated with the optimisation, and executes using the interpreter instead. This technique is used because Graal currently relies on the deoptimisaton framework in HotSpot\texttrademark, which uses the approach described here. 
+However, there are some cases where an optimisation has been applied, but it leaves programs in an inconsistent state. In this case, a deoptimisation occurs. More specifically, deoptimisation \citep{Holzle1992} is the process of converting an optimised stack frame into an unoptimised one. In HotSpot, an optimised frame is the result of the JIT compiler and unoptimised frames run using the interpreter. Figure \ref{fig:jvm-internals} shows the interplay between the optimisations and deoptimisations. Optimisation-deoptimisation is controlled through an assumption mechanism - in order to be (or remain) optimised, a set of assumptions must remain true. If any of the assumptions becomes false, the optimisation is broken and deoptimiastion occurs. When deoptimisation occurs, the runtime returns to the bytecode index associated with the optimisation, and executes using the interpreter instead. This technique is used because Graal currently relies on the deoptimisaton framework in HotSpot\texttrademark, which uses the approach described here. 
 
 Deoptimisations can occur for several reasons:
 

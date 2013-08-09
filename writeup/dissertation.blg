@@ -2,16 +2,17 @@ This is BibTeX, Version 0.99d (TeX Live 2013)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: dissertation.aux
 A level-1 auxiliary file: chapters/introduction.aux
+A level-1 auxiliary file: chapters/background.aux
 A level-1 auxiliary file: chapters/related-work.aux
 A level-1 auxiliary file: chapters/graal.aux
 A level-1 auxiliary file: chapters/instrumentation.aux
 A level-1 auxiliary file: chapters/runtime-library.aux
 A level-1 auxiliary file: chapters/methodology.aux
-A level-1 auxiliary file: chapters/parametric-benchmarks.aux
 A level-1 auxiliary file: chapters/results.aux
 A level-1 auxiliary file: chapters/conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
+Warning--empty year in RoslynProject
 Warning--empty journal in Wang2009
 Warning--empty year in Weiser
 Warning--empty year in Weiser
@@ -21,50 +22,49 @@ Warning--empty year in Ketterlin
 Warning--empty journal in Dong
 Warning--empty year in Dong
 Warning--empty year in Dong
-Warning--empty year in RoslynProject
 Warning--empty booktitle in ACDI
 Warning--can't use both author and editor fields in Allen2000
 Warning--can't use both author and editor fields in ArchitectureBook
 Warning--empty journal in JSR133
-You've used 67 entries,
+You've used 64 entries,
             2481 wiz_defined-function locations,
-            1079 strings with 17687 characters,
-and the built_in function-call counts, 24861 in all, are:
-= -- 2230
-> -- 1170
-< -- 62
-+ -- 478
-- -- 343
-* -- 1826
-:= -- 4018
-add.period$ -- 292
-call.type$ -- 67
-change.case$ -- 138
-chr.to.int$ -- 66
-cite$ -- 82
-duplicate$ -- 1269
-empty$ -- 2229
-format.name$ -- 439
-if$ -- 5327
+            1057 strings with 17350 characters,
+and the built_in function-call counts, 23474 in all, are:
+= -- 2098
+> -- 1111
+< -- 57
++ -- 456
+- -- 327
+* -- 1732
+:= -- 3814
+add.period$ -- 281
+call.type$ -- 64
+change.case$ -- 132
+chr.to.int$ -- 63
+cite$ -- 79
+duplicate$ -- 1189
+empty$ -- 2102
+format.name$ -- 414
+if$ -- 5013
 int.to.chr$ -- 2
-int.to.str$ -- 68
-missing$ -- 50
-newline$ -- 428
-num.names$ -- 202
-pop$ -- 559
+int.to.str$ -- 65
+missing$ -- 46
+newline$ -- 412
+num.names$ -- 193
+pop$ -- 533
 preamble$ -- 1
-purify$ -- 67
+purify$ -- 64
 quote$ -- 0
-skip$ -- 798
+skip$ -- 748
 stack$ -- 0
-substring$ -- 711
-swap$ -- 229
-text.length$ -- 17
+substring$ -- 640
+swap$ -- 210
+text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 445
+type$ -- 424
 warning$ -- 14
-while$ -- 191
+while$ -- 177
 width$ -- 0
-write$ -- 1043
+write$ -- 999
 (There were 14 warnings)

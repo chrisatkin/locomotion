@@ -1,8 +1,8 @@
-\chapter{Instrumentation} \label{chp:instrumentation}
+\chapter{Dynamic Instrumentation} \label{chp:instrumentation}
 \section{Introduction} \label{sec:instrumentation/introduction}
 Flexible and efficient instrumentation is the foundation of this project. Here, possible approaches to this instrumentation are discussed, along with critical analyses.
 
-There are two main approaches to the instrumentation: automatic, and manual. 
+There are two main approaches to the instrumentation: automatic, and manual. We consider both of them, using Graal for an automatic, dynamic approach. We conclude by showing that, currently, it is not yet possible to use Graal for automatic instrumentation -- the reason for this is explained. As an alternative, manual instrumentation is used, and we explain the disadvantages and impact of this approach.
 
 \section{Automatic Approaches} \label{sec:instrumentation/automatic}
 	In this context, an automatic approach to instrumentation is a technique that can be applied directly at compile-time (or just before run-time in an agent-like fashion). Such approaches require no human intervention whatsoever, and have the additional advantage of having access to additional compile-time meta-data which is not possible to gain at run-time or using manual instrumentation.

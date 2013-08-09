@@ -143,7 +143,7 @@ public class HazardGenerator implements Generator {
 		@Override
 		public void run() {
 			for (int i = start; i < end; i++) {
-				HazardGenerator.this.a[i] = i;
+				HazardGenerator.this.a[i] = (int) (random() * i);
 			}
 		}
 	}
