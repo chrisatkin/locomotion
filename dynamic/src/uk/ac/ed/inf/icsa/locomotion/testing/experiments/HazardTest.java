@@ -51,5 +51,9 @@ public class HazardTest implements Experiment {
 	public String getIdentifier() {
 		return ident;
 	}
+	
+	public int getLength() {
+		return a.length;
+	}
 
 }

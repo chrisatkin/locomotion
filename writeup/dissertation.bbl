@@ -1,4 +1,4 @@
-\begin{thebibliography}{64}
+\begin{thebibliography}{55}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -29,65 +29,6 @@ Wikipedia.
 Wikipedia.
 \newblock {Bloom filter diagram}, 2013{\natexlab{b}}.
 \newblock URL \url{https://en.wikipedia.org/wiki/File:Bloom\_filter.svg}.
-
-\bibitem[Dubach et~al.(2012)Dubach, Cheng, Rabbah, Bacon, and Fink]{Dubach2012}
-Christophe Dubach, Perry Cheng, Rodric Rabbah, David~F. Bacon, and Stephen~J.
-  Fink.
-\newblock {Compiling a high-level language for GPUs via language support for
-  architectures and compilers}.
-\newblock \emph{ACM SIGPLAN Notices}, 47\penalty0 (6):\penalty0 1--1--12--12,
-  August 2012.
-\newblock ISSN 0362-1340.
-\newblock \doi{10.1145/2345156.2254066}.
-\newblock URL \url{http://dl.acm.org/citation.cfm?id=2345156.2254066}.
-
-\bibitem[Fraser(2004)]{Fraser04}
-Keir Fraser.
-\newblock {Technical Report}.
-\newblock Technical Report 579, University of Cambridge, Cambridge, 2004.
-\newblock URL \url{http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-579.pdf}.
-
-\bibitem[Herlihy et~al.(1993)Herlihy, Eliot, and Moss]{Herlihy1993}
-M~Herlihy, J~Eliot, and B~Moss.
-\newblock {Transactional Memory: Architectural Support For Lock-free Data
-  Structures}.
-\newblock In \emph{Proceedings of the 20th Annual International Symposium on
-  Computer Architecture}, volume~21, pages 289--300. IEEE Comput. Soc. Press,
-  1993.
-\newblock ISBN 0-8186-3810-9.
-\newblock \doi{10.1109/ISCA.1993.698569}.
-\newblock URL
-  \url{http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=698569}.
-
-\bibitem[Cole(2013)]{ppls}
-Murray Cole.
-\newblock {Parallel Programming Languages and Systems}, 2013.
-\newblock URL
-  \url{http://www.inf.ed.ac.uk/teaching/courses/ppls/pplsslides.pdf}.
-
-\bibitem[Liu et~al.(2011)Liu, Curtsinger, and Berger]{Liu2011}
-Tongping Liu, Charlie Curtsinger, and Emery~D. Berger.
-\newblock {Dthreads}.
-\newblock In \emph{Proceedings of the Twenty-Third ACM Symposium on Operating
-  Systems Principles - SOSP '11}, page 327, New York, New York, USA, October
-  2011. ACM Press.
-\newblock ISBN 9781450309776.
-\newblock \doi{10.1145/2043556.2043587}.
-\newblock URL \url{http://dl.acm.org/citation.cfm?id=2043556.2043587}.
-
-\bibitem[Garcia-Molina et~al.(2002)Garcia-Molina, Ullman, and
-  Widom]{DatabasesBook}
-Hector Garcia-Molina, Jeffrey~D. Ullman, and Jennifer Widom.
-\newblock \emph{{Database Systems: The Complete Book}}.
-\newblock Prentice Hall, first edition, 2002.
-\newblock ISBN 0-13-031995-3.
-
-\bibitem[Marshall(2005)]{Marshall2005}
-Casey Marshall.
-\newblock {Software Transactional Memory}.
-\newblock Technical report, University of California, Santa Cruz, Santa Cruz,
-  2005.
-\newblock URL \url{http://www.cs.uic.edu/~ajayk/STM.pdf}.
 
 \bibitem[Backus(1979)]{Backus1979}
 John Backus.
@@ -457,25 +398,6 @@ Jonathan Ellis.
 \newblock {EnumeratedDistribution<T> documentation}, 2013.
 \newblock URL
   \url{http://commons.apache.org/proper/commons-math/javadocs/api-3.2/org/apache/commons/math3/distribution/EnumeratedDistribution.html}.
-
-\bibitem[Azar and Erlebach(2006)]{Azar2006}
-Yossi Azar and Thomas Erlebach, editors.
-\newblock \emph{{Algorithms – ESA 2006}}, volume 4168 of \emph{Lecture Notes
-  in Computer Science}.
-\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2006.
-\newblock ISBN 978-3-540-38875-3.
-\newblock \doi{10.1007/11841036}.
-\newblock URL \url{http://www.springerlink.com/index/10.1007/11841036}.
-
-\bibitem[Mansour et~al.(1990)Mansour, Nisan, and Tiwari]{Mansour1990}
-Y.~Mansour, N.~Nisan, and P.~Tiwari.
-\newblock {The computational complexity of universal hashing}.
-\newblock In \emph{Proceedings of the twenty-second annual ACM symposium on
-  Theory of computing - STOC '90}, pages 235--243, New York, New York, USA,
-  April 1990. ACM Press.
-\newblock ISBN 0897913612.
-\newblock \doi{10.1145/100216.100246}.
-\newblock URL \url{http://dl.acm.org/citation.cfm?id=100216.100246}.
 
 \bibitem[{Oracle Corporation}(2004)]{JSR133}
 {Oracle Corporation}.

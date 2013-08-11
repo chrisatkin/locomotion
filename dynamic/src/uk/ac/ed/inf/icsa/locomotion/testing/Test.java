@@ -29,4 +29,8 @@ public class Test implements Runnable {
 	public String getName() {
 		return e.getIdentifier();
 	}
+	
+	public Experiment getExperiment() {
+		return e;
+	}
 }

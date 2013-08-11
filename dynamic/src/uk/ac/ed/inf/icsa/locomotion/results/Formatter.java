@@ -28,8 +28,9 @@ public final class Formatter {
 		List<Result> result = new LinkedList<>();
 		
 		for (File file: directory.listFiles())
-			try { result.add(Result.fromFile(file)); }
-			catch (IOException e) { e.printStackTrace(); }
+			if (file.isFile())
+				try { result.add(Result.fromFile(file)); }
+				catch (IOException e) { e.printStackTrace(); }
 		
 		return result;
 	}

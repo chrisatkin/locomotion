@@ -2,7 +2,6 @@ This is BibTeX, Version 0.99d (TeX Live 2013)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: dissertation.aux
 A level-1 auxiliary file: chapters/introduction.aux
-A level-1 auxiliary file: chapters/background.aux
 A level-1 auxiliary file: chapters/related-work.aux
 A level-1 auxiliary file: chapters/graal.aux
 A level-1 auxiliary file: chapters/instrumentation.aux
@@ -26,45 +25,45 @@ Warning--empty booktitle in ACDI
 Warning--can't use both author and editor fields in Allen2000
 Warning--can't use both author and editor fields in ArchitectureBook
 Warning--empty journal in JSR133
-You've used 64 entries,
+You've used 55 entries,
             2481 wiz_defined-function locations,
-            1057 strings with 17350 characters,
-and the built_in function-call counts, 23474 in all, are:
-= -- 2098
-> -- 1111
-< -- 57
-+ -- 456
-- -- 327
-* -- 1732
-:= -- 3814
-add.period$ -- 281
-call.type$ -- 64
-change.case$ -- 132
-chr.to.int$ -- 63
-cite$ -- 79
-duplicate$ -- 1189
-empty$ -- 2102
-format.name$ -- 414
-if$ -- 5013
+            983 strings with 15386 characters,
+and the built_in function-call counts, 19774 in all, are:
+= -- 1731
+> -- 957
+< -- 47
++ -- 394
+- -- 283
+* -- 1456
+:= -- 3229
+add.period$ -- 233
+call.type$ -- 55
+change.case$ -- 114
+chr.to.int$ -- 54
+cite$ -- 70
+duplicate$ -- 995
+empty$ -- 1785
+format.name$ -- 359
+if$ -- 4198
 int.to.chr$ -- 2
-int.to.str$ -- 65
-missing$ -- 46
-newline$ -- 412
-num.names$ -- 193
-pop$ -- 533
+int.to.str$ -- 56
+missing$ -- 39
+newline$ -- 349
+num.names$ -- 165
+pop$ -- 468
 preamble$ -- 1
-purify$ -- 64
+purify$ -- 55
 quote$ -- 0
-skip$ -- 748
+skip$ -- 630
 stack$ -- 0
-substring$ -- 640
-swap$ -- 210
-text.length$ -- 14
+substring$ -- 513
+swap$ -- 161
+text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 424
+type$ -- 367
 warning$ -- 14
-while$ -- 177
+while$ -- 148
 width$ -- 0
-write$ -- 999
+write$ -- 838
 (There were 14 warnings)

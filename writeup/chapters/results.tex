@@ -1,65 +1,280 @@
 \chapter{Results} \label{chp:results}
 \section{Introduction} \label{sec:results/introduction}
-In this chapter, the results of using Locomotion on the benchmarks presented in section \ref{sec:methodology/params} are presented, along with a critical analysis of the results.
+In this chapter, we present the findings of the experiments described in chapter \ref{chp:methodology}. Along with the results, a critical analysis and explanation is also provided.
 
-\section{Basic Testing} \label{sec:results/basic}
-The first testing that was conduct was to determine the correct operation of the instrumentation and runtime library. Several tests were constructed in order to test at the extremes (for edge cases) of dependency analysis - every access is dependent, and no access is dependent.
+The results are split into two categories. The first section, where dependency rates of 0\%, 20\%, 40\%, 60\%, 80\% and 100\% are presented, allows us to draw conclusions regarding the effectiveness of hash sets versus bloom filters are various configurations of dependencies and bit vector length.
 
-	\subsection{No Dependencies} \label{sec:result/basic/no-dep}
-	We first consider the case of where no dependencies are detected. We observed the following results for the exact and inexact storage mechanisms as described in section \ref{sec:runtime/storage}. This scenario is shown in order to prove that the instrumentation can detect lack of dependencies, and to highlight the error rate of bloom filters.
-	
-	
-	
-	\subsection{All Dependent} \label{sec:result/basic/all-dep}
-	Next, the instrumentation is tested when all of the accesses are dependent. In this case, the dependencies are $\delta^{0}$ dependencies, but this does not effect the results.
+The fist section informs the second section, where we draw conclusions about the use of bloom filters as a total replacement for hash sets in this context; bloom filters must be configured and so we draw several rules about what values the configuration must have from our experiments. In this section, we show how the memory usage changes as a function of the false positive probability.
 
-	We can see here that for both trace formats, the correct number of dependencies are detected. For the bloom filter, this is due to the `no false negative' property - a false negative, in this case, is wrongly reporting that an access has not been seen before.
+\section{All Dependent} \label{sec:result/all}
+	The first analysis that is performed is when all operations are dependent (\ie, a 100\% dependency rate). The extreme of all dependent and none dependent (presented in section \ref{sec:results/none}) allow the other tests to be shown with context. The dependency types were split evenly (\ie, each type had a weighting of 0.3).
+
+	\subsection{Dependency Detection} \label{sec:results/all/deps}
+	The first test that was performed was an analysis of the accuracy of dependency detection, which is presented in figure \ref{chart:all-dep}.
 	
 	\begin{figure}
 		\centering
 		\begin{gnuplot}[terminal=pdf]
-		set multiplot layout 1,2
-					
-		unset multiplot
+			set multiplot layout 1,2
+				load '../dynamic/formatted-results/vector-survey-all/hash-deps.gnuplot'
+				
+				load '../dynamic/formatted-results/vector-survey-all/bloomfilter-deps.gnuplot'
+			unset multiplot
 		\end{gnuplot}
-		\caption{Overview of the memory usage when all iterations are dependent}
-		\label{chart:all-dependent-memory-comparison}
+		\caption{Number of dependencies detected versus number of accesses when all operations are dependent}
+		\label{chart:all-dep}
 	\end{figure}
 	
-	From figure \ref{chart:all-dependent-memory-comparison}, we can begin to see the results of using a bloom filter. When the memory usage is compared, we notice that the bloom filter is significantly lower.
+	From figure \ref{chart:all-dep}, we can clearly see the disadvantages of using incorrectly configured bloom filters. To illustrate, consider the case of 100,000 expected insertions. When the number of accesses is also 100,000, the bloom filter correctly determines the number of dependencies. However, in this extreme case, the number of accesses (\ie, number of items in the filter) grows, eventually culminating in a roughly factor of three detection rate over the expected value.
 	
-	Additionally, we can see from figures  and \ref{chart:none-dependent-memory-comparison} that the memory usage is virtually identical for both experiments, even though the number of dependencies is at a polar opposite. This is consistent with the space complexity analysis for bloom filters, presented in section \ref{sec:runtime/storage/probabilistic/bloom}. The memory usage does not vary with the number of accesses - again, this is to be expected as the bit vector is of a fixed length.
+	As expected, we can see that as the expected number of insertions increases, the accuracy of the bloom filter also increases proportionately. 
 	
-	From these memory usage results we can also begin to understand why memory usage measurement is so difficult in the JVM -- there are several anomalies in both datasets. This is likely due to the unpredictable/non-deterministic nature of the garbage collection algorithm, as well as the OS memory allocation mechanism. However, when we only take into account the non-anomalous results and see the overall trends, we see a clear pattern already -- bloom filters offer a significant memory usage improvement over sets.
+	We can also see that the bloom filter hashing mechanism is indeed evenly distributed. This is evidence through when the number of expected insertions equals the number of actual insertions, the bloom filter correctly determines that there are no dependencies.
 	
-	Next, we consider the execution time overhead of using exact versus inexact approaches. Details of the methodology used to measure the time difference can be found in section \ref{sec:methodology/measurements/time}.
+	From the chart, we can conclude that at the extreme case, the number of expected insertions must be a factor of 10 higher than the number of actual insertions in order for the bloom filter to accurate.
 	
-	We can see from figure \ref{chart:all-dependent-time-comparison} that bloom filters do, in some cases, have a higher execution time than hash sets. This is likely as a result of the aforementioned (section \ref{sec:runtime/implementation/trace/bloom}) $T_{lookup}^{bloom}=O(k)$ lookup time.
+	As expected, the hash set reports all dependencies correctly.
+		
+	\subsection{Memory Usage} \label{sec:results/all/mem}
+	The next case that we consider is the memory usage for both storage mechanisms.
 	
-	However, for a thorough analysis we must consider the implementation of the bloom filter used. The implementation used is from Google Guava, which uses an innovative technique presented by \citet{Azar2006} who show that instead of $T_{lookup}^{blook}=O(k)$, it is possible to instead use a 2-family of universal hash functions instead, without an asymptotic loss in false positive probability. The time complexity of universal hash functions for hashing $n$-bit strings to $m$-bit strings has been shown to be $T_{uh}=\Omega(mn)$ \citep{Mansour1990}\footnote{Note that it is possible to achieve a $T_p=\Omega(log n)$ parallel implementation of universal hashing using CREW PRAM architecture. However, this is not likely to have a significant performance improvement.}.
+	\begin{figure}
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+			set multiplot layout 1,2
+				load '../dynamic/formatted-results/vector-survey-all/hash-memory.gnuplot'
+				
+				load '../dynamic/formatted-results/vector-survey-all/bloomfilter-memory.gnuplot'
+		\end{gnuplot}
+		\caption{Memory usage versus number of accesses when all operations are dependent}
+		\label{chart:all-mem}
+	\end{figure}
 	
-	Although this is a performance improvement (from $T_{lookup}^{bloom}=O(k)$ to $T_{lookup}^{bloom}=\Omega(mn)$), there are still constants to be considered. An optimal hash map implementation (\ie, one with an adequate load factor and capacity) requires a single hash, and the hash is in-fact $T=O(1)$, whereas the bloom filter requires two $T=\Omega(mn)$ hashes. This is the likely cause of the slightly slower performance of the bloom-filter implementation. 
+	Chart \ref{chart:all-mem} shows the memory usage (in kilobytes) for both hash sets and bloom filters. As expected, hash sets show a linear increase in memory usage as a function of number of accesses, whilst the bloom filter shows increasing memory usage only as a function of expected insertions (\ie, it is independent from the number of actual accesses).
 	
-	The result for bloom filter with a bit vector length of 100 using 1000 accesses is considered to be an anomaly. Although the other results for a length 100 bit vector do show increases on time, there appears to be no correlation between number of accesses and execution time when the bit vector is 100 in length. Regardless, as we shall see in later sections, a length 100 bit vector results in a large dependency detection rate ($\epsilon_{\delta}$), and are therefore unsuitable for dependency analysis algorithms.
+	This behaviour is expected, as the bit vector length is known as a well-defined function of the number of expected insertions and the false positive probability rate, as seen in equation \ref{eqn:optimal-bits}.
 	
-	The cause of the unexpected (\ie, non-linear) execution time for the hash set is likely an sub-optimal load factor. Later, we will investigate the effects of modifying this, as well as the expected number of insertions.
+	It should be noted that the amount of memory by the bloom filter, even when the accuracy is 100\%, is much lower than that used by the hash set.
 	
-	In these experiments, we used a fixed $ffp$ of 0.03. In later experiments, this value will be modified in order to determine the optimal configuration for the bloom filter.
+	For example, with 100,000 actual accesses, the hash set requires roughly 12MB of memory, whilst a bloom filter with 1,000,000 expected insertions - that required for an accuracy of 100\%, is roughly 1.8MB - a factor of 6.7 times lower memory usage.
+	
+	When there are 1,000,000 insertions, the memory usage for the hash set increases to roughly 115MB, whilst the bloom filter remains at just 1.8MB, for a factor of 64 times lower memory usage, whilst still remaining accurate.
+	
+	Lastly, from chart \ref{chart:all-mem} we can see that for every 100,000 expected accesses, roughly 182KB of memory is required. This relationship is a linear one, as 1,000,000 access requires 1.82MB of memory.
 
-\section{Parametric} \label{sec:results/parametric}
-The parametric tests are described thoroughly in chapter \ref{chp:parametric}.
-
-The first experiments that we ran with the parametric benchmark were constant numbers of dependencies. The number of dependencies was constant at 900.
-
-As we can see in figure \ref{chart:fractional-constant-900-hashset}, the number of dependencies is a constant 900 for all accesses lengths. Naturally, this is expected.
-
-\section{N-Body} \label{sec:results/nbody}
-
-\section{Overhead} \label{sec:results/overhead}
-	\subsection{Execution Time} \label{sec:results/overhead/time}
+	\subsection{Execution Time} \label{sec:results/all/time}
+	The last metric in this section is the execution time. This is an important metric, because most instrumentation has an overhead of between 100 and 1000 times slowdown.
 	
-	\subsection{Memory Usage} \label{sec:results/overhead/memory}
+	In this project, there are two source of execution time overhead - the overhead as a result of the instrumentation, and the overhead as a result of the storage format used.
+	
+	\begin{figure}
+			\centering
+			\begin{gnuplot}[terminal=pdf]
+			set multiplot layout 1,2
+				load '../dynamic/formatted-results/vector-survey-all/time-noinstr.gnuplot'
+			
+				load '../dynamic/formatted-results/vector-survey-all/time.gnuplot'
+			unset multiplot
+			\end{gnuplot}
+			\caption{Execution time versus number of accesses without instrumentation}
+			\label{chart:all-time}
+		\end{figure}
+	
+	In figure \ref{chart:all-time}, we can see the execution time versus the number of accesses with both hash set and bloom filter.
+	
+	There are several important observations that can be made from this chart. Firstly, the execution time increases when the number of dependencies detected increases, this is a linear relationship. This shows that the mechanism used to report dependencies to users of the framework -- which is throwing an exception -- is quite high. This is especially true with false dependencies which, whilst not having an overhead above that for true dependencies, are by definition not required. This observation is evidenced by the execution time for 100,000 and 200,000 expected insertions, which showed the highest number of false positives. The execution time overhead as a result of false positives decreases linearly as the number of false positives decreases.
+	
+	Secondly, the execution time overhead for hash sets is nearly always slightly lower (although both difference factors relative to no instrumentation is quite small) than the time required for bloom filters - with the exception of 100,000 accesses. From this initial data point we could draw a preliminary hypothesis that the overhead of bloom filters is lowest when the expected number of insertions is 100x the number of actual insertions. This hypothesis will be experimentally tested and validated as the analysis continues.
+	
+	We also consider the case of when no instrumentation is used in order to compare the overhead of the instrumentation.
+	
+	When we compare both charts, we can see the overhead of the instrumentation in the extreme case.
+	
+	Without instrumentation, execution time increases linearly as a function of the number of accesses, which is to be expected.
+	
+	Furthermore, we observe the overhead of the instrumentation framework. Without instrumentation, execution time ranged from roughly 0.02 seconds in the case of 100,000 accesses to 0.19 seconds in the case of 1,000,000 accesses.
+	
+	When instrumentation is added, the time does increase. If a hash set is used, for 100,000 accesses the time increases to 0.4 seconds - a factor of 20 times increase. With 1,000,000 the time increases to 2.4 seconds, resulting factor of just 12.5 increase.
+	
+	From these preliminary results, we can conclude that whilst the instrumentation does add an execution time overhead, compared to other instrumentation implementations this overhead is actually rather small.
+	
+\section{No Dependencies} \label{sec:results/none}
+	In this section, the opposite extreme case of section \label{sec:results/all} is considered. Instead of all accesses having dependencies, we consider the case where no accesses have dependencies. This will allow us to clearly show the disadvantages of incorrectly configured bloom filters.
 
-\section{Analysis} \label{sec:results/analysis}
+	\subsection{Dependency Detection} \label{sec:results/none/deps}
+	\begin{figure}
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+		load '../dynamic/formatted-results/vector-survey-none/bloomfilter-deps.gnuplot'
+		\end{gnuplot}
+		\caption{Number of dependencies detected versus number of accesses when no operations are dependent}
+		\label{chart:none-dep}
+	\end{figure}
+	
+	Figure \ref{chart:none-dep} shows the relationship between number of detected dependencies and number of accesses.
+	
+	As expected, in most cases the bloom filter has been incorrectly configured and detects large numbers of false positives. In the most extreme case (100,000 expected with 1,000,000 actual insertions), the bloom filter detects over a million false positives!
+	
+	As the number of expected insertions increases, the number of false positives decreases logarithmically. Eventually, there are no false positives, when the number of expected insertions is 60 times larger than the number of expected insertions. Although somewhat smaller, this does support the hypothesis that the optimal number of expected insertions is 100x greater than the actual.
+	
+	\subsection{Memory Usage} \label{sec:results/none/mem}
+	As expected, the memory usage (shown in figure \ref{chart:none-dep}) is both a linear relationship for hash set, and constant for bloom filters.
+	
+	The results are identical to chart \ref{chart:none-dep}, and so are not shown.
+	
+	\subsection{Execution Time} \label{sec:results/none/time}
+	The final metric in this section is the execution time.
+	
+	\begin{figure}
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+			load '../dynamic/formatted-results/vector-survey-none/time.gnuplot'
+		\end{gnuplot}
+		\caption{Execution time versus number of accesses when no operations are dependent}
+		\label{chart:none-time}
+	\end{figure}
+	
+	As figures \ref{chart:all-time} and \ref{chart:none-time} show, the execution time shows the same general trends for both extreme cases. However, the absolute times are lower - this is likely as a result of the (previously mentioned) overhead of reporting dependencies. The overhead is lower because fewer dependencies are detected.
+	
+	Note that the execution times for no instrumentation were the same and hence not shown.
+	
+\section{20\% Dependent} \label{sec:results/20}
+	In these experiments, the just 20\% of the dependencies were set to be dependent. As previously, all dependency types were set to be equally distributed (\ie, they had equal weights); this cannot affect the results.
 
-\section{Summary} \label{sec:results/summary}
+	\subsection{Dependency Detection} \label{sec:results/20/deps}
+	\begin{figure}
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+			load '../dynamic/formatted-results/vector-survey-0.2/bloomfilter-deps.gnuplot'
+		\end{gnuplot}
+		\caption{Number of dependencies detected versus number of accesses when 20\% of operations have dependencies}
+		\label{chart:20-dep}
+	\end{figure}
+	
+	Once again, the hash set correctly determined the correct number of dependencies and so is not shown here.
+	
+	Consistent with previous experiments, the number of dependencies was most accurate with expected insertions set to 1,000,000. Once again, the precision decreases logarithmically as the number of expected insertions decreases. In the worst-case scenario, the number of dependencies was a factor of 12.5 greater than the correct number (expected insertions was 100,000 with 1,000,000 actual).
+	
+	\subsection{Memory Usage} \label{sec:results/20/mem}
+	The memory usage for both storage types were consistent with all dependent (section \ref{sec:results/all/deps}) and no dependencies (section \ref{sec:results/none/deps}) and so are not shown here.
+	
+	\subsection{Execution Time} \label{sec:results/20/time}
+	As with previous configurations, the execution times for no instrumentation were the same and hence not shown.
+	
+	\begin{figure}
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+			load '../dynamic/formatted-results/vector-survey-0.2/time.gnuplot'
+		\end{gnuplot}
+		\caption{Execution time versus number of accesses when 20\% of operations are dependent}
+		\label{chart:20-time}
+	\end{figure}
+	
+	As with previous experiments (sections \ref{sec:results/all/time} and \ref{sec:results/none/time}), the execution times for the bloom filter were slightly above that for the hash set with the exception of 100,000 accesses, reinforcing out hypothesis of expected insertions being a factor 100 above actual number of accesses being optimal.
+
+\section{40\% Dependent} \label{sec:results/40}
+	\subsection{Dependency Detection} \label{sec:results/40/deps}
+	\begin{figure}
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+		load  '../dynamic/formatted-results/vector-survey-0.4/bloomfilter-deps.gnuplot'
+		\end{gnuplot}
+		\caption{Number of dependencies detected versus number of accesses when 40\% of operations have dependencies}
+		\label{chart:40-dep}
+	\end{figure}
+	
+	Once again, the hash set correctly determined the correct number of dependencies and so is not shown here.
+		
+	Consistent with previous experiments, the number of dependencies was most accurate with expected insertions set to 1,000,000. Once again, the precision decreases logarithmically as the number of expected insertions decreases. In the worst-case scenario, the number of dependencies was a factor of 12.5 greater than the correct number (expected insertions was 100,000 with 1,000,000 actual).
+	
+	\subsection{Memory Usage} \label{sec:results/40/mem}
+	The memory usage for both storage types were consistent with all dependent (section \ref{sec:results/all/deps}) and no dependencies (section \ref{sec:results/none/deps}) and so are not shown here.
+	% fig removed
+	
+	\subsection{Execution Time} \label{sec:results/40/time}
+	\begin{figure}
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+			set multiplot layout 1,2
+				load '../dynamic/formatted-results/vector-survey-0.4/hash-time.gnuplot'
+				
+				load '../dynamic/formatted-results/vector-survey-0.4/bloomfilter-time.gnuplot'
+		\end{gnuplot}
+		\caption{Execution time versus number of accesses when 40\% of operations are dependent}
+		\label{chart:40-time}
+	\end{figure}
+	
+	Execution time once again showed the same trends as the previous experiments.
+	
+\section{60\% Dependent} \label{sec:results/60}
+	\subsection{Dependency Detection} \label{sec:results/60/deps}
+	\begin{figure}
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+			load '../dynamic/formatted-results/vector-survey-0.6/bloomfilter-deps.gnuplot'
+		\end{gnuplot}
+		\caption{Number of dependencies detected versus number of accesses when 60\% of operations have dependencies}
+		\label{chart:60-dep}
+	\end{figure}
+	
+	Once again, the hash set correctly determined the correct number of dependencies and so is not shown here.
+		
+	Consistent with previous experiments, the number of dependencies was most accurate with expected insertions set to 1,000,000. Once again, the precision decreases logarithmically as the number of expected insertions decreases.
+	
+	\subsection{Memory Usage} \label{sec:results/60/mem}
+	The memory usage for both storage types were consistent with all dependent (section \ref{sec:results/all/deps}) and no dependencies (section \ref{sec:results/none/deps}) and so are not shown here.
+	% fig removed
+	
+	\subsection{Execution Time} \label{sec:results/60/time}
+	\begin{figure}
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+			set multiplot layout 1,2
+				load '../dynamic/formatted-results/vector-survey-0.6/hash-time.gnuplot'
+				
+				load '../dynamic/formatted-results/vector-survey-0.6/bloomfilter-time.gnuplot'
+		\end{gnuplot}
+		\caption{Execution time versus number of accesses when 60\% of operations are dependent}
+		\label{chart:60-time}
+	\end{figure}
+	
+	Execution time once again showed the same trends as the previous experiments.
+	
+\section{80\% Dependent} \label{sec:results/80}
+\subsection{Dependency Detection} \label{sec:results/80/deps}
+	\begin{figure}
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+			load '../dynamic/formatted-results/vector-survey-0.8/bloomfilter-deps.gnuplot'
+		\end{gnuplot}
+		\caption{Number of dependencies detected versus number of accesses when 80\% of operations have dependencies}
+		\label{chart:80-dep}
+	\end{figure}
+	
+	Once again, the hash set correctly determined the correct number of dependencies and so is not shown here.
+		
+	Consistent with previous experiments, the number of dependencies was most accurate with expected insertions set to 1,000,000. Once again, the precision decreases logarithmically as the number of expected insertions decreases.
+	
+	\subsection{Memory Usage} \label{sec:results/80/mem}
+	The memory usage for both storage types were consistent with all dependent (section \ref{sec:results/all/deps}) and no dependencies (section \ref{sec:results/none/deps}) and so are not shown here.
+	% fig removed
+	
+	\subsection{Execution Time} \label{sec:results/80/time}
+	\begin{figure}
+		\centering
+		\begin{gnuplot}[terminal=pdf]
+			set multiplot layout 1,2
+				load '../dynamic/formatted-results/vector-survey-0.8/hash-time.gnuplot'
+				
+				load '../dynamic/formatted-results/vector-survey-0.8/bloomfilter-time.gnuplot'
+		\end{gnuplot}
+		\caption{Execution time versus number of accesses when 80\% of operations are dependent}
+		\label{chart:80-time}
+	\end{figure}
+	
+	Execution time once again showed the same trends as the previous experiments.
+
+\section{Optimal Configuration for Bloom Filters} \label{sec:results/opt-conf}
+From the previous results, we can generalise rules for bloom filters and generate 'rules of thumb' for general usage of bloom filters.
+
+We hypothesised that the optimal configuration for bloom filter may be a multiple of the expected number of accesses. In this section, we explore this claim by comparing various detection accuracies, memory usages and execution times for various multiples of 

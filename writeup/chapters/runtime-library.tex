@@ -82,9 +82,38 @@ The main problem that the storage format must be able to determine is this. Give
 	
 	It is possible to calculate the theoretical optimal length of the bit vector $m$ from the number of expected insertions $n$ and the \textit{false positive rate} $p$. This is defined as
 
-	\[
-		m = -n \times \log(p) \div \log(2) \times \log(2)
-	\]
+	\begin{equation} \label{eqn:optimal-bits}
+		m = -n \times \log(p) \div \left( \log(2) \times \log(2) \right)
+	\end{equation}
+	
+	It is possible to use equation \ref{eqn:optimal-bits} to compute the memory usage for given $m$ and $p$, this is shown in figure \ref{fig:opt-bits}.
+	
+	\begin{figure}
+		\begin{gnuplot}[terminal=pdf]
+			set ylabel 'bit vector length'
+			set xlabel 'expected insertions'
+			set xr [1:10000000]
+			set grid
+			
+			# Line style for grid
+			set style line 81 lt 0  # dashed
+			set style line 81 lt rgb "#808080"  # grey
+			
+			set xtics nomirror
+			set ytics nomirror
+			
+			set key top left
+			
+			f(n, p) = -n * log(p) / (log(2) / log(2))
+			
+			plot f(x, 0.3) title 'p = 0.3' lw 3,\
+				 f(x, 0.03) title 'p = 0.03' lw 3,\
+				 f(x, 0.003) title 'p = 0.003' lw 3,\
+				 f(x, 0.0003) title 'p = 0.0003' lw 3
+		\end{gnuplot}
+		\caption{Plot showing bit vector length versus expected insertations for various false probability rates}
+		\label{fig:opt-bits}
+	\end{figure}
 	
 	The main advantage of bloom filters is that the space complexity is constant $S=O(c)$, where $c$ is the size of the bit vector. This will allow memory overhead to be substantially lower, whilst still retaining $T=O(1)$ lookup time complexity. As mentioned above, this is a significant (factor $n$) improvement over the exact approach.
 

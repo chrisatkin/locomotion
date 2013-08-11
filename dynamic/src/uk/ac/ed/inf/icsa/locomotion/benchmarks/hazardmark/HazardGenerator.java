@@ -312,9 +312,9 @@ public class HazardGenerator implements Generator {
 		
 		result.append("length=").append(length);
 		result.append(";dependent=").append(dependencies);
-		result.append(";writewrite=").append(prob_write_write);
+		/*result.append(";writewrite=").append(prob_write_write);
 		result.append(";writeread=").append(prob_write_read);
-		result.append(";readwrite=").append(prob_read_write);
+		result.append(";readwrite=").append(prob_read_write);*/
 		
 		return result.toString();
 	}

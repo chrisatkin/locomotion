@@ -114,9 +114,46 @@ final class Experiments {
 		if (instr_mode == 3)
 			run_using = new boolean[] {true, false};
 		
+		run_using = new boolean[] {true};
+		
 		for (boolean instrumentationEnabled: run_using) {
 			runExactExperiments(instrumentationEnabled);
-			runInexactExperiments(instrumentationEnabled);
+			//runInexactExperiments(instrumentationEnabled);
+			runInexactMultiples(instrumentationEnabled);
+		}
+	}
+	
+	public void runInexactMultiples(boolean withInstrumentation) throws FileNotFoundException, InterruptedException, ExecutionException, TimeoutException {
+		Class<? extends Trace> traceFormat = BloomFilterTrace.class;
+		
+		for (Test experiment: experiments) {
+			HazardTest ht = (HazardTest) experiment.getExperiment();
+			int length = ht.getLength();
+			
+			for (int i = vector_start; i <= vector_end; i+= vector_step) {
+				System.out.println("factor=" + i + " vector=" + (length * i));
+				
+				BloomFilterConfiguration bfc = new BloomFilterConfiguration(length * i, new BloomFunnel());
+				Instrumentation.setConfiguration(new Configuration(withInstrumentation, traceFormat, bfc, false, output));
+				
+				System.out.println("testing " + experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
+				
+				output.open(experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
+
+				long startTime = System.nanoTime();
+				
+				experiment.run();
+				
+				long endTime = System.nanoTime();
+				
+				output.put("finalmemory=" + Instrumentation.memoryUsage());
+				output.put("dependencies=" + Instrumentation.dependencies().size() * 2);
+				output.put("time=" + (endTime - startTime));
+				output.close();
+				
+				Instrumentation.clean();
+				Runtime.getRuntime().gc();
+			}
 		}
 	}
 	
