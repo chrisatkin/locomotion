@@ -17,6 +17,10 @@ public class Access/* implements Comparable<Access>*/ {
 		return new StringBuilder().append("[kind=").append(kind.toString()).append(" arrayId=").append(arrayId).append(" index=").append(index)/*.append(" number=").append(number)*/.append("]").toString();
 	}
 	
+	public String hashString() {
+		return new StringBuilder().append(arrayId).append(index).toString();
+	}
+	
 	@Override
 	public int hashCode() {
 		return arrayId + index;

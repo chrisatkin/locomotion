@@ -14,7 +14,10 @@ abstract class SetTrace extends Trace {
 
 	@Override
 	public void add(Access entry) {
+		long startTime = System.nanoTime();
 		entries.add(entry);
+		long endTime = System.nanoTime();
+		System.out.println((endTime - startTime));
 	}
 
 	@Override

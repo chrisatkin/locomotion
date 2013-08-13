@@ -224,8 +224,7 @@ public final class Instrumentation {
 			}
 		}
 		
-		currentIterationAccesses = null;
-		currentIterationAccesses = new HashSet<>();
+		currentIterationAccesses.clear();
 	}
 	
 	private void _flush() {

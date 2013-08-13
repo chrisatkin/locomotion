@@ -4,13 +4,13 @@ Graal is a new approach to Java compiler engineering. Here, Graal is introduced 
 \section{Background} \label{sec:graal/background}
 The basis of the project is the Graal compiler infrastructure \citep{Graal}. Graal is an experimental project developed mainly at Oracle Labs (although there are some additional collaborators at AMD) under the OpenJDK programme.
 	
-The aim of the Graal project is to develop a Java compiler written in Java itself - `\textit{a quest for the JVM to leverage its own J}'. Graal is, in essence, a Java compiler written in Java. However, this doesn't fully explain the Graal project.
+Graal is, in essence, a Java compiler written in Java. However, this doesn't fully explain the Graal project  - `\textit{a quest for the JVM to leverage its own J}'.
 	
-Virtually all languages used commonly in industry have had their compilers go through a so-called `bootstrap' process. This bootstrapping process involves writing the compiler for a language in the language it is intended to compile. In many cases the first version of a compiler is written in a different language - commonly used languages include the standard C and C++ due to their performance. There are many examples of this in the real-world - GCC is written in a combination of C and C++\footnote{Although the project is currently converting all C code to C++}, LLVM/Clang is written in C++ etc. There are several advantages to this approach - in essence, this process is a kind of informal proof that the language has matured to a level that is capable of supporting a program as complicated as a compiler. In effect, bootstrapping a compiler displays shows that a language (and associated platform) has a certain level of `maturity'; that it is now ready for large software projects (or at least not totally unprepared for them).
+Virtually all languages used commonly in industry have had their compilers go through a so-called `bootstrap' process. This bootstrapping process involves writing the compiler for a language in the language it is intended to compile. In many cases the first version of a compiler is written in a different language - commonly used languages include the standard C and C++ due to their performance. There are many examples of this in the real-world - GCC is written in a combination of C and C++\footnote{Although the project is currently converting all C code to C++}, LLVM/Clang is written in C++ etc. There are several advantages to this approach - in essence, this process is a kind of informal proof that the language has matured to a level that is capable of supporting a program as complicated as a compiler. In effect, bootstrapping a compiler shows that a language (and associated platform) has a certain level of `maturity'; that it is now ready for large software projects (or at least, not totally unprepared for them).
 
 Graal is an attempt to bring this approach to the Java Virtual Machine. Note that there are other projects with attempts to bootstrap parts of the Java platform - for example, the Maxine VM is a Java virtual machine written in Java. However, because Java is unlike most other platforms (in that it not only requires a compiler, but also a virtual machine, class library and such), the compiler has, until the advent of the Graal project, remained written in C++.
 
-Another feature of Graal is that it allows users (of the compiler) to interface directly with the compiler. Common compilers (GCC, ICC etc) are seen as `black-boxes', where a user invokes the compiler, waits for a while, and then a resulting object file or binary is produced. Graal is a part of a new generation of compilers that expose APIs to users, which means users can change parts of the compilation process to suit their needs, ease debugging and other such advantages. With modern languages and platforms being required to target multiple different machine classes (module, desktop, laptop and server/cloud), this is a crucial advantage over more conventional languages and platforms. There are only a few examples of this new generation of compiler, but another - somewhat more mainstream example - is Microsoft's Rosyln project \citep{RoslynProject} for their .NET platform. The new Windows Runtime include deep metadata integration into the platform (which is the basis for, amongst other things, the Common Object System in .NET languages\footnote{Which allows inter-language types to be considered equivalent - a C int is semantically equivalent to a C++ int, a C\# int, a JavaScript int and so on}).
+Another feature of Graal is that it allows users (of the compiler) to interface directly with the compiler. Common compilers (GCC, ICC etc) are seen as `black-boxes', where a user invokes the compiler, waits for a while, and then a resulting object file or binary is produced. Graal is a part of a new generation of compilers that expose APIs to users, which means users can change parts of the compilation process to suit their needs, ease debugging and other such advantages. With modern languages and platforms being required to target multiple different machine classes (module, desktop, laptop and server/cloud), this is a crucial advantage over more conventional languages and platforms. There are only a few examples of this new generation of compiler, but another - somewhat more mainstream example - is Microsoft's Rosyln project \citep{RoslynProject} for their .NET platform. The new Windows Runtime includes deep metadata integration into the platform (which is the basis for, amongst other things, the Common Object System in .NET languages\footnote{Which allows inter-language types to be considered equivalent - a C int is semantically equivalent to a C++ int, a C\# int, a JavaScript int and so on}); this metadata is available to users of the compiler through Roslyn.
 
 \begin{figure}
 	\centering
@@ -27,7 +27,7 @@ Like many compilers, Graal uses several different internal representations at di
 
 As is common in many compilers, Graal uses graphs for intermediate representations. These graphs combine several different kinds of graph together into a single form, such as control flow and memory dependency (data flow).
 
-To illustrate this, consider the figure \ref{fig:vector-inline}, created using the Ideal Graph Visualiser (\textit{IGV}).
+To illustrate this, consider figure \ref{fig:vector-inline}, created using the Ideal Graph Visualiser (\textit{IGV}).
 
 \begin{figure}
 	\centering
@@ -51,7 +51,7 @@ In some cases, \texttt{<additional>} contains the value associated with the code
 
 \autoref{fig:vector-inline} is a representation of a vector addition using two \texttt{int} array literals as arguments. The original source code contains a loop, which itself contains two array load operations, an addition and an array store operation. From it, we can see clearly the different kinds of node relationships in Graal's IR. The \texttt{StartNode} is the start of the method, which is followed by an allocation (notice that the loop was been optimized away by Graal), the result of which is then returned from the method.
 
-The allocate has two actual memory dependencies:
+The allocate has two dependencies:
 
 \begin{itemize}
 	\item A \texttt{VirtualArray} node is used to create an array. We can see that the type of this array is \texttt{int[]} with length five.
@@ -74,7 +74,7 @@ Mid-level phases remove the SSA form, and includes target-specific lowering. The
 
 It is important to note that lowering is an iterative process, because a given lowering phase may result in further `lowerable' nodes being added to the graph.
 
-There are two main classes of lowering in Graal, and they are split into nodes which implement \texttt{Lowerable} and those which implement \texttt{LIRLowerable}. \texttt{Lowerable} nodes are transformed between the high-level and mid-level, and \texttt{LIRLowerable} nodes are transformed between the mid-level and low-level -- figure \ref{fig:lowering-stages} shows this diagrammatically.
+There are two main classes of nodes in Graal, and they are split into nodes which implement \texttt{Lowerable} and those which implement \texttt{LIRLowerable}. \texttt{Lowerable} nodes are transformed between the high-level and mid-level, and \texttt{LIRLowerable} nodes are transformed between the mid-level and low-level -- figure \ref{fig:lowering-stages} shows this diagrammatically.
 
 \begin{figure}
 	\centering
@@ -100,13 +100,13 @@ Each class of snippets has an associated template, which provides the mechanism 
 Snippets are highly related to lowering, as they are used to lower nodes between the different IRs. 
 	
 \section{Replacements} \label{sec:graal/replacements}
-In this feature, which is perhaps unique amongst compiler implementations, Graal allows the user to dynamically change implementations of methods at compile-time -- in other words, Graal allows compile time method polymorphism. In a sense, replacements are similar to snippets (section \ref{sec:graal/snippets}), in that they both represent graph replacements. They differ in that snippets are a low-level abstraction, used for replacing bytecodes with other bytecodes, whereas replacements are for replacing method implementations.
+In this feature, which is perhaps unique amongst compiler implementations, Graal allows the user to dynamically change implementations of methods at compile-time -- in other words, Graal allows compile-time method polymorphism. In a sense, replacements are similar to snippets (section \ref{sec:graal/snippets}), in that they both represent graph replacements. They differ in that snippets are a low-level abstraction, used for replacing bytecodes with other bytecodes, whereas replacements are for replacing method implementations.
 
 The idea is simple: to replace the body of a method dynamically, at compile-time. This requires performing a compilation on both the replacer and replacee. The name and signatures of the methods must be identical.
 
 This mechanism is exposed via both the \texttt{Replacements} interface, and the\\ \texttt{{@}MethodSubstitution} annotation. This annotation includes various metadata, such as whether the replaced method should be substituted in all cases, and the identifier and signature of the method that will be replaced. The class which this is defined is then passed to an implementation of the \texttt{Replacements} interface, which performs a runtime-appropriate transformation.
 
-In all cases, however, the basic idea of the transformation is the same. Both methods are compiled, and the surrounding pre-call and post-return of the replacee\footnote{Of course, at this stage this compilation should have \emph{already} been performed}. The nodes for the method starts and returns (or end nodes) are replaced until the transformation is complete. Figure \ref{fig:method-subs} displays this mechanism.
+In all cases, however, the basic idea of the transformation is the same. Both methods are compiled, as well as the surrounding pre-call and post-return of the replacee\footnote{Of course, at this stage this compilation should have \emph{already} been performed}. The nodes for the method starts and returns (or end nodes) are replaced until the transformation is complete. Figure \ref{fig:method-subs} displays this mechanism.
 
 \begin{figure}
 	\centering
@@ -149,7 +149,7 @@ Some of the optimisations that Graal applies are described here.
 		
 		If the above example were used, it could optimise for the \texttt{doSomethingNormal()} calls, and use a deoptimisation for the call to \texttt{doSomethingStrange()}.
 		
-		Probabilities are computed by post-order graph traversal. When it encounters control flow nodes, Graal uses information about the split to divide probability between probability between the successors. At merge nodes, Graal sums the probability of all predecessors. Lastly, loop frequencies are propagated and each fixed node within loops have their probabilities multiplied by the loop's frequency.
+		Probabilities are computed by post-order graph traversal. When it encounters control flow nodes, Graal uses information about the split to divide probability between the successors. At merge nodes, Graal sums the probability of all predecessors. Lastly, loop frequencies are propagated and each fixed node within loops have their probabilities multiplied by the loop's frequency.
 		
 		{\small\textit{Note}: Graal also includes references to `\texttt{UseExceptionProbabilityForOperations}', but this feature has not yet been completed.}
 	
@@ -175,19 +175,19 @@ Some of the optimisations that Graal applies are described here.
 	\label{fig:jvm-internals}
 \end{figure}
 
-However, there are some cases where an optimisation has been applied, but it leaves programs in an inconsistent state. In this case, a deoptimisation occurs. More specifically, deoptimisation \citep{Holzle1992} is the process of converting an optimised stack frame into an unoptimised one. In HotSpot, an optimised frame is the result of the JIT compiler and unoptimised frames run using the interpreter. Figure \ref{fig:jvm-internals} shows the interplay between the optimisations and deoptimisations. Optimisation-deoptimisation is controlled through an assumption mechanism - in order to be (or remain) optimised, a set of assumptions must remain true. If any of the assumptions becomes false, the optimisation is broken and deoptimiastion occurs. When deoptimisation occurs, the runtime returns to the bytecode index associated with the optimisation, and executes using the interpreter instead. This technique is used because Graal currently relies on the deoptimisaton framework in HotSpot\texttrademark, which uses the approach described here. 
+However, there are some cases where an optimisation has been applied, but it leaves programs in an inconsistent state. In this case, a deoptimisation occurs. More specifically, deoptimisation \citep{Holzle1992} is the process of converting an optimised stack frame into an unoptimised one. In HotSpot, an optimised frame is the result of the JIT compiler and unoptimised frames run using the interpreter. Figure \ref{fig:jvm-internals} shows the interplay between optimisations and deoptimisations. Optimisation-deoptimisation is controlled through an assumption mechanism - in order to be (or remain) optimised, a set of assumptions must remain true. If any of the assumptions becomes false, the optimisation is broken and deoptimiastion occurs. When deoptimisation occurs, the runtime returns to the bytecode index associated with the optimisation, and executes using the interpreter instead. Thus, a bytecode index is critical to the correct functioning of the deoptimisation mechanism (and, transitively, program correctness). This technique is used because Graal currently relies on the deoptimisaton framework in HotSpot\texttrademark, which uses the approach described here. 
 
 Deoptimisations can occur for several reasons:
 
 \begin{itemize}
 	\item \textbf{Exceptions}: certain kinds of exceptions can trigger deoptimisations as they disrupt control flow. These exceptions are \texttt{NullCheckException}, \texttt{BoundsCheckException}, \texttt{ClassCastException}, \texttt{ArrayStoreException} and \texttt{ArithmeticException}. Additionally, if an exception handler has not been compiled, a deoptimisation will occur.
 	
-	\item \textbf{Violated assumptions}: if any of the assumptions made during optimisation are violated (\ie, their state is modified), the optimisation is marked as invalidated.
+	\item \textbf{Violated assumptions}: if any of the assumptions made during optimisation are violated (\ie, their state is modified), the optimisation is marked as invalidated. One way these assumptions can be broken is via class loading.
 	
 	\item \textbf{Unreached code}: if there is unreached code that could not be determined statically, this code is not optimised.
 \end{itemize}
 
 \section{Summary} \label{sec:graal/summary}
-In this section, we have introduced the Graal compiler infrastructure and some of the advantages that it brings other more traditional compilers. Graal is at the forefront of compiler technology, and is part of a new generation of compilers that provide user-facing APIs. Graal also optimises speculatively and aggressively through a deoptimisation-based model; some of the optimisations and possible reasons for deoptimisations have been introduced.
+In this section, we have introduced the Graal compiler infrastructure and some of the advantages that it brings over more traditional compilers. Graal is at the forefront of compiler technology, and is part of a new generation of compilers that provide user-facing APIs. Graal also optimises speculatively and aggressively through a deoptimisation-based model; some of the optimisations and possible reasons for deoptimisations have been introduced.
 
-Graal is distinguished from other compilers by it's flexibility. It is designed to allow users to use the compiler-as-a-service, a new paradigm in compiler technology. Compliers-as-a-service promise a new level of abstraction for compiler technology, with use cases such as code analysis, online refactoring and code generation. Until now, compilers have been a black box which users have little say over the internal workings of. In the future, this will be no longer the case - compilers will adapt to suit the users and programs requirements, and Graal is the first step in this area for the Java world.
+Graal is distinguished from other compilers by its flexibility. It is designed to allow users to use the compiler-as-a-service, a new paradigm in compiler technology. Compilers-as-a-service promise a new level of abstraction for compiler technology, with use cases such as code analysis, online refactoring and code generation. Until now, compilers have been a black box which users have little say over the internal workings of. In the future, this will no longer be the case - compilers will adapt to suit the users and programs requirements, and Graal is the first step in this area for the Java world.

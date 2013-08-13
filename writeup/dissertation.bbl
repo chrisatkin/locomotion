@@ -1,4 +1,4 @@
-\begin{thebibliography}{55}
+\begin{thebibliography}{59}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -29,6 +29,15 @@ Wikipedia.
 Wikipedia.
 \newblock {Bloom filter diagram}, 2013{\natexlab{b}}.
 \newblock URL \url{https://en.wikipedia.org/wiki/File:Bloom\_filter.svg}.
+
+\bibitem[Nayfeh and Olukotun(1997)]{Nayfeh1997}
+B.A. Nayfeh and K.~Olukotun.
+\newblock {A single-chip multiprocessor}.
+\newblock \emph{Computer}, 30\penalty0 (9):\penalty0 79--85, 1997.
+\newblock ISSN 00189162.
+\newblock \doi{10.1109/2.612253}.
+\newblock URL
+  \url{http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=612253}.
 
 \bibitem[Backus(1979)]{Backus1979}
 John Backus.
@@ -114,9 +123,9 @@ Jason McDonald.
 \newblock URL
   \url{http://cs.franklin.edu/~whittakt/COMP311/rc008-designpatterns\_online.pdf}.
 
-\bibitem[{Apache Foundation}(2013)]{ApacheBECL}
+\bibitem[{Apache Foundation}(2013{\natexlab{a}})]{ApacheBECL}
 {Apache Foundation}.
-\newblock {Apache Bytecode Engineering Library}, 2013.
+\newblock {Apache Bytecode Engineering Library}, 2013{\natexlab{a}}.
 \newblock URL \url{http://commons.apache.org/proper/commons-bcel/}.
 
 \bibitem[Strachan and {The Groovy Project}(2013)]{GroovyDocs}
@@ -124,12 +133,6 @@ James Strachan and {The Groovy Project}.
 \newblock org.codehaus.groovy.classgen.asm, 2013.
 \newblock URL
   \url{http://groovy.codehaus.org/gapi/org/codehaus/groovy/classgen/asm/package-summary.html}.
-
-\bibitem[Franke(2013)]{CTcoursework}
-Bj\"{o}rn Franke.
-\newblock {Compiling Techniques coursework}, 2013.
-\newblock URL
-  \url{http://www.inf.ed.ac.uk/teaching/courses/ct/Coursework/Coursework\_2013.pdf}.
 
 \bibitem[Chiba(1998)]{Chiba1998}
 Shigeru Chiba.
@@ -323,6 +326,16 @@ S~Joshua Swamidass and Pierre Baldi.
 \newblock \doi{10.1021/ci600526a}.
 \newblock URL \url{http://www.ncbi.nlm.nih.gov/pubmed/17444629}.
 
+\bibitem[{Apache Foundation}(2013{\natexlab{b}})]{CassandraArch}
+{Apache Foundation}.
+\newblock {Cassandra Architecture Overview}, 2013{\natexlab{b}}.
+\newblock URL \url{http://wiki.apache.org/cassandra/ArchitectureOverview}.
+
+\bibitem[Appleby(2013)]{MurmurHash}
+Austin Appleby.
+\newblock {SMHasher and MurmurHash}, 2013.
+\newblock URL \url{http://code.google.com/p/smhasher/}.
+
 \bibitem[Allen and Kennedy(2000)]{Allen2000}
 Randy Allen and Ken Kennedy.
 \newblock \emph{{Optimising Compilers for Modern Architectures: A
@@ -398,6 +411,20 @@ Jonathan Ellis.
 \newblock {EnumeratedDistribution<T> documentation}, 2013.
 \newblock URL
   \url{http://commons.apache.org/proper/commons-math/javadocs/api-3.2/org/apache/commons/math3/distribution/EnumeratedDistribution.html}.
+
+\bibitem[Levenberg(2007)]{Levenberg2007}
+Abby~D Levenberg.
+\newblock {Bloom Filter and Lossy Dictionary Based Language Models}.
+\newblock 2007.
+
+\bibitem[Dillinger and Manolios(2004)]{Dillinger2004}
+Peter~C Dillinger and Panagiotis Manolios.
+\newblock \emph{{Formal Methods in Computer-Aided Design}}, volume 3312 of
+  \emph{Lecture Notes in Computer Science}.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2004.
+\newblock ISBN 978-3-540-23738-9.
+\newblock \doi{10.1007/b102264}.
+\newblock URL \url{http://www.springerlink.com/index/10.1007/b102264}.
 
 \bibitem[{Oracle Corporation}(2004)]{JSR133}
 {Oracle Corporation}.

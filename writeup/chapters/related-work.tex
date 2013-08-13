@@ -1,10 +1,10 @@
 \chapter{Related Work} \label{chp:related}
 The idea of an automatic parallelising compiler is not a particularly new one, and indeed has been the focus of much research since the dawn of structured programming with Fortran \citep{Backus1979}.
 
-In this chapter, some background of both parallelising compilers and parallelism detection will be presented. The areas have a rich and full history spanning many decades (indeed, the objective of automatic parallelising compilers has been sought for many years), so this is a somewhat brief introduction; only the major results are considered.
+In this chapter, some background of both parallelising compilers and parallelism detection will be presented. The areas have a rich and full history spanning many decades (indeed, the objective of automatic parallelising compilers has been sought for many years), so this is a somewhat brief introduction; only the recent major results are considered.
 
 \section{Dynamic Parallelism and Parallelism Extraction} \label{sec:related/compilers}
-Programs and/or runtime systems are attractive because they require no access to the source code. In \citeyear{Yang2011}, \citet{Yang2011} introduced one of the main advances on the field, \textit{Dynamic Binary Parallelisation}. It requires no access to the source code, and instead operates only using object code. The mechanism through which it operates is by detecting hot loops -- loops where the program spends a majority of execution time -- and parallelises them, executing the parallel versions speculatively. This speculation is likely the cause of the inefficiencies of their approach - using 256 cores they achieved a somewhat negligible performance improvement of just 4.5 times, and the reason for this is likely hazards spoiling the speculation frequently, which requires expensive rollbacks. However, one of the advantages of the approach presented in this dissertation is that it does not require the use of speculative execution - a loop is only executed if it can be proven to contain no inter-iteration dependencies.
+Runtime systems with this capacity are advantageous because they require no access to the source code. In \citeyear{Yang2011}, \citet{Yang2011} introduced one of the main advances in the field, \textit{Dynamic Binary Parallelisation}. It requires no access to the source code, and instead operates only using object code. The mechanism through which it operates is by detecting hot loops -- loops where the program spends a majority of execution time -- and parallelises them, executing the parallel versions speculatively. This speculation is likely the cause of the inefficiencies of their approach - using 256 cores they achieved a somewhat negligible performance improvement of just 4.5 times, and the reason for this is likely hazards spoiling the speculation frequently, which requires expensive rollbacks. However, one of the advantages of the approach presented in this dissertation is that it does not require the use of speculative execution - a loop is only executed if it can be proven to contain no inter-iteration dependencies.
 
 The main difference between \citeauthor{Yang2011}'s work and the work outlined here is the nature of the dynamic detection. \citeauthor{Yang2011} used dynamic trace analysis, which can only identify the hot loops within a program, and not whether the iterations within those loops have dependencies. The work presented in this dissertation \emph{does} determine whether there are inter-loop dependencies, therefore the use of speculative execution is not required. Although we have not yet done so, the addition of hot-loop detection would be a trivial addition to our framework.
 
@@ -27,49 +27,53 @@ The approach to slicing is based on static analysis, with an additional speculat
 
 Performance of the system was adequate, with a roughly 3x performance improvement with unlimited threads, and 1.8x parallelism with four threads. The major disadvantage to this approach is that the complexity of the slicing algorithms increases exponentially with the length of each slice, meaning that only relatively small slices can be detected and hence parallelised.
 
-An alternative approach was taken by \citet{Ketterlin}. Their technique `raises' binary code into an intermediate form (similar to how Graal converts bytecode, see chapter \ref{chp:graap} for more details), and then applies a well-known parallelising transformation.
+An alternative approach was taken by \citet{Ketterlin}. Their technique `raises' binary code into an intermediate form (similar to how Graal converts bytecode, see chapter \ref{chp:graal} for more details), and then applies a well-known parallelising transformation.
 
 \citet{Dong} present a framework that is capable of dynamic parallelisation for general-purpose graphics processing cards (GPGPU technology). GPGPU technology allows the large number of processors in GPGPUs to be used by the user for executing large programs. These processors are simpler than the general-purpose cores found in normal CPUs, and so there are some constraints placed on programs.
 
-The framework presented takes a binary loop body and generates IR from it, similar to both Graal and \citet{Ketterlin}. Then, the IR is combined with statically-determined loop information to perform static analysis on the code. A translator is then used to transform the sequential C code into C code that can be executed in parallel using CUDA. The framework is advantageous in that it can parallelise multiple nested loops, increasing performance for many applications. However, it relies on static analysis for dependency analysis, and it does not use speculation to increase performance. However, despite these limitations, the results are acceptable, showing 
+The framework presented takes a binary loop body and generates IR from it, similar to both Graal and \citet{Ketterlin}. Then, the IR is combined with statically-determined loop information to perform static analysis on the code. A translator is then used to transform the sequential C code into C code that can be executed in parallel using CUDA. The framework is advantageous in that it can parallelise multiple nested loops, increasing performance for many applications. However, it relies on static analysis for dependency analysis, and it does not use speculation to increase performance. However, despite these limitations, the results are acceptable, showing performance improvements of 18x for large matrix multiplication, and betwen 15x and 32x for MRI scan analysis. Importantly, such a framework -- or indeed, any framework based around executing using GPGPUs -- has a efficacy lower-bound placed on it by using a GPGPU. Transferring data to a GPU for execution has large overhead, with a large startup cost. The result of this is that only large loops should be effectively parallelised using GPGPUs; if this is not the case then an otherwise effective parallelisation framework may result in performance decreases.
 
 Another approach taken is the one taken by \citet{Tournavitis2009}. Instead of applying more traditional algorithms to the problem, \citeauthor{Tournavitis2009} instead use machine learning, specifically Support Vector Machines. The aims and philosophy behind the paper are similar to this project: \citeauthor{Tournavitis2009} argue that static parallelism detection has failed because there is not enough information available at compile-time - the same reasoning that this project assumes.
 
-The paper presents an approach to auto-parallelisation based around a combined profile of statically and dynamically generated metadata, which is then fed into a pre-trained support vector machine (SVM). This SVM provides information about how the loop should be parallelised. This approach is significant because it compromised three approaches - static analysis, dynamic analysis and machine learning. A significant performance 
+The paper presents an approach to auto-parallelisation based around a combined profile of statically and dynamically generated metadata, which is then fed into a pre-trained support vector machine (SVM). This SVM provides information about how the loop should be parallelised. This approach is significant because it compromised three approaches - static analysis, dynamic analysis and machine learning. The paper presents result of up to 96\% that of hand-tuned OpenMP code, which shows clearly that the use of machine learning in compilers can result in significant performance advantages. 
 
 \section{Instrumentation} \label{sec:related/instrumentation}
-Although in this dissertation we consider dynamic instrumentation, a significant amount of work is available in the literature describing \emph{static instrumentation}. Static instrumentation modifies bytecode directly at load-time and is `dumb' in the sense that it is not possible to do any kind of analysis on control flow graph etc. This is unlike dynamic instrumentation which has access to the full control flow graph and other such information.
+Although in this dissertation we consider dynamic instrumentation, a significant amount of work is available in the literature describing \emph{static instrumentation}. Static instrumentation modifies bytecode directly at load-time and is `dumb' in the sense that it is possible to only gain access to information available statically. This is unlike dynamic instrumentation which has access to the full control flow graph and other such information.
 
 Here, we consider some of the various different approaches to static instrumentation.
 
 \subsection{Bytecode Instrumentation} \label{sec:instrumentation/bytecode-instr}
 The first approach uses so-called \textit{bytecode instrumentation} (BCI) - that is, modifying the bytecode directly, either at compile-time or runtime. This approach is advantageous in that arbitrary commands can be inserted, and is only subject to the limitations of the bytecode format. In this sense, arbitrary functionality can be inserted into \texttt{.class} files. However, it is complex (requiring advanced knowledge of the JVM and bytecode formats), as well as being difficult to use. Graal already performs a lot of the work that would be required with this kind of approach, in that it detects control flow and memory dependencies from bytecode. Such systems require a large degree of programmer effort.
 
-        \subsubsection{Java Agents} \label{sec:instrumentation/bytecode-instr/agents}
-        At the heart of BCI is the idea of Java Agents \citep{javaagents}. In order to understand them, however, one must first understand some details of the Java platform.
+	\subsubsection{Java Agents} \label{sec:instrumentation/bytecode-instr/agents}
+	At the heart of BCI is the idea of Java Agents \citep{javaagents}. In order to understand them, however, one must first understand some details of the Java platform.
 
-        Unlike some other languages (for example, C and C++\footnote{Although note that C and C++ \emph{also} support dynamic linking}), Java is a dynamically linked language. That is to say that the various different libraries (JARs) that Java programs used are linked at run-time, rather than compile-time. The advantage to this approach is that it allows distributables to be smaller in size (recall Java Network Launching Protocol, a method for launching (and therefore, distributing) Java applications over the Internet). The disadvantage to this approach is that it can lead to `dependency hell', although through the combination of versioning metadata in JARs and the extreme backwards compatability mantra in Java, this is not currently a significant issue.
+	Unlike some other languages (for example, C and C++\footnote{Although note that C and C++ \emph{also} support dynamic linking}), Java is a dynamically linked language. That is to say that the various different libraries (JARs) that Java programs used are linked at run-time, rather than compile-time. The advantage to this approach is that it allows distributables to be smaller in size (recall Java Network Launching Protocol, a method for launching (and therefore, distributing) Java applications over the Internet). The disadvantage to this approach is that it can lead to `dependency hell', although through the combination of versioning metadata in JARs and the extreme backwards compatability mantra in Java, this is not currently a significant issue.
 
-                There are three main class loaders in Java:
+	There are three main class loaders in Java:
 
-                \begin{itemize}
-                        \item The system class loader loads the classes found in the \texttt{java.lang} package
-                        \item Any extensions to Java are loaded via the extension loader
-                        \item JARs found within the class path are loaded with the lowest precedence, these include the majority of user-level libraries
-                \end{itemize}
+	\begin{itemize}
+		\item The system class loader loads the classes found in the \texttt{java.lang} package
+		
+		\item Any extensions to Java are loaded via the extension loader
 
-                Java Agents manipulate class files at load-time, through the \texttt{java.lang.instrument} package. The package defines the \texttt{ClassFileTransformer} interface, which provides implementations of class transformers. An advantage of this approach is that since Java Agents are included in the core Java package, developers wishing to use \textit{Locomotion} would not need to download and install Graal.
+		\item JARs found within the class path are loaded with the lowest precedence, these include the majority of user-level libraries
+	\end{itemize}
 
-                There are several different libraries which provide an abstraction layer for such bytecode transformations. The following sections describe various different libraries that could be used (or use themselves) for agent-based bytecode instrumentation.
+	Java Agents manipulate class files at load-time, through the \texttt{java.lang.instrument} package. The package defines the \texttt{ClassFileTransformer} interface, which provides implementations of class transformers. An advantage of this approach is that since Java Agents are included in the core Java package, developers wishing to use the framework would not need to download any additional libraries or frameworks (\ie, Graal).
+	
+	This mechanism allows agents to dynamically alter the bytecode at load-time, a kind of polymorphism. Such transformations could be utilised in modifying the bytecode of, \eg array accesses in loops to include calls to instrumentation.
 
-                \subsubsection{ASM} \label{sec:instrumentation/bytecode-instr/asm}
-                Despite Java Agents providing the capability to manipulate raw Java bytecode (indeed, the bytecode is made available as a \texttt{byte} array), performing such transformations are difficult and awkward. For this reason, there exists many different libraries for manipulating Java bytecode, ObjectWeb ASM being one of them.
+	There are several different libraries which provide an abstraction layer for such bytecode transformations. The following sections describe various different libraries that could be used (or use themselves) for agent-based bytecode instrumentation.
+
+		\subsubsection{ASM} \label{sec:instrumentation/bytecode-instr/asm}
+		Despite Java Agents providing the capability to manipulate raw Java bytecode (indeed, the bytecode is made available as a \texttt{byte} array), performing such transformations is difficult and awkward. For this reason, there exists many different libraries for manipulating Java bytecode, ObjectWeb ASM being one of them.
 
                 ASM \citep{Bruneton2002} is a simple-to-use bytecode manipulation library, itself written in Java. It uses a high-level abstraction for the bytecode, which is advantageous because it allows developers to remain unconcerned with the specifics of control flow analysis, dependency analysis and other such concerns.
 
                 Although now common, when ASM was first developed it was considered particularly innovative because it allowed the use of the visitor pattern \citep[p.~331]{Gamma1995} for traversing bytecode. The visitor pattern `allows for one or more operations to be applied to a set of objects at runtime, decoupling the operations from the object structure' \citep{McDonald2008}. The advantage to this approach is that it allows a user to walk a serialized object graph \emph{without} de-serialising it or defining large numbers of classes (for reference, an alternative to ASM for bytecode generation, BECL \citep{ApacheBECL} contains 270 classes for representing each bytecode). Additionally, it allows users to also reconstruct a modified version of the graph (in ASM, graphs are immutable).
 
-                Several well-known existing projects use ASM already for bytecode generation, including the Groovy programming language \citep{GroovyDocs}. I also have some experience of ASM through the \textit{Compiling Techniques} coursework \citep{CTcoursework}.
+                Several well-known existing projects use ASM already for bytecode generation, including the Groovy programming language \citep{GroovyDocs}.
 
                 ASM was selected as a possible alternative for this project for several reasons. Firstly, its visitor pattern-based approach to bytecode generation/modification is high-level and easily understandable. It also has high performance, being a factor of 12 more performance than BECL for serialisation/deserialisation, and a factor of 35 times more performance than BECL for computing maximum stack frame sizes. ASM is also superior to BECL for performing modifications, although with a significantly lower margin of just a factor of four.
 
@@ -109,13 +113,16 @@ def aspect TraceMethods {
     }
 }\end{lstlisting}
 
-        Although that from a software engineering perspective this is clearly a superior solution (decreases coupling, increases reuse, increases separation of concern), the use of aspects has not been widely adopted. There are several likely causes for this, such as:
+        Although that from a software engineering perspective this is clearly a superior solution (as it decreases coupling, increases reuse, increases separation of concern), the use of aspects has not been widely adopted. There are several likely causes for this, such as:
 
         \begin{itemize}
-                \item \textbf{Lack of education}: like the other models that we have seen in section \ref{sec:introduction/parallelist}, widespread adoption of new programming construct requires that the average programmer can understand the feature without in-depth education in the model. AOP is somewhat counter to intuitive definitions of imperative or procedural languages, which hampers their adoption.
-                \item \textbf{Lack of language support}: no widely adopted programming language comes with AOP included, or with an AOP library included in the standard library. Standard licensing issues also apply to third-party additions (\eg GPLv2/3 differences).
-                \item \textbf{Unclear flow control}: perhaps the single largest issue with AOP. As noted by \citet{Constantinides2004}, aspects introduce effectively unconditional branches into code, mimicking the use of \texttt{goto} which \citeauthor{Dijkstra1968} famously considered harmful \citep{Dijkstra1968}.
-                \item \textbf{Unintended consequences}: defining aspects incorrectly can lead to incorrect (global) state, \eg renaming methods and so on. If a team of developers are unaware of each other's modifications at weave-time, there may unintended consequences and subtle (or substantial) bugs introduced.
+                \item \textbf{Lack of education}: widespread adoption of new programming constructs requires that the average programmer can understand the feature without in-depth education in the model. AOP is somewhat counter to intuitive definitions of imperative or procedural languages, which hampers their adoption
+                
+                \item \textbf{Lack of language support}: no widely adopted programming language comes with AOP included, or with an AOP library included in the standard library. Standard licensing issues also apply to third-party additions (\eg GPLv2/3 differences)
+                
+                \item \textbf{Unclear flow control}: perhaps the single largest issue with AOP. As noted by \citet{Constantinides2004}, aspects introduce effectively unconditional branches into code, mimicking the use of \texttt{goto} which \citeauthor{Dijkstra1968} famously considered harmful \citep{Dijkstra1968}
+                
+                \item \textbf{Unintended consequences}: defining aspects incorrectly can lead to incorrect (global) state, \eg renaming methods and so on. If a team of developers are unaware of each other's modifications at weave-time, there may unintended consequences and subtle (or substantial) bugs introduced
         \end{itemize}
 
         \subsection{AspectJ/ABC} \label{sec:instrumentation/aop/aspectj}
@@ -128,7 +135,7 @@ def aspect TraceMethods {
 
                 Although abc itself does not include point-cuts for either array access or loops, there exists two projects which, if combined, could offer the required features for this project.
 
-                LoopsAJ \citep{Harbulot2005} is an extension to abc that adds a loop join point. This is not a trivial addition - when loops are compiled, they are compiled to forms that loose loop semantics (and instead use \texttt{goto} instructions). There are several forms that a loop can take, and a significant proportion of \citeauthor{Harbulot2005}'s work is in the identification of loops from the bytecode.
+                LoopsAJ \citep{Harbulot2005} is an extension to abc that adds a loop join point. This is not a trivial addition - when loops are compiled, they are compiled to forms that lose loop semantics (and instead use \texttt{goto} instructions). There are several forms that a loop can take, and a significant proportion of \citeauthor{Harbulot2005}'s work is in the identification of loops from the bytecode.
 
                 For array access, the ArrayPT project \citep{Chen2007} adds additional array access capabilities to abc. Although the included point cut does include array access, it is somewhat limited and cannot determine either the index, nor the value to be stored. ArrayPT adds these capabilities to abc. ArrayPT defines two new point cuts, \texttt{arrayset(signature)} and \texttt{arrayget(signature)}. ArrayPT relies on the \texttt{invokevirtual} bytecode in the JVM.
 
@@ -139,6 +146,8 @@ def aspect TraceMethods {
                 Recently, there has been renewed interest in Java bytecode instrumentation. Clearly, the use of aspect-oriented techniques is advantageous, but the current implementations (AspectJ/abc) are deeply flawed. In a sense, they are \textit{static} - they rely on predefined join and point-cuts before any aspect definitions can be constructed. DiSL is considered a hybrid approach because, unlike AspectJ which relies on access to source code, it uses an agents-based approach to aspect-oriented programming.
 
                 DiSL (\textit{Domain Specific Language for Instrumentation}) \citep{Marek2012} is a new approach to a domain-specific language (which incidentally, implies that DiSL is declarative) for bytecode instrumentation. It does rely on the use of aspects, but it instead uses an open join-point model where any area of bytecode can be instrumented.
+                
+                There are several key advantages to DiSL over other, existing AOP implementations.
 
                 \begin{itemize}
                         \item Lower overheads
@@ -153,7 +162,7 @@ def aspect TraceMethods {
 
                 The semantics of snippets and guards is novel in DiSL. Both have complete access to local static (\ie, weave-time) reflective join-point information, meaning they can make (theoretically) unbounded numbers of references to static contexts. In addition, snippets have access to dynamic (\ie, run-time) information, including local variables and the operand stack.
 
-                \citeauthor{Marek2012} present benchmarks of overheads with DiSL versus AspectJ, and their results are promising - a factor of three lower overheads, yet DiSL manages greater code coverage than AspectJ (the number of join-points captured is greater).
+                \citeauthor{Marek2012} present benchmarks of overheads with DiSL versus AspectJ, and their results are promising - a factor of three lower overhead, yet DiSL manages greater code coverage than AspectJ (the number of join-points captured is greater).
 
                 In conclusion, DiSL represents a significant advancement in aspect-systems in general. DiSL allows many semantics of dynamically-typed languages to be expressed in the (statically-typed) Java language.
 
@@ -164,8 +173,15 @@ def aspect TraceMethods {
 
                 Turbo DiSL implements conditional reduction using partial evaluation. Many conditional control-flow statement expressions can be evaluated at weave-time -- Turbo DiSL removes these dead blocks. DiSL replaces these with \texttt{pop} commands\footnote{\url{http://homepages.inf.ed.ac.uk/kwxm/JVM/pop.html}}, resulting in program correctness remaining unchanged.
 
-                In addition, an approach similar to peephole-based optimisation. For example, Turbo DiSL reduces unrequired instruction such as jumping to the next instruction, or optimising the conditional reduction effects. For each \texttt{pop} instruction found, the source bytecodes are found (i.e., which bytecodes push the to-be-popped operands). If those bytecodes are side-effect free, they both (the pop and the source) removed.
+                In addition, an approach similar to peephole-based optimisation. For example, Turbo DiSL reduces unrequired instruction such as jumping to the next instruction, or optimising the conditional reduction effects. For each \texttt{pop} instruction found, the source bytecodes are found (i.e., which bytecodes push the to-be-popped operands). If those bytecodes are side-effect free, they are both (the pop and the source) removed.
 
                 The authors present an analysis of Turbo DiSL performance characteristics. The benchmarks selected were from the DaCapo benchmarks \citep{Blackburn2006}. There is a considerable increase in weave-time of a factor of 7.64 above the baseline, which clearly shows the drawbacks of partial evaluation. However, Turbo DiSL outperforms DiSL by a factor of 5.18 and 13 for startup and steady-state respectively - a considerable improvement.
 
-                The authors present several uses cases where TurboDiSl is superior to DiSL (dynamic instrument configuration, tracking monitor ownership, field access analysis and execution trace profiling). However, this author speculates that, in spite of the aforementioned increase in weave-time, Turbo DiSL will completely supersede DiSL in all situations.
+                The authors present several uses cases where Turbo DiSl is superior to DiSL (dynamic instrument configuration, tracking monitor ownership, field access analysis and execution trace profiling). However, this author speculates that, in spite of the aforementioned increase in weave-time, Turbo DiSL will completely supersede DiSL in all situations.
+           
+ \section{Summary} \label{sec:related/summary}
+ In this chapter, we have given a review of the previous work related to this dissertation. Some recent examples of systems utilising various forms of parallelism detection have been introduced, as well as a critical analysis of their strengths and weaknesses.
+ 
+ Secondly, we included an overview of the various (alternative) approaches that could have been used to implement instrumentation.
+ 
+ In the next chapter, we will move away from the static instrumentation presented in this chapter, and on to dynamic instrumentation using a new compiler framework called Graal.

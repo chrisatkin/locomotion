@@ -5,53 +5,55 @@
 \contentsline {section}{\numberline {1.4}Parallelising Compilers}{4}{section.1.4}
 \contentsline {section}{\numberline {1.5}Contributions}{6}{section.1.5}
 \contentsline {section}{\numberline {1.6}Outline}{6}{section.1.6}
-\contentsline {chapter}{\numberline {2}Related Work}{9}{chapter.2}
-\contentsline {section}{\numberline {2.1}Dynamic Parallelism and Parallelism Extraction}{9}{section.2.1}
-\contentsline {section}{\numberline {2.2}Instrumentation}{12}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Bytecode Instrumentation}{12}{subsection.2.2.1}
-\contentsline {subsubsection}{\numberline {2.2.1.1}Java Agents}{12}{subsubsection.2.2.1.1}
-\contentsline {subsubsection}{\numberline {2.2.1.2}ASM}{13}{subsubsection.2.2.1.2}
-\contentsline {subsubsection}{\numberline {2.2.1.3}Javassist}{14}{subsubsection.2.2.1.3}
-\contentsline {subsection}{\numberline {2.2.2}Aspect-Oriented Programming}{14}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}AspectJ/ABC}{16}{subsection.2.2.3}
-\contentsline {subsubsection}{\numberline {2.2.3.1}Array and Loop Pointcuts}{16}{subsubsection.2.2.3.1}
-\contentsline {subsection}{\numberline {2.2.4}Hybrid Models}{17}{subsection.2.2.4}
-\contentsline {subsubsection}{\numberline {2.2.4.1}DiSL}{17}{subsubsection.2.2.4.1}
-\contentsline {subsubsection}{\numberline {2.2.4.2}Turbo DiSL}{18}{subsubsection.2.2.4.2}
-\contentsline {chapter}{\numberline {3}The Graal Compiler Infrastructure}{21}{chapter.3}
-\contentsline {section}{\numberline {3.1}Background}{21}{section.3.1}
-\contentsline {section}{\numberline {3.2}Introduction}{23}{section.3.2}
-\contentsline {section}{\numberline {3.3}Intermediate Representations}{23}{section.3.3}
-\contentsline {section}{\numberline {3.4}Graph Transformations}{25}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}The \texttt {.class} File Format - Constant Pools}{26}{subsection.3.4.1}
-\contentsline {section}{\numberline {3.5}Snippets}{26}{section.3.5}
-\contentsline {section}{\numberline {3.6}Replacements}{27}{section.3.6}
-\contentsline {section}{\numberline {3.7}Optimisations and Deoptimisations}{28}{section.3.7}
-\contentsline {section}{\numberline {3.8}Summary}{31}{section.3.8}
-\contentsline {chapter}{\numberline {4}Dynamic Instrumentation}{33}{chapter.4}
-\contentsline {section}{\numberline {4.1}Introduction}{33}{section.4.1}
-\contentsline {section}{\numberline {4.2}Automatic Approaches}{33}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Graal}{33}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Manual Approaches}{37}{section.4.3}
-\contentsline {section}{\numberline {4.4}Summary}{38}{section.4.4}
-\contentsline {chapter}{\numberline {5}The Runtime Library}{39}{chapter.5}
-\contentsline {section}{\numberline {5.1}Introduction}{39}{section.5.1}
-\contentsline {section}{\numberline {5.2}Trace Storage}{39}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Exact Approaches: Hash Tables and Sets}{40}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Probabilistic Approaches: Bloom Filters}{41}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Dependency Analysis Algorithms}{43}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Why are dependencies important?}{43}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Dependency Theory}{43}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Offline Algorithms}{46}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Online Algorithns}{47}{subsection.5.3.4}
-\contentsline {section}{\numberline {5.4}Implementation Details}{47}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Entry Point}{47}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Instrument Implementation}{48}{subsection.5.4.2}
-\contentsline {subsubsection}{\numberline {5.4.2.1}Java Auto(un)boxing}{49}{subsubsection.5.4.2.1}
-\contentsline {subsection}{\numberline {5.4.3}Trace Storage and Configuration}{50}{subsection.5.4.3}
-\contentsline {subsubsection}{\numberline {5.4.3.1}Exact - Hash Set}{50}{subsubsection.5.4.3.1}
-\contentsline {subsubsection}{\numberline {5.4.3.2}Inexact - Bloom Filters}{50}{subsubsection.5.4.3.2}
-\contentsline {section}{\numberline {5.5}Summary}{52}{section.5.5}
+\contentsline {chapter}{\numberline {2}Related Work}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Dynamic Parallelism and Parallelism Extraction}{7}{section.2.1}
+\contentsline {section}{\numberline {2.2}Instrumentation}{10}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Bytecode Instrumentation}{10}{subsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.1.1}Java Agents}{10}{subsubsection.2.2.1.1}
+\contentsline {subsubsection}{\numberline {2.2.1.2}ASM}{11}{subsubsection.2.2.1.2}
+\contentsline {subsubsection}{\numberline {2.2.1.3}Javassist}{12}{subsubsection.2.2.1.3}
+\contentsline {subsection}{\numberline {2.2.2}Aspect-Oriented Programming}{12}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}AspectJ/ABC}{14}{subsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.3.1}Array and Loop Pointcuts}{14}{subsubsection.2.2.3.1}
+\contentsline {subsection}{\numberline {2.2.4}Hybrid Models}{15}{subsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.4.1}DiSL}{15}{subsubsection.2.2.4.1}
+\contentsline {subsubsection}{\numberline {2.2.4.2}Turbo DiSL}{17}{subsubsection.2.2.4.2}
+\contentsline {section}{\numberline {2.3}Summary}{18}{section.2.3}
+\contentsline {chapter}{\numberline {3}The Graal Compiler Infrastructure}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Background}{19}{section.3.1}
+\contentsline {section}{\numberline {3.2}Introduction}{21}{section.3.2}
+\contentsline {section}{\numberline {3.3}Intermediate Representations}{21}{section.3.3}
+\contentsline {section}{\numberline {3.4}Graph Transformations}{23}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}The \texttt {.class} File Format - Constant Pools}{24}{subsection.3.4.1}
+\contentsline {section}{\numberline {3.5}Snippets}{24}{section.3.5}
+\contentsline {section}{\numberline {3.6}Replacements}{25}{section.3.6}
+\contentsline {section}{\numberline {3.7}Optimisations and Deoptimisations}{26}{section.3.7}
+\contentsline {section}{\numberline {3.8}Summary}{29}{section.3.8}
+\contentsline {chapter}{\numberline {4}Dynamic Instrumentation}{31}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{31}{section.4.1}
+\contentsline {section}{\numberline {4.2}Automatic Approaches}{31}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Graal}{31}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}Manual Approaches}{35}{section.4.3}
+\contentsline {section}{\numberline {4.4}Summary}{36}{section.4.4}
+\contentsline {chapter}{\numberline {5}The Runtime Library}{37}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{37}{section.5.1}
+\contentsline {section}{\numberline {5.2}Trace Storage}{37}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Exact Approaches: Hash Tables and Sets}{38}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Probabilistic Approaches: Bloom Filters}{39}{subsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Implementations}{41}{subsubsection.5.2.2.1}
+\contentsline {section}{\numberline {5.3}Dependency Analysis Algorithms}{42}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Why are dependencies important?}{42}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Dependency Theory}{42}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Offline Algorithms}{44}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Online Algorithns}{45}{subsection.5.3.4}
+\contentsline {section}{\numberline {5.4}Implementation Details}{46}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Entry Point}{46}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Instrument Implementation}{46}{subsection.5.4.2}
+\contentsline {subsubsection}{\numberline {5.4.2.1}Java Auto(un)boxing}{48}{subsubsection.5.4.2.1}
+\contentsline {subsection}{\numberline {5.4.3}Trace Storage and Configuration}{48}{subsection.5.4.3}
+\contentsline {subsubsection}{\numberline {5.4.3.1}Exact - Hash Set}{49}{subsubsection.5.4.3.1}
+\contentsline {subsubsection}{\numberline {5.4.3.2}Inexact - Bloom Filters}{49}{subsubsection.5.4.3.2}
+\contentsline {section}{\numberline {5.5}Summary}{50}{section.5.5}
 \contentsline {chapter}{\numberline {6}Methodology}{53}{chapter.6}
 \contentsline {section}{\numberline {6.1}Introduction}{53}{section.6.1}
 \contentsline {section}{\numberline {6.2}Experimental Setup}{53}{section.6.2}
@@ -61,43 +63,46 @@
 \contentsline {subsection}{\numberline {6.4.2}Dependencies}{54}{subsection.6.4.2}
 \contentsline {subsection}{\numberline {6.4.3}Memory Usage}{54}{subsection.6.4.3}
 \contentsline {section}{\numberline {6.5}Parametric Benchmarks}{56}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Motivation}{57}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.1}Motivation}{56}{subsection.6.5.1}
 \contentsline {subsection}{\numberline {6.5.2}Problem Statement}{57}{subsection.6.5.2}
 \contentsline {subsection}{\numberline {6.5.3}Algorithm Design}{57}{subsection.6.5.3}
+\contentsline {subsubsection}{\numberline {6.5.3.1}Generating \texttt {b}}{58}{subsubsection.6.5.3.1}
+\contentsline {subsubsection}{\numberline {6.5.3.2}Generating \texttt {ops}}{58}{subsubsection.6.5.3.2}
 \contentsline {subsection}{\numberline {6.5.4}Implementation Details}{59}{subsection.6.5.4}
 \contentsline {section}{\numberline {6.6}Test Harness Design and Implementation}{59}{section.6.6}
 \contentsline {section}{\numberline {6.7}Result Collection}{60}{section.6.7}
 \contentsline {section}{\numberline {6.8}Summary}{60}{section.6.8}
 \contentsline {chapter}{\numberline {7}Results}{61}{chapter.7}
 \contentsline {section}{\numberline {7.1}Introduction}{61}{section.7.1}
-\contentsline {section}{\numberline {7.2}All Dependent}{61}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Dependency Detection}{62}{subsection.7.2.1}
-\contentsline {subsection}{\numberline {7.2.2}Memory Usage}{63}{subsection.7.2.2}
-\contentsline {subsection}{\numberline {7.2.3}Execution Time}{64}{subsection.7.2.3}
-\contentsline {section}{\numberline {7.3}No Dependencies}{65}{section.7.3}
-\contentsline {subsection}{\numberline {7.3.1}Dependency Detection}{65}{subsection.7.3.1}
-\contentsline {subsection}{\numberline {7.3.2}Memory Usage}{66}{subsection.7.3.2}
-\contentsline {subsection}{\numberline {7.3.3}Execution Time}{66}{subsection.7.3.3}
-\contentsline {section}{\numberline {7.4}20\% Dependent}{67}{section.7.4}
+\contentsline {section}{\numberline {7.2}Bloom filter implementations}{61}{section.7.2}
+\contentsline {section}{\numberline {7.3}All Dependent}{63}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Dependency Detection}{63}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Memory Usage}{64}{subsection.7.3.2}
+\contentsline {subsection}{\numberline {7.3.3}Execution Time}{65}{subsection.7.3.3}
+\contentsline {section}{\numberline {7.4}No Dependencies}{67}{section.7.4}
 \contentsline {subsection}{\numberline {7.4.1}Dependency Detection}{67}{subsection.7.4.1}
 \contentsline {subsection}{\numberline {7.4.2}Memory Usage}{68}{subsection.7.4.2}
 \contentsline {subsection}{\numberline {7.4.3}Execution Time}{68}{subsection.7.4.3}
-\contentsline {section}{\numberline {7.5}40\% Dependent}{68}{section.7.5}
-\contentsline {subsection}{\numberline {7.5.1}Dependency Detection}{68}{subsection.7.5.1}
-\contentsline {subsection}{\numberline {7.5.2}Memory Usage}{70}{subsection.7.5.2}
-\contentsline {subsection}{\numberline {7.5.3}Execution Time}{70}{subsection.7.5.3}
-\contentsline {section}{\numberline {7.6}60\% Dependent}{70}{section.7.6}
-\contentsline {subsection}{\numberline {7.6.1}Dependency Detection}{70}{subsection.7.6.1}
+\contentsline {section}{\numberline {7.5}20\% Dependent}{68}{section.7.5}
+\contentsline {subsection}{\numberline {7.5.1}Dependency Detection}{69}{subsection.7.5.1}
+\contentsline {subsection}{\numberline {7.5.2}Memory Usage}{69}{subsection.7.5.2}
+\contentsline {subsection}{\numberline {7.5.3}Execution Time}{69}{subsection.7.5.3}
+\contentsline {section}{\numberline {7.6}40\% Dependent}{71}{section.7.6}
+\contentsline {subsection}{\numberline {7.6.1}Dependency Detection}{71}{subsection.7.6.1}
 \contentsline {subsection}{\numberline {7.6.2}Memory Usage}{71}{subsection.7.6.2}
-\contentsline {subsection}{\numberline {7.6.3}Execution Time}{71}{subsection.7.6.3}
-\contentsline {section}{\numberline {7.7}80\% Dependent}{71}{section.7.7}
-\contentsline {subsection}{\numberline {7.7.1}Dependency Detection}{71}{subsection.7.7.1}
-\contentsline {subsection}{\numberline {7.7.2}Memory Usage}{73}{subsection.7.7.2}
-\contentsline {subsection}{\numberline {7.7.3}Execution Time}{73}{subsection.7.7.3}
-\contentsline {section}{\numberline {7.8}Execution time differences between hash sets and bloom filters}{73}{section.7.8}
-\contentsline {chapter}{\numberline {8}Conclusion}{75}{chapter.8}
-\contentsline {section}{\numberline {8.1}Concluding Remarks}{75}{section.8.1}
-\contentsline {section}{\numberline {8.2}Contributions}{75}{section.8.2}
-\contentsline {section}{\numberline {8.3}Unsolved Problems}{75}{section.8.3}
-\contentsline {section}{\numberline {8.4}Future Work}{75}{section.8.4}
-\contentsline {chapter}{Bibliography}{77}{chapter*.29}
+\contentsline {subsection}{\numberline {7.6.3}Execution Time}{72}{subsection.7.6.3}
+\contentsline {section}{\numberline {7.7}60\% Dependent}{72}{section.7.7}
+\contentsline {subsection}{\numberline {7.7.1}Dependency Detection}{72}{subsection.7.7.1}
+\contentsline {subsection}{\numberline {7.7.2}Memory Usage}{72}{subsection.7.7.2}
+\contentsline {subsection}{\numberline {7.7.3}Execution Time}{72}{subsection.7.7.3}
+\contentsline {section}{\numberline {7.8}80\% Dependent}{74}{section.7.8}
+\contentsline {subsection}{\numberline {7.8.1}Dependency Detection}{74}{subsection.7.8.1}
+\contentsline {subsection}{\numberline {7.8.2}Memory Usage}{74}{subsection.7.8.2}
+\contentsline {subsection}{\numberline {7.8.3}Execution Time}{74}{subsection.7.8.3}
+\contentsline {section}{\numberline {7.9}General Remarks}{75}{section.7.9}
+\contentsline {section}{\numberline {7.10}Optimal Configuration for Bloom Filters}{76}{section.7.10}
+\contentsline {chapter}{\numberline {8}Conclusion}{79}{chapter.8}
+\contentsline {section}{\numberline {8.1}Concluding Remarks and Contributions}{79}{section.8.1}
+\contentsline {section}{\numberline {8.2}Unsolved Problems}{80}{section.8.2}
+\contentsline {section}{\numberline {8.3}Future Work}{80}{section.8.3}
+\contentsline {chapter}{Bibliography}{83}{chapter*.33}

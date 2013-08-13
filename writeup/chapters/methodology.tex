@@ -49,9 +49,7 @@ In order to improve the results, each experiment was repeat ten times. The media
 	
 	As previously mentioned, JAMM walks the object graph, which is created by instantiation within classes - this forms an implicit directed edge between the calling context and the instantiated object. Such link is used for determining scope visibility.
 	
-	In section we highlighted the use of the Google Guava library, which contains an implementation of a bloom filter. In order to decrease coupling, the Guava implementation uses so-called \textit{Funnel<T>}, which allows a class of type \texttt{T} to stream primitive values into \texttt{PrimitiveSink}s, of which the bloom filter is a member. In this way, a funnel can be thought of an interface between the filter and the type of object it contains - the \texttt{Funnel} specifies which fields should be hashed.
-	
-	Initial implementations of the instrumentation used an anonymous class for the sink in a fashion similar to:
+	Initial implementations of the instrumentation used an anonymous class for the funnel (see section \ref{sec:runtime/storage/probabilistic/impls}) in a fashion similar to:
 	
 	\begin{lstlisting}
 Instrument.setContainer(new BloomFilter<Access>(new Funnel<Access> {
@@ -136,7 +134,7 @@ for (int i = 0 to m) {
 	
 	The algorithm is split into three stages, one for each array. \texttt{a} is an array of random numbers.
 	
-		\texttt{Generating \texttt{b}} \label{sec:methodology/params/algo/gen-b}
+		\subsubsection{Generating \texttt{b}} \label{sec:methodology/params/algo/gen-b}
 		\texttt{b} can be split into two conceptual sub-arrays: the section for dependent operations, and the section for independent operations. The length of these sub-arrays depends on the parameter $d$. The independent sub-array contains simply the values $0..l_{indep}$ in incremental order, and in this dependent sub-array each value must have exactly one duplicate (in theory a value could have more than one duplicate, but this would not affect the results of the instrumentation).
 		
 		To illustrate, this is an array of \texttt{b} with no dependencies:
@@ -157,7 +155,7 @@ for (int i = 0 to m) {
 		
 		As a result, this stage operates in $T=O(n)$ time.
 		
-		\texttt{Generating \texttt{ops}} \label{sec:methodology/params/algo/gen-ops}
+		\subsubsection{Generating \texttt{ops}} \label{sec:methodology/params/algo/gen-ops}
 		Again, a state machine is used in order to determine that exactly two operations are dependent.
 		
 		As the dependency kinds can be weighted with different values, a discrete probability distribution over the hazard types is used. The algorithm performs a scan over \texttt{b}, at each index performing a second scan over the array to kind an equal value. If one is found, a probability function is created, with the appropriate values being written. If a pair is not found, an operation is randomly chosen.

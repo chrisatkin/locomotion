@@ -106,7 +106,7 @@ public final class Formatter {
 				"some-0.4equal-longvector"
 				*/
 				
-				"test"}) {
+				"test-long"}) {
 			for (final String instrument: new String[] { "true", "false" }) {
 				for (final String storage: new String[] { "HashSetTrace", "BloomFilterTrace"}) {
 					System.out.println("name=" + name + " instrument=" + instrument + " storage=" + storage);

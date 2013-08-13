@@ -1,4 +1,4 @@
-set title "none dependent, bloom filter"
+set title "none dependent, with instrumentation"
 set xlabel "number of accesses (thousands)"
 set ylabel "execution time (sec)"
 

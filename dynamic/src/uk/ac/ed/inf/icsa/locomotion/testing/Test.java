@@ -3,7 +3,7 @@ package uk.ac.ed.inf.icsa.locomotion.testing;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
 import uk.ac.ed.inf.icsa.locomotion.testing.output.Output;
 
-public class Test implements Runnable {
+public class Test {
 	private Experiment e;
 	private InstrumentSupport instrument;
 	private Output output;
@@ -17,10 +17,12 @@ public class Test implements Runnable {
 		e.setArguments(args);
 	}
 	
-	@Override
 	public void run() {
 		try {
+//			long start = System.currentTimeMillis();
 			e.run(output, instrument);
+//			long stop = System.currentTimeMillis();
+//			System.out.println((stop - start));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

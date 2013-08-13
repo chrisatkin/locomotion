@@ -24,4 +24,5 @@ plot "< sort -u -k1,1 -n -k3,3 -n instrumentation=true-storage=BloomFilterTrace 
 "< sort -u -k1,1 -n -k3,3 -n instrumentation=true-storage=BloomFilterTrace | awk '$1 * 70 == $3'" using ($1/1):4 with linespoints title "factor = 70" ls 7 lw 1,\
 "< sort -u -k1,1 -n -k3,3 -n instrumentation=true-storage=BloomFilterTrace | awk '$1 * 10 == $3'" using ($1/1):4 with linespoints title "factor = 80" ls 8 lw 1,\
 "< sort -u -k1,1 -n -k3,3 -n instrumentation=true-storage=BloomFilterTrace | awk '$1 * 90 == $3'" using ($1/1):4 with linespoints title "factor = 90" ls 9 lw 1,\
-"< sort -u -k1,1 -n -k3,3 -n instrumentation=true-storage=BloomFilterTrace | awk '$1 * 100 == $3'" using ($1/1):4 with linespoints title "factor = 100" ls 1 lw 1,\
+"< sort -u -k1,1 -n -k3,3 -n instrumentation=true-storage=BloomFilterTrace | awk '$1 * 100 == $3'" using ($1/1):4 with linespoints title "factor = 100" ls 10 lw 1,\
+"< sort -n instrumentation=true-storage=HashSetTrace" using 1:4 with linespoints title "hash set" ls 11

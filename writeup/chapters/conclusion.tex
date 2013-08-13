@@ -1,15 +1,27 @@
 \chapter{Conclusion} \label{chp:conclusion}
-\section{Concluding Remarks} \label{sec:conclusion/remarks}
+\section{Concluding Remarks and Contributions} \label{sec:conclusion/remarks}
+In this dissertation, several key contributions to the field have been made.
 
-\section{Contributions} \label{sec:conclusion/contributions}
+\begin{itemize}
+	\item We have investigated the use of bloom filters as an alternative to hash sets for dependency storage. Despite their probabilistic nature, we have shown that is is both feasible and advantageous to use bloom filters instead of hash sets for dependency analysis. Bloom filters significantly outperformed hash sets when memory usage is taken into consideration, and they outperform hash sets by roughly 10 to 15\% when execution time is taken into consideration.
+	
+	\item A parametric benchmark has been developed, which enabled the creation of access pattern with well-known properties. This allows for `apples-to-apples' comparisons to be made between various different approaches. Additionally, the use of this benchmark allows for a controlled setting within which the benchmarks can take place -- one can only evalulate the efficacy of dependency detection algorithms if the number of dependencies is known. Unlike other (perhaps real-world) benchmarks where this value may not be known, with our benchmark it is known.
+	
+	\item Lastly, an instrumentation framework with an overhead of 20-30x over the baseline has been developed. We have shown how this framework performs with regard to the number of computations performed with each access.
+\end{itemize}
 
 \section{Unsolved Problems} \label{sec:conclusion/unsolved}
+There are, however, several problems with remain 
 
 \section{Future Work} \label{sec:conclusion/future-work}
 The work that has been presented in this dissertation is a step forwards in dynamic parallelism detection. The framework correctly identifies data-parallel loops, and we have investigated whether the use of bloom filters affects the detection rate. However, there are still significant areas of future work that are possible.
 
-The framework presented is only currently capable of detecting parallelism at the level of loops (\ie, loop-level parallelism). 
+Additional methods for trace storage could be analysed. Perhaps one such example is hash compaction, which instead stores compacted states in a hash table.
 
-Additionally, although the framework \emph{does} correctly detect parallelism at run-time, this information is current under-exploited by the runtime. It is possible, at least theoretically, that the framework could be combined with fellow student Ranjeet Singh's Java-to-OpenCL compiler in a JIT setting to produce a runtime system that dynamically detects parallel loops, recompiles then and executes using OpenCL (either on a CPU or GPU). However, there is an additional downside to this: the advantage (\ie, performance increase) of dynamic recompilation, moving execution to the CPU and then gathering the result must be greater than that of not doing so.
+The framework presented is only currently capable of detecting parallelism at the level of loops (\ie, loop-level parallelism). The approach used could be extended towards a slicing-based approach, where instead of loops being instrumented, it could be possible to instrument given blocks. Whilst the approach is feasible, the framework would need to be modified in the sense that it can currently only instrument array accesses. Although a simple addition as the underlying mechanisms would not need to be modified, only their presentation API, this work is outside the scope of this dissertation. Additionally, such an approach would face the same problems as \citet{Wang2009} - as the slice coverage increases, the complexity increases combinatorially. 
 
-Although thread creation on CPUs is expensive in Java \citep{JSR133}, thread creation on GPUs is low \citep{Mueller2009} (indeed, GPUs need 1000s of threads to operate efficiently in CUDA \citep{Nvidia2011}). In order to properly perform recompilation (or not), a cost model would need to be developed.
+Additionally, although the framework \emph{does} correctly detect parallelism at run-time, this information is current under-exploited by the runtime. It is possible, at least theoretically, that the framework could be combined with fellow student Ranjeet Singh's Java-to-OpenCL compiler, or perhaps utilise the already existing PTX or HSAIL backends in Graal in a JIT setting to produce a runtime system that dynamically detects parallel loops, recompiles then and executes using OpenCL (either on a CPU or GPU). However, there is an additional downside to this: the advantage (\ie, performance increase) of dynamic recompilation, moving execution to the CPU and then gathering the result must be greater than that of not doing so.
+
+There are several overheads of doing so however. Although thread creation on CPUs is expensive in Java \citep{JSR133}, thread creation on GPUs is low \citep{Mueller2009} (indeed, GPUs need 1000s of threads to operate efficiently in CUDA \citep{Nvidia2011}).
+
+Additionally, the overhead of data marshalling for GPGPUs (in general terms, the overhead of moving the data to the GPU and back again if required) is high, as the data does not exist within the cache hierarchy. In order to overcome this overhead, the advantage of performing the optimisation must be significant. A cost model could be performed, similar to \citet{Tournavitis2009}, which combines static and dynamic analysis in order to provide intelligent run-time information to the JIT compiler regarding possible parallelisation for loops.
