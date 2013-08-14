@@ -9,6 +9,7 @@ public final class BloomFilterConfiguration extends TraceConfiguration {
 	private Funnel<Access> funnel;
 	
 	public BloomFilterConfiguration(int expectedInsertations, Funnel<Access> funnel) {
+		super(expectedInsertations);
 		this.expectedInsertations = expectedInsertations;
 		this.funnel = funnel;
 	}

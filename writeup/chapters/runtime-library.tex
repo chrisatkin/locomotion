@@ -1,6 +1,6 @@
 \chapter{The Runtime Library} \label{chp:runtime}
 \section{Introduction} \label{sec:runtime/introduction}
-In this chapter, the work performed towards implementing the runtime library, known as Locomotion, is presented. This library handles several core functions critical to the infrastructure of the application:
+In this chapter, the work performed towards implementing the runtime library is presented. This library handles several core functions critical to the infrastructure of the application:
 
 \begin{itemize}
 	\item Functions for collecting trace analyses
@@ -13,14 +13,14 @@ The programs described within this chapter are open-source, released under The U
 The fully-qualified package identifier for the runtime library is\\\texttt{uk.ac.ed.inf.icsa.locomotion.instrumentation}.
 
 \section{Trace Storage} \label{sec:runtime/storage}
-Generating traces for large programs -- the kind of programs which would benefit from hot-loop analysis -- requires a large amount of storage as it scales linearly with the number of memory operations ($S=O(n)$). Although the number of storage operations conforming to the requirements in a program may be relatively small, this number is increased when the standard library is included.
+Generating traces for large programs -- the kind of programs which would benefit from hot-loop analysis -- requires a large amount of storage as they scales linearly with the number of memory operations ($S=O(n)$). Although the number of storage operations conforming to the requirements in a program may be relatively small, this number is increased when the standard library is included.
 
-The main problem that the storage format must be able to determine is this. Given trace $T$ and access $\alpha$, is $\alpha \in T$?
+The main problem that the storage format must be able to determine is this: given trace $T$ and access $\alpha$, is $\alpha \in T$?
 	
 	\subsection{Exact Approaches: Hash Tables and Sets} \label{sec:runtime/storage/exact}
 	Exact approaches provide an accurate deterministic response to this question. They are not probabilistic or statistical in nature.
 
-	A hash function maps keys to indexes, where buckets are stored. Buckets contain all items with the same key. Ideally, a lookup of $T=O(1)$ is possible (\ie, a hash function with ideal distribution). Worst-case cost is $T=O(n)$, in the case of multiple collisions or a low load factor, as the bucket will need to be traversed sequentially to find the item.
+	A hash function maps keys to indexes, where buckets are stored. Buckets contain all items with the same key. Ideally, a lookup of $T=O(1)$ is possible (\ie, a hash function with ideal distribution and a satisfactory number of buckets). Worst-case cost is $T=O(n)$, in the case of multiple collisions or a low load factor, as the bucket will need to be traversed sequentially to find the item.
 		
 	It is common to use hashing by division for the hash function:
 		
@@ -28,7 +28,7 @@ The main problem that the storage format must be able to determine is this. Give
 		f(k) = k \bmod{D}
 	\]
 		
-	Where $k$ is the key and $D$ is the size (\ie, number of positions of the hash table) \citep{DSandAlgsCpp}.
+	Where $k$ is the key and $D$ is the size (\ie, number of positions of the hash table) \citep{DSandAlgsCpp}, although other functions are possible. For example, Java uses the standard \texttt{hashCode} method.
 		
 	The constant-time lookup assumes that the \textit{load factor} $L$ is bounded below some constant. The load factor is computed by $L=\frac{n}{k}$.
 		
@@ -37,7 +37,7 @@ The main problem that the storage format must be able to determine is this. Give
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.7\textwidth]{graphics/hash-table.pdf}
-		\caption{A simple hash table for a phone book \citep{HashTableWikiDiagram}}
+		\caption{A simple hash table for a phone book (figure  \citet{HashTableWikiDiagram})}
 		\label{fig:hash-table}
 	\end{figure}
 
@@ -70,7 +70,7 @@ The main problem that the storage format must be able to determine is this. Give
 	\sigma = 0.5^k
 	\]
 	
-	In essence, the longer the bit vector, the more accurate the filter becomes - at the expense of increasing space requirements. If $m=\infty$, then there are no false positives - the filter becomes accurate and deterministic (for a fixed set of $k$).
+	In essence, the longer the bit vector, the more accurate the filter becomes - at the expense of increasing space requirements. If $m=\infty$, then there are no false positives - the filter becomes accurate and deterministic (for a fixed set of $k$). In essence, it becomes a standard set - although it is important to realise that this can never be achieved.
 	
 	\citet{Swamidass2007} show is that the number of elements within a Bloom Filter can be estimated by:
 	
@@ -83,10 +83,10 @@ The main problem that the storage format must be able to determine is this. Give
 	It is possible to calculate the theoretical optimal length of the bit vector $m$ from the number of expected insertions $n$ and the \textit{false positive rate} $p$. This is defined as
 
 	\begin{equation} \label{eqn:optimal-bits}
-		m = -n \times \log(p) \div \left( \log(2) \times \log(2) \right)
+		m = -n \times \log(p) / \left( \log(2) \times \log(2) \right)
 	\end{equation}
 	
-	It is possible to use equation \ref{eqn:optimal-bits} to compute the memory usage for given $m$ and $p$, this is shown in figure \ref{fig:opt-bits}.
+	It is possible to use equation \ref{eqn:optimal-bits} to compute the memory usage for given $n$ and $p$, this is shown in figure \ref{fig:opt-bits}.
 	
 	\begin{figure}
 		\begin{gnuplot}[terminal=pdf]
@@ -120,13 +120,13 @@ The main problem that the storage format must be able to determine is this. Give
 	However, lookup time in bloom filters is asymptotically greater than the hash-based alternative. Unlike the hashing-based approach which has, with an optimal load factor, a lookup time of $T_{lookup}^{hash}=O(1)$, a bloom filter has a lookup time of $T_{lookup}^{bloom}=O(k)$ (where $k$ is the number of hash functions). This is unlike amongst array/vector-based approaches, which in many cases are $T=O(1)$. As the number of optimal hash functions is dependent on the number of expected entries and the bit vector size (see equation \ref{eqn:optimal-hashes}), it is predicted that execution time will increase slightly as a result, with the assumption that the hashing-based approach is operating efficiently (\ie, with an adequate load factor).
 	
 	\subsubsection{Implementations} \label{sec:runtime/storage/probabilistic/impls}
-	Unlike hash sets, where a canonical implementation exists in the form of \texttt{HashSet} within the Java API, there is not a single canonical implementation of bloom filters for Java. Naturally, however, there are many third-party implementations, each of which have different properties. Although where appropriate, these properties will still conform to the theoretical time and space complexities presented above, asymptotic performance is only one aspect of `real-world' performance.
+	Unlike hash sets, where a canonical implementation exists in the form of \texttt{HashSet} within the Java API, there is not a single canonical implementation of bloom filters for Java. Naturally, however, there are many third-party implementations, each of which have different properties. Although where appropriate, these properties will still conform to the theoretical time and space complexities presented above, asymptotic performance is only one aspect of `real-world' performance (due to differing hidden constants in the asymptotic costs).
 	
 	The first implementation that exists is from the Google Guava project, which is a collection of APIs that applications commonly require. The Google implementation is a general-purpose bloom filter implementation, based around the concept of `Funnels'. Funnels stream primitive values into \texttt{PrimitiveSinks}, of which a bloom filter is an example. In this way, a Funnel is a kind-of interface to the bloom filter, allowing the user to specify only certain values which should be considered for hashing. Additionally, they permit high performance as string-based representations, another `general-purpose' representation, require additional overhead.
 	
 	The alternative implementation used is taken from the Apache Cassandra project. Cassandra is a distributed, highly-scalable database management system, and it uses bloom filters to improve performance on disk lookup \citep{CassandraArch}. Although this implementation is not considered a standalone implementation in the same way the Google Guava implementation is, it is still easy to remove from Cassandra.
 	
-	The key difference that this implementation is the difference in hash function. Instead of a custom function used in Guava (which is based around \citet{Swamidass2007}), Cassandra instead uses the MurmurHash function \citep{MurmurHash}. MurmurHash is known to be a high-performance, general-purpose hashing mechanism, and may prove superior to the custom methodology use in Guava. The reason that MurmurHash has higher performance is because it operates on 4 bytes per operation, rather than the single byte used in many other hash functions. However, this implementation is optimised towards strings, requiring all objects to be converted to string representation before hashing. This may be a source of overhead.
+	The key difference that this implementation is the difference in hash function. Instead of a custom function used in Guava (which is based around \citet{Swamidass2007}), Cassandra instead uses the MurmurHash function \citep{MurmurHash}. MurmurHash is known to be a high-performance, general-purpose hashing mechanism, and may prove superior to the custom methodology use in Guava. The reason that MurmurHash has higher performance is because it operates on 4 bytes per operation, rather than the single byte used in many other hash functions. However, this implementation is optimised towards strings, requiring all objects to be converted to string representation before hashing. This may be a source of overhead. The Guava implementation also uses a mathematical `trick' presented in \citet{Kirsch2006} in order to reduce the number of hashes required.
 	
 	In chapter \ref{chp:results}, we will begin with a comparison between these bloom filter algorithms, continuing with the rest of the analysis with the implementation with the highest performance.
 
@@ -134,25 +134,24 @@ The main problem that the storage format must be able to determine is this. Give
 	Computing dependency between two operations is of critical importance to this project; an efficient algorithm is important.
 	
 	\subsection{Why are dependencies important?} \label{runtime/analysis/why}
-	Dependencies, also called \textit{hazards} (especially in processor architecture literature) are of critical importance to automatic parallelisation as they determine whether (or not) a loop can be automatically parallelised. If there is a dependence, the statements cannot be executed in parallel without additional transformation (which may be intractable) of the program\footnote{One example of where such a transformation is possible is a summation of a counter: \texttt{for int i = 0 to n: i++}. This program can be broken down into a tree of tasks and executed in a divide-and-conquer fashion, which is easily parallelisable}. However, such transformations are likely not possible for compilers to perform automatically. 
+	Dependencies, also called \textit{hazards} (especially in processor architecture literature) are of critical importance to automatic parallelisation as they determine whether (or not) a loop can be automatically parallelised. If there is a dependence, the statements cannot be executed in parallel without additional transformation of the program\footnote{One example of where such a transformation is possible is a summation of a counter: \texttt{for int i = 0 to n: i++}. This program can be broken down into a tree of tasks and executed in a divide-and-conquer fashion, which is easily parallelisable}. However, such transformations are likely not possible for compilers to perform automatically in procedural/imperative as there is not enough semantic information available at the source-code level; in effect the compiler cannot reason about the program. 
 	
 	\subsection{Dependency Theory} \label{sec:runtime/analysis/theory}
-	From \citet[p.~37]{Allen2000}, there is a data dependence from statement $\sigma_x$ to statement $\sigma_y$ (where $T(\sigma_x) \rightarrow T(\sigma_y)$\footnote{For two statements $x$ and $y$, $x \rightarrow y$ iff there is a viable execution path between $x$ and $y$}) if and only if:
+	From \citet[p.~37]{Allen2000}, there is a data dependence from statement $\sigma_x$ to statement $\sigma_y$ if and only if:
 	
 	\begin{enumerate}
 		\item both statements access the same memory location and at least one of them stores into it
-		\item there is a feasible run-time execution path from $\sigma_x$ to $\sigma_y$
+		\item there is a feasible run-time execution path from $\sigma_x$ to $\sigma_y$ (in which case, $\sigma_x \rightarrow \sigma_y$)
 	\end{enumerate}
 	
-	There are several kinds of inter-iteration dependency \citep[p.~526]{Ibbett2009,ArchitectureBook}. In this section, $R(\alpha_x)$ denotes the set of addresses/locations read by access $\alpha_x$, and $W(\sigma_x)$ denotes the set of addresses read by access $\sigma_y$.
+	There are several kinds of inter-iteration dependency \citep[p.~526]{Ibbett2009,ArchitectureBook}. In this section, $R(\alpha_x)$ denotes the set of addresses/locations read by access $\alpha_x$, and $W(\sigma_y)$ denotes the set of addresses read by access $\sigma_y$.
 	
 	\begin{itemize}\label{fig:dep-kinds}
 		\item \textbf{Write-after-write} or \textit{output dependency}: given two statements $\sigma_x$ and $\sigma_y$, there is a write-after-write dependency if a total ordering is required for $\sigma_x$ and $\sigma_y$. For example:
 		
-		\begin{verbatim}
-		R3 = R1 + R2
-		R3 = R3 + R4
-		\end{verbatim}
+		\begin{lstlisting}
+R3 = R1 + R2
+R3 = R3 + R4\end{lstlisting}
 		
 		If the second statement were executed before the first statement, program correctness would be violated, so speculative execution is not possible.
 		
@@ -162,10 +161,9 @@ The main problem that the storage format must be able to determine is this. Give
 		
 		\item \textbf{Write-after-read} or \textit{antidependency}: given two statements $\sigma_x$ and $\sigma_y$, there is a write-after-read dependency if evaluation of $\sigma_y$ is dependent on the evaluation of $\sigma_x$:
 		
-		\begin{verbatim}
-		R1 = R2 + R3
-		R2 = R4 + R5
-		\end{verbatim}
+		\begin{lstlisting}
+R1 = R2 + R3
+R2 = R4 + R5\end{lstlisting}
 		
 		In this case, if the statements are re-ordered, the wrong value of \texttt{R2} will be used.
 		
@@ -175,10 +173,9 @@ The main problem that the storage format must be able to determine is this. Give
 		
 		\item \textbf{Read-after-write} or \textit{true dependency}: given two statements $\sigma_x$ and $\sigma_y$, there is a read-after-write dependency if $\sigma_y$ stores the value (or derivative value) of $\sigma_x$:
 		
-		\begin{verbatim}
-		R1 = R2 + R3
-		R4 = R1 + R5
-		\end{verbatim}
+		\begin{lstlisting}
+R1 = R2 + R3
+R4 = R1 + R5\end{lstlisting}
 		
 		If the statements are reordered, either a stale value of R1 will be used, or R1 may not have been initialized.
 		
@@ -193,8 +190,6 @@ The main problem that the storage format must be able to determine is this. Give
 	\left[ R(\sigma_x) \cap W(\sigma_y) \right] \cup \left[ W(\sigma_x) \cap R(\sigma_y) \right] \cup
 	\left[ W(\sigma_x) \cap W(\sigma_y) \right] \neq \varnothing
 	\end{equation}
-	
-	There is also a theoretical dependency that can be detected by the framework, read-after-read, but since this does not cause two iterations to be dependent, they are not considered by the framework.
 	
 	For an arbitrary loop in which the loop index $I$ runs from $L$ to $U$ in steps of $S$, the iteration number $i$ of a specific iteration is equal to the value $\frac{I-L+S}{S}$, were $I$ is the value of the index on that iteration.
 	
@@ -220,7 +215,7 @@ The main problem that the storage format must be able to determine is this. Give
 	\end{itemize}
 
 	\subsection{Offline Algorithms} \label{sec:runtime/analysis/offline}
-	An offline algorithm means that any processing is performed after the trace has been collected \citep[p.~525-526]{TAOCPvol2}. It is the simplest form of dependency analysis algorithm, but it show poor performance. For a number of loops $l$ with an average of $i$ iterations each, where each iteration has an average of $o$ operations, then $T_{offline}=O(lio)$.
+	An offline algorithm means that any dependency checking is performed after the trace has been collected \citep[p.~525-526]{TAOCPvol2}. It is the simplest form of dependency analysis algorithm, but it show poor performance. For a number of loops $l$ with an average of $i$ iterations each, where each iteration has an average of $o$ operations, then $T_{offline}=O(lio)$.
 	
 	\begin{algorithm}
 		\caption{Offline dependency algorithm}
@@ -291,7 +286,7 @@ The main problem that the storage format must be able to determine is this. Give
 In this section, we consider the techniques used to implement the runtime library and online dependency algorithm from a software engineering perspective.
 
 	\subsection{Entry Point} \label{sec:runtime/implementation/entry-point}
-	The main entry point to the instrumentation is the \texttt{InstrumentSupport} class. It includes an \texttt{Instrument}, which is an implementation of instrumentation. There is also a number of static methods for accessing the instrumentation framework, such as starting and ending timers (and getting time differences in nanoseconds) and flushing the instrument buffers. Figure \ref{fig:instrument-support} shows the class diagram with public methods for \texttt{InstrumentSupport}.
+	The main entry point to the instrumentation is the \texttt{Instrumentation} class. It includes various static methods, which operate on an instance of itself. These static methods implement a simple state machine, defining the allowable operations for the instrumentation. Figure \ref{fig:instrument-support} shows the class diagram with public methods for \texttt{Instrumentation}.
 	
 	\begin{figure}
 		\centering
@@ -301,16 +296,40 @@ In this section, we consider the techniques used to implement the runtime librar
 	\end{figure}
 	
 	\subsection{Instrument Implementation} \label{sec:runtime/implementation/instrument}
-	\texttt{InstrumentSupport} is initalised at load-time with an \texttt{Instrument} (via static blocks). \texttt{Instrument} is an implementation of instrumentation, and it has a configuration. This configuration contains parameters such as whether the instrumentation should be enabled and so on.
+	\texttt{Instrumentation} is initalised at load-time with an instance of itself (via static blocks). \texttt{Instrumentation} has a configuration. This configuration contains parameters such as whether the instrumentation should be enabled and so on.
 	
 	The user-facing methods for trace collection have the following signatures:
 	
 	\begin{lstlisting}[caption=Method signatures for instrumentation methods,label=lst:sigs]
-	public static <T> void
-	arrayLookup(T[] array, int index, int i, int id);
+	public static void
+	setConfiguration(Configuration c);
 	
-	public static <T> void
-	arrayStore(T[] array, int index, T value, int i, int id);\end{lstlisting}
+	public static void
+	startLoop(String id);
+	
+	public static void
+	enterIteration(int number);
+	
+	public static <T> T
+	load(T[] array, int index);
+	
+	public static <T> T[]
+	store(T[] array, int index, T value);
+	
+	public static void
+	endIteration();
+	
+	public static void
+	endLoop();
+	
+	public static long
+	memoryUsage();
+	
+	public static void
+	clean();
+	
+	public static List<LoopDependencyException>
+	getDependencies();\end{lstlisting}
 	
 	The arguments are:
 	
@@ -319,7 +338,7 @@ In this section, we consider the techniques used to implement the runtime librar
 		\item \texttt{int index}: the array index in question
 		\item \texttt{int i}: the value of the iteration variable
 		\item \texttt{T value}: the value being written to the array at the index
-		\item \texttt{int id}: a unique loop identifier
+		\item \texttt{String id}: a unique loop identifier
 	\end{itemize}
 	
 	The Java generics system was leveraged in order to reduce the amount of code required to implement the collection; it is important to recognise that the Java type system allows the trace collection mechanism to be unconcerned with the type of the array being accessed (and the type of the item being inserted if appropriate).
@@ -355,10 +374,10 @@ In this section, we consider the techniques used to implement the runtime librar
 			\item \textbf{Standard implementation}: the built-in implementation has been tested for bugs, and is (mostly) bug-free. A custom implementation could not be subjected to this same rigorous testing.
 		\end{itemize}
 		
-		\subsubsection{Inexact - Bloom Filters} \label{sec:runtime/implementation/trace/bloom}
-			Rather than creating a custom implementation of Bloom filters, I used an existing implementation in the form of Google Guava \citep{GuavaBloomFilter}.\
-		
+		\subsubsection{Inexact - Bloom Filters} 
 		There is a parent abstract class, \texttt{Trace} which specifies several standard methods that all interfaces must define (\texttt{add()}, \texttt{contains()} and \texttt{size()}). All implementations of traces inherit from this superclass. Figure \ref{fig:trace-classes} shows this hierarchy in detail.
+		
+		Both implementations for the Guava and Cassandra bloom filters are included in this hierarchy.
 		
 		\begin{figure}
 			\centering

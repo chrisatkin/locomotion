@@ -51,12 +51,15 @@ public class HazardTestComputation implements Experiment {
 		this.b = (int[]) args[1];
 		this.pattern = (AccessKind[]) args[2];
 		this.ident = (String) args[3];
-		this.numberOfComputations = (int) args[4];
+	}
+	
+	public void setComputationAmount(int amount) {
+		this.numberOfComputations = amount;
 	}
 
 	@Override
 	public String getIdentifier() {
-		return ident;
+		return ident + ";computation=" + numberOfComputations;
 	}
 	
 	public int getLength() {

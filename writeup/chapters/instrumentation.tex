@@ -1,14 +1,11 @@
 \chapter{Dynamic Instrumentation} \label{chp:instrumentation}
 \section{Introduction} \label{sec:instrumentation/introduction}
-Flexible and efficient instrumentation is the foundation of this project. Here, possible approaches to this instrumentation are discussed, along with critical analyses.
+There are two main approaches to dynamic instrumentation: automatic, and manual. We consider both of them, using Graal for an automatic, dynamic approach. We conclude by showing that, currently, it is not yet possible to use Graal for automatic instrumentation -- the reason for this is explained. As an alternative, manual instrumentation is used, and we explain the disadvantages and impact of this approach.
 
-There are two main approaches to the instrumentation: automatic, and manual. We consider both of them, using Graal for an automatic, dynamic approach. We conclude by showing that, currently, it is not yet possible to use Graal for automatic instrumentation -- the reason for this is explained. As an alternative, manual instrumentation is used, and we explain the disadvantages and impact of this approach.
-
-\section{Automatic Approaches} \label{sec:instrumentation/automatic}
+\section{Automatic Approaches - Graal} \label{sec:instrumentation/automatic}
 	In this context, an automatic approach to instrumentation is a technique that can be applied directly at compile-time (or just before run-time in an agent-like fashion). Such approaches require no human intervention whatsoever, and have the additional advantage of having access to additional compile-time meta-data which is not possible to gain at run-time or using manual instrumentation.
 
-	\subsection{Graal} \label{sec:instrumentation/graal}
-	In the first instance, an automatic approach based on Graal was investigated. Graal was chosen in the first instance because it is the most flexible approach: it allows the combination of compile-time evaluation, as well as run-time evaluation of the dependency algorithms.
+	An automatic approach based on Graal was investigated. Graal was chosen because it is the most flexible approach: it allows the combination of compile-time evaluation, as well as run-time evaluation of the dependency algorithms.
 	
 	As mentioned, Graal uses various different forms of intermediate representation, based on graphs (see section \ref{sec:graal/ir}). In principle, it should be possible to modify these graphs in order to invoke the instrumentation (described in chapter \ref{chp:runtime}).
 	
@@ -85,7 +82,8 @@ There are two main approaches to the instrumentation: automatic, and manual. We 
 	    Code:
 	       0: getstatic     #2    // Field java/lang/System.out:Ljava/io/PrintStream;
 	       3: ldc           #3    // String Hello, world
-	       5: invokevirtual #4    // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+	       5: invokevirtual #4    // Method java/io/PrintStream.println:
+	       (Ljava/lang/String;)V
 	       8: return        
 	}
 	

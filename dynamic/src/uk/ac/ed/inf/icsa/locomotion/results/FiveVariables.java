@@ -28,5 +28,4 @@ public class FiveVariables extends FourVariables {
 			items.add(new ChartItem5<String, String, String, String, String>(x_value, y1_value, y2_value, y3_value, y4_value));
 		}
 	}
-
 }

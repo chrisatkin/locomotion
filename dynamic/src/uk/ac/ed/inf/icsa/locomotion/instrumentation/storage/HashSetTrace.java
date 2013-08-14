@@ -11,7 +11,7 @@ public class HashSetTrace extends Trace {
 	
 	public HashSetTrace(TraceConfiguration configuration) {
 		super(configuration);
-		this.entries = new HashSet<>();
+		this.entries = new HashSet<>(1);
 	}
 	
 	@Override

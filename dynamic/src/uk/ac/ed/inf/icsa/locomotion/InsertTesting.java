@@ -31,22 +31,27 @@ public class InsertTesting {
 		//System.out.println("n\thash\tguava\tcassandra");
 		//System.out.println("insert");
 		
-		for (int n = 10000; n <= 100000; n += 10000) {
+		for (int n = 1000; n <= 100000; n += 1000) {
 			Access[] as = new Access[n];
-			HashSet<Access> hash = new HashSet<>(n);
-			com.google.common.hash.BloomFilter<Access> guava_bloom = com.google.common.hash.BloomFilter.create(new AFunnel(), n);
-			BloomFilter cassandra_bloom = new BloomFilter(n, 0.03);
+			HashSet<Access> default_hash = new HashSet<>();
+			HashSet<Access> hash = new HashSet<>(n, 0.75f);
+			com.google.common.hash.BloomFilter<Access> guava_bloom = com.google.common.hash.BloomFilter.create(new AFunnel(), n, 0.01f);
+			BloomFilter cassandra_bloom = new BloomFilter(n, 0.01f);
 		
 			Random random = new Random();
 			for (int i = 0; i < n; i++)
 				as[i] = new Access(random.nextInt(Integer.MAX_VALUE - 0), random.nextInt(Integer.MAX_VALUE - 0), AccessKind.Load);
 			
 			// insert all into hash set
-			long hash_insert_total = 0, guava_bloom_insert_total = 0, cassandra_bloom_insert_total = 0;
+			long hash_insert_total = 0, guava_bloom_insert_total = 0, cassandra_bloom_insert_total = 0, default_hash_insert_total = 0;
 			for (Access current: as) {
 				long start = System.nanoTime();
 				hash.add(current);
 				hash_insert_total += (System.nanoTime() - start);
+				
+				start = System.nanoTime();
+				default_hash.add(current);
+				default_hash_insert_total += (System.nanoTime() - start);
 				
 				start = System.nanoTime();
 				guava_bloom.put(current);
@@ -57,16 +62,20 @@ public class InsertTesting {
 				cassandra_bloom_insert_total += (System.nanoTime() - start);
 			}
 			
-//			System.out.println(n + "\t" + (hash_insert_total/n) + "\t" + (guava_bloom_insert_total/n) + "\t" + (cassandra_bloom_insert_total/n));
+//			System.out.println(n + "\t" + (hash_insert_total/n) + "\t" + (default_hash_insert_total/n) + "\t" + (guava_bloom_insert_total/n) + "\t" + (cassandra_bloom_insert_total/n));
 			
 //			// test membership
-			long hash_member_total = 0, guava_member_total = 0, cassandra_member_total = 0;
+			long hash_member_total = 0, guava_member_total = 0, cassandra_member_total = 0, default_hash_member_total = 0;
 			boolean contains;
 			
 			for (Access current: as) {
 				long start  = System.nanoTime();
 				contains = guava_bloom.mightContain(current);
 				guava_member_total += (System.nanoTime() - start);
+				
+				start = System.nanoTime();
+				contains = default_hash.contains(current);
+				default_hash_member_total += (System.nanoTime() - start);
 				
 				start = System.nanoTime();
 				contains = cassandra_bloom.isPresent(as.toString());
@@ -77,28 +86,7 @@ public class InsertTesting {
 				hash_member_total += (System.nanoTime() - start);
 			}
 			
-			System.out.println(n + "\t" + (hash_member_total/n) + "\t" + (guava_member_total/n) + "\t" + (cassandra_member_total/n));
-			
-//			long bloom_member_total = 0;
-//			for (A curent: as) {
-//				long start = System.nanoTime();
-//	//			boolean contains = bloom.mightContain(curent);
-//				boolean contains = cassandra_bloom.isPresent(curent.toString());
-//				bloom_member_total += (System.nanoTime() - start);
-//				//System.out.println("contains " + curent + ": " + contains);
-//			}
-//			
-//			long hash_member_total = 0;
-//			for (A current: as) {
-//				long start = System.nanoTime();
-//				boolean contains = hash.contains(current);
-//				hash_member_total += (System.nanoTime() - start);
-//			}
-//		
-//			System.out.println("hash avg contains=" + (hash_member_total / N) + " ns");
-//			System.out.println("bloom avg contains=" + (bloom_member_total /N) + " ns");
-//			double d = ((double) bloom_insert_total/(double) N) / ((double) hash_insert_total/(double) N);
-//			System.out.println(d);
+			System.out.println(n + "\t" + (hash_member_total/n) + "\t" + (default_hash_member_total/n) + "\t" + (guava_member_total/n) + "\t" + (cassandra_member_total/n));
 		}
 	}
 

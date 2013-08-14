@@ -46,7 +46,7 @@
 	<key>Creator</key>
 	<string>chris</string>
 	<key>DisplayScale</key>
-	<string>1 0/72 in = 1 0/72 in</string>
+	<string>1 0/72 in = 1.0000 in</string>
 	<key>GraphDocumentVersion</key>
 	<integer>8</integer>
 	<key>GraphicsList</key>
@@ -55,11 +55,142 @@
 			<key>Class</key>
 			<string>LineGraphic</string>
 			<key>ID</key>
+			<integer>63</integer>
+			<key>Points</key>
+			<array>
+				<string>{279.12372223594451, 382.23018605950347}</string>
+				<string>{391, 329}</string>
+				<string>{239, 173}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>HeadArrow</key>
+					<string>UMLInheritance</string>
+					<key>Legacy</key>
+					<true/>
+					<key>LineType</key>
+					<integer>1</integer>
+					<key>TailArrow</key>
+					<string>0</string>
+				</dict>
+			</dict>
+			<key>Tail</key>
+			<dict>
+				<key>ID</key>
+				<integer>60</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>Class</key>
+			<string>TableGroup</string>
+			<key>Graphics</key>
+			<array>
+				<dict>
+					<key>Bounds</key>
+					<string>{{171.28001499176025, 382.44500732421875}, {185.3599853515625, 14}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>FitText</key>
+					<string>Vertical</string>
+					<key>Flow</key>
+					<string>Resize</string>
+					<key>ID</key>
+					<integer>60</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>GradientCenter</key>
+							<string>{-0.29411799999999999, -0.264706}</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+
+\f0\b\fs24 \cf0 CassandraBloomFilterTrace}</string>
+						<key>VerticalPad</key>
+						<integer>0</integer>
+					</dict>
+					<key>TextPlacement</key>
+					<integer>0</integer>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{171.28001499176025, 396.44500732421875}, {185.3599853515625, 28}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>FitText</key>
+					<string>Vertical</string>
+					<key>Flow</key>
+					<string>Resize</string>
+					<key>ID</key>
+					<integer>61</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>GradientCenter</key>
+							<string>{-0.29411799999999999, -0.264706}</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Align</key>
+						<integer>0</integer>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\f0\fs24 \cf0 - BloomFilterTrace&lt;Access&gt;\
+~ BloomFilterTraceConfiguration}</string>
+						<key>VerticalPad</key>
+						<integer>0</integer>
+					</dict>
+					<key>TextPlacement</key>
+					<integer>0</integer>
+				</dict>
+			</array>
+			<key>GridH</key>
+			<array>
+				<integer>60</integer>
+				<integer>61</integer>
+				<array/>
+			</array>
+			<key>ID</key>
+			<integer>59</integer>
+		</dict>
+		<dict>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>ID</key>
 			<integer>58</integer>
 			<key>Points</key>
 			<array>
-				<string>{194.93796027796162, 376.9450244182151}</string>
-				<string>{194.5, 324}</string>
+				<string>{80.937960277961636, 381.9450244182151}</string>
+				<string>{80.5, 329}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -88,7 +219,7 @@
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{136, 377.44500732421875}, {118, 14}}</string>
+					<string>{{22, 382.44500732421875}, {118, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -129,7 +260,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{136, 391.44500732421875}, {118, 14}}</string>
+					<string>{{22, 396.44500732421875}, {118, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -187,8 +318,8 @@
 			<integer>54</integer>
 			<key>Points</key>
 			<array>
-				<string>{195.07894707685927, 295.50002769836954}</string>
-				<string>{196, 208}</string>
+				<string>{81.078947076859265, 300.50002769836954}</string>
+				<string>{82, 213}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -217,8 +348,8 @@
 			<integer>27</integer>
 			<key>Points</key>
 			<array>
-				<string>{369.38728530417535, 295.53462188827297}</string>
-				<string>{335, 208}</string>
+				<string>{255.38728530417538, 300.53462188827297}</string>
+				<string>{221, 213}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -247,7 +378,7 @@
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{279.64000749588013, 296}, {185.3599853515625, 14}}</string>
+					<string>{{165.64000749588013, 301}, {185.3599853515625, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -279,7 +410,7 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
-\f0\b\fs24 \cf0 BloomFilterTrace}</string>
+\f0\b\fs24 \cf0 GuavaBloomFilterTrace}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
@@ -288,7 +419,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{279.64000749588013, 310}, {185.3599853515625, 28}}</string>
+					<string>{{165.64000749588013, 315}, {185.3599853515625, 28}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -347,7 +478,7 @@
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{150, 296}, {90, 14}}</string>
+					<string>{{36, 301}, {90, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -388,7 +519,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{150, 310}, {90, 14}}</string>
+					<string>{{36, 315}, {90, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -446,7 +577,7 @@
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{186, 138}, {167, 14}}</string>
+					<string>{{72, 143}, {167, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -487,7 +618,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{186, 152}, {167, 14}}</string>
+					<string>{{72, 157}, {167, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -530,7 +661,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{186, 166}, {167, 42}}</string>
+					<string>{{72, 171}, {167, 42}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -632,7 +763,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2013-08-02 17:59:09 +0000</string>
+	<string>2013-08-13 22:47:08 +0000</string>
 	<key>Modifier</key>
 	<string>chris</string>
 	<key>NotesVisible</key>
@@ -713,7 +844,7 @@
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{395, 0}, {694, 878}}</string>
+		<string>{{29, 2}, {910, 876}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -727,7 +858,7 @@
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{0, 0}, {545, 724}}</string>
+		<string>{{-100, 0}, {761, 737}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>

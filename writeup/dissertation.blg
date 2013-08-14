@@ -24,48 +24,48 @@ Warning--empty year in Dong
 Warning--empty booktitle in ACDI
 Warning--can't use both author and editor fields in Allen2000
 Warning--can't use both author and editor fields in ArchitectureBook
-Warning--empty journal in Levenberg2007
 Warning--can't use both author and editor fields in Dillinger2004
+Warning--empty journal in Levenberg2007
 Warning--empty journal in JSR133
-You've used 59 entries,
+You've used 61 entries,
             2481 wiz_defined-function locations,
-            1009 strings with 15933 characters,
-and the built_in function-call counts, 21074 in all, are:
-= -- 1852
-> -- 1001
-< -- 52
-+ -- 415
-- -- 295
-* -- 1549
-:= -- 3435
-add.period$ -- 251
-call.type$ -- 59
-change.case$ -- 121
-chr.to.int$ -- 57
-cite$ -- 76
-duplicate$ -- 1066
-empty$ -- 1910
-format.name$ -- 379
-if$ -- 4476
+            1029 strings with 16449 characters,
+and the built_in function-call counts, 22097 in all, are:
+= -- 1957
+> -- 1043
+< -- 54
++ -- 431
+- -- 307
+* -- 1625
+:= -- 3589
+add.period$ -- 263
+call.type$ -- 61
+change.case$ -- 125
+chr.to.int$ -- 59
+cite$ -- 78
+duplicate$ -- 1116
+empty$ -- 1998
+format.name$ -- 395
+if$ -- 4706
 int.to.chr$ -- 3
-int.to.str$ -- 60
-missing$ -- 43
-newline$ -- 375
-num.names$ -- 177
-pop$ -- 501
+int.to.str$ -- 62
+missing$ -- 45
+newline$ -- 390
+num.names$ -- 183
+pop$ -- 514
 preamble$ -- 1
-purify$ -- 59
+purify$ -- 61
 quote$ -- 0
-skip$ -- 673
+skip$ -- 707
 stack$ -- 0
-substring$ -- 540
-swap$ -- 173
-text.length$ -- 9
+substring$ -- 601
+swap$ -- 187
+text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 392
+type$ -- 406
 warning$ -- 16
-while$ -- 158
+while$ -- 167
 width$ -- 0
-write$ -- 900
+write$ -- 937
 (There were 16 warnings)

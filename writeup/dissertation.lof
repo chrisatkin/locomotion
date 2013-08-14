@@ -8,9 +8,9 @@
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Relationship between optimisations and deoptimisations [adapted from \citealp [p.\nobreakspace {}24]{Schwaighofer2009}]\relax }}{28}{figure.caption.7}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces A high-level graph (with inlining disabled) for a simple method taking an array actual parameter, returning index 0\relax }}{33}{figure.caption.8}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Information available at compile-time for the \texttt {LoadIndexedNode} shown in figure \ref {fig:access-index}\relax }}{33}{figure.caption.9}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Information available at compile-time for the \texttt {LoadIndexedNode} shown in figure \ref {fig:access-index}\relax }}{34}{figure.caption.9}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces A simple hash table for a phone book \citep {HashTableWikiDiagram}\relax }}{38}{figure.caption.10}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces A simple hash table for a phone book (figure \citet {HashTableWikiDiagram})\relax }}{39}{figure.caption.10}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Bloom filter operation with $m=18$ and $k=3$ \citep {BloomFilterWikiDiagram}\relax }}{39}{figure.caption.11}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Plot showing bit vector length versus expected insertations for various false probability rates\relax }}{40}{figure.caption.12}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Finite state machine for the online algorithm\relax }}{45}{figure.caption.13}
@@ -25,14 +25,14 @@
 \contentsline {figure}{\numberline {7.5}{\ignorespaces Number of dependencies detected versus number of accesses when no operations are dependent\relax }}{68}{figure.caption.20}
 \contentsline {figure}{\numberline {7.6}{\ignorespaces Execution time versus number of accesses when no operations are dependent\relax }}{69}{figure.caption.21}
 \contentsline {figure}{\numberline {7.7}{\ignorespaces Number of dependencies detected versus number of accesses when 20\% of operations have dependencies\relax }}{70}{figure.caption.22}
-\contentsline {figure}{\numberline {7.8}{\ignorespaces Execution time versus number of accesses when 20\% of operations are dependent\relax }}{70}{figure.caption.23}
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Execution time versus number of accesses when 20\% of operations are dependent\relax }}{71}{figure.caption.23}
 \contentsline {figure}{\numberline {7.9}{\ignorespaces Number of dependencies detected versus number of accesses when 40\% of operations have dependencies\relax }}{71}{figure.caption.24}
 \contentsline {figure}{\numberline {7.10}{\ignorespaces Execution time versus number of accesses when 40\% of operations are dependent\relax }}{72}{figure.caption.25}
 \contentsline {figure}{\numberline {7.11}{\ignorespaces Number of dependencies detected versus number of accesses when 60\% of operations have dependencies\relax }}{73}{figure.caption.26}
-\contentsline {figure}{\numberline {7.12}{\ignorespaces Execution time versus number of accesses when 60\% of operations are dependent\relax }}{73}{figure.caption.27}
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Execution time versus number of accesses when 60\% of operations are dependent\relax }}{74}{figure.caption.27}
 \contentsline {figure}{\numberline {7.13}{\ignorespaces Number of dependencies detected versus number of accesses when 80\% of operations have dependencies\relax }}{74}{figure.caption.28}
 \contentsline {figure}{\numberline {7.14}{\ignorespaces Execution time versus number of accesses when 80\% of operations are dependent\relax }}{75}{figure.caption.29}
-\contentsline {figure}{\numberline {7.15}{\ignorespaces Execution time versus number of accesses when expected insertions is set to various multiples of the actual length when all operations are dependent\relax }}{76}{figure.caption.30}
-\contentsline {figure}{\numberline {7.16}{\ignorespaces Execution time versus number of accesses when expected insertions is set to various multiples of the actual length when no operations are dependent\relax }}{77}{figure.caption.31}
+\contentsline {figure}{\numberline {7.15}{\ignorespaces Execution time versus number of accesses when expected insertions is set to various multiples of the actual length when all operations are dependent\relax }}{77}{figure.caption.30}
+\contentsline {figure}{\numberline {7.16}{\ignorespaces Execution time versus number of accesses when expected insertions is set to various multiples of the actual length when no operations are dependent\relax }}{78}{figure.caption.31}
 \contentsline {figure}{\numberline {7.17}{\ignorespaces Memory usage versus number of accesses when a factor for the bloom filter size is used\relax }}{78}{figure.caption.32}
 \addvspace {10\p@ }

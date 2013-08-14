@@ -118,6 +118,54 @@ abstract class Format {
 		}
 	}
 	
+	protected static class ChartItem6<A,B,C,D,E,F> extends Item {
+		private A a;
+		private B b;
+		private C c;
+		private D d;
+		private E e;
+		private F f;
+
+		public ChartItem6(A a, B b, C c, D d, E e, F f) {
+			this.a = a;
+			this.b = b;
+			this.c = c;
+			this.d = d;
+			this.e = e;
+			this.f = f;
+		}
+		
+		public A getA() {
+			return a;
+		}
+		
+		public B getB() {
+			return b;
+		}
+		
+		public C getC() {
+			return c;
+		}
+		
+		public D getD() {
+			return d;
+		}
+		
+		public E getE() {
+			return e;
+		}
+		
+		public F getF() {
+			return f;
+		}
+		
+		public String toString() {
+			StringBuilder string = new StringBuilder();
+			string.append(a.toString()).append("\t").append(b.toString()).append("\t").append(c.toString()).append("\t").append(d.toString()).append("\t").append(e.toString()).append("\t").append(f.toString());
+			return string.toString();
+		}
+	}
+	
 	protected File destination;
 	protected List<Result> results;
 	protected List<Item> items;

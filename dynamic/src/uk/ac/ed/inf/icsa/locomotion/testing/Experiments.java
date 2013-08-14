@@ -23,6 +23,7 @@ import uk.ac.ed.inf.icsa.locomotion.instrumentation.Instrumentation;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.BloomFilterConfiguration;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.BloomFilterTrace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.HashSetTrace;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.HashSetWellConfigured;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.TraceConfiguration;
 import uk.ac.ed.inf.icsa.locomotion.testing.experiments.*;
@@ -39,7 +40,7 @@ final class Experiments {
 	}
 	
 	private String name, generator;
-	private int length_start, length_end, steps, vector_start, vector_end, vector_step;
+	private int length_start, length_end, steps, vector_start, vector_end, vector_step, computation_start, computation_end, computation_step;
 	double dependencies;
 	//private double prob_writewrite, prob_writeread, prob_readwrite;
 	private long seed;
@@ -48,7 +49,7 @@ final class Experiments {
 	private List<Test> experiments;
 	private int instr_mode;
 	
-	private Experiments(String name, String generator, int length_start, int length_end, int step, double dependencies, int vector_start, int vector_end, int vector_step, int instr_mode) {
+	private Experiments(String name, String generator, int length_start, int length_end, int step, double dependencies, int vector_start, int vector_end, int vector_step, int instr_mode, int computation_start, int computation_end, int computation_step) {
 		this.output = new File("results/");
 //		this.output = new Console();
 		this.experiments = new LinkedList<>();
@@ -63,6 +64,9 @@ final class Experiments {
 		this.vector_end = vector_end;
 		this.vector_step = vector_step;
 		this.instr_mode = instr_mode;
+		this.computation_start = computation_start;
+		this.computation_end = computation_end;
+		this.computation_step = computation_step;
 		
 		// generate test
 		for (int i = length_start; i <= length_end; i += steps) {
@@ -73,7 +77,7 @@ final class Experiments {
 			c.k = g.getAccessPattern();
 			c.i = name + ";" + g.toString();
 			
-			experiments.add(new Test(HazardTest.class, instrument, new Object[] { c.a, c.b, c.k, c.i }, output));
+			experiments.add(new Test(HazardTestComputation.class, instrument, new Object[] { c.a, c.b, c.k, c.i }, output, c.a.length));
 		}
 		
 //		Generator g = HazardGenerator.noDependencies(1000, seed);
@@ -117,13 +121,40 @@ final class Experiments {
 		if (instr_mode == 3)
 			run_using = new boolean[] {true, false};
 		
-		run_using = new boolean[] {true};
-		
 		for (boolean instrumentationEnabled: run_using) {
 			runInexactMultiples(instrumentationEnabled);
 			runExactExperiments(instrumentationEnabled);
-			//runInexactExperiments(instrumentationEnabled);
+//			runInexactExperiments(instrumentationEnabled);
 			
+		}
+	}
+	
+	public void runInexactExperiments(boolean withInstrumentation) throws FileNotFoundException, InterruptedException, ExecutionException, TimeoutException {
+		Class<? extends Trace> traceFormat = BloomFilterTrace.class;
+		
+		for (Test test: experiments) {
+			for (int i = vector_start; i <= vector_end; i += vector_step) {
+				for (int j = computation_start; j <= computation_end; j += computation_step) {
+					BloomFilterConfiguration bfc = new BloomFilterConfiguration(i, new BloomFunnel());
+					Instrumentation.setConfiguration(new Configuration(withInstrumentation, traceFormat, bfc, false, output));
+					((HazardTestComputation) test.getExperiment()).setComputationAmount(j);
+					
+					System.out.println("testing " + test.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
+					
+					output.open(test.getName() + ";instrumentation=" + withInstrumentation +";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
+					
+					long startTime = System.nanoTime();
+					test.run();
+					long endTime = System.nanoTime();
+					
+					output.put("finalmemory=" + Instrumentation.memoryUsage());
+					output.put("dependencies=" + Instrumentation.dependencies().size() * 2);
+					output.put("time=" + (endTime - startTime));
+					output.close();
+					
+					Instrumentation.clean();
+				}
+			}
 		}
 	}
 	
@@ -131,31 +162,30 @@ final class Experiments {
 		Class<? extends Trace> traceFormat = BloomFilterTrace.class;
 		
 		for (Test experiment: experiments) {
-			HazardTest ht = (HazardTest) experiment.getExperiment();
-			int length = ht.getLength();
-			
 			for (int i = vector_start; i <= vector_end; i+= vector_step) {
-				//System.out.println("factor=" + i + " vector=" + (length * i));
+				for (int j = computation_start; j <= computation_end; j += computation_step) {
 				
-				BloomFilterConfiguration bfc = new BloomFilterConfiguration(length * i, new BloomFunnel());
-				Instrumentation.setConfiguration(new Configuration(withInstrumentation, traceFormat, bfc, false, output));
-				
-				System.out.println("testing " + experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
-				
-				output.open(experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
-
-				long startTime = System.nanoTime();
-				
-				experiment.run();
-				
-				long endTime = System.nanoTime();
-				
-				output.put("finalmemory=" + Instrumentation.memoryUsage());
-				output.put("dependencies=" + Instrumentation.dependencies().size() * 2);
-				output.put("time=" + (endTime - startTime));
-				output.close();
-				
-				Instrumentation.clean();
+					BloomFilterConfiguration bfc = new BloomFilterConfiguration(experiment.getLength() * i, new BloomFunnel());
+					Instrumentation.setConfiguration(new Configuration(withInstrumentation, traceFormat, bfc, false, output));
+					((HazardTestComputation) experiment.getExperiment()).setComputationAmount(j);
+					
+					System.out.println("testing " + experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
+					
+					output.open(experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
+	
+					long startTime = System.nanoTime();
+					
+					experiment.run();
+					
+					long endTime = System.nanoTime();
+					
+					output.put("finalmemory=" + Instrumentation.memoryUsage());
+					output.put("dependencies=" + Instrumentation.dependencies().size() * 2);
+					output.put("time=" + (endTime - startTime));
+					output.close();
+					
+					Instrumentation.clean();
+				}
 			}
 		}
 	}
@@ -164,32 +194,35 @@ final class Experiments {
 	
 	@SuppressWarnings("unchecked")
 	private void runExactExperiments(boolean withInstrumentation) throws FileNotFoundException, InterruptedException, ExecutionException, TimeoutException {
-		Class<? extends Trace> t = HashSetTrace.class;
-
-		for (Test experiment: experiments) {	
-			TraceConfiguration traceConfiguration = new TraceConfiguration();
-			Instrumentation.setConfiguration(new Configuration(
-					withInstrumentation,		// instrumentation enabled
-					t,
-					traceConfiguration,
-					false,
-					output));
-
-			System.out.println("testing " + experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + t.getSimpleName()/* + ";" + traceConfiguration.toString()*/);
-			output.open(experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + t.getSimpleName()/* + ";" + traceConfiguration.toString()*/);
-
-			long startTime = System.nanoTime();
-
-			experiment.run();
-
-			long endTime = System.nanoTime();
-
-			output.put("finalmemory=" + Instrumentation.memoryUsage());
-			output.put("dependencies=" + Instrumentation.dependencies().size() * 2);
-			output.put("time=" + (endTime - startTime));
-			output.close();
-
-			Instrumentation.clean();
+		for (Class<?> storageBackend: new Class<?>[] { HashSetTrace.class, HashSetWellConfigured.class }) {
+			for (Test experiment: experiments) {
+				for (int j = computation_start; j <= computation_end; j += computation_step) {
+					Instrumentation.setConfiguration(new Configuration(
+						withInstrumentation,		// instrumentation enabled
+						(Class<? extends Trace>) storageBackend,
+						new TraceConfiguration(experiment.getLength()),
+						false,
+						output
+					));
+					
+					((HazardTestComputation) experiment.getExperiment()).setComputationAmount(j);
+					System.out.println("testing " + experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + storageBackend.getSimpleName()/* + ";" + traceConfiguration.toString()*/);
+					output.open(experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + storageBackend.getSimpleName()/* + ";" + traceConfiguration.toString()*/);
+		
+					long startTime = System.nanoTime();
+		
+					experiment.run();
+		
+					long endTime = System.nanoTime();
+		
+					output.put("finalmemory=" + Instrumentation.memoryUsage());
+					output.put("dependencies=" + Instrumentation.dependencies().size() * 2);
+					output.put("time=" + (endTime - startTime));
+					output.close();
+		
+					Instrumentation.clean();
+				}
+			}	
 		}
 	}
 
@@ -210,7 +243,11 @@ final class Experiments {
 			if (args.length == 10)
 				instr_mode = Integer.parseInt(args[9]);
 			
-			new Experiments(name, generator, length_start, length_end, step, dependencies, vector_start, vector_end, vector_step, instr_mode).run();
+			int computation_start = Integer.parseInt(args[10]);
+			int computation_end = Integer.parseInt(args[11]);
+			int computation_step = Integer.parseInt(args[12]);
+			
+			new Experiments(name, generator, length_start, length_end, step, dependencies, vector_start, vector_end, vector_step, instr_mode, computation_start, computation_end, computation_step).run();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

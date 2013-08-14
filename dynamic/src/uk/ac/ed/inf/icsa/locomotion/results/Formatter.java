@@ -20,7 +20,7 @@ public final class Formatter {
 	
 	@SuppressWarnings("serial")
 	private Formatter() {
-		this.targetDirectory = new File(System.getProperty("user.dir") + File.separator + "results");
+		this.targetDirectory = new File(System.getProperty("user.dir") + File.separator + "results/optimal-none-computation");
 		this.results = _getFilesInDirectory(this.targetDirectory);
 	}
 	
@@ -43,8 +43,8 @@ public final class Formatter {
 				@SuppressWarnings("serial")
 				@Override
 				public void execute(final String name, final String instrument, final String storage) throws FileNotFoundException {
-					if (storage.equals("HashSetTrace")) {
-						FourVariables axis = new FourVariables(
+					if (storage.equals("HashSetTrace") || storage.equals("HashSetWellConfigured")) {
+						FiveVariables axis = new FiveVariables(
 							getFile(name + "-instrumentation=" + instrument + "-storage=" + storage),
 							results,
 							new HashMap<String, String>() {{
@@ -55,7 +55,8 @@ public final class Formatter {
 							"length",
 							"finalmemory",
 							"time",
-							"dependencies");
+							"dependencies",
+							"computation");
 						axis.run();
 						axis.toFile();
 					}
@@ -65,7 +66,7 @@ public final class Formatter {
 				@SuppressWarnings("serial")
 				public void execute(final String name, final String instrument, final String storage) throws FileNotFoundException {
 					if (storage.equals("BloomFilterTrace")) {
-						FiveVariables axis = new FiveVariables(
+						SixVariables axis = new SixVariables(
 							getFile(name + "-instrumentation=" + instrument + "-storage=" + storage),
 							results,
 							new HashMap<String, String>() {{
@@ -77,7 +78,8 @@ public final class Formatter {
 							"finalmemory",
 							"bitvector",
 							"dependencies",
-							"time"
+							"time",
+							"computation"
 							);
 						axis.run();
 						axis.toFile();
@@ -106,9 +108,9 @@ public final class Formatter {
 				"some-0.4equal-longvector"
 				*/
 				
-				"test-long"}) {
+				"optimal-none-computation"}) {
 			for (final String instrument: new String[] { "true", "false" }) {
-				for (final String storage: new String[] { "HashSetTrace", "BloomFilterTrace"}) {
+				for (final String storage: new String[] { "HashSetTrace", "BloomFilterTrace", "HashSetWellConfigured"}) {
 					System.out.println("name=" + name + " instrument=" + instrument + " storage=" + storage);
 					e.execute(name, instrument, storage);
 				}
