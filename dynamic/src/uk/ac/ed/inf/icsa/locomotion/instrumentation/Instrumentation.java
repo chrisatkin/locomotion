@@ -155,7 +155,7 @@ public final class Instrumentation {
 		if (_config.instrumentationEnabled() && !dependencyDetected) {
 			if (stores.contains(a)) {
 				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteRead));
-				dependencyDetected = true;
+				//dependencyDetected = true;
 			}
 			
 			currentIterationAccesses.add(a);
@@ -170,7 +170,7 @@ public final class Instrumentation {
 		if (_config.instrumentationEnabled() && !dependencyDetected) {
 			if (stores.contains(a)) {
 				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteRead));
-				dependencyDetected = true;
+//				dependencyDetected = true;
 			}
 			
 			currentIterationAccesses.add(a);
@@ -185,12 +185,12 @@ public final class Instrumentation {
 		if (_config.instrumentationEnabled() && !dependencyDetected) {
 			if (stores.contains(a)) {
 				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteWrite));
-				dependencyDetected = true;
+//				dependencyDetected = true;
 			}
 			
 			if (loads.contains(a)) {
 				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.ReadWrite));
-				dependencyDetected = true;
+//				dependencyDetected = true;
 			}
 			
 			currentIterationAccesses.add(a);
@@ -206,12 +206,12 @@ public final class Instrumentation {
 		if (_config.instrumentationEnabled() && !dependencyDetected) {
 			if (stores.contains(a)) {
 				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.WriteWrite));
-				dependencyDetected = true;
+//				dependencyDetected = true;
 			}
 			
 			if (loads.contains(a)) {
 				dependencies.add(new LoopDependencyException(a, currentIterationNumber, DependencyKind.ReadWrite));
-				dependencyDetected = true;
+//				dependencyDetected = true;
 			}
 			
 			currentIterationAccesses.add(a);

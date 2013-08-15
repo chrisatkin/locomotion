@@ -1,4 +1,4 @@
-set title "no instrumentation"
+set title "none dependent, no instrumentation"
 set xlabel "accesses (thousands)"
 set ylabel "execution time (seconds)"
 

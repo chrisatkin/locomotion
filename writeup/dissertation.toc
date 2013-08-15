@@ -9,14 +9,14 @@
 \contentsline {section}{\numberline {2.1}Dynamic Parallelism and Parallelism Extraction}{7}{section.2.1}
 \contentsline {section}{\numberline {2.2}Instrumentation}{10}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Bytecode Instrumentation}{10}{subsection.2.2.1}
-\contentsline {subsubsection}{\numberline {2.2.1.1}Java Agents}{10}{subsubsection.2.2.1.1}
-\contentsline {subsubsection}{\numberline {2.2.1.2}ASM}{11}{subsubsection.2.2.1.2}
-\contentsline {subsubsection}{\numberline {2.2.1.3}Javassist}{12}{subsubsection.2.2.1.3}
-\contentsline {subsection}{\numberline {2.2.2}Aspect-Oriented Programming}{12}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}AspectJ/ABC}{14}{subsection.2.2.3}
-\contentsline {subsubsection}{\numberline {2.2.3.1}Array and Loop Pointcuts}{14}{subsubsection.2.2.3.1}
-\contentsline {subsection}{\numberline {2.2.4}Hybrid Models}{15}{subsection.2.2.4}
-\contentsline {subsubsection}{\numberline {2.2.4.1}DiSL}{15}{subsubsection.2.2.4.1}
+\contentsline {subsubsection}{\numberline {2.2.1.1}Java Agents}{11}{subsubsection.2.2.1.1}
+\contentsline {subsubsection}{\numberline {2.2.1.2}ASM}{12}{subsubsection.2.2.1.2}
+\contentsline {subsubsection}{\numberline {2.2.1.3}Javassist}{13}{subsubsection.2.2.1.3}
+\contentsline {subsection}{\numberline {2.2.2}Aspect-Oriented Programming}{13}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}AspectJ/ABC}{15}{subsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.3.1}Array and Loop Pointcuts}{15}{subsubsection.2.2.3.1}
+\contentsline {subsection}{\numberline {2.2.4}Hybrid Models}{16}{subsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.4.1}DiSL}{16}{subsubsection.2.2.4.1}
 \contentsline {subsubsection}{\numberline {2.2.4.2}Turbo DiSL}{17}{subsubsection.2.2.4.2}
 \contentsline {section}{\numberline {2.3}Summary}{18}{section.2.3}
 \contentsline {chapter}{\numberline {3}The Graal Compiler Infrastructure}{19}{chapter.3}
@@ -47,11 +47,11 @@
 \contentsline {subsection}{\numberline {5.3.4}Online Algorithns}{46}{subsection.5.3.4}
 \contentsline {section}{\numberline {5.4}Implementation Details}{46}{section.5.4}
 \contentsline {subsection}{\numberline {5.4.1}Entry Point}{46}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Instrument Implementation}{47}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.2}Instrument Implementation}{46}{subsection.5.4.2}
 \contentsline {subsubsection}{\numberline {5.4.2.1}Java Auto(un)boxing}{48}{subsubsection.5.4.2.1}
 \contentsline {subsection}{\numberline {5.4.3}Trace Storage and Configuration}{49}{subsection.5.4.3}
 \contentsline {subsubsection}{\numberline {5.4.3.1}Exact - Hash Set}{49}{subsubsection.5.4.3.1}
-\contentsline {subsubsection}{\numberline {5.4.3.2}Inexact - Bloom Filters}{50}{subsubsection.5.4.3.2}
+\contentsline {subsubsection}{\numberline {5.4.3.2}Inexact - Bloom Filters}{49}{subsubsection.5.4.3.2}
 \contentsline {section}{\numberline {5.5}Summary}{51}{section.5.5}
 \contentsline {chapter}{\numberline {6}Methodology}{53}{chapter.6}
 \contentsline {section}{\numberline {6.1}Introduction}{53}{section.6.1}
@@ -60,40 +60,41 @@
 \contentsline {subsection}{\numberline {6.3.1}Implementation}{54}{subsection.6.3.1}
 \contentsline {subsection}{\numberline {6.3.2}Precision}{54}{subsection.6.3.2}
 \contentsline {subsection}{\numberline {6.3.3}Overhead}{55}{subsection.6.3.3}
-\contentsline {subsubsection}{\numberline {6.3.3.1}Execution Time}{55}{subsubsection.6.3.3.1}
-\contentsline {subsubsection}{\numberline {6.3.3.2}Memory Use}{55}{subsubsection.6.3.3.2}
 \contentsline {subsection}{\numberline {6.3.4}Multiples}{55}{subsection.6.3.4}
 \contentsline {subsection}{\numberline {6.3.5}Online Instrumentation Disabling}{55}{subsection.6.3.5}
-\contentsline {section}{\numberline {6.4}Repeats}{55}{section.6.4}
+\contentsline {section}{\numberline {6.4}Repeats}{56}{section.6.4}
 \contentsline {section}{\numberline {6.5}Measurement Methodology}{56}{section.6.5}
 \contentsline {subsection}{\numberline {6.5.1}Execution Time}{56}{subsection.6.5.1}
 \contentsline {subsection}{\numberline {6.5.2}Dependencies}{56}{subsection.6.5.2}
 \contentsline {subsection}{\numberline {6.5.3}Memory Usage}{56}{subsection.6.5.3}
 \contentsline {section}{\numberline {6.6}Parametric Benchmarks}{58}{section.6.6}
 \contentsline {subsection}{\numberline {6.6.1}Motivation}{58}{subsection.6.6.1}
-\contentsline {subsection}{\numberline {6.6.2}Problem Statement}{58}{subsection.6.6.2}
+\contentsline {subsection}{\numberline {6.6.2}Problem Statement}{59}{subsection.6.6.2}
 \contentsline {subsection}{\numberline {6.6.3}Algorithm Design}{59}{subsection.6.6.3}
-\contentsline {subsubsection}{\numberline {6.6.3.1}Generating \texttt {b}}{59}{subsubsection.6.6.3.1}
+\contentsline {subsubsection}{\numberline {6.6.3.1}Generating \texttt {b}}{60}{subsubsection.6.6.3.1}
 \contentsline {subsubsection}{\numberline {6.6.3.2}Generating \texttt {ops}}{60}{subsubsection.6.6.3.2}
-\contentsline {subsection}{\numberline {6.6.4}Implementation Details}{60}{subsection.6.6.4}
+\contentsline {subsection}{\numberline {6.6.4}Implementation Details}{61}{subsection.6.6.4}
 \contentsline {section}{\numberline {6.7}Test Harness Design and Implementation}{61}{section.6.7}
 \contentsline {section}{\numberline {6.8}Result Collection}{62}{section.6.8}
 \contentsline {section}{\numberline {6.9}Summary}{62}{section.6.9}
 \contentsline {chapter}{\numberline {7}Results}{63}{chapter.7}
 \contentsline {section}{\numberline {7.1}Bloom Filter Implementation}{63}{section.7.1}
 \contentsline {subsection}{\numberline {7.1.1}Insertion}{64}{subsection.7.1.1}
-\contentsline {subsection}{\numberline {7.1.2}Membership}{65}{subsection.7.1.2}
+\contentsline {subsection}{\numberline {7.1.2}Membership}{66}{subsection.7.1.2}
 \contentsline {subsection}{\numberline {7.1.3}Conclusions}{66}{subsection.7.1.3}
 \contentsline {section}{\numberline {7.2}Precision Testing}{67}{section.7.2}
-\contentsline {section}{\numberline {7.3}Memory Usage}{69}{section.7.3}
-\contentsline {section}{\numberline {7.4}Execution Time}{71}{section.7.4}
-\contentsline {section}{\numberline {7.5}Real Impact}{72}{section.7.5}
-\contentsline {section}{\numberline {7.6}Performance Tuning}{73}{section.7.6}
-\contentsline {chapter}{\numberline {8}Conclusion}{75}{chapter.8}
-\contentsline {section}{\numberline {8.1}Concluding Remarks and Contributions}{75}{section.8.1}
-\contentsline {section}{\numberline {8.2}Unsolved Problems}{76}{section.8.2}
-\contentsline {section}{\numberline {8.3}Future Work}{76}{section.8.3}
-\contentsline {chapter}{\numberline {A}Precision Figures}{79}{appendix.A}
-\contentsline {chapter}{\numberline {B}Execution Time Figures}{85}{appendix.B}
-\contentsline {chapter}{\numberline {C}Memory Usage Figures}{91}{appendix.C}
-\contentsline {chapter}{Bibliography}{97}{appendix*.50}
+\contentsline {section}{\numberline {7.3}Memory Usage}{70}{section.7.3}
+\contentsline {section}{\numberline {7.4}Execution Time}{72}{section.7.4}
+\contentsline {section}{\numberline {7.5}Real Impact}{73}{section.7.5}
+\contentsline {section}{\numberline {7.6}Performance Tuning}{74}{section.7.6}
+\contentsline {section}{\numberline {7.7}Impact of Modifying FPP Rate}{75}{section.7.7}
+\contentsline {chapter}{\numberline {8}Conclusion}{77}{chapter.8}
+\contentsline {section}{\numberline {8.1}Concluding Remarks and Contributions}{77}{section.8.1}
+\contentsline {section}{\numberline {8.2}Recommendations}{78}{section.8.2}
+\contentsline {section}{\numberline {8.3}Unsolved Problems}{78}{section.8.3}
+\contentsline {section}{\numberline {8.4}Future Work}{79}{section.8.4}
+\contentsline {chapter}{\numberline {A}Precision Figures}{81}{appendix.A}
+\contentsline {chapter}{\numberline {B}Execution Time Figures}{87}{appendix.B}
+\contentsline {chapter}{\numberline {C}Memory Usage Figures}{93}{appendix.C}
+\contentsline {chapter}{\numberline {D}Instrumentation Disabling Figures}{99}{appendix.D}
+\contentsline {chapter}{Bibliography}{101}{appendix*.53}

@@ -1,0 +1,20 @@
+\chapter{Instrumentation Disabling Figures} \label{chp:append:disabe}
+
+\begin{figure}
+	\centering
+	\begin{gnuplot}[terminal=pdf]
+	load '../dynamic/formatted-results/premature-none-computation/time-bloom.gnuplot'
+	\end{gnuplot}
+	\caption{Execution times with computation and instrumentation disabling, bloom filter}
+	\label{chart:premature-none-bloom}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{gnuplot}[terminal=pdf]
+		load '../dynamic/formatted-results/premature-none-computation/time-hash.gnuplot'
+
+	\end{gnuplot}
+	\caption{Execution times with computation and instrumentation disabling, bloom filter}
+	\label{chart:premature-none-hash}
+\end{figure}

@@ -1,4 +1,4 @@
-set title "all dependent, with instrumentation"
+set title "all dependent"
 set xlabel "number of accesses (thousands)"
 set ylabel "execution time (sec)"
 

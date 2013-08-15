@@ -21,7 +21,7 @@ import uk.ac.ed.inf.icsa.locomotion.instrumentation.Configuration;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.InstrumentSupport;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.Instrumentation;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.BloomFilterConfiguration;
-import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.BloomFilterTrace;
+import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.*;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.HashSetTrace;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.HashSetWellConfigured;
 import uk.ac.ed.inf.icsa.locomotion.instrumentation.storage.Trace;
@@ -48,8 +48,9 @@ final class Experiments {
 	private InstrumentSupport instrument;
 	private List<Test> experiments;
 	private int instr_mode;
+	private double fpp;
 	
-	private Experiments(String name, String generator, int length_start, int length_end, int step, double dependencies, int vector_start, int vector_end, int vector_step, int instr_mode, int computation_start, int computation_end, int computation_step) {
+	private Experiments(String name, String generator, int length_start, int length_end, int step, double dependencies, int vector_start, int vector_end, int vector_step, int instr_mode, int computation_start, int computation_end, int computation_step, double fpp) {
 		this.output = new File("results/");
 //		this.output = new Console();
 		this.experiments = new LinkedList<>();
@@ -67,6 +68,7 @@ final class Experiments {
 		this.computation_start = computation_start;
 		this.computation_end = computation_end;
 		this.computation_step = computation_step;
+		this.fpp = fpp;
 		
 		// generate test
 		for (int i = length_start; i <= length_end; i += steps) {
@@ -77,7 +79,7 @@ final class Experiments {
 			c.k = g.getAccessPattern();
 			c.i = name + ";" + g.toString();
 			
-			experiments.add(new Test(HazardTestComputation.class, instrument, new Object[] { c.a, c.b, c.k, c.i }, output, c.a.length));
+			experiments.add(new Test(HazardTest.class, instrument, new Object[] { c.a, c.b, c.k, c.i }, output, c.a.length));
 		}
 		
 //		Generator g = HazardGenerator.noDependencies(1000, seed);
@@ -123,9 +125,35 @@ final class Experiments {
 		
 		for (boolean instrumentationEnabled: run_using) {
 			runInexactMultiples(instrumentationEnabled);
-			runExactExperiments(instrumentationEnabled);
+//			runExactExperiments(instrumentationEnabled);
 //			runInexactExperiments(instrumentationEnabled);
-			
+//			runExpandingExperiments(instrumentationEnabled);
+		}
+	}
+	
+	public void runExpandingExperiments(boolean withInstrumentation) throws FileNotFoundException {
+		Class<? extends Trace> traceFormat = ExpandingBloomFilterTrace.class;
+		
+		for (Test test: experiments) {
+			for (int i = vector_start; i <= vector_end; i += vector_step) {
+				BloomFilterConfiguration bfc = new BloomFilterConfiguration(i, new BloomFunnel());
+				Instrumentation.setConfiguration(new Configuration(withInstrumentation, traceFormat, bfc, false, output));
+				
+				System.out.println("testing " + test.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
+				
+				output.open(test.getName() + ";instrumentation=" + withInstrumentation +";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
+				
+				long startTime = System.nanoTime();
+				test.run();
+				long endTime = System.nanoTime();
+				
+				output.put("finalmemory=" + Instrumentation.memoryUsage());
+				output.put("dependencies=" + Instrumentation.dependencies().size() * 2);
+				output.put("time=" + (endTime - startTime));
+				output.close();
+				
+				Instrumentation.clean();
+			}
 		}
 	}
 	
@@ -135,9 +163,9 @@ final class Experiments {
 		for (Test test: experiments) {
 			for (int i = vector_start; i <= vector_end; i += vector_step) {
 				for (int j = computation_start; j <= computation_end; j += computation_step) {
-					BloomFilterConfiguration bfc = new BloomFilterConfiguration(i, new BloomFunnel());
+					BloomFilterConfiguration bfc = new BloomFilterConfiguration(i, new BloomFunnel(), fpp);
 					Instrumentation.setConfiguration(new Configuration(withInstrumentation, traceFormat, bfc, false, output));
-					((HazardTestComputation) test.getExperiment()).setComputationAmount(j);
+//					((HazardTestComputation) test.getExperiment()).setComputationAmount(j);
 					
 					System.out.println("testing " + test.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
 					
@@ -163,15 +191,15 @@ final class Experiments {
 		
 		for (Test experiment: experiments) {
 			for (int i = vector_start; i <= vector_end; i+= vector_step) {
-				for (int j = computation_start; j <= computation_end; j += computation_step) {
+				//for (int j = computation_start; j <= computation_end; j += computation_step) {
 				
-					BloomFilterConfiguration bfc = new BloomFilterConfiguration(experiment.getLength() * i, new BloomFunnel());
+					BloomFilterConfiguration bfc = new BloomFilterConfiguration(experiment.getLength() * i, new BloomFunnel(), fpp);
 					Instrumentation.setConfiguration(new Configuration(withInstrumentation, traceFormat, bfc, false, output));
-					((HazardTestComputation) experiment.getExperiment()).setComputationAmount(j);
+//					((HazardTestComputation) experiment.getExperiment()).setComputationAmount(j);
 					
-					System.out.println("testing " + experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
+					System.out.println("testing " + experiment.getName() + ";fpp=" + fpp + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
 					
-					output.open(experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
+					output.open(experiment.getName() + ";fpp=" + fpp + ";instrumentation=" + withInstrumentation + ";storage=" + traceFormat.getSimpleName() + ";" + bfc.toString());
 	
 					long startTime = System.nanoTime();
 					
@@ -185,7 +213,7 @@ final class Experiments {
 					output.close();
 					
 					Instrumentation.clean();
-				}
+				//}
 			}
 		}
 	}
@@ -205,7 +233,7 @@ final class Experiments {
 						output
 					));
 					
-					((HazardTestComputation) experiment.getExperiment()).setComputationAmount(j);
+//					((HazardTestComputation) experiment.getExperiment()).setComputationAmount(j);
 					System.out.println("testing " + experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + storageBackend.getSimpleName()/* + ";" + traceConfiguration.toString()*/);
 					output.open(experiment.getName() + ";instrumentation=" + withInstrumentation + ";storage=" + storageBackend.getSimpleName()/* + ";" + traceConfiguration.toString()*/);
 		
@@ -246,8 +274,9 @@ final class Experiments {
 			int computation_start = Integer.parseInt(args[10]);
 			int computation_end = Integer.parseInt(args[11]);
 			int computation_step = Integer.parseInt(args[12]);
+			double fpp = Double.parseDouble(args[13]);
 			
-			new Experiments(name, generator, length_start, length_end, step, dependencies, vector_start, vector_end, vector_step, instr_mode, computation_start, computation_end, computation_step).run();
+			new Experiments(name, generator, length_start, length_end, step, dependencies, vector_start, vector_end, vector_step, instr_mode, computation_start, computation_end, computation_step, fpp).run();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

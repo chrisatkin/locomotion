@@ -87,7 +87,7 @@ public class CodeSamples {
 		InstrumentSupport.setInstrumentConfiguration(new Configuration(
 			true,
 			HashSetTrace.class,
-			new TraceConfiguration(),
+			new TraceConfiguration(10),
 			true,
 			new Console()));
 		

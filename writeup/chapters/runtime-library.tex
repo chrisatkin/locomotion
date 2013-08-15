@@ -221,9 +221,9 @@ R4 = R1 + R5\end{lstlisting}
 		\caption{Offline dependency algorithm}
 		\label{alg:offline-dependency}
 		\begin{algorithmic}[1]
-			\STATE $d \gets \varnothing$ %\COMMENT{$d$ is the set of dependencies}
+			\STATE $d \gets \varnothing$ \COMMENT{$d$ is the set of dependencies}
 			\FORALL{loops $l$}
-				\STATE $p \gets \varnothing$ %\COMMENT{$p$ is the set of previous iterations}
+				\STATE $p \gets \varnothing$ \COMMENT{$p$ is the set of previous iterations}
 				\FORALL{iteration $i \in l$}
 					\FORALL{access $\alpha \in i$}
 						\FORALL{$p_{\alpha} \in p$}
@@ -265,20 +265,10 @@ R4 = R1 + R5\end{lstlisting}
 		\label{alg:online-dependency}
 		\begin{algorithmic}
 			\STATE $d \gets \varnothing$ %\COMMENT{$d$ is the set of dependencies}
-						\FORALL{loops $l$}
-							\STATE $p \gets \varnothing$ %\COMMENT{$p$ is the set of previous iterations}
-							\FORALL{iteration $i \in l$}
-								\FORALL{access $\alpha \in i$}
-									\FORALL{$p_{\alpha} \in p$}
-										\IF{$\alpha \in p{_\alpha}$}
-											\STATE $d \gets \alpha$
-										\ENDIF
-										
-										\STATE $p \gets \alpha$
-									\ENDFOR
-								\ENDFOR
-							\ENDFOR
-						\ENDFOR
+			\STATE on new access $\alpha$
+				\IF{$\alpha \in p$}
+					\STATE $d \gets \alpha$
+				\ENDIF
 		\end{algorithmic}
 	\end{algorithm}
 
@@ -288,16 +278,9 @@ In this section, we consider the techniques used to implement the runtime librar
 	\subsection{Entry Point} \label{sec:runtime/implementation/entry-point}
 	The main entry point to the instrumentation is the \texttt{Instrumentation} class. It includes various static methods, which operate on an instance of itself. These static methods implement a simple state machine, defining the allowable operations for the instrumentation. Figure \ref{fig:instrument-support} shows the class diagram with public methods for \texttt{Instrumentation}.
 	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.4\textwidth]{graphics/instrument-support.pdf}
-		\caption{Class diagram for \texttt{InstrumentSupport}}
-		\label{fig:instrument-support}
-	\end{figure}
-	
 	\subsection{Instrument Implementation} \label{sec:runtime/implementation/instrument}
 	\texttt{Instrumentation} is initalised at load-time with an instance of itself (via static blocks). \texttt{Instrumentation} has a configuration. This configuration contains parameters such as whether the instrumentation should be enabled and so on.
-	
+	\newpage
 	The user-facing methods for trace collection have the following signatures:
 	
 	\begin{lstlisting}[caption=Method signatures for instrumentation methods,label=lst:sigs]

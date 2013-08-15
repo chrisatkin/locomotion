@@ -1,4 +1,4 @@
-set title "all dependent, bloom filter"
+set title "all dependent, hash set"
 set xlabel "number of accesses (thousands)"
 set ylabel "memory usage (kb)"
 

@@ -20,7 +20,7 @@ public final class Formatter {
 	
 	@SuppressWarnings("serial")
 	private Formatter() {
-		this.targetDirectory = new File(System.getProperty("user.dir") + File.separator + "results/optimal-all-computation");
+		this.targetDirectory = new File(System.getProperty("user.dir") + File.separator + "results/fpp-multiple-none/0.26");
 		this.results = _getFilesInDirectory(this.targetDirectory);
 	}
 	
@@ -66,7 +66,7 @@ public final class Formatter {
 				@SuppressWarnings("serial")
 				public void execute(final String name, final String instrument, final String storage) throws FileNotFoundException {
 					if (storage.equals("BloomFilterTrace")) {
-						SixVariables axis = new SixVariables(
+						FiveVariables axis = new FiveVariables(
 							getFile(name + "-instrumentation=" + instrument + "-storage=" + storage),
 							results,
 							new HashMap<String, String>() {{
@@ -78,8 +78,7 @@ public final class Formatter {
 							"finalmemory",
 							"bitvector",
 							"dependencies",
-							"time",
-							"computation"
+							"time"
 							);
 						axis.run();
 						axis.toFile();
@@ -108,7 +107,7 @@ public final class Formatter {
 				"some-0.4equal-longvector"
 				*/
 				
-				"optimal-all-computation"}) {
+				"fpp-multiple-none"}) {
 			for (final String instrument: new String[] { "true", "false" }) {
 				for (final String storage: new String[] { "HashSetTrace", "BloomFilterTrace", "HashSetWellConfigured"}) {
 					System.out.println("name=" + name + " instrument=" + instrument + " storage=" + storage);

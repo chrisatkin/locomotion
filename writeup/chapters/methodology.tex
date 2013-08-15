@@ -44,14 +44,15 @@ In this section, we describe the various experiments which will be performed, th
 	
 	In addition to testing the overhead on the benchmark without any operations being performed, we also conducted testing where there were a number of floating-point computations associated with each memory operation. These computations were designed in such a way that they cannot be removed by the optimiser in either the compiler or the runtime environment. For each memory operation that is performed, a single floating-point operation is performed in a loop. The variable was the number of times that the loop runs.
 	
-		\subsubsection{Execution Time} \label{sec:methodology/experiments/overhead/time}
-		
-		\subsubsection{Memory Use} \label{sec:methodology/experiments/overhead/memory}
+	Both execution time and memory usage was considered, the techniques for which are described in sections \ref{sec:methodology/measurements/time} and \ref{sec:methodology/measurements/memory} respectively. 
 		
 	\subsection{Multiples} \label{sec:methodology/experiments/multiples}
-	Early in testing we found that, as expected, there was no single size of bit vector which would cover all possibilities; each loop is unique and requires 
+	Early in testing we found that, as expected, there was no single size of bit vector which would cover all possibilities; each loop is unique and requires a different configuration of bloom filter. In this test, we consider the impact that changing from a fixed size bloom filter to one dependent on the number of iterations has on the detection rate.
 	
 	\subsection{Online Instrumentation Disabling} \label{sec:methodology/experiments/online-disable}
+	In some applications, a complete dependency profile (\ie, information regarding all dependencies within a loop) may not be required. One example of this could be in `binary parallelisation' in the sense that either the entire loop is parallelised, or none of it is.
+	
+	In order to decrease execution time, it is possible to disable instrumentation once a dependency has been detected, as instrumentation is no longer necessary. 
 
 \section{Repeats} \label{sec:methodology/repeats}
 In order to improve the results, each experiment was repeat ten times. The median of the ten repeats was used for the rest of the analyses.
@@ -72,7 +73,8 @@ In order to improve the results, each experiment was repeat ten times. The media
 		\item \texttt{totalMemory()}: the amount of memory currently in use by the virtual machine
 	\end{itemize}
 	
-	In addition, there is a Java Agent for measuring memory usage of an object - the Java Agent for Memory Measurements \citep{JAMM} (JAMM). JAMM is essentially a wrapper for the \texttt{java.lang.instrument.Instrumentation.getObjectSize()} method. There are several methods available, and the framework uses \texttt{measureDeep()} for the greatest accuracy.
+	However, in our preliminary experiments these techniques were found to be somewhat inaccurate and unpredictable. Instead, there is a Java Agent for measuring memory usage of an object - the Java Agent for Memory Measurements \citep{JAMM} (JAMM). JAMM is essentially a wrapper for the
+	\\\texttt{java.lang.instrument.Instrumentation.getObjectSize()} method. There are several methods available, and the framework uses \texttt{measureDeep()} for the greatest accuracy.
 	
 	\texttt{measureDeep()} crawls the object graph, calling \texttt{getObjectSize()} on each object it encounters. An \texttt{IdentityHashMap} is used to detect loops in the object graph. Unfortunately, this does affect execution time - but memory usage is recorded after execution time has been recorded. \citeauthor{JAMM} does suggest investigating the possible use of bloom filters to overcome this memory usage, but this it outside the scope of this project.
 	
@@ -133,8 +135,8 @@ As we have already investigated in section \ref{sec:runtime/analysis}, there are
 	
 	\begin{itemize}
 		\item Length of resulting arrays, $l$
-		\item Percent of dependencies (expressed as a boolean in the range $0.0 <= x >= 1.0$), $d$
-		\item Of $d$, what percentage of $n^{\delta}$, $n^{\delta^{0}}$ and $n^{\delta^{-1}}$
+		\item Percent of dependencies (expressed as a decimal), $d$
+		\item Of $d$, what percentage of dependencies are $n^{\delta}$, $n^{\delta^{0}}$ and $n^{\delta^{-1}}$, expressed as decimals
 	\end{itemize}
 	
 	The results of the algorithm are:

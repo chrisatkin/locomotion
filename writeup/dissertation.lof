@@ -14,45 +14,49 @@
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Bloom filter operation with $m=18$ and $k=3$ \citep {BloomFilterWikiDiagram}\relax }}{39}{figure.caption.11}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Plot showing bit vector length versus expected insertations for various false probability rates\relax }}{40}{figure.caption.12}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Finite state machine for the online algorithm\relax }}{45}{figure.caption.13}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Class diagram for \texttt {InstrumentSupport}\relax }}{47}{figure.caption.14}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Trace class hierarchy\relax }}{50}{figure.caption.15}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Trace class hierarchy\relax }}{50}{figure.caption.14}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Median insertion costs for each data structure tested. (Notice the use of log scale on the y axis)\relax }}{64}{figure.caption.16}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Median membership query costs for each data structure tested. (Notice the use of log scale on the y axis)\relax }}{65}{figure.caption.17}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Precision results for all dependent and none dependent\relax }}{66}{figure.caption.18}
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Precision rates for various factors of iteration counts\relax }}{67}{figure.caption.19}
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Memory usage for all dependent, hash set and bloom filter\relax }}{68}{figure.caption.20}
-\contentsline {figure}{\numberline {7.6}{\ignorespaces blah\relax }}{69}{figure.caption.21}
-\contentsline {figure}{\numberline {7.7}{\ignorespaces Execution time for synthetic benchmark\relax }}{70}{figure.caption.22}
-\contentsline {figure}{\numberline {7.8}{\ignorespaces Execution time for synthetic without instrumentation\relax }}{71}{figure.caption.23}
-\contentsline {figure}{\numberline {7.9}{\ignorespaces Execution times for bloom filters and no instrumentation when all operations are dependent\relax }}{72}{figure.caption.24}
-\contentsline {figure}{\numberline {7.10}{\ignorespaces Execution times for bloom filters and no instrumentation when no operations are dependent\relax }}{73}{figure.caption.25}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Median insertion costs for each data structure tested. (Notice the use of log scale on the y axis)\relax }}{64}{figure.caption.15}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Median membership query costs for each data structure tested. (Notice the use of log scale on the y axis)\relax }}{65}{figure.caption.16}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Precision results for all dependent and none dependent\relax }}{66}{figure.caption.17}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Precision rates for various factors of iteration counts\relax }}{67}{figure.caption.18}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Memory usage for all dependent, hash set and bloom filter\relax }}{68}{figure.caption.19}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Memory usage for various factors of the actual length\relax }}{69}{figure.caption.20}
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Execution time for synthetic benchmark, fpp = 0.07\relax }}{70}{figure.caption.21}
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Execution time for synthetic without instrumentation\relax }}{71}{figure.caption.22}
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Execution times for bloom filters and no instrumentation when all operations are dependent\relax }}{72}{figure.caption.23}
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Execution times for bloom filters and no instrumentation when no operations are dependent\relax }}{73}{figure.caption.24}
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Execution times with computation and instrumentation disabling, bloom filter and hash set\relax }}{74}{figure.caption.25}
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Execution time changes depending on the fpp of the bloom filter\relax }}{75}{figure.caption.26}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Precision results for 20\% dependent\relax }}{79}{figure.caption.26}
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Precision results for 40\% dependent\relax }}{80}{figure.caption.27}
-\contentsline {figure}{\numberline {A.3}{\ignorespaces Precision results for 60\% dependent\relax }}{80}{figure.caption.28}
-\contentsline {figure}{\numberline {A.4}{\ignorespaces Precision results for 80\% dependent\relax }}{81}{figure.caption.29}
-\contentsline {figure}{\numberline {A.5}{\ignorespaces Precision results for 20\% dependent\relax }}{81}{figure.caption.30}
-\contentsline {figure}{\numberline {A.6}{\ignorespaces Precision results for 40\% dependent\relax }}{82}{figure.caption.31}
-\contentsline {figure}{\numberline {A.7}{\ignorespaces Precision results for 60\% dependent\relax }}{82}{figure.caption.32}
-\contentsline {figure}{\numberline {A.8}{\ignorespaces Precision results for 80\% dependent\relax }}{83}{figure.caption.33}
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Precision results for 20\% dependent\relax }}{81}{figure.caption.27}
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Precision results for 40\% dependent\relax }}{82}{figure.caption.28}
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Precision results for 60\% dependent\relax }}{82}{figure.caption.29}
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Precision results for 80\% dependent\relax }}{83}{figure.caption.30}
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Precision results for 20\% dependent\relax }}{83}{figure.caption.31}
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Precision results for 40\% dependent\relax }}{84}{figure.caption.32}
+\contentsline {figure}{\numberline {A.7}{\ignorespaces Precision results for 60\% dependent\relax }}{84}{figure.caption.33}
+\contentsline {figure}{\numberline {A.8}{\ignorespaces Precision results for 80\% dependent\relax }}{85}{figure.caption.34}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Precision results for 20\% dependent\relax }}{85}{figure.caption.34}
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Precision results for 40\% dependent\relax }}{86}{figure.caption.35}
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Precision results for 60\% dependent\relax }}{86}{figure.caption.36}
-\contentsline {figure}{\numberline {B.4}{\ignorespaces Precision results for 80\% dependent\relax }}{87}{figure.caption.37}
-\contentsline {figure}{\numberline {B.5}{\ignorespaces Precision results for 20\% dependent\relax }}{87}{figure.caption.38}
-\contentsline {figure}{\numberline {B.6}{\ignorespaces Precision results for 40\% dependent\relax }}{88}{figure.caption.39}
-\contentsline {figure}{\numberline {B.7}{\ignorespaces Precision results for 60\% dependent\relax }}{88}{figure.caption.40}
-\contentsline {figure}{\numberline {B.8}{\ignorespaces Precision results for 80\% dependent\relax }}{89}{figure.caption.41}
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Time results for 20\% dependent\relax }}{87}{figure.caption.35}
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Time results for 40\% dependent\relax }}{88}{figure.caption.36}
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Time results for 60\% dependent\relax }}{88}{figure.caption.37}
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Time results for 80\% dependent\relax }}{89}{figure.caption.38}
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Time results for 20\% dependent\relax }}{89}{figure.caption.39}
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Time results for 40\% dependent\relax }}{90}{figure.caption.40}
+\contentsline {figure}{\numberline {B.7}{\ignorespaces Time results for 60\% dependent\relax }}{90}{figure.caption.41}
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Time results for 80\% dependent\relax }}{91}{figure.caption.42}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {C.1}{\ignorespaces Precision results for 20\% dependent\relax }}{91}{figure.caption.42}
-\contentsline {figure}{\numberline {C.2}{\ignorespaces Precision results for 40\% dependent\relax }}{92}{figure.caption.43}
-\contentsline {figure}{\numberline {C.3}{\ignorespaces Precision results for 60\% dependent\relax }}{92}{figure.caption.44}
-\contentsline {figure}{\numberline {C.4}{\ignorespaces Precision results for 80\% dependent\relax }}{93}{figure.caption.45}
-\contentsline {figure}{\numberline {C.5}{\ignorespaces Precision results for 20\% dependent\relax }}{93}{figure.caption.46}
-\contentsline {figure}{\numberline {C.6}{\ignorespaces Precision results for 40\% dependent\relax }}{94}{figure.caption.47}
-\contentsline {figure}{\numberline {C.7}{\ignorespaces Precision results for 60\% dependent\relax }}{94}{figure.caption.48}
-\contentsline {figure}{\numberline {C.8}{\ignorespaces Precision results for 80\% dependent\relax }}{95}{figure.caption.49}
+\contentsline {figure}{\numberline {C.1}{\ignorespaces Memory usage results for 20\% dependent\relax }}{93}{figure.caption.43}
+\contentsline {figure}{\numberline {C.2}{\ignorespaces Memory usage results for 40\% dependent\relax }}{94}{figure.caption.44}
+\contentsline {figure}{\numberline {C.3}{\ignorespaces Memory usage results for 60\% dependent\relax }}{94}{figure.caption.45}
+\contentsline {figure}{\numberline {C.4}{\ignorespaces Memory usage results for 80\% dependent\relax }}{95}{figure.caption.46}
+\contentsline {figure}{\numberline {C.5}{\ignorespaces Memory usage results for 20\% dependent\relax }}{95}{figure.caption.47}
+\contentsline {figure}{\numberline {C.6}{\ignorespaces Memory usage results for 40\% dependent\relax }}{96}{figure.caption.48}
+\contentsline {figure}{\numberline {C.7}{\ignorespaces Memory usage results for 60\% dependent\relax }}{96}{figure.caption.49}
+\contentsline {figure}{\numberline {C.8}{\ignorespaces Memory usage results for 80\% dependent\relax }}{97}{figure.caption.50}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {D.1}{\ignorespaces Execution times with computation and instrumentation disabling, bloom filter\relax }}{100}{figure.caption.51}
+\contentsline {figure}{\numberline {D.2}{\ignorespaces Execution times with computation and instrumentation disabling, bloom filter\relax }}{100}{figure.caption.52}

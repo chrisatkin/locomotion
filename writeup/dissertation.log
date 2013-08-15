@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.12)  15 AUG 2013 01:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.12)  15 AUG 2013 21:41
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -423,9 +423,9 @@ Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
 \listing@line=\count153
 )
 \verbatim@out=\write3
-runsystem(touch w18-test-201381582.tex)...executed.
+runsystem(touch w18-test-20138151301.tex)...executed.
 
-runsystem(rm -f w18-test-201381582.tex)...executed.
+runsystem(rm -f w18-test-20138151301.tex)...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 108.
@@ -778,7 +778,7 @@ File: lstlang1.sty 2013/08/05 1.5a listings language file
 (./chapters/runtime-library.aux) (./chapters/methodology.aux)
 (./chapters/results.aux) (./chapters/conclusion.aux)
 (./chapters/appendix-precision.aux) (./chapters/appendix-time.aux)
-(./chapters/appendix-memory.aux))
+(./chapters/appendix-memory.aux) (./chapters/appendix-disable.aux))
 \openout1 = `dissertation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
@@ -923,7 +923,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<eushield-fullcolour.pdf, id=404, 369.38pt x 373.395pt>
+<eushield-fullcolour.pdf, id=409, 369.38pt x 373.395pt>
 File: eushield-fullcolour.pdf Graphic file (type pdf)
 
 <use eushield-fullcolour.pdf>
@@ -1010,12 +1010,31 @@ Underfull \vbox (badness 2478) has occurred while \output is active []
 
  [11
 
-])
+]
+Overfull \hbox (1.13016pt too wide) in paragraph at lines 30--30
+ [][] [][]\OT1/pplx/m/n/10.95 (-20) Execution times with com-pu-ta-tion and in-
+stru-men-ta-tion dis-abling, bloom 
+ []
+
+
+Overfull \hbox (1.13016pt too wide) in paragraph at lines 61--61
+ [][] [][]\OT1/pplx/m/n/10.95 (-20) Execution times with com-pu-ta-tion and in-
+stru-men-ta-tion dis-abling, bloom 
+ []
+
+
+Overfull \hbox (1.13016pt too wide) in paragraph at lines 62--62
+ [][] [][]\OT1/pplx/m/n/10.95 (-20) Execution times with com-pu-ta-tion and in-
+stru-men-ta-tion dis-abling, bloom 
+ []
+
+)
 \tf@lof=\write7
 \openout7 = `dissertation.lof'.
 
+ [12] [13] [14
 
-[12]
+]
 \openout2 = `chapters/introduction.aux'.
 
  (./chapters/introduction.tex
@@ -1039,7 +1058,6 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <14.4> not available
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 6.
 [1
-
 
 
 ]
@@ -1075,22 +1093,26 @@ Chapter 2.
 
 ] [8] [9]
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <12> not available
-(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 45.
+(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 45.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 45.
- [10] [11] [12]
+(Font)              scaled to size 10.79993pt on input line 47.
+ [10]
+Underfull \vbox (badness 4981) has occurred while \output is active []
+
+ [11]
+Underfull \vbox (badness 7151) has occurred while \output is active []
+
+ [12]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 94.
- [13] [14] [15]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+nput line 96.
 
- [16]
-Underfull \vbox (badness 7558) has occurred while \output is active []
+[13]
+Underfull \vbox (badness 5592) has occurred while \output is active []
 
- [17])
-[18]
+ [14]
+[15] [16] [17]) [18]
 \openout2 = `chapters/graal.aux'.
 
  (./chapters/graal.tex
@@ -1099,7 +1121,7 @@ Chapter 3.
 
 
 
-] <graphics/roslyn-pipeline.pdf, id=922, 433.62pt x 219.82124pt>
+] <graphics/roslyn-pipeline.pdf, id=948, 433.62pt x 219.82124pt>
 File: graphics/roslyn-pipeline.pdf Graphic file (type pdf)
 
 <use graphics/roslyn-pipeline.pdf>
@@ -1109,7 +1131,7 @@ Package pdftex.def Info: graphics/roslyn-pipeline.pdf used on input line 17.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [20 <./graphics/roslyn-pipeline.pdf>]
-<graphics/loop-inline.png, id=945, 446.66875pt x 379.4175pt>
+<graphics/loop-inline.png, id=970, 446.66875pt x 379.4175pt>
 File: graphics/loop-inline.png Graphic file (type png)
 
 <use graphics/loop-inline.png>
@@ -1119,7 +1141,7 @@ Package pdftex.def Info: graphics/loop-inline.png used on input line 34.
 Underfull \vbox (badness 5817) has occurred while \output is active []
 
  [22 <./graphics/loop-inline.png>] [23]
-<graphics/lowering-stages.pdf, id=967, 495.8525pt x 40.15pt>
+<graphics/lowering-stages.pdf, id=993, 495.8525pt x 40.15pt>
 File: graphics/lowering-stages.pdf Graphic file (type pdf)
 
 <use graphics/lowering-stages.pdf>
@@ -1128,7 +1150,7 @@ Package pdftex.def Info: graphics/lowering-stages.pdf used on input line 81.
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <12> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 86.
  [24 <./graphics/lowering-stages.pdf>]
-<graphics/graph-replacement.pdf, id=1000, 636.3775pt x 100.375pt>
+<graphics/graph-replacement.pdf, id=1026, 636.3775pt x 100.375pt>
 File: graphics/graph-replacement.pdf Graphic file (type pdf)
 
 <use graphics/graph-replacement.pdf>
@@ -1140,7 +1162,7 @@ Underfull \vbox (badness 1910) has occurred while \output is active []
 
  [25]
 [26 <./graphics/graph-replacement.pdf>]
-<graphics/jvminternals.pdf, id=1043, 372.39125pt x 161.60374pt>
+<graphics/jvminternals.pdf, id=1069, 372.39125pt x 161.60374pt>
 File: graphics/jvminternals.pdf Graphic file (type pdf)
 
 <use graphics/jvminternals.pdf>
@@ -1165,7 +1187,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 Chapter 4.
-[31] <graphics/access-index.png, id=1094, 442.65375pt x 375.4025pt>
+[31] <graphics/access-index.png, id=1119, 442.65375pt x 375.4025pt>
 File: graphics/access-index.png Graphic file (type png)
 
 <use graphics/access-index.png>
@@ -1175,7 +1197,7 @@ Package pdftex.def Info: graphics/access-index.png used on input line 40.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<graphics/graal-metadata.png, id=1096, 655.44875pt x 320.19624pt>
+<graphics/graal-metadata.png, id=1121, 655.44875pt x 320.19624pt>
 File: graphics/graal-metadata.png Graphic file (type png)
 
 <use graphics/graal-metadata.png>
@@ -1200,14 +1222,14 @@ Chapter 5.
 
 
 
-] <graphics/hash-table.pdf, id=1164, 252.945pt x 184.69pt>
+] <graphics/hash-table.pdf, id=1190, 252.945pt x 184.69pt>
 File: graphics/hash-table.pdf Graphic file (type pdf)
 
 <use graphics/hash-table.pdf>
 Package pdftex.def Info: graphics/hash-table.pdf used on input line 39.
 (pdftex.def)             Requested size: 288.79422pt x 210.87003pt.
  [38]
-<graphics/bloomfilter.pdf, id=1182, 521.14702pt x 187.20018pt>
+<graphics/bloomfilter.pdf, id=1207, 521.14702pt x 187.20018pt>
 File: graphics/bloomfilter.pdf Graphic file (type pdf)
 
 <use graphics/bloomfilter.pdf>
@@ -1226,7 +1248,7 @@ runsystem(gnuplot dissertation-gnuplottex-fig1.gnuplot)...executed.
 Package gnuplottex Info: dissertation-gnuplottex-fig1.gnuplot converted on inpu
 t line 113.
 
-<dissertation-gnuplottex-fig1.pdf, id=1223, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig1.pdf, id=1248, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig1.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig1.pdf>
@@ -1240,39 +1262,33 @@ put line 221.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [45]
-<graphics/instrument-support.pdf, id=1321, 176.66pt x 130.4875pt>
-File: graphics/instrument-support.pdf Graphic file (type pdf)
 
-<use graphics/instrument-support.pdf>
-Package pdftex.def Info: graphics/instrument-support.pdf used on input line 293
-.
-(pdftex.def)             Requested size: 165.02347pt x 121.89368pt.
- [46] [47 <./graphics/instrument-support.pdf>] [48] [49] <graphics/trace-classe
-s.pdf, id=1408, 375.4025pt x 287.0725pt>
+LaTeX Warning: Reference `fig:instrument-support' on page 46 undefined on input
+ line 279.
+
+[46] [47] [48] <graphics/trace-classes.pdf, id=1398, 375.4025pt x 287.0725pt>
 File: graphics/trace-classes.pdf Graphic file (type pdf)
 
 <use graphics/trace-classes.pdf>
-Package pdftex.def Info: graphics/trace-classes.pdf used on input line 384.
+Package pdftex.def Info: graphics/trace-classes.pdf used on input line 367.
 (pdftex.def)             Requested size: 288.79422pt x 220.85814pt.
+ [49]
+Underfull \vbox (badness 3179) has occurred while \output is active []
+
  [50 <./graphics/trace-classes.pdf>]) [51]
 \openout2 = `chapters/methodology.aux'.
 
-
-(./chapters/methodology.tex [52
+ (./chapters/methodology.tex [52
 
 
 
 ]
 Chapter 6.
-[53] [54]
-Underfull \vbox (badness 2512) has occurred while \output is active []
-
- [55]
-[56] [57] [58]
+[53] [54] [55] [56] [57] [58] [59]
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 168.
- [59] [60]
-Overfull \hbox (12.33437pt too wide) in paragraph at lines 219--220
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 170.
+ [60]
+Overfull \hbox (12.33437pt too wide) in paragraph at lines 221--222
 \OT1/pplx/m/n/10.95 (-20) The main ex-per-i-men-tal class is \OT1/pcr/m/n/10.95
  Experiments\OT1/pplx/m/n/10.95 (-20) , which con-tains the en-try point. \OT1/
 pcr/m/n/10.95 Experiments
@@ -1294,13 +1310,13 @@ Chapter 7.
 runsystem(gnuplot dissertation-gnuplottex-fig2.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig2.gnuplot converted on inpu
-t line 25.
+t line 24.
 
-<dissertation-gnuplottex-fig2.pdf, id=1573, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig2.pdf, id=1570, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig2.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig2.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig2.pdf used on input line 25
+Package pdftex.def Info: dissertation-gnuplottex-fig2.pdf used on input line 24
 .
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
  [64 <./dissertation-gnuplottex-fig2.pdf>]
@@ -1310,29 +1326,33 @@ Package pdftex.def Info: dissertation-gnuplottex-fig2.pdf used on input line 25
 runsystem(gnuplot dissertation-gnuplottex-fig3.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig3.gnuplot converted on inpu
-t line 44.
+t line 43.
 
-<dissertation-gnuplottex-fig3.pdf, id=1584, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig3.pdf, id=1581, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig3.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig3.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig3.pdf used on input line 44
+Package pdftex.def Info: dissertation-gnuplottex-fig3.pdf used on input line 43
 .
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [65 <./dissertation-gnuplottex-fig3.pdf>]
 \openout3 = `dissertation-gnuplottex-fig4.gnuplot'.
 
- Opening gnuplot stream dissertation-gnuplottex-fig4.gnuplot
+
+Opening gnuplot stream dissertation-gnuplottex-fig4.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig4.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig4.gnuplot converted on inpu
-t line 64.
+t line 63.
 
-<dissertation-gnuplottex-fig4.pdf, id=1594, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig4.pdf, id=1592, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig4.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig4.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig4.pdf used on input line 64
+Package pdftex.def Info: dissertation-gnuplottex-fig4.pdf used on input line 63
 .
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
  [66 <./dissertation-gnuplottex-fig4.pdf>]
@@ -1342,13 +1362,13 @@ Package pdftex.def Info: dissertation-gnuplottex-fig4.pdf used on input line 64
 runsystem(gnuplot dissertation-gnuplottex-fig5.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig5.gnuplot converted on inpu
-t line 86.
+t line 85.
 
-<dissertation-gnuplottex-fig5.pdf, id=1607, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig5.pdf, id=1604, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig5.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig5.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig5.pdf used on input line 86
+Package pdftex.def Info: dissertation-gnuplottex-fig5.pdf used on input line 85
 .
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
  [67 <./dissertation-gnuplottex-fig5.pdf>]
@@ -1358,14 +1378,14 @@ Package pdftex.def Info: dissertation-gnuplottex-fig5.pdf used on input line 86
 runsystem(gnuplot dissertation-gnuplottex-fig6.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig6.gnuplot converted on inpu
-t line 109.
+t line 106.
 
-<dissertation-gnuplottex-fig6.pdf, id=1620, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig6.pdf, id=1617, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig6.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig6.pdf>
 Package pdftex.def Info: dissertation-gnuplottex-fig6.pdf used on input line 10
-9.
+6.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
  [68 <./dissertation-gnuplottex-fig6.pdf>]
 \openout3 = `dissertation-gnuplottex-fig7.gnuplot'.
@@ -1374,14 +1394,14 @@ Package pdftex.def Info: dissertation-gnuplottex-fig6.pdf used on input line 10
 runsystem(gnuplot dissertation-gnuplottex-fig7.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig7.gnuplot converted on inpu
-t line 131.
+t line 125.
 
-<dissertation-gnuplottex-fig7.pdf, id=1630, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig7.pdf, id=1627, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig7.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig7.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig7.pdf used on input line 13
-1.
+Package pdftex.def Info: dissertation-gnuplottex-fig7.pdf used on input line 12
+5.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
  [69 <./dissertation-gnuplottex-fig7.pdf>]
 \openout3 = `dissertation-gnuplottex-fig8.gnuplot'.
@@ -1390,14 +1410,14 @@ Package pdftex.def Info: dissertation-gnuplottex-fig7.pdf used on input line 13
 runsystem(gnuplot dissertation-gnuplottex-fig8.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig8.gnuplot converted on inpu
-t line 148.
+t line 145.
 
-<dissertation-gnuplottex-fig8.pdf, id=1640, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig8.pdf, id=1636, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig8.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig8.pdf>
 Package pdftex.def Info: dissertation-gnuplottex-fig8.pdf used on input line 14
-8.
+5.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
  [70 <./dissertation-gnuplottex-fig8.pdf>]
 \openout3 = `dissertation-gnuplottex-fig9.gnuplot'.
@@ -1406,30 +1426,34 @@ Package pdftex.def Info: dissertation-gnuplottex-fig8.pdf used on input line 14
 runsystem(gnuplot dissertation-gnuplottex-fig9.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig9.gnuplot converted on inpu
-t line 170.
+t line 174.
 
-<dissertation-gnuplottex-fig9.pdf, id=1651, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig9.pdf, id=1648, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig9.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig9.pdf>
 Package pdftex.def Info: dissertation-gnuplottex-fig9.pdf used on input line 17
-0.
+4.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [71 <./dissertation-gnuplottex-fig9.pdf>]
 \openout3 = `dissertation-gnuplottex-fig10.gnuplot'.
 
- Opening gnuplot stream dissertation-gnuplottex-fig10.gnuplot
+
+Opening gnuplot stream dissertation-gnuplottex-fig10.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig10.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig10.gnuplot converted on inp
-ut line 200.
+ut line 193.
 
-<dissertation-gnuplottex-fig10.pdf, id=1665, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig10.pdf, id=1659, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig10.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig10.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig10.pdf used on input line 2
-00.
+Package pdftex.def Info: dissertation-gnuplottex-fig10.pdf used on input line 1
+93.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
  [72 <./dissertation-gnuplottex-fig10.pdf>]
 \openout3 = `dissertation-gnuplottex-fig11.gnuplot'.
@@ -1438,83 +1462,75 @@ Package pdftex.def Info: dissertation-gnuplottex-fig10.pdf used on input line 2
 runsystem(gnuplot dissertation-gnuplottex-fig11.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig11.gnuplot converted on inp
-ut line 219.
+ut line 216.
 
-<dissertation-gnuplottex-fig11.pdf, id=1678, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig11.pdf, id=1672, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig11.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig11.pdf>
 Package pdftex.def Info: dissertation-gnuplottex-fig11.pdf used on input line 2
-19.
+16.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
-) [73 <./dissertation-gnuplottex-fig11.pdf>]
-\openout2 = `chapters/conclusion.aux'.
-
- (./chapters/conclusion.tex [74
-
-
-
-]
-Chapter 8.
-[75] [76]) [77]
-\openout2 = `chapters/appendix-precision.aux'.
-
- (./chapters/appendix-precision.tex [78
-
-
-
-]
-Appendix A.
+ [73 <./dissertation-gnuplottex-fig11.pdf>]
 \openout3 = `dissertation-gnuplottex-fig12.gnuplot'.
 
-Opening gnuplot stream dissertation-gnuplottex-fig12.gnuplot
+ Opening gnuplot stream dissertation-gnuplottex-fig12.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig12.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig12.gnuplot converted on inp
-ut line 6.
+ut line 238.
 
-<dissertation-gnuplottex-fig12.pdf, id=1723, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig12.pdf, id=1685, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig12.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig12.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig12.pdf used on input line 6
-.
+Package pdftex.def Info: dissertation-gnuplottex-fig12.pdf used on input line 2
+38.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+ [74 <./dissertation-gnuplottex-fig12.pdf>]
 \openout3 = `dissertation-gnuplottex-fig13.gnuplot'.
 
-
-Opening gnuplot stream dissertation-gnuplottex-fig13.gnuplot
+ Opening gnuplot stream dissertation-gnuplottex-fig13.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig13.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig13.gnuplot converted on inp
-ut line 16.
+ut line 257.
 
-<dissertation-gnuplottex-fig13.pdf, id=1724, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig13.pdf, id=1696, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig13.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig13.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig13.pdf used on input line 1
-6.
+Package pdftex.def Info: dissertation-gnuplottex-fig13.pdf used on input line 2
+57.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+ [75 <./dissertation-gnuplottex-fig13.pdf>]) [76]
+\openout2 = `chapters/conclusion.aux'.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+ (./chapters/conclusion.tex
+Chapter 8.
+[77
 
- [79 <./dissertation-gnuplottex-fig12.pdf>]
+
+
+] [78] [79]) [80]
+\openout2 = `chapters/appendix-precision.aux'.
+
+ (./chapters/appendix-precision.tex
+Appendix A.
 \openout3 = `dissertation-gnuplottex-fig14.gnuplot'.
-
 
 Opening gnuplot stream dissertation-gnuplottex-fig14.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig14.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig14.gnuplot converted on inp
-ut line 25.
+ut line 6.
 
-<dissertation-gnuplottex-fig14.pdf, id=1734, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig14.pdf, id=1748, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig14.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig14.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig14.pdf used on input line 2
-5.
+Package pdftex.def Info: dissertation-gnuplottex-fig14.pdf used on input line 6
+.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig15.gnuplot'.
 
@@ -1523,20 +1539,23 @@ Opening gnuplot stream dissertation-gnuplottex-fig15.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig15.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig15.gnuplot converted on inp
-ut line 34.
+ut line 16.
 
-<dissertation-gnuplottex-fig15.pdf, id=1735, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig15.pdf, id=1749, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig15.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig15.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig15.pdf used on input line 3
-4.
+Package pdftex.def Info: dissertation-gnuplottex-fig15.pdf used on input line 1
+6.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [80 <./dissertation-gnuplottex-fig13.pdf> <./dissertation-gnuplottex-fig14.pdf
->]
+ [81
+
+
+
+ <./dissertation-gnuplottex-fig14.pdf>]
 \openout3 = `dissertation-gnuplottex-fig16.gnuplot'.
 
 
@@ -1544,14 +1563,14 @@ Opening gnuplot stream dissertation-gnuplottex-fig16.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig16.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig16.gnuplot converted on inp
-ut line 43.
+ut line 25.
 
-<dissertation-gnuplottex-fig16.pdf, id=1748, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig16.pdf, id=1758, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig16.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig16.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig16.pdf used on input line 4
-3.
+Package pdftex.def Info: dissertation-gnuplottex-fig16.pdf used on input line 2
+5.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig17.gnuplot'.
 
@@ -1560,19 +1579,19 @@ Opening gnuplot stream dissertation-gnuplottex-fig17.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig17.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig17.gnuplot converted on inp
-ut line 53.
+ut line 34.
 
-<dissertation-gnuplottex-fig17.pdf, id=1749, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig17.pdf, id=1759, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig17.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig17.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig17.pdf used on input line 5
-3.
+Package pdftex.def Info: dissertation-gnuplottex-fig17.pdf used on input line 3
+4.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [81 <./dissertation-gnuplottex-fig15.pdf> <./dissertation-gnuplottex-fig16.pdf
+ [82 <./dissertation-gnuplottex-fig15.pdf> <./dissertation-gnuplottex-fig16.pdf
 >]
 \openout3 = `dissertation-gnuplottex-fig18.gnuplot'.
 
@@ -1581,14 +1600,14 @@ Opening gnuplot stream dissertation-gnuplottex-fig18.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig18.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig18.gnuplot converted on inp
-ut line 62.
+ut line 43.
 
-<dissertation-gnuplottex-fig18.pdf, id=1762, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig18.pdf, id=1772, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig18.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig18.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig18.pdf used on input line 6
-2.
+Package pdftex.def Info: dissertation-gnuplottex-fig18.pdf used on input line 4
+3.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig19.gnuplot'.
 
@@ -1597,42 +1616,35 @@ Opening gnuplot stream dissertation-gnuplottex-fig19.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig19.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig19.gnuplot converted on inp
-ut line 71.
+ut line 53.
 
-<dissertation-gnuplottex-fig19.pdf, id=1763, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig19.pdf, id=1773, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig19.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig19.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig19.pdf used on input line 7
-1.
+Package pdftex.def Info: dissertation-gnuplottex-fig19.pdf used on input line 5
+3.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
-)
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [82 <./dissertation-gnuplottex-fig17.pdf> <./dissertation-gnuplottex-fig18.pdf
->] [83 <./dissertation-gnuplottex-fig19.pdf>]
-\openout2 = `chapters/appendix-time.aux'.
-
- (./chapters/appendix-time.tex [84
-
-
-
-]
-Appendix B.
+ [83 <./dissertation-gnuplottex-fig17.pdf> <./dissertation-gnuplottex-fig18.pdf
+>]
 \openout3 = `dissertation-gnuplottex-fig20.gnuplot'.
+
 
 Opening gnuplot stream dissertation-gnuplottex-fig20.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig20.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig20.gnuplot converted on inp
-ut line 6.
+ut line 62.
 
-<dissertation-gnuplottex-fig20.pdf, id=1788, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig20.pdf, id=1787, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig20.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig20.pdf>
 Package pdftex.def Info: dissertation-gnuplottex-fig20.pdf used on input line 6
-.
+2.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig21.gnuplot'.
 
@@ -1641,34 +1653,42 @@ Opening gnuplot stream dissertation-gnuplottex-fig21.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig21.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig21.gnuplot converted on inp
-ut line 16.
+ut line 71.
 
-<dissertation-gnuplottex-fig21.pdf, id=1789, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig21.pdf, id=1788, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig21.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig21.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig21.pdf used on input line 1
-6.
+Package pdftex.def Info: dissertation-gnuplottex-fig21.pdf used on input line 7
+1.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
-
+)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [85 <./dissertation-gnuplottex-fig20.pdf>]
-\openout3 = `dissertation-gnuplottex-fig22.gnuplot'.
+ [84 <./dissertation-gnuplottex-fig19.pdf> <./dissertation-gnuplottex-fig20.pdf
+>] [85 <./dissertation-gnuplottex-fig21.pdf>]
+\openout2 = `chapters/appendix-time.aux'.
 
+ (./chapters/appendix-time.tex [86
+
+
+
+]
+Appendix B.
+\openout3 = `dissertation-gnuplottex-fig22.gnuplot'.
 
 Opening gnuplot stream dissertation-gnuplottex-fig22.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig22.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig22.gnuplot converted on inp
-ut line 25.
+ut line 6.
 
-<dissertation-gnuplottex-fig22.pdf, id=1799, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig22.pdf, id=1813, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig22.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig22.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig22.pdf used on input line 2
-5.
+Package pdftex.def Info: dissertation-gnuplottex-fig22.pdf used on input line 6
+.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig23.gnuplot'.
 
@@ -1677,20 +1697,19 @@ Opening gnuplot stream dissertation-gnuplottex-fig23.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig23.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig23.gnuplot converted on inp
-ut line 34.
+ut line 16.
 
-<dissertation-gnuplottex-fig23.pdf, id=1800, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig23.pdf, id=1814, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig23.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig23.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig23.pdf used on input line 3
-4.
+Package pdftex.def Info: dissertation-gnuplottex-fig23.pdf used on input line 1
+6.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [86 <./dissertation-gnuplottex-fig21.pdf> <./dissertation-gnuplottex-fig22.pdf
->]
+ [87 <./dissertation-gnuplottex-fig22.pdf>]
 \openout3 = `dissertation-gnuplottex-fig24.gnuplot'.
 
 
@@ -1698,14 +1717,14 @@ Opening gnuplot stream dissertation-gnuplottex-fig24.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig24.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig24.gnuplot converted on inp
-ut line 43.
+ut line 25.
 
-<dissertation-gnuplottex-fig24.pdf, id=1813, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig24.pdf, id=1823, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig24.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig24.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig24.pdf used on input line 4
-3.
+Package pdftex.def Info: dissertation-gnuplottex-fig24.pdf used on input line 2
+5.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig25.gnuplot'.
 
@@ -1714,19 +1733,19 @@ Opening gnuplot stream dissertation-gnuplottex-fig25.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig25.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig25.gnuplot converted on inp
-ut line 53.
+ut line 34.
 
-<dissertation-gnuplottex-fig25.pdf, id=1814, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig25.pdf, id=1824, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig25.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig25.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig25.pdf used on input line 5
-3.
+Package pdftex.def Info: dissertation-gnuplottex-fig25.pdf used on input line 3
+4.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [87 <./dissertation-gnuplottex-fig23.pdf> <./dissertation-gnuplottex-fig24.pdf
+ [88 <./dissertation-gnuplottex-fig23.pdf> <./dissertation-gnuplottex-fig24.pdf
 >]
 \openout3 = `dissertation-gnuplottex-fig26.gnuplot'.
 
@@ -1735,14 +1754,14 @@ Opening gnuplot stream dissertation-gnuplottex-fig26.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig26.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig26.gnuplot converted on inp
-ut line 62.
+ut line 43.
 
-<dissertation-gnuplottex-fig26.pdf, id=1828, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig26.pdf, id=1838, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig26.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig26.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig26.pdf used on input line 6
-2.
+Package pdftex.def Info: dissertation-gnuplottex-fig26.pdf used on input line 4
+3.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig27.gnuplot'.
 
@@ -1751,42 +1770,35 @@ Opening gnuplot stream dissertation-gnuplottex-fig27.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig27.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig27.gnuplot converted on inp
-ut line 71.
+ut line 53.
 
-<dissertation-gnuplottex-fig27.pdf, id=1829, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig27.pdf, id=1839, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig27.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig27.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig27.pdf used on input line 7
-1.
+Package pdftex.def Info: dissertation-gnuplottex-fig27.pdf used on input line 5
+3.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
-)
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [88 <./dissertation-gnuplottex-fig25.pdf> <./dissertation-gnuplottex-fig26.pdf
->] [89 <./dissertation-gnuplottex-fig27.pdf>]
-\openout2 = `chapters/appendix-memory.aux'.
-
- (./chapters/appendix-memory.tex [90
-
-
-
-]
-Appendix C.
+ [89 <./dissertation-gnuplottex-fig25.pdf> <./dissertation-gnuplottex-fig26.pdf
+>]
 \openout3 = `dissertation-gnuplottex-fig28.gnuplot'.
+
 
 Opening gnuplot stream dissertation-gnuplottex-fig28.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig28.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig28.gnuplot converted on inp
-ut line 6.
+ut line 62.
 
-<dissertation-gnuplottex-fig28.pdf, id=1854, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig28.pdf, id=1853, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig28.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig28.pdf>
 Package pdftex.def Info: dissertation-gnuplottex-fig28.pdf used on input line 6
-.
+2.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig29.gnuplot'.
 
@@ -1795,34 +1807,42 @@ Opening gnuplot stream dissertation-gnuplottex-fig29.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig29.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig29.gnuplot converted on inp
-ut line 16.
+ut line 71.
 
-<dissertation-gnuplottex-fig29.pdf, id=1855, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig29.pdf, id=1854, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig29.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig29.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig29.pdf used on input line 1
-6.
+Package pdftex.def Info: dissertation-gnuplottex-fig29.pdf used on input line 7
+1.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
-
+)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [91 <./dissertation-gnuplottex-fig28.pdf>]
-\openout3 = `dissertation-gnuplottex-fig30.gnuplot'.
+ [90 <./dissertation-gnuplottex-fig27.pdf> <./dissertation-gnuplottex-fig28.pdf
+>] [91 <./dissertation-gnuplottex-fig29.pdf>]
+\openout2 = `chapters/appendix-memory.aux'.
 
+ (./chapters/appendix-memory.tex [92
+
+
+
+]
+Appendix C.
+\openout3 = `dissertation-gnuplottex-fig30.gnuplot'.
 
 Opening gnuplot stream dissertation-gnuplottex-fig30.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig30.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig30.gnuplot converted on inp
-ut line 25.
+ut line 6.
 
-<dissertation-gnuplottex-fig30.pdf, id=1865, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig30.pdf, id=1879, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig30.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig30.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig30.pdf used on input line 2
-5.
+Package pdftex.def Info: dissertation-gnuplottex-fig30.pdf used on input line 6
+.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig31.gnuplot'.
 
@@ -1831,20 +1851,19 @@ Opening gnuplot stream dissertation-gnuplottex-fig31.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig31.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig31.gnuplot converted on inp
-ut line 34.
+ut line 16.
 
-<dissertation-gnuplottex-fig31.pdf, id=1866, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig31.pdf, id=1880, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig31.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig31.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig31.pdf used on input line 3
-4.
+Package pdftex.def Info: dissertation-gnuplottex-fig31.pdf used on input line 1
+6.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [92 <./dissertation-gnuplottex-fig29.pdf> <./dissertation-gnuplottex-fig30.pdf
->]
+ [93 <./dissertation-gnuplottex-fig30.pdf>]
 \openout3 = `dissertation-gnuplottex-fig32.gnuplot'.
 
 
@@ -1852,14 +1871,14 @@ Opening gnuplot stream dissertation-gnuplottex-fig32.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig32.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig32.gnuplot converted on inp
-ut line 43.
+ut line 25.
 
-<dissertation-gnuplottex-fig32.pdf, id=1879, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig32.pdf, id=1889, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig32.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig32.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig32.pdf used on input line 4
-3.
+Package pdftex.def Info: dissertation-gnuplottex-fig32.pdf used on input line 2
+5.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig33.gnuplot'.
 
@@ -1868,19 +1887,19 @@ Opening gnuplot stream dissertation-gnuplottex-fig33.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig33.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig33.gnuplot converted on inp
-ut line 53.
+ut line 34.
 
-<dissertation-gnuplottex-fig33.pdf, id=1880, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig33.pdf, id=1890, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig33.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig33.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig33.pdf used on input line 5
-3.
+Package pdftex.def Info: dissertation-gnuplottex-fig33.pdf used on input line 3
+4.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [93 <./dissertation-gnuplottex-fig31.pdf> <./dissertation-gnuplottex-fig32.pdf
+ [94 <./dissertation-gnuplottex-fig31.pdf> <./dissertation-gnuplottex-fig32.pdf
 >]
 \openout3 = `dissertation-gnuplottex-fig34.gnuplot'.
 
@@ -1889,14 +1908,14 @@ Opening gnuplot stream dissertation-gnuplottex-fig34.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig34.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig34.gnuplot converted on inp
-ut line 62.
+ut line 43.
 
-<dissertation-gnuplottex-fig34.pdf, id=1893, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig34.pdf, id=1903, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig34.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig34.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig34.pdf used on input line 6
-2.
+Package pdftex.def Info: dissertation-gnuplottex-fig34.pdf used on input line 4
+3.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 \openout3 = `dissertation-gnuplottex-fig35.gnuplot'.
 
@@ -1905,88 +1924,200 @@ Opening gnuplot stream dissertation-gnuplottex-fig35.gnuplot
 runsystem(gnuplot dissertation-gnuplottex-fig35.gnuplot)...executed.
 
 Package gnuplottex Info: dissertation-gnuplottex-fig35.gnuplot converted on inp
-ut line 71.
+ut line 53.
 
-<dissertation-gnuplottex-fig35.pdf, id=1894, 361.35pt x 216.81pt>
+<dissertation-gnuplottex-fig35.pdf, id=1904, 361.35pt x 216.81pt>
 File: dissertation-gnuplottex-fig35.pdf Graphic file (type pdf)
 
 <use dissertation-gnuplottex-fig35.pdf>
-Package pdftex.def Info: dissertation-gnuplottex-fig35.pdf used on input line 7
+Package pdftex.def Info: dissertation-gnuplottex-fig35.pdf used on input line 5
+3.
+(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [95 <./dissertation-gnuplottex-fig33.pdf> <./dissertation-gnuplottex-fig34.pdf
+>]
+\openout3 = `dissertation-gnuplottex-fig36.gnuplot'.
+
+
+Opening gnuplot stream dissertation-gnuplottex-fig36.gnuplot
+runsystem(gnuplot dissertation-gnuplottex-fig36.gnuplot)...executed.
+
+Package gnuplottex Info: dissertation-gnuplottex-fig36.gnuplot converted on inp
+ut line 62.
+
+<dissertation-gnuplottex-fig36.pdf, id=1918, 361.35pt x 216.81pt>
+File: dissertation-gnuplottex-fig36.pdf Graphic file (type pdf)
+
+<use dissertation-gnuplottex-fig36.pdf>
+Package pdftex.def Info: dissertation-gnuplottex-fig36.pdf used on input line 6
+2.
+(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+\openout3 = `dissertation-gnuplottex-fig37.gnuplot'.
+
+
+Opening gnuplot stream dissertation-gnuplottex-fig37.gnuplot
+runsystem(gnuplot dissertation-gnuplottex-fig37.gnuplot)...executed.
+
+Package gnuplottex Info: dissertation-gnuplottex-fig37.gnuplot converted on inp
+ut line 71.
+
+<dissertation-gnuplottex-fig37.pdf, id=1919, 361.35pt x 216.81pt>
+File: dissertation-gnuplottex-fig37.pdf Graphic file (type pdf)
+
+<use dissertation-gnuplottex-fig37.pdf>
+Package pdftex.def Info: dissertation-gnuplottex-fig37.pdf used on input line 7
 1.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [94 <./dissertation-gnuplottex-fig33.pdf> <./dissertation-gnuplottex-fig34.pdf
->] [95 <./dissertation-gnuplottex-fig35.pdf>] (./dissertation.bbl [96
+ [96 <./dissertation-gnuplottex-fig35.pdf> <./dissertation-gnuplottex-fig36.pdf
+>] [97 <./dissertation-gnuplottex-fig37.pdf>]
+\openout2 = `chapters/appendix-disable.aux'.
+
+ (./chapters/appendix-disable.tex [98
+
 
 
 ]
+Appendix D.
+\openout3 = `dissertation-gnuplottex-fig38.gnuplot'.
+
+Opening gnuplot stream dissertation-gnuplottex-fig38.gnuplot
+runsystem(gnuplot dissertation-gnuplottex-fig38.gnuplot)...executed.
+
+Package gnuplottex Info: dissertation-gnuplottex-fig38.gnuplot converted on inp
+ut line 7.
+
+<dissertation-gnuplottex-fig38.pdf, id=1945, 361.35pt x 216.81pt>
+File: dissertation-gnuplottex-fig38.pdf Graphic file (type pdf)
+
+<use dissertation-gnuplottex-fig38.pdf>
+Package pdftex.def Info: dissertation-gnuplottex-fig38.pdf used on input line 7
+.
+(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+\openout3 = `dissertation-gnuplottex-fig39.gnuplot'.
+
+
+Opening gnuplot stream dissertation-gnuplottex-fig39.gnuplot
+runsystem(gnuplot dissertation-gnuplottex-fig39.gnuplot)...executed.
+
+Package gnuplottex Info: dissertation-gnuplottex-fig39.gnuplot converted on inp
+ut line 17.
+
+<dissertation-gnuplottex-fig39.pdf, id=1946, 361.35pt x 216.81pt>
+File: dissertation-gnuplottex-fig39.pdf Graphic file (type pdf)
+
+<use dissertation-gnuplottex-fig39.pdf>
+Package pdftex.def Info: dissertation-gnuplottex-fig39.pdf used on input line 1
+7.
+(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+) [99] [100 <./dissertation-gnuplottex-fig38.pdf> <./dissertation-gnuplottex-fi
+g39.pdf>] (./dissertation.bbl
 Missing character: There is no â in font pplri9t!
 Missing character: There is no „ in font pplri9t!
 Missing character: There is no ¢ in font pplri9t!
- [97]
-Underfull \hbox (badness 1509) in paragraph at lines 132--136
+
+Underfull \hbox (badness 5008) in paragraph at lines 97--107
+[]\OT1/pplx/m/n/10.95 (+20) I. Rogers, C. Kirkham, and I. Wat-son.  Loop Par-al
+-leli-sa-tion for the
+ []
+
+
+Underfull \hbox (badness 2903) in paragraph at lines 97--107
+\OT1/pplx/m/n/10.95 (+20) Jikes RVM.  In \OT1/pplx/m/it/10.95 (+20) Sixth In-te
+r-na-tional Con-fer-ence on Par-al-lel and Dis-tributed
+ []
+
+
+Underfull \hbox (badness 5417) in paragraph at lines 97--107
+\OT1/pplx/m/it/10.95 (+20) Com-put-ing Ap-pli-ca-tions and Tech-nolo-gies (PD-C
+AT'05)\OT1/pplx/m/n/10.95 (+20) , pages 35--39. IEEE,
+ []
+
+
+Underfull \hbox (badness 6808) in paragraph at lines 97--107
+\OT1/pplx/m/n/10.95 (+20) 2005.  ISBN 0-7695-2405-2.  doi: $10 . 1109 / PDCAT .
+ 2005 . 164$.  URL
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--107
+[]$\OT1/pcr/m/n/10.95 http : / / ieeexplore . ieee . org / xpls / abs _ all . j
+sp ? arnumber = 1578860http :
+ []
+
+[101
+
+
+]
+Underfull \hbox (badness 1509) in paragraph at lines 144--148
 []\OT1/pplx/m/n/10.95 (+20) James Stra-chan and The Groovy Project.  org.codeha
 us.groovy.classgen.asm,
  []
 
-[98]
+[102]
 Missing character: There is no â in font pplri9t!
 Missing character: There is no € in font pplri9t!
 Missing character: There is no ” in font pplri9t!
- [99]
-Underfull \hbox (badness 2828) in paragraph at lines 354--358
+ [103]
+Underfull \hbox (badness 2828) in paragraph at lines 366--370
 []\OT1/pplx/m/n/10.95 (+20) Ronald Ib-bett.  High Per-for-mance Com-puter Ar-ch
 i-tec-tures, 2009.  URL
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 354--358
+Underfull \hbox (badness 10000) in paragraph at lines 366--370
 []$\OT1/pcr/m/n/10.95 http : / / homepages . inf . ed . ac . uk / cgi / rni / c
 omp-[]arch . pl ? Paru / depend . html ,[]
  []
 
-
-Underfull \hbox (badness 1297) in paragraph at lines 411--415
+[104]
+Underfull \hbox (badness 1297) in paragraph at lines 423--427
 []\OT1/pplx/m/n/10.95 (+20) Apache Com-mons.  Enu-mer-ated-Dis-tri-bu-tion<T> d
 oc-u-men-ta-tion, 2013.  URL
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 411--415
+Underfull \hbox (badness 10000) in paragraph at lines 423--427
 []$\OT1/pcr/m/n/10.95 http : / / commons . apache . org / proper / commons-[]ma
 th / javadocs / api-[]3 . 2 / org /
  []
 
-[100])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 114.
- [101]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 114.
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 115.
+ [105]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 115.
  (./dissertation.aux (./chapters/introduction.aux)
 (./chapters/related-work.aux) (./chapters/graal.aux)
 (./chapters/instrumentation.aux) (./chapters/runtime-library.aux)
 (./chapters/methodology.aux) (./chapters/results.aux)
 (./chapters/conclusion.aux) (./chapters/appendix-precision.aux)
-(./chapters/appendix-time.aux) (./chapters/appendix-memory.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 114.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 114.
+(./chapters/appendix-time.aux) (./chapters/appendix-memory.aux)
+(./chapters/appendix-disable.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 115.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 115.
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 4E77F8429E4BA25EBF537348EE33DC4B;6655.
+(rerunfilecheck)             Checksum: 9DC43D8D2D08C0EBFFDA8F09C1FF4907;6711.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 114.
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 115.
  ) 
 Here is how much of TeX's memory you used:
- 23021 strings out of 493311
- 409424 string characters out of 6137850
- 681888 words of memory out of 5000000
- 24975 multiletter control sequences out of 15000+600000
- 86976 words of font info for 426 fonts, out of 8000000 for 9000
+ 23064 strings out of 493311
+ 410476 string characters out of 6137850
+ 684542 words of memory out of 5000000
+ 25002 multiletter control sequences out of 15000+600000
+ 87089 words of font info for 428 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 56i,10n,70p,2125b,1693s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,10n,70p,2125b,1669s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
 xlive/2013/texmf-dist/fonts/type1/public/amsfonts/euler/euex10.pfb></usr/local/
@@ -2006,10 +2137,10 @@ ist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2013/texmf-dist/fon
 ts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type
 1/urw/palatino/uplri8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb>
-Output written on dissertation.pdf (113 pages, 824779 bytes).
+Output written on dissertation.pdf (119 pages, 834236 bytes).
 PDF statistics:
- 2185 PDF objects out of 2487 (max. 8388607)
- 1922 compressed objects within 20 object streams
- 506 named destinations out of 1000 (max. 500000)
- 74256 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 2231 PDF objects out of 2487 (max. 8388607)
+ 1963 compressed objects within 20 object streams
+ 509 named destinations out of 1000 (max. 500000)
+ 74279 words of extra memory for PDF output out of 74296 (max. 10000000)
 

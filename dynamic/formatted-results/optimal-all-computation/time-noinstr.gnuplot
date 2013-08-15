@@ -1,4 +1,4 @@
-set title "all dependent, hash set"
+set title "all dependent, no instrumentation"
 set xlabel "accesses (thousands)"
 set ylabel "execution time (seconds)"
 

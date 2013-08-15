@@ -1,4 +1,4 @@
-\begin{thebibliography}{58}
+\begin{thebibliography}{60}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -92,6 +92,18 @@ Georgios Tournavitis, Zheng Wang, Bj\"{o}rn Franke, and Michael~F.P. O'Boyle.
 \newblock ISSN 03621340.
 \newblock \doi{10.1145/1543135.1542496}.
 \newblock URL \url{http://dl.acm.org/citation.cfm?id=1543135.1542496}.
+
+\bibitem[Rogers et~al.(2005)Rogers, Kirkham, and Watson]{Rogers2005}
+I.~Rogers, C.~Kirkham, and I.~Watson.
+\newblock {Loop Parallelisation for the Jikes RVM}.
+\newblock In \emph{Sixth International Conference on Parallel and Distributed
+  Computing Applications and Technologies (PDCAT'05)}, pages 35--39. IEEE,
+  2005.
+\newblock ISBN 0-7695-2405-2.
+\newblock \doi{10.1109/PDCAT.2005.164}.
+\newblock URL
+  \url{http://ieeexplore.ieee.org/xpls/abs\_all.jsp?arnumber=1578860
+  http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=1578860}.
 
 \bibitem[Javabeats.com(2012)]{javaagents}
 Javabeats.com.
@@ -418,6 +430,16 @@ Gang-Ryung Uh, Robert Cohn, Bharadwaj Yadavalli, Ramesh Peri, and Ravi
   Ayyagari.
 \newblock {Analyzing Dynamic Binary Instrumentation Overhead}.
 \newblock \emph{WBIA Workshop at ASPLOS}, 2006.
+
+\bibitem[{Edler von Koch} and Franke(2013)]{EdlervonKoch2013}
+Tobias~J.K. {Edler von Koch} and Bj\"{o}rn Franke.
+\newblock {Limits of region-based dynamic binary parallelization}.
+\newblock In \emph{Proceedings of the 9th ACM SIGPLAN/SIGOPS international
+  conference on Virtual execution environments - VEE '13}, page~13, New York,
+  New York, USA, March 2013. ACM Press.
+\newblock ISBN 9781450312660.
+\newblock \doi{10.1145/2451512.2451518}.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=2451512.2451518}.
 
 \bibitem[{Oracle Corporation}(2004)]{JSR133}
 {Oracle Corporation}.
