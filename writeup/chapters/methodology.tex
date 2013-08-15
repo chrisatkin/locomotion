@@ -22,8 +22,39 @@ All software used was the latest version available at the time of writing.
 
 \textit{In silico} experimental design is notoriously difficult within the context of standard scientific procedure. Reproducibility of experiments is not always guaranteed, as slight and sometimes un-noticed machine intricacies and flaws can affect experimental results. Because of this, all benchmarks were run on a separate user account (in order to reduce the number of running processes which may affect results, perhaps by consuming additional resources).
 
+\section{Experiment Descriptions} \label{sec:methodology/experiments}
+In this section, we describe the various experiments which will be performed, the results of which will be presented in chapter \ref{chp:results}.
+
+	\subsection{Implementation} \label{sec:methodology/experiments/implementation}
+	The first experiment which was conduced was an experiment to determine the optimal bloom filter implementation. There are several bloom filter implementations, and when one considers the higher time complexity associated with bloom filter operations, a high-performance operation is vital.
+	
+	In this experiment, $n$ randomly generated memory operations (the same objects used in the actual instrumentation) are generated, and the median operation time for both bloom filter implementations as well as an optimally configured hash set and a hash set with default configuration.
+	
+	An optimally configured hash set is one where the initial capacity is set to the actual number of insertions. The load factor is left at the default value of 0.75, as recommended by the Java API documentation. The hash set with default configuration uses an initial capacity of 16. Linear hashing is used to increase the capacity of the set as-and-when required.
+	
+	\subsection{Precision} \label{sec:methodology/experiments/precision}
+	The next experiment was to measure the precision, or detection rate, of the storage structures selected with highest performance as a result of the experiment presented in section \ref{sec:methodology/experiments/implementation}.
+	
+	This is important as dependency detection is the primary objective of the framework. We used the benchmark presented in section \ref{sec:methodology/params} in order to determine the accuracy, in terms of detecting `correct' dependencies as well as any false positives which may occur.
+	
+	\subsection{Overhead} \label{sec:methodology/experiments/overhead}
+	However, it is well documented that adding instrumentation to programs does come at a cost, both in terms of execution time and memory usage. In the design of the instrumentation (see chapter \ref{chp:runtime} for details), care was taken to ensure that the overhead was as minimal as possible.
+	
+	In this set of experiments, we test the impact that the instrumentation has on the execution time and footprint of our parametric benchmark.
+	
+	In addition to testing the overhead on the benchmark without any operations being performed, we also conducted testing where there were a number of floating-point computations associated with each memory operation. These computations were designed in such a way that they cannot be removed by the optimiser in either the compiler or the runtime environment. For each memory operation that is performed, a single floating-point operation is performed in a loop. The variable was the number of times that the loop runs.
+	
+		\subsubsection{Execution Time} \label{sec:methodology/experiments/overhead/time}
+		
+		\subsubsection{Memory Use} \label{sec:methodology/experiments/overhead/memory}
+		
+	\subsection{Multiples} \label{sec:methodology/experiments/multiples}
+	Early in testing we found that, as expected, there was no single size of bit vector which would cover all possibilities; each loop is unique and requires 
+	
+	\subsection{Online Instrumentation Disabling} \label{sec:methodology/experiments/online-disable}
+
 \section{Repeats} \label{sec:methodology/repeats}
-In order to improve the results, each experiment was repeat ten times. The median of the three repeats was used for the rest of the analyses.
+In order to improve the results, each experiment was repeat ten times. The median of the ten repeats was used for the rest of the analyses.
 	
 \section{Measurement Methodology} \label{sec:methodology/measurements}
 	\subsection{Execution Time} \label{sec:methodology/measurements/time}

@@ -18,6 +18,7 @@
 \usepackage{amssymb}
 \usepackage{wrapfig}
 \usepackage{tikz}
+\usepackage[toc,page]{appendix}
 \usetikzlibrary{arrows,automata}
 
 % set colour for listings
@@ -65,10 +66,13 @@
 \title{Parallelism Detection using Dynamic\\Instrumentation in a Virtual Machine}
 \author{Christopher Edward Atkin-Granville}
 
-\abstract{Contemporary computers are highly based around highly parallel architectures through chip multiprocessors, instruction-level parallelism and graphics processing units with potentially thousands of cores. Despite this, many popular programs are based around a sequential programming paradigm. This project investigates the use of the Graal compiler infrastructure in order to dynamically profile running programs within the Java Virtual Machine and determine which hot loops are good candidates for automatic parallelism transformations, possibly JIT recompilation to an OpenCL target.
+\abstract{Contemporary computers are increasingly based around highly parallel architectures through chip multiprocessors, instruction-level parallelism and graphics processing units with potentially thousands of cores. Despite this, many popular programs are based around a sequential programming paradigm.
 
-We consider two main approaches to trace collection: exact approaches and probabilistic approaches.}
+This project investigates the use of the Graal compiler infrastructure in order to dynamically profile running programs within the Java Virtual Machine and determine which hot loops are good candidates for automatic parallelism transformations, possibly JIT recompilation to an OpenCL target. We show that, currently, Graal is not yet mature enough to support the transformations required. However, in the future, it will becomes mature enough and our framework is a simple `drop-in' to the Graal compilation procedure to add instrumentation to programs.
 
+We consider two main approaches to trace collection: exact approaches and probabilistic approaches based on bloom filters. A new benchmark has been created that allows for fine-tuning of the number and types of dependencies, as well as the amount of computation associated with each operation (in the form of a number of floating-point operations) which allows us to analyse the efficacy of each approach without the disadvantages of real-world benchmarks (\ie, where we cannot know ahead-of-time how many dependencies there are, and so cannot evaluate the performance of each approach).
+
+The findings presented by this dissertation show that not only is it feasible to use bloom filters for these kinds of analysis, but it also advantageous to do so over hash sets. With the correct parameters, bloom filters show a small memory use increase over uninstrumented programs, and a relatively small increase in the execution time of between a factor of 1.4 and 2 times slower.}
 
 \begin{document}
 	\begin{preliminary}
@@ -76,7 +80,9 @@ We consider two main approaches to trace collection: exact approaches and probab
 		\begin{acknowledgements}
 		I wish to thank my supervisors, Dr. Christophe Dubach and Dr. Bj\"{o}rn Franke for their insightful and valuable contributions to the project.
 
-		Also in need of thanks are my parents, Sandra and Ian who have supported me throughout my entire University career.
+		Also in need of thanks are my friends and especially my parents, Sandra and Ian who have supported me throughout my entire University career.
+		
+		Lastly, I would like to thank all those folks on the Graal mailing list who answered all my questions regarding the system.
 		\end{acknowledgements}
 		\standarddeclaration
 		\dedication{To my grandfather, Leslie.}
@@ -96,7 +102,13 @@ We consider two main approaches to trace collection: exact approaches and probab
 	\include{chapters/results}
 	%\include{chapters/optimisations}
 	\include{chapters/conclusion}
+	
+	\appendix
+	\include{chapters/appendix-precision}
+	\include{chapters/appendix-time}
+	\include{chapters/appendix-memory}	
 
+	\singlespace
 	\bibliographystyle{unsrtnat}
 	\bibliography{library}
 \end{document}

@@ -56,52 +56,44 @@
 \contentsline {chapter}{\numberline {6}Methodology}{53}{chapter.6}
 \contentsline {section}{\numberline {6.1}Introduction}{53}{section.6.1}
 \contentsline {section}{\numberline {6.2}Experimental Setup}{53}{section.6.2}
-\contentsline {section}{\numberline {6.3}Repeats}{54}{section.6.3}
-\contentsline {section}{\numberline {6.4}Measurement Methodology}{54}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Execution Time}{54}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}Dependencies}{54}{subsection.6.4.2}
-\contentsline {subsection}{\numberline {6.4.3}Memory Usage}{54}{subsection.6.4.3}
-\contentsline {section}{\numberline {6.5}Parametric Benchmarks}{56}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Motivation}{56}{subsection.6.5.1}
-\contentsline {subsection}{\numberline {6.5.2}Problem Statement}{57}{subsection.6.5.2}
-\contentsline {subsection}{\numberline {6.5.3}Algorithm Design}{57}{subsection.6.5.3}
-\contentsline {subsubsection}{\numberline {6.5.3.1}Generating \texttt {b}}{58}{subsubsection.6.5.3.1}
-\contentsline {subsubsection}{\numberline {6.5.3.2}Generating \texttt {ops}}{58}{subsubsection.6.5.3.2}
-\contentsline {subsection}{\numberline {6.5.4}Implementation Details}{59}{subsection.6.5.4}
-\contentsline {section}{\numberline {6.6}Test Harness Design and Implementation}{59}{section.6.6}
-\contentsline {section}{\numberline {6.7}Result Collection}{60}{section.6.7}
-\contentsline {section}{\numberline {6.8}Summary}{60}{section.6.8}
-\contentsline {chapter}{\numberline {7}Results}{61}{chapter.7}
-\contentsline {section}{\numberline {7.1}Introduction}{61}{section.7.1}
-\contentsline {section}{\numberline {7.2}Bloom filter implementations}{61}{section.7.2}
-\contentsline {section}{\numberline {7.3}All Dependent}{63}{section.7.3}
-\contentsline {subsection}{\numberline {7.3.1}Dependency Detection}{64}{subsection.7.3.1}
-\contentsline {subsection}{\numberline {7.3.2}Memory Usage}{65}{subsection.7.3.2}
-\contentsline {subsection}{\numberline {7.3.3}Execution Time}{66}{subsection.7.3.3}
-\contentsline {section}{\numberline {7.4}No Dependencies}{67}{section.7.4}
-\contentsline {subsection}{\numberline {7.4.1}Dependency Detection}{67}{subsection.7.4.1}
-\contentsline {subsection}{\numberline {7.4.2}Memory Usage}{68}{subsection.7.4.2}
-\contentsline {subsection}{\numberline {7.4.3}Execution Time}{68}{subsection.7.4.3}
-\contentsline {section}{\numberline {7.5}20\% Dependent}{69}{section.7.5}
-\contentsline {subsection}{\numberline {7.5.1}Dependency Detection}{69}{subsection.7.5.1}
-\contentsline {subsection}{\numberline {7.5.2}Memory Usage}{70}{subsection.7.5.2}
-\contentsline {subsection}{\numberline {7.5.3}Execution Time}{70}{subsection.7.5.3}
-\contentsline {section}{\numberline {7.6}40\% Dependent}{70}{section.7.6}
-\contentsline {subsection}{\numberline {7.6.1}Dependency Detection}{70}{subsection.7.6.1}
-\contentsline {subsection}{\numberline {7.6.2}Memory Usage}{72}{subsection.7.6.2}
-\contentsline {subsection}{\numberline {7.6.3}Execution Time}{72}{subsection.7.6.3}
-\contentsline {section}{\numberline {7.7}60\% Dependent}{72}{section.7.7}
-\contentsline {subsection}{\numberline {7.7.1}Dependency Detection}{72}{subsection.7.7.1}
-\contentsline {subsection}{\numberline {7.7.2}Memory Usage}{73}{subsection.7.7.2}
-\contentsline {subsection}{\numberline {7.7.3}Execution Time}{73}{subsection.7.7.3}
-\contentsline {section}{\numberline {7.8}80\% Dependent}{73}{section.7.8}
-\contentsline {subsection}{\numberline {7.8.1}Dependency Detection}{73}{subsection.7.8.1}
-\contentsline {subsection}{\numberline {7.8.2}Memory Usage}{75}{subsection.7.8.2}
-\contentsline {subsection}{\numberline {7.8.3}Execution Time}{75}{subsection.7.8.3}
-\contentsline {section}{\numberline {7.9}General Remarks}{75}{section.7.9}
-\contentsline {section}{\numberline {7.10}Optimal Configuration for Bloom Filters}{76}{section.7.10}
-\contentsline {chapter}{\numberline {8}Conclusion}{79}{chapter.8}
-\contentsline {section}{\numberline {8.1}Concluding Remarks and Contributions}{79}{section.8.1}
-\contentsline {section}{\numberline {8.2}Unsolved Problems}{80}{section.8.2}
-\contentsline {section}{\numberline {8.3}Future Work}{80}{section.8.3}
-\contentsline {chapter}{Bibliography}{83}{chapter*.33}
+\contentsline {section}{\numberline {6.3}Experiment Descriptions}{54}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Implementation}{54}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Precision}{54}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}Overhead}{55}{subsection.6.3.3}
+\contentsline {subsubsection}{\numberline {6.3.3.1}Execution Time}{55}{subsubsection.6.3.3.1}
+\contentsline {subsubsection}{\numberline {6.3.3.2}Memory Use}{55}{subsubsection.6.3.3.2}
+\contentsline {subsection}{\numberline {6.3.4}Multiples}{55}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.5}Online Instrumentation Disabling}{55}{subsection.6.3.5}
+\contentsline {section}{\numberline {6.4}Repeats}{55}{section.6.4}
+\contentsline {section}{\numberline {6.5}Measurement Methodology}{56}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Execution Time}{56}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Dependencies}{56}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}Memory Usage}{56}{subsection.6.5.3}
+\contentsline {section}{\numberline {6.6}Parametric Benchmarks}{58}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Motivation}{58}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}Problem Statement}{58}{subsection.6.6.2}
+\contentsline {subsection}{\numberline {6.6.3}Algorithm Design}{59}{subsection.6.6.3}
+\contentsline {subsubsection}{\numberline {6.6.3.1}Generating \texttt {b}}{59}{subsubsection.6.6.3.1}
+\contentsline {subsubsection}{\numberline {6.6.3.2}Generating \texttt {ops}}{60}{subsubsection.6.6.3.2}
+\contentsline {subsection}{\numberline {6.6.4}Implementation Details}{60}{subsection.6.6.4}
+\contentsline {section}{\numberline {6.7}Test Harness Design and Implementation}{61}{section.6.7}
+\contentsline {section}{\numberline {6.8}Result Collection}{62}{section.6.8}
+\contentsline {section}{\numberline {6.9}Summary}{62}{section.6.9}
+\contentsline {chapter}{\numberline {7}Results}{63}{chapter.7}
+\contentsline {section}{\numberline {7.1}Bloom Filter Implementation}{63}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Insertion}{64}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Membership}{65}{subsection.7.1.2}
+\contentsline {subsection}{\numberline {7.1.3}Conclusions}{66}{subsection.7.1.3}
+\contentsline {section}{\numberline {7.2}Precision Testing}{67}{section.7.2}
+\contentsline {section}{\numberline {7.3}Memory Usage}{69}{section.7.3}
+\contentsline {section}{\numberline {7.4}Execution Time}{71}{section.7.4}
+\contentsline {section}{\numberline {7.5}Real Impact}{72}{section.7.5}
+\contentsline {section}{\numberline {7.6}Performance Tuning}{73}{section.7.6}
+\contentsline {chapter}{\numberline {8}Conclusion}{75}{chapter.8}
+\contentsline {section}{\numberline {8.1}Concluding Remarks and Contributions}{75}{section.8.1}
+\contentsline {section}{\numberline {8.2}Unsolved Problems}{76}{section.8.2}
+\contentsline {section}{\numberline {8.3}Future Work}{76}{section.8.3}
+\contentsline {chapter}{\numberline {A}Precision Figures}{79}{appendix.A}
+\contentsline {chapter}{\numberline {B}Execution Time Figures}{85}{appendix.B}
+\contentsline {chapter}{\numberline {C}Memory Usage Figures}{91}{appendix.C}
+\contentsline {chapter}{Bibliography}{97}{appendix*.50}

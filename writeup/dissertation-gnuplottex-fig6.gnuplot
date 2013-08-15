@@ -1,3 +1,5 @@
 set terminal pdf
 set output 'dissertation-gnuplottex-fig6.pdf'
-load '../dynamic/formatted-results/vector-survey-none/bloomfilter-deps.gnuplot'
+set multiplot layout 1,2
+load '../dynamic/formatted-results/vector-survey-all/hash-memory.gnuplot'
+load '../dynamic/formatted-results/vector-survey-all/bloomfilter-memory.gnuplot'

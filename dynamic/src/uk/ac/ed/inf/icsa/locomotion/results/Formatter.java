@@ -20,7 +20,7 @@ public final class Formatter {
 	
 	@SuppressWarnings("serial")
 	private Formatter() {
-		this.targetDirectory = new File(System.getProperty("user.dir") + File.separator + "results/optimal-none-computation");
+		this.targetDirectory = new File(System.getProperty("user.dir") + File.separator + "results/optimal-all-computation");
 		this.results = _getFilesInDirectory(this.targetDirectory);
 	}
 	
@@ -108,7 +108,7 @@ public final class Formatter {
 				"some-0.4equal-longvector"
 				*/
 				
-				"optimal-none-computation"}) {
+				"optimal-all-computation"}) {
 			for (final String instrument: new String[] { "true", "false" }) {
 				for (final String storage: new String[] { "HashSetTrace", "BloomFilterTrace", "HashSetWellConfigured"}) {
 					System.out.println("name=" + name + " instrument=" + instrument + " storage=" + storage);

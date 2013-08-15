@@ -10,8 +10,16 @@ In this dissertation, several key contributions to the field have been made.
 	\item Lastly, an instrumentation framework with an overhead of 20-30x over the baseline has been developed. We have shown how this framework performs with regard to the number of computations performed with each access.
 \end{itemize}
 
+We can draw the final conclusion that it is both possible and advantageous to use bloom filters in the pursuit of an automatic parallelising runtime. The use of bloom filters allows for both a negligible increase in memory size (on the order of tens of megabytes versus hundreds for hash sets) and a relatively small increase in execution times of between a factor of 1.5 and 2 times slower than uninstrumented programs if a full dependency analysis is sought.
+
+In the case of a binary decision regarding parallelisation (\ie, `can this loop be executed in parallel or not?'), the speedup is potentially even larger; in our experiments the performance is comparable to that of uninstrumented programs.
+
+We found that the optimal size for the bloom filter is between 10 and 20 times the number of actual insertions. This allows for the optimal trade-off between dependency detection (which was 100\% accuracy for 20x in our testing) and memory usage, which was a factor of 3 lower than that required for hash sets.
+
 \section{Unsolved Problems} \label{sec:conclusion/unsolved}
-There are, however, several problems with remain 
+There are, however, several problems with remain with our implementation. These are mainly in the form of the lack of automatic instrumentation. We attempted to use the Graal compiler infrastructure to add these instructions, but unfortunately Graal does not yet support them. The largest issue was that in the case of a deoptimisation occuring, the interpreter does not have a bytecode index to commence execution from because the instruction does not exist within the bytecode itself.
+
+In the coming weeks and months, the Graal development team will be adding new features and capabilities and soon will support this feature. Although we are currently unsure of the form this will take, it will in all likelihood be in a form that is easily compatible with our framework. Indeed, if it takes the form that we expect, no modifications will be required to the existing solution.
 
 \section{Future Work} \label{sec:conclusion/future-work}
 The work that has been presented in this dissertation is a step forwards in dynamic parallelism detection. The framework correctly identifies data-parallel loops, and we have investigated whether the use of bloom filters affects the detection rate. However, there are still significant areas of future work that are possible.

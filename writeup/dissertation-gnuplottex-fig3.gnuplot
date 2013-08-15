@@ -1,7 +1,3 @@
 set terminal pdf
 set output 'dissertation-gnuplottex-fig3.pdf'
-set multiplot layout 1,2
-load '../dynamic/formatted-results/vector-survey-all/hash-deps.gnuplot'
-
-load '../dynamic/formatted-results/vector-survey-all/bloomfilter-deps.gnuplot'
-unset multiplot
+load '../dynamic/formatted-results/implementation/contains-local.gnuplot'

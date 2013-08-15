@@ -24,4 +24,5 @@ plot "< sort -k1,1 -n -k3,3 -n ../dynamic/formatted-results/multiples-all/instru
 	"< sort -k1,1 -n -k3,3 -n ../dynamic/formatted-results/multiples-all/instrumentation=true-storage=BloomFilterTrace | awk '$1 * 70 == $3'" using ($1/1000):($2/1024) with linespoints title "factor = 70" ls 7 lw 4,\
 	"< sort -k1,1 -n -k3,3 -n ../dynamic/formatted-results/multiples-all/instrumentation=true-storage=BloomFilterTrace | awk '$1 * 80 == $3'" using ($1/1000):($2/1024) with linespoints title "factor = 80" ls 8 lw 4,\
 	"< sort -k1,1 -n -k3,3 -n ../dynamic/formatted-results/multiples-all/instrumentation=true-storage=BloomFilterTrace | awk '$1 * 90 == $3'" using ($1/1000):($2/1024) with linespoints title "factor = 90" ls 9 lw 4,\
-	"< sort -k1,1 -n -k3,3 -n ../dynamic/formatted-results/multiples-all/instrumentation=true-storage=BloomFilterTrace | awk '$1 * 100 == $3'" using ($1/1000):($2/1024) with linespoints title "factor = 100" ls 10 lw 4
+	"< sort -k1,1 -n -k3,3 -n ../dynamic/formatted-results/multiples-all/instrumentation=true-storage=BloomFilterTrace | awk '$1 * 100 == $3'" using ($1/1000):($2/1024) with linespoints title "factor = 100" ls 10 lw 4,\
+	"< sort -n ../dynamic/formatted-results/vector-survey-all/instrumentation=true-storage=HashSetTrace" using ($1/1000):($2/1024) with linespoints title "hash set" ls 11 lw 4

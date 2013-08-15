@@ -1,4 +1,4 @@
-\begin{thebibliography}{61}
+\begin{thebibliography}{58}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -336,6 +336,13 @@ Austin Appleby.
 \newblock {SMHasher and MurmurHash}, 2013.
 \newblock URL \url{http://code.google.com/p/smhasher/}.
 
+\bibitem[Kirsch and Mitzenmacher(2006)]{Kirsch2006}
+Adam Kirsch and Michael Mitzenmacher.
+\newblock {Less Hashing , Same Performance : Building a Better Bloom Filter}.
+\newblock \emph{Building}, 33:\penalty0 456--467, 2006.
+\newblock ISSN 10429832.
+\newblock \doi{10.1002/rsa}.
+
 \bibitem[Allen and Kennedy(2000)]{Allen2000}
 Randy Allen and Ken Kennedy.
 \newblock \emph{{Optimising Compilers for Modern Architectures: A
@@ -368,12 +375,6 @@ Oracle.
 \newblock {Autoboxing}, 2010.
 \newblock URL
   \url{http://docs.oracle.com/javase/1.5.0/docs/guide/language/autoboxing.html}.
-
-\bibitem[Google(2013)]{GuavaBloomFilter}
-Inc Google.
-\newblock {Class BloomFilter<T>}, 2013.
-\newblock URL
-  \url{http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/com/google/common/hash/BloomFilter.html}.
 
 \bibitem[Kim and Hsu(2000)]{Kim2000}
 Jin-Soo Kim and Yarsun Hsu.
@@ -412,37 +413,11 @@ Jonathan Ellis.
 \newblock URL
   \url{http://commons.apache.org/proper/commons-math/javadocs/api-3.2/org/apache/commons/math3/distribution/EnumeratedDistribution.html}.
 
-\bibitem[Dillinger and Manolios(2004)]{Dillinger2004}
-Peter~C Dillinger and Panagiotis Manolios.
-\newblock \emph{{Formal Methods in Computer-Aided Design}}, volume 3312 of
-  \emph{Lecture Notes in Computer Science}.
-\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2004.
-\newblock ISBN 978-3-540-23738-9.
-\newblock \doi{10.1007/b102264}.
-\newblock URL \url{http://www.springerlink.com/index/10.1007/b102264}.
-
-\bibitem[Sanchez et~al.(2007)Sanchez, Yen, Hill, and
-  Sankaralingam]{Sanchez2007a}
-Daniel Sanchez, Luke Yen, Mark~D. Hill, and Karthikeyan Sankaralingam.
-\newblock {Implementing Signatures for Transactional Memory}.
-\newblock In \emph{40th Annual IEEE/ACM International Symposium on
-  Microarchitecture (MICRO 2007)}, pages 123--133. IEEE, 2007.
-\newblock ISBN 0-7695-3047-8.
-\newblock \doi{10.1109/MICRO.2007.24}.
-\newblock URL
-  \url{http://ieeexplore.ieee.org/articleDetails.jsp?arnumber=4408250}.
-
-\bibitem[Kirsch and Mitzenmacher(2006)]{Kirsch2006}
-Adam Kirsch and Michael Mitzenmacher.
-\newblock {Less Hashing , Same Performance : Building a Better Bloom Filter}.
-\newblock \emph{Building}, 33:\penalty0 456--467, 2006.
-\newblock ISSN 10429832.
-\newblock \doi{10.1002/rsa}.
-
-\bibitem[Levenberg(2007)]{Levenberg2007}
-Abby~D Levenberg.
-\newblock {Bloom Filter and Lossy Dictionary Based Language Models}.
-\newblock 2007.
+\bibitem[Uh et~al.(2006)Uh, Cohn, Yadavalli, Peri, and Ayyagari]{Uh2006}
+Gang-Ryung Uh, Robert Cohn, Bharadwaj Yadavalli, Ramesh Peri, and Ravi
+  Ayyagari.
+\newblock {Analyzing Dynamic Binary Instrumentation Overhead}.
+\newblock \emph{WBIA Workshop at ASPLOS}, 2006.
 
 \bibitem[{Oracle Corporation}(2004)]{JSR133}
 {Oracle Corporation}.
