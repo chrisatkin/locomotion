@@ -10,5 +10,9 @@ The [dissertation PDF](http://chrisatk.in/pub/parallelism-detection.pdf) is avai
 * Lots of memory
 * Graal in your classpath
 
+## License
+
+Locomotion is licensed under the [CRAPL](http://matt.might.net/articles/crapl/).
+
 
 [![The University of Edinburgh](http://chrisatk.in/assets/ed.png)](http://www.inf.ed.ac.uk)
